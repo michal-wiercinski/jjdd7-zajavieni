@@ -1,7 +1,7 @@
 package com.infoshareacademy;
 
 public class Category {
-    private Integer categoryID;
+    private Long categoryID;
     private String  categoryName;
     private CategoryType categoryType;
 
