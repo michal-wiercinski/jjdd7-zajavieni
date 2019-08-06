@@ -1,11 +1,11 @@
 package com.infoshareacademy;
 
 public class Category {
-    private Integer categoryID;
-    private String  categoryName;
+    private Long categoryID;
+    private String categoryName;
     private CategoryType categoryType;
 
-    public Category(Integer categoryID, String categoryName, CategoryType categoryType) {
+    public Category(Long categoryID, String categoryName, CategoryType categoryType) {
         this.categoryID = categoryID;
         this.categoryName = categoryName;
         this.categoryType = categoryType;

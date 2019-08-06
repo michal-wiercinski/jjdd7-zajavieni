@@ -4,14 +4,14 @@ public class Adress {
     private String street;
     private String zipcode;
     private String city;
-    private String latitiude;
+    private String latitude;
     private String longitude;
 
-    public Adress(String street, String zipcode, String city, String latitiude, String longitude) {
+    public Adress(String street, String zipcode, String city, String latitude, String longitude) {
         this.street = street;
         this.zipcode = zipcode;
         this.city = city;
-        this.latitiude = latitiude;
+        this.latitude = latitude;
         this.longitude = longitude;
     }
 }

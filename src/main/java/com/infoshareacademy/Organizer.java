@@ -1,10 +1,10 @@
 package com.infoshareacademy;
 
 public class Organizer {
-    private Integer organizerID;
+    private Long organizerID;
     private String organizerName;
 
-    public Organizer(Integer organizerID, String organizerName) {
+    public Organizer(Long organizerID, String organizerName) {
         this.organizerID = organizerID;
         this.organizerName = organizerName;
     }

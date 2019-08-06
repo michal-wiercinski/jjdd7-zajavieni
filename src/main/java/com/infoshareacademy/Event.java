@@ -7,7 +7,7 @@ public class Event {
     private String name;
     private String descShort;
     private String descLong;
-    private Integer eventID;
+    private Long eventID;
     private Boolean active;
     private Date startDate;
     private Date endDate;
@@ -18,4 +18,8 @@ public class Event {
     private Category categoryID;
     private List<Attachment> attachmentList;
 
+    public Event(String name, Long eventID) {
+        this.name = name;
+        this.eventID = eventID;
+    }
 }
