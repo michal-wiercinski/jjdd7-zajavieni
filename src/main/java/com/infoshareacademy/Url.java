@@ -11,5 +11,4 @@ public class Url {
         this.wwwAdress = wwwAdress;
         this.fbSite = fbSite;
     }
-
 }
