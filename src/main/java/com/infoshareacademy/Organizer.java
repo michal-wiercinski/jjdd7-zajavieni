@@ -2,11 +2,11 @@ package com.infoshareacademy;
 
 public class Organizer {
     private Long organizerID;
-    private String organizerName;
+    private String name;
 
-    public Organizer(Long organizerID, String organizerName) {
+    public Organizer(Long organizerID, String name) {
         this.organizerID = organizerID;
-        this.organizerName = organizerName;
+        this.name = name;
     }
 
     public Long getOrganizerID() {
@@ -17,11 +17,11 @@ public class Organizer {
         this.organizerID = organizerID;
     }
 
-    public String getOrganizerName() {
-        return organizerName;
+    public String getName() {
+        return name;
     }
 
-    public void setOrganizerName(String organizerName) {
-        this.organizerName = organizerName;
+    public void setName(String name) {
+        this.name = name;
     }
 }

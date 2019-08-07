@@ -2,11 +2,11 @@ package com.infoshareacademy;
 
 public class CategoryType {
     private Long categoryTypeID;
-    private String categoryTypeName;
+    private String name;
 
-    public CategoryType(Long categoryTypeID, String categoryTypeName) {
+    public CategoryType(Long categoryTypeID, String name) {
         this.categoryTypeID = categoryTypeID;
-        this.categoryTypeName = categoryTypeName;
+        this.name = name;
     }
 
     public Long getCategoryTypeID() {
@@ -17,11 +17,11 @@ public class CategoryType {
         this.categoryTypeID = categoryTypeID;
     }
 
-    public String getCategoryTypeName() {
-        return categoryTypeName;
+    public String getName() {
+        return name;
     }
 
-    public void setCategoryTypeName(String categoryTypeName) {
-        this.categoryTypeName = categoryTypeName;
+    public void setName(String name) {
+        this.name = name;
     }
 }

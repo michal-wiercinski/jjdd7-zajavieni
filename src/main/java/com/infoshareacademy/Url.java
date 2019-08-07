@@ -1,24 +1,24 @@
 package com.infoshareacademy;
 
 public class Url {
-    private String wwwAdress;
+    private String wwwAddress;
     private String fbSite;
 
-    public Url(String wwwAdress) {
-        this(wwwAdress, null);
+    public Url(String wwwAddress) {
+        this(wwwAddress, null);
     }
 
-    public Url(String wwwAdress, String fbSite) {
-        this.wwwAdress = wwwAdress;
+    public Url(String wwwAddress, String fbSite) {
+        this.wwwAddress = wwwAddress;
         this.fbSite = fbSite;
     }
 
-    public String getWwwAdress() {
-        return wwwAdress;
+    public String getWwwAddress() {
+        return wwwAddress;
     }
 
-    public void setWwwAdress(String wwwAdress) {
-        this.wwwAdress = wwwAdress;
+    public void setWwwAddress(String wwwAddress) {
+        this.wwwAddress = wwwAddress;
     }
 
     public String getFbSite() {

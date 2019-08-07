@@ -4,10 +4,10 @@ import java.util.Date;
 import java.util.List;
 
 public class Event {
+    private Long eventID;
     private String name;
     private String descShort;
     private String descLong;
-    private Long eventID;
     private Boolean active;
     private Date startDate;
     private Date endDate;

@@ -2,13 +2,13 @@ package com.infoshareacademy;
 
 public class Category {
     private Long categoryID;
-    private String categoryName;
-    private CategoryType categoryType;
+    private String name;
+    private CategoryType type;
 
-    public Category(Long categoryID, String categoryName, CategoryType categoryType) {
+    public Category(Long categoryID, String name, CategoryType type) {
         this.categoryID = categoryID;
-        this.categoryName = categoryName;
-        this.categoryType = categoryType;
+        this.name = name;
+        this.type = type;
     }
 
     public Long getCategoryID() {
@@ -19,19 +19,19 @@ public class Category {
         this.categoryID = categoryID;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getName() {
+        return name;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public CategoryType getCategoryType() {
-        return categoryType;
+    public CategoryType getType() {
+        return type;
     }
 
-    public void setCategoryType(CategoryType categoryType) {
-        this.categoryType = categoryType;
+    public void setType(CategoryType type) {
+        this.type = type;
     }
 }

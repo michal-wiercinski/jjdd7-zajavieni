@@ -3,18 +3,18 @@ package com.infoshareacademy;
 public class Place {
     private Long placeID;
     private Adress adress;
-    private String namePlace;
+    private String name;
     private String subname;
 
-    public Place(Long placeID, Adress adress, String namePlace, String subname) {
+    public Place(Long placeID, Adress adress, String name, String subname) {
         this.placeID = placeID;
         this.adress = adress;
-        this.namePlace = namePlace;
+        this.name = name;
         this.subname = subname;
     }
 
-    public Place(Long placeID, Adress adress, String namePlace) {
-        this(placeID, adress, namePlace, null);
+    public Place(Long placeID, Adress adress, String name) {
+        this(placeID, adress, name, null);
     }
 
     public Long getPlaceID() {
@@ -33,12 +33,12 @@ public class Place {
         this.adress = adress;
     }
 
-    public String getNamePlace() {
-        return namePlace;
+    public String getName() {
+        return name;
     }
 
-    public void setNamePlace(String namePlace) {
-        this.namePlace = namePlace;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSubname() {
