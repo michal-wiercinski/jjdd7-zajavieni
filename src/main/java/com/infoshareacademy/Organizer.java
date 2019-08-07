@@ -1,27 +1,27 @@
 package com.infoshareacademy;
 
 public class Organizer {
-    private Long organizerID;
-    private String name;
+    private Long id;
+    private String designation;
 
-    public Organizer(Long organizerID, String name) {
-        this.organizerID = organizerID;
-        this.name = name;
+    public Organizer(Long id, String designation) {
+        this.id = id;
+        this.designation = designation;
     }
 
-    public Long getOrganizerID() {
-        return organizerID;
+    public Long getId() {
+        return id;
     }
 
-    public void setOrganizerID(Long organizerID) {
-        this.organizerID = organizerID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDesignation() {
+        return designation;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDesignation(String designation) {
+        this.designation = designation;
     }
 }

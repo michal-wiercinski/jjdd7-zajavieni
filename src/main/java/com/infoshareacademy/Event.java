@@ -15,7 +15,7 @@ public class Event {
     private Organizer organizer;
     private Url url;
     private TicketType ticketType;
-    private Category categoryID;
+    private Category category;
     private List<Attachment> attachmentList;
 
     public Event(String name, Long eventID) {
@@ -111,12 +111,12 @@ public class Event {
         this.ticketType = ticketType;
     }
 
-    public Category getCategoryID() {
-        return categoryID;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryID(Category categoryID) {
-        this.categoryID = categoryID;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public List<Attachment> getAttachmentList() {
