@@ -1,7 +1,12 @@
 package com.infoshareacademy;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public enum TicketType {
-    FREE("free"), UNKNOWN("unknown");
+    @JsonProperty("free")
+    FREE("free"),
+    @JsonProperty("unknown")
+    UNKNOWN("unknown");
 
     private String type;
 
@@ -11,5 +16,12 @@ public enum TicketType {
 
     public String getType() {
         return type;
+    }
+
+    @Override
+    public String toString() {
+        return "TicketType{" +
+                "type='" + type + '\'' +
+                '}';
     }
 }

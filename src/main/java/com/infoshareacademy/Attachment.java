@@ -1,6 +1,9 @@
 package com.infoshareacademy;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Attachment {
+
     private String filename;
 
     public Attachment(String filename) {

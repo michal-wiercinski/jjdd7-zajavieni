@@ -1,21 +1,37 @@
 package com.infoshareacademy;
 
+import com.fasterxml.jackson.annotation.JacksonInject;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 import java.util.List;
 
 public class Event {
+    @JsonProperty("id")
     private Long eventID;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("descShort")
     private String descShort;
+    @JsonProperty("descLong")
     private String descLong;
+    @JsonProperty("active")
     private Boolean active;
+    @JsonProperty("startDate")
     private Date startDate;
+    @JsonProperty("endDate")
     private Date endDate;
+    @JsonProperty("place")
     private Place place;
+    @JsonProperty("organizer")
     private Organizer organizer;
+    @JsonProperty("urls")
     private Url url;
+    @JsonProperty("tickets")
     private TicketType ticketType;
+    @JsonProperty("categoryID")
     private Category category;
+    @JsonProperty("attachments")
     private List<Attachment> attachmentList;
 
     public Event(String name, Long eventID) {
@@ -125,5 +141,24 @@ public class Event {
 
     public void setAttachmentList(List<Attachment> attachmentList) {
         this.attachmentList = attachmentList;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "eventID=" + eventID +
+                ", name='" + name + '\'' +
+                ", descShort='" + descShort + '\'' +
+                ", descLong='" + descLong + '\'' +
+                ", active=" + active +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", place=" + place +
+                ", organizer=" + organizer +
+                ", url=" + url +
+                ", ticketType=" + ticketType +
+                ", category=" + category +
+                ", attachmentList=" + attachmentList +
+                '}';
     }
 }
