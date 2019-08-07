@@ -8,4 +8,20 @@ public class CategoryType {
         this.categoryTypeID = categoryTypeID;
         this.categoryTypeName = categoryTypeName;
     }
+
+    public Long getCategoryTypeID() {
+        return categoryTypeID;
+    }
+
+    public void setCategoryTypeID(Long categoryTypeID) {
+        this.categoryTypeID = categoryTypeID;
+    }
+
+    public String getCategoryTypeName() {
+        return categoryTypeName;
+    }
+
+    public void setCategoryTypeName(String categoryTypeName) {
+        this.categoryTypeName = categoryTypeName;
+    }
 }

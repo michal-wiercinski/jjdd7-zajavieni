@@ -8,4 +8,20 @@ public class Organizer {
         this.organizerID = organizerID;
         this.organizerName = organizerName;
     }
+
+    public Long getOrganizerID() {
+        return organizerID;
+    }
+
+    public void setOrganizerID(Long organizerID) {
+        this.organizerID = organizerID;
+    }
+
+    public String getOrganizerName() {
+        return organizerName;
+    }
+
+    public void setOrganizerName(String organizerName) {
+        this.organizerName = organizerName;
+    }
 }

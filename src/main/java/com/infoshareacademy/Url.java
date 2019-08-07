@@ -12,4 +12,20 @@ public class Url {
         this.wwwAdress = wwwAdress;
         this.fbSite = fbSite;
     }
+
+    public String getWwwAdress() {
+        return wwwAdress;
+    }
+
+    public void setWwwAdress(String wwwAdress) {
+        this.wwwAdress = wwwAdress;
+    }
+
+    public String getFbSite() {
+        return fbSite;
+    }
+
+    public void setFbSite(String fbSite) {
+        this.fbSite = fbSite;
+    }
 }
