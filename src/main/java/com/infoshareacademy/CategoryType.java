@@ -8,6 +8,9 @@ public class CategoryType {
     @JsonProperty("name")
     private String name;
 
+    public CategoryType() {
+    }
+
     public CategoryType(Long categoryTypeID, String name) {
         this.categoryTypeID = categoryTypeID;
         this.name = name;

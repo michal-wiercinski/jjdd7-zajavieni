@@ -8,6 +8,9 @@ public class Url {
     @JsonProperty("fb")
     private String fbSite;
 
+    public Url() {
+    }
+
     public Url(String wwwAddress) {
         this(wwwAddress, null);
     }

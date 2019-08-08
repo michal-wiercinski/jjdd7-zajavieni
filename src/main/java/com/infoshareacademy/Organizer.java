@@ -8,6 +8,9 @@ public class Organizer {
     @JsonProperty("designation")
     private String designation;
 
+    public Organizer() {
+    }
+
     public Organizer(Long id, String designation) {
         this.id = id;
         this.designation = designation;

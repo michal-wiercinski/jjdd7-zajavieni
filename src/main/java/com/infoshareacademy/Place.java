@@ -3,6 +3,7 @@ package com.infoshareacademy;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Place {
+
     @JsonProperty("id")
     private Long placeID;
     @JsonProperty("address")
@@ -11,6 +12,10 @@ public class Place {
     private String name;
     @JsonProperty("subname")
     private String subname;
+
+    public Place() {
+    }
+
 
     public Place(Long placeID, Address address, String name, String subname) {
         this.placeID = placeID;

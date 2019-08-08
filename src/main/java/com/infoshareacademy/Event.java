@@ -1,11 +1,12 @@
 package com.infoshareacademy;
 
-import com.fasterxml.jackson.annotation.JacksonInject;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
 import java.util.List;
 
+@JsonIgnoreProperties("tickets")
 public class Event {
     @JsonProperty("id")
     private Long eventID;
@@ -27,12 +28,15 @@ public class Event {
     private Organizer organizer;
     @JsonProperty("urls")
     private Url url;
-    @JsonProperty("tickets")
+    @JsonProperty("type")
     private TicketType ticketType;
-    @JsonProperty("categoryID")
-    private Category category;
+    @JsonProperty("categoryId")
+    private Long categoryID;
     @JsonProperty("attachments")
     private List<Attachment> attachmentList;
+
+    public Event() {
+    }
 
     public Event(String name, Long eventID) {
         this.name = name;
@@ -127,12 +131,12 @@ public class Event {
         this.ticketType = ticketType;
     }
 
-    public Category getCategory() {
-        return category;
+    public Long getCategoryId() {
+        return categoryID;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(Long categoryID) {
+        this.categoryID = categoryID;
     }
 
     public List<Attachment> getAttachmentList() {
@@ -157,7 +161,7 @@ public class Event {
                 ", organizer=" + organizer +
                 ", url=" + url +
                 ", ticketType=" + ticketType +
-                ", category=" + category +
+                ", category=" + categoryID +
                 ", attachmentList=" + attachmentList +
                 '}';
     }
