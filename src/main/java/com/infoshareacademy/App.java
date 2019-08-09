@@ -8,9 +8,11 @@ public class App {
 
         System.out.println("Zajavieni");
 
-        JsonToObject convertEvent = new JsonToObject();
-        convertEvent.convertToEventsList();
-
+        Deserialization deserialization = new Deserialization();
+        System.out.println(deserialization.categoriesDeserialize("categories.json"));
+        System.out.println(deserialization.placesDeserialize("places.json"));
+        System.out.println(deserialization.organizersDeserialize("organizers.json"));
+        System.out.println(deserialization.eventsDeserialize("events.json"));
 
     }
 }

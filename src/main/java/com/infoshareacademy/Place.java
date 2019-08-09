@@ -13,21 +13,6 @@ public class Place {
     @JsonProperty("subname")
     private String subname;
 
-    public Place() {
-    }
-
-
-    public Place(Long placeID, Address address, String name, String subname) {
-        this.placeID = placeID;
-        this.address = address;
-        this.name = name;
-        this.subname = subname;
-    }
-
-    public Place(Long placeID, Address address, String name) {
-        this(placeID, address, name, null);
-    }
-
     public Long getPlaceID() {
         return placeID;
     }
