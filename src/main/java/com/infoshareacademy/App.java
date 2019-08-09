@@ -9,10 +9,10 @@ public class App {
         System.out.println("Zajavieni");
 
         Deserialization deserialization = new Deserialization();
-        System.out.println(deserialization.categoriesDeserialize("categories.json"));
-        System.out.println(deserialization.placesDeserialize("places.json"));
-        System.out.println(deserialization.organizersDeserialize("organizers.json"));
-        System.out.println(deserialization.eventsDeserialize("events.json"));
+        System.out.println(deserialization.deserializeCategories("categories.json"));
+        System.out.println(deserialization.deserializePlaces("places.json"));
+        System.out.println(deserialization.deserializeOrganizers("organizers.json"));
+        System.out.println(deserialization.deserializeEvents("events.json"));
 
     }
 }
