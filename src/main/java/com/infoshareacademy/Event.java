@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 
-@JsonIgnoreProperties("tickets")
+
 public class Event {
     @JsonProperty("id")
     private Long eventID;
@@ -28,7 +28,7 @@ public class Event {
     private Organizer organizer;
     @JsonProperty("urls")
     private Url url;
-    @JsonProperty("type")
+    @JsonProperty("tickets")
     private TicketType ticketType;
     @JsonProperty("categoryId")
     private Long categoryID;
