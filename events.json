@@ -1,0 +1,52 @@
+[
+  {
+    "id": 62119,
+    "place": {
+      "id": 1851,
+      "name": "Miasto Puck"
+    },
+    "endDate": "2019-08-18T23:59:59+0200",
+    "name": "Mistrzostwa Polski w Kitesurfingu",
+    "urls": {
+      "www": "http:\/\/miastopuck.pl\/?p=30745"
+    },
+    "attachments": [],
+    "descLong": "&nbsp;",
+    "categoryId": 96,
+    "startDate": "2019-08-15T00:00:00+0200",
+    "organizer": {
+      "id": 223,
+      "designation": "Miasto Puck"
+    },
+    "active": 1,
+    "descShort": "&nbsp;",
+    "tickets": {
+      "type": "unknown"
+    }
+  },
+  {
+    "id": 62120,
+    "place": {
+      "id": 1851,
+      "name": "Miasto Puck"
+    },
+    "endDate": "2019-08-19T23:59:59+0200",
+    "name": "T\u0119czowe Jarmarki",
+    "urls": {
+      "www": "http:\/\/miastopuck.pl\/?p=30749"
+    },
+    "attachments": [],
+    "descLong": "&nbsp;",
+    "categoryId": 77,
+    "startDate": "2019-08-15T00:00:00+0200",
+    "organizer": {
+      "id": 223,
+      "designation": "Miasto Puck"
+    },
+    "active": 1,
+    "descShort": "&nbsp;",
+    "tickets": {
+      "type": "unknown"
+    }
+  }
+ ]

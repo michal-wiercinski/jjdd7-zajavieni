@@ -1,8 +1,15 @@
 package com.infoshareacademy;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Organizer {
+    @JsonProperty("id")
     private Long id;
+    @JsonProperty("designation")
     private String designation;
+
+    public Organizer() {
+    }
 
     public Organizer(Long id, String designation) {
         this.id = id;
@@ -23,5 +30,13 @@ public class Organizer {
 
     public void setDesignation(String designation) {
         this.designation = designation;
+    }
+
+    @Override
+    public String toString() {
+        return "Organizer{" +
+                "id=" + id +
+                ", designation='" + designation + '\'' +
+                '}';
     }
 }

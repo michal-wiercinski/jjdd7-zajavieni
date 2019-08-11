@@ -1,21 +1,17 @@
 package com.infoshareacademy;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Place {
+
+    @JsonProperty("id")
     private Long placeID;
-    private Adress adress;
+    @JsonProperty("address")
+    private Address address;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("subname")
     private String subname;
-
-    public Place(Long placeID, Adress adress, String name, String subname) {
-        this.placeID = placeID;
-        this.adress = adress;
-        this.name = name;
-        this.subname = subname;
-    }
-
-    public Place(Long placeID, Adress adress, String name) {
-        this(placeID, adress, name, null);
-    }
 
     public Long getPlaceID() {
         return placeID;
@@ -25,12 +21,12 @@ public class Place {
         this.placeID = placeID;
     }
 
-    public Adress getAdress() {
-        return adress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAdress(Adress adress) {
-        this.adress = adress;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getName() {
@@ -47,5 +43,15 @@ public class Place {
 
     public void setSubname(String subname) {
         this.subname = subname;
+    }
+
+    @Override
+    public String toString() {
+        return "Place{" +
+                "placeID=" + placeID +
+                ", adress=" + address +
+                ", name='" + name + '\'' +
+                ", subname='" + subname + '\'' +
+                '}';
     }
 }

@@ -1,22 +1,42 @@
 package com.infoshareacademy;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 import java.util.List;
 
+
 public class Event {
+    @JsonProperty("id")
     private Long eventID;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("descShort")
     private String descShort;
+    @JsonProperty("descLong")
     private String descLong;
+    @JsonProperty("active")
     private Boolean active;
+    @JsonProperty("startDate")
     private Date startDate;
+    @JsonProperty("endDate")
     private Date endDate;
+    @JsonProperty("place")
     private Place place;
+    @JsonProperty("organizer")
     private Organizer organizer;
+    @JsonProperty("urls")
     private Url url;
+    @JsonProperty("tickets")
     private TicketType ticketType;
-    private Category category;
+    @JsonProperty("categoryId")
+    private Long categoryID;
+    @JsonProperty("attachments")
     private List<Attachment> attachmentList;
+
+    public Event() {
+    }
 
     public Event(String name, Long eventID) {
         this.name = name;
@@ -111,12 +131,12 @@ public class Event {
         this.ticketType = ticketType;
     }
 
-    public Category getCategory() {
-        return category;
+    public Long getCategoryId() {
+        return categoryID;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(Long categoryID) {
+        this.categoryID = categoryID;
     }
 
     public List<Attachment> getAttachmentList() {
@@ -125,5 +145,24 @@ public class Event {
 
     public void setAttachmentList(List<Attachment> attachmentList) {
         this.attachmentList = attachmentList;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "eventID=" + eventID +
+                ", name='" + name + '\'' +
+                ", descShort='" + descShort + '\'' +
+                ", descLong='" + descLong + '\'' +
+                ", active=" + active +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", place=" + place +
+                ", organizer=" + organizer +
+                ", url=" + url +
+                ", ticketType=" + ticketType +
+                ", category=" + categoryID +
+                ", attachmentList=" + attachmentList +
+                '}';
     }
 }

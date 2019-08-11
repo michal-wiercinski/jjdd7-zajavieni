@@ -1,8 +1,15 @@
 package com.infoshareacademy;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class CategoryType {
+    @JsonProperty("id")
     private Long categoryTypeID;
+    @JsonProperty("name")
     private String name;
+
+    public CategoryType() {
+    }
 
     public CategoryType(Long categoryTypeID, String name) {
         this.categoryTypeID = categoryTypeID;
@@ -23,5 +30,13 @@ public class CategoryType {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "CategoryType{" +
+                "categoryTypeID=" + categoryTypeID +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
