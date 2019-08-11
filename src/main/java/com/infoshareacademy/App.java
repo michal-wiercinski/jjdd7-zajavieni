@@ -5,7 +5,6 @@ import java.io.IOException;
 public class App {
 
     public static void main(String[] args) throws IOException {
-
         System.out.println("Zajavieni");
 
         DomainDeserializer domainDeserializer = new DomainDeserializer();
@@ -13,6 +12,5 @@ public class App {
         System.out.println(domainDeserializer.deserializePlaces("places.json"));
         System.out.println(domainDeserializer.deserializeOrganizers("organizers.json"));
         System.out.println(domainDeserializer.deserializeEvents("events.json"));
-
     }
 }
