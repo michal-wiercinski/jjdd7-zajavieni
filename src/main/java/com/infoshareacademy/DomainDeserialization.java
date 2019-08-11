@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class Deserialization {
+public class DomainDeserialization {
     ObjectMapper objectMapper = new ObjectMapper();
 
     public List<Category> deserializeCategories(String categoriesPathName) throws IOException {

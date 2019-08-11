@@ -846,6 +846,39 @@
     }
   },
   {
+    "id": 62351,
+    "place": {
+      "id": 2779,
+      "subname": "Sofitel Grand Sopot",
+      "name": "Teatr na Pla\u017cy"
+    },
+    "endDate": "2019-08-17T22:00:00+0200",
+    "name": "Emmanuel Schmitt w specjalnym spektaklu podczas Literackiego Sopotu",
+    "urls": {
+      "www": "http:\/\/www.teatrnaplazy.pl\/wydarzenie\/eric-emmanuel-schmitt-gosciem-specjalnym-literackiego-sopotu\/",
+      "tickets": "https:\/\/teatrnaplazy.interticket.pl\/program\/eric-emmanuel-schmitt-w-specjalnym-spektaklu-podczas-literackiego-sopotu-4945\/18500"
+    },
+    "attachments": [
+      {
+        "fileName": "http:\/\/www.teatrnaplazy.pl\/wp-content\/uploads\/MADAME-PYLINSKA-ET-LE-SECRET-DE-CHOPIN-Cr\u00aedit-Fabienne-RAPPENEAU-65-HD-300x187.jpg"
+      }
+    ],
+    "descLong": "Jeden z najcz\u0119\u015bciej czytanych i wystawianych autor\u00f3w francuskoj\u0119zycznych na \u015bwiecie. Uznany przez krytyk\u00f3w, uwielbiany przez publiczno\u015b\u0107. Jego ksi\u0105\u017cki zosta\u0142y przet\u0142umaczone\u00a0na 46 j\u0119zyk\u00f3w i s\u0105 regularnie granew ponad 50 krajach na \u015bwiecie.<br\/>\u00c9ric \u2013 \u00a0Emmanuel Schmitt b\u0119dzie go\u015bciem tegorocznej edycji Literackiego Sopotu odbywaj\u0105cej si\u0119 od 15 do 18 sierpnia. Spotka si\u0119 nie tylko ze swoimi czytelnikami, ale r\u00f3wnie\u017c zagra w spektaklu na podstawie swojej najnowszej ksi\u0105\u017cki \u201eMadame Pylinska i sekret Chopina\u201d, wydanej przez Wydawnictwo Znak Literanova.<br\/>Pani Pyli\u0144ska, przyst\u0119pna niczym krzew je\u017cyny, narzuca ekscentryczn\u0105 metod\u0119 gry na fortepianie: k\u0142adzenie si\u0119 pod instrumentem, zataczanie kr\u0119g\u00f3w w wodzie, s\u0142uchanie ciszy, powolne kochanie si\u0119\u2026 Podczas tych zaj\u0119\u0107, pomi\u0119dzy jednym zaskoczeniem a drugim, m\u0142ody Eric uczy si\u0119 czego\u015b wi\u0119cej opr\u00f3cz muzyki, uczy si\u0119 \u017cycia. Czu\u0142a i komiczna bajka, wype\u0142niona snobistycznymi kotami, przepadaj\u0105cymi za muzyk\u0105 paj\u0105kami i obecno\u015bci\u0105 ukochanej cioci, a zw\u0142aszcza melodiami Chopina.<br\/>W tym autobiograficznym i pe\u0142nym humoru monologu powo\u0142uje do \u017cycia kilka barwnych postaci i zg\u0142\u0119bia tw\u00f3rczo\u015b\u0107 Chopina, sprawnie przeskakuj\u0105c ze s\u0142ynnych utwor\u00f3w na te o wiele mniej znane. Ta intymna, a jednocze\u015bnie ucz\u0105ca narracja, b\u0119d\u0105ca swego rodzaju inicjacj\u0105, kontynuuje nurt zapocz\u0105tkowany przez pisarza w sztuce Moje \u017cycie z Mozartem, kt\u00f3ra sta\u0142a si\u0119 wielkim mi\u0119dzynarodowym sukcesem wydawniczym: wielcy kompozytorzy to nie tylko tw\u00f3rcy muzyki klasycznej, ale tak\u017ce duchowi przewodnicy, kt\u00f3rzy s\u0142u\u017c\u0105 nam pomoc\u0105 i pokazuj\u0105 nam, jak \u017cy\u0107\u2026<br\/>Spektakl w wykonaniu samego autora \u0142\u0105czy muzyk\u0119 i teatr, poniewa\u017c utwory polsko-francuskiego geniusza s\u0105 interpretowane przez Nicolasa Stavy, pianist\u0119 o mi\u0119dzynarodowej renomie, wyr\u00f3\u017cnionego na Mi\u0119dzynarodowym Konkursie Pianistycznym im. Fryderyka Chopina.<br\/>Przedstawienie \u201eMadame Pylinska i Sekret Chopina\u201d odb\u0119dzie si\u0119 17 sierpnia o godz. 20.00 w Sofitel Grand Sopot<br\/>Autor: Eric-Emmanuel Schmitt<br\/>Re\u017cyseria: Pascal Faber<br\/>Re\u017cyseria \u015bwiata\u0142a:\u00a0S\u00e9bastien Lanoue<br\/>Wykonanie:<br\/>Eric-Emmanuel Schmitt<br\/>Nicolas Stavy (fortepian)<br\/>Fot. Fabienne Rappeneau<br\/>Tickets: https:\/\/teatrnaplazy.interticket.pl\/program\/eric-emmanuel-schmitt-w-specjalnym-spektaklu-podczas-literackiego-sopotu-4945\/18500.",
+    "categoryId": 19,
+    "startDate": "2019-08-17T20:00:00+0200",
+    "organizer": {
+      "id": 51,
+      "designation": "Teatr na Pla\u017cy"
+    },
+    "active": 1,
+    "descShort": "Jeden z najcz\u0119\u015bciej czytanych i wystawianych autor\u00f3w francuskoj\u0119zycznych na \u015bwiecie. Uznany przez krytyk\u00f3w, uwielbiany przez publiczno\u015b\u0107. Jego ksi\u0105\u017cki zosta\u0142y przet\u0142umaczone\u00a0na 46 j\u0119zyk\u00f3w i s\u0105 regularnie granew ponad 50 krajach na \u015bw...",
+    "tickets": {
+      "type": "tickets",
+      "startTicket": "50",
+      "endTicket": "50"
+    }
+  },
+  {
     "id": 62124,
     "place": {
       "id": 1851,
