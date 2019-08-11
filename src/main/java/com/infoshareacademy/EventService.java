@@ -8,8 +8,8 @@ public class EventService {
     public static final String ANSI_GREEN = "\u001B[32m";
 
     public static void printListOfEvents() throws IOException {
-        Deserialization deserialization = new Deserialization();
-        List<Event> listOfEvents = deserialization.deserializeEvents("events.json");
+        DomainDeserializer domainDeserializer = new DomainDeserializer();
+        List<Event> listOfEvents = domainDeserializer.deserializeEvents("events.json");
         int counter = 1;
         for (Event event : listOfEvents) {
             System.out.println(ANSI_GREEN + counter + "." + "\tNazwa wydarzenia: " + ANSI_RESET + event.getName() +
