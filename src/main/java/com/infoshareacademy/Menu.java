@@ -2,8 +2,10 @@ package com.infoshareacademy;
 
 public class Menu {
     EventMenu eventMenu = new EventMenu();
+    String nextMenuChoice = ScannerForClasses.scan.nextLine();
     //Scanner scanner = new Scanner(System.in);
     //int subMenuChoice = scanner.nextInt();
+
 
     public void menu(int menuChoice){
         switch (menuChoice) {
@@ -12,7 +14,8 @@ public class Menu {
                 break;
             case 2:
                 //wejscie do submenu
-                eventMenu.printMenu(2);
+                eventMenu.printMenu(nextMenuChoice);
+                ScannerForClasses.scan.close();
                 break;
             case 3:
                 System.out.println("Tu będą Twoje ulubione wydarzenia");

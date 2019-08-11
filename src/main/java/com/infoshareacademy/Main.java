@@ -11,17 +11,20 @@ public class Main {
         System.out.println("Prosze podac cyfre z zakresu menu");
 
         Menu menu = new Menu();
+        ScannerForClasses scannerForClasses = new ScannerForClasses();
+        //Scanner scanner = new Scanner(System.in);
 
-        Scanner scanner = new Scanner(System.in);
-
-        short menuLevel;
+        //short menuLevel;
         while (true) {
-            String menuChoice = scanner.nextLine();
+            //String menuChoice = scanner.nextLine();
+            String menuChoice = ScannerForClasses.scan.next();
+            ScannerForClasses.scan.close();
             if (menuChoice.equals("exit")) {
                 break;
+            } else if (!menuChoice.equals("exit")) {
+                int menuChoiceParsed = parseStringToInt(menuChoice);
+                menu.menu(menuChoiceParsed);
             }
-            int menuChoiceParsed = parseStringToInt(menuChoice);
-            menu.menu(menuChoiceParsed);
         }
     }
 
