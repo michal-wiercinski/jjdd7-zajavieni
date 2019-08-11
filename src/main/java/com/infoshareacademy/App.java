@@ -8,11 +8,11 @@ public class App {
 
         System.out.println("Zajavieni");
 
-        DomainDeserialization domainDeserialization = new DomainDeserialization();
-        System.out.println(domainDeserialization.deserializeCategories("categories.json"));
-        System.out.println(domainDeserialization.deserializePlaces("places.json"));
-        System.out.println(domainDeserialization.deserializeOrganizers("organizers.json"));
-        System.out.println(domainDeserialization.deserializeEvents("events.json"));
+        DomainDeserializer domainDeserializer = new DomainDeserializer();
+        System.out.println(domainDeserializer.deserializeCategories("categories.json"));
+        System.out.println(domainDeserializer.deserializePlaces("places.json"));
+        System.out.println(domainDeserializer.deserializeOrganizers("organizers.json"));
+        System.out.println(domainDeserializer.deserializeEvents("events.json"));
 
     }
 }
