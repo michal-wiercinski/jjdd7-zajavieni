@@ -3,7 +3,7 @@ package com.infoshareacademy;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Attachment {
-    @JsonProperty
+    @JsonProperty("fileName")
     private String filename;
 
     public Attachment() {

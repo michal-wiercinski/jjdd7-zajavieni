@@ -5,20 +5,30 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Url {
     @JsonProperty("www")
     private String wwwAddress;
+
     @JsonProperty("fb")
     private String fbSite;
+
+    @JsonProperty("tickets")
+    private String websiteWithTickets;
 
     public Url() {
     }
 
-    public Url(String wwwAddress) {
-        this(wwwAddress, null);
+    public Url(String wwwAddress, String fbSite, String websiteWithTickets) {
+        this.wwwAddress = wwwAddress;
+        this.fbSite = fbSite;
+        this.websiteWithTickets = websiteWithTickets;
     }
 
     public Url(String wwwAddress, String fbSite) {
-        this.wwwAddress = wwwAddress;
-        this.fbSite = fbSite;
+        this(wwwAddress, fbSite, null);
     }
+
+    public Url(String wwwAddress) {
+        this(wwwAddress, null, null);
+    }
+
 
     public String getWwwAddress() {
         return wwwAddress;

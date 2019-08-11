@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CategoryType {
     @JsonProperty("id")
     private Long categoryTypeID;
+
     @JsonProperty("name")
     private String name;
 

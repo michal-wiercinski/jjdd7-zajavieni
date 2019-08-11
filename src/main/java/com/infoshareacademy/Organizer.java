@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Organizer {
     @JsonProperty("id")
     private Long id;
+
     @JsonProperty("designation")
     private String designation;
 
