@@ -18,6 +18,16 @@ public class Address {
     @JsonProperty("lng")
     private String longitude;
 
+    public Address() {
+    }
+
+    public Address(String street, String zipcode, String city, String latitude, String longitude) {
+        this.street = street;
+        this.zipcode = zipcode;
+        this.city = city;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
     public String getStreet() {
         return street;
