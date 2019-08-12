@@ -20,31 +20,43 @@ public class NewMenu {
             Scanner in = new Scanner(System.in);
             String choice = in.next();
             choiceMenu(choice);
-            System.out.println("     ****************************************");
-            System.out.println("\n     Koniec programu\n\n");
             return choice;
         }
 
         private void choiceMenu(String choice) throws IOException {
             Scanner in = new Scanner(System.in);
-            while (!choice.equals("0")) {
-                switch (choice) {
-                    case "1":
-                        EventService eventService = new EventService();
-                        eventService.printListOfEvents();
-                        break;
-                    case "2":
-                        System.out.println("Tu będziesz mógł wyszukać wydarzenie.");
-                        break;
-                    case "3":
-                        System.out.println("Tu będzie lista Twoich ulubionych wydarzeń.");
-                        break;
-                    default:
-                        System.out.println("Wpisałeś coś niewłaściwego, wybierz liczbę z zakresu menu.");
-                }
-                System.out.println("\nWciśnij Enter, aby kontynuować...");
-                System.in.read();
-                choice = mainMenu();
+            switch (choice) {
+                case "1":
+                    EventService eventService = new EventService();
+                    eventService.printListOfEvents();
+                    comebackToChoice(choice);
+                    break;
+                case "2":
+                    System.out.println("Tu będziesz mógł wyszukać wydarzenie.");
+                    comebackToChoice(choice);
+                    break;
+                case "3":
+                    System.out.println("Tu będzie lista Twoich ulubionych wydarzeń.");
+                    comebackToChoice(choice);
+                    break;
+                case "0":
+                    System.out.println("     ****************************************");
+                    System.out.println("\n     Koniec programu\n\n");
+                    break;
+                default:
+                    System.out.println("Wpisałeś coś niewłaściwego, wybierz liczbę z zakresu menu.");
+                    comebackToChoice(choice);
+            }
+        }
+
+        private void comebackToChoice(String choice) throws IOException {
+            System.out.println("Czy chcesz kontynuować? T / N");
+            Scanner scanner = new Scanner(System.in);
+            String yesOrNot = scanner.nextLine();
+            if (yesOrNot.equalsIgnoreCase("n")) {
+                choiceMenu("0");
+            } else if (yesOrNot.equalsIgnoreCase("t")) {
+                mainMenu();
             }
         }
     }
