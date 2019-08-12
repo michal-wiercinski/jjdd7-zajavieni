@@ -14,9 +14,6 @@ public class EventMenu {
             case "3":
                 System.out.println("3. To będzie działać");
                 break;
-            case "4":
-                System.out.println("4. Naciśnij 4 żeby wrócić do poprzedniego menu");
-                break;
             default:
                 System.out.println("Prosze podac cyfre z zakresu submenu");
         }
