@@ -6,7 +6,7 @@ public class Menu {
     //String nextMenuChoice = ScannerForClasses.scan.nextLine();
     //Scanner scanner = new Scanner(System.in);
     //int subMenuChoice = scanner.nextInt();
-
+    EventService eventService = new EventService();
 
     public void menu(int menuChoice){
         switch (menuChoice) {
@@ -14,7 +14,8 @@ public class Menu {
            // String nextMenuChoice = ScannerForClasses.scan.nextLine();
 
             case 1:
-                System.out.println("Tu będzie lista wszystkich wydarzeń");
+
+                eventService.printListOfEvents();
                 break;
             case 2:
                 //wejscie do submenu
