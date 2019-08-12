@@ -18,7 +18,7 @@ public class Main {
         while (true) {
             //String menuChoice = scanner.nextLine();
             String menuChoice = ScannerForClasses.scan.next();
-            ScannerForClasses.scan.close();
+            ScannerForClasses.scan.reset();
             if (menuChoice.equals("exit")) {
                 break;
             } else if (!menuChoice.equals("exit")) {

@@ -1,10 +1,8 @@
 package com.infoshareacademy;
 
 public class EventMenu {
+
     public void printMenu(String nextMenuChoice){
-        System.out.println("1. Podaj nazwę wydarzenia: (min. 3 litery)");
-        System.out.println("2. Wyszukaj po dacie: (DD.MM.YYYY");
-        System.out.println("3. Wyszukaj po organizatorze: ");
 
         switch (nextMenuChoice) {
             case "1":
@@ -15,8 +13,12 @@ public class EventMenu {
                 break;
             case "3":
                 System.out.println("3. To będzie działać");
+                break;
+            case "4":
+                System.out.println("4. Naciśnij 4 żeby wrócić do poprzedniego menu");
+                break;
             default:
-                System.out.println("Prosze podac cyfre z zakresu submenu lub wróć do poprzedniego ekranu");
+                System.out.println("Prosze podac cyfre z zakresu submenu");
         }
     }
 }
