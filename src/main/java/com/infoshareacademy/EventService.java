@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.util.List;
 
 public class EventService {
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_GREEN = "\u001B[32m";
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_GREEN = "\u001B[32m";
 
-    public static void printListOfEvents() throws IOException {
+    public void printListOfEvents() throws IOException {
         DomainDeserializer domainDeserializer = new DomainDeserializer();
         List<Event> listOfEvents = domainDeserializer.deserializeEvents("events.json");
         int counter = 1;
@@ -18,5 +18,4 @@ public class EventService {
             counter++;
         }
     }
-
 }
