@@ -35,13 +35,6 @@ public class NewMenu {
                         break;
                     case "2":
                         System.out.println("Tu będziesz mógł wyszukać wydarzenie.");
-                        /*System.out.println("1. Podaj nazwę wydarzenia: (min. 3 litery)");
-                        System.out.println("2. Wyszukaj po dacie: (DD.MM.YYYY)");
-                        System.out.println("3. Wyszukaj po organizatorze: ");
-                        System.out.println("Prosze podac cyfre z zakresu submenu ");
-                        String nextMenuChoice;
-                        nextMenuChoice= in.next();
-                        eventMenu.printMenu(nextMenuChoice);*/
                         break;
                     case "3":
                         System.out.println("Tu będzie lista Twoich ulubionych wydarzeń.");
