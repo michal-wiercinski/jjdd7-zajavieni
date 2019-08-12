@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class NewMenu {
 
-    public static class Main {
+    public static class Menu {
 
         public String mainMenu() throws IOException {
             System.out.println();
