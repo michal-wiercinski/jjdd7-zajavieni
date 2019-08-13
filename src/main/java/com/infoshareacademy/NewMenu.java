@@ -27,12 +27,11 @@ public class NewMenu {
             Scanner in = new Scanner(System.in);
             switch (choice) {
                 case "1":
-                    EventService eventService = new EventService();
-                    eventService.printListOfEvents();
+                    new EventService().printListOfEvents(App.listOfEvents);
                     comebackToChoice(choice);
                     break;
                 case "2":
-                    System.out.println("Tu będziesz mógł wyszukać wydarzenie.");
+                    new SearchEvent().printSelectionMenu();
                     comebackToChoice(choice);
                     break;
                 case "3":
