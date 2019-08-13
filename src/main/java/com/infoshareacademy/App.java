@@ -1,9 +1,10 @@
 package com.infoshareacademy;
 
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Zajavieni" );
+import java.io.IOException;
+
+public class App {
+
+    public static void main(String[] args) throws IOException {
+        new NewMenu.Main().mainMenu();
     }
 }
