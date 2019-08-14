@@ -1,6 +1,6 @@
 package com.isa.zajavieni.menu;
 
-import com.isa.PrinterEvents;
+import com.isa.zajavieni.service.PrinterEvents;
 import com.isa.zajavieni.repository.EventList;
 
 import java.io.IOException;

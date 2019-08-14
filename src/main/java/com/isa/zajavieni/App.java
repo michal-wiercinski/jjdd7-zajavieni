@@ -1,4 +1,4 @@
-package com.isa;
+package com.isa.zajavieni;
 
 import com.isa.zajavieni.menu.NewMenu;
 import java.io.IOException;

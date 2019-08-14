@@ -1,4 +1,4 @@
-package com.isa;
+package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.jsonclasses.Event;
 import java.io.IOException;

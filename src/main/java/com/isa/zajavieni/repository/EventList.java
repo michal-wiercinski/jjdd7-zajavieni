@@ -1,6 +1,6 @@
 package com.isa.zajavieni.repository;
 
-import com.isa.DataParseService;
+import com.isa.zajavieni.service.DataParseService;
 import com.isa.zajavieni.jsonclasses.Event;
 
 import java.io.IOException;

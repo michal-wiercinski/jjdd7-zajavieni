@@ -1,4 +1,4 @@
-package com.isa;
+package com.isa.zajavieni.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
