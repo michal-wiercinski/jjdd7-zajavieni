@@ -1,10 +1,10 @@
-package com.infoshareacademy;
+package com.isa.zajavieni.jsonclasses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Category {
     @JsonProperty("id")
-    private Long categoryID;
+    private Long id;
 
     @JsonProperty("name")
     private String name;
@@ -15,40 +15,28 @@ public class Category {
     public Category() {
     }
 
-    public Category(Long categoryID, String name, CategoryType type) {
-        this.categoryID = categoryID;
+    public Category(Long id, String name, CategoryType type) {
+        this.id = id;
         this.name = name;
         this.type = type;
     }
 
-    public Long getCategoryID() {
-        return categoryID;
-    }
-
-    public void setCategoryID(Long categoryID) {
-        this.categoryID = categoryID;
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public CategoryType getType() {
         return type;
-    }
-
-    public void setType(CategoryType type) {
-        this.type = type;
     }
 
     @Override
     public String toString() {
         return "Category{" +
-                "categoryID=" + categoryID +
+                "categoryID=" + id +
                 ", name='" + name + '\'' +
                 ", type=" + type +
                 '}';

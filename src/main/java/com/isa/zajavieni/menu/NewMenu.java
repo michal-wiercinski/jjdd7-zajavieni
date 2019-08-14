@@ -1,14 +1,17 @@
-package com.infoshareacademy;
+package com.isa.zajavieni.menu;
+
+import com.isa.PrinterEvents;
+import com.isa.zajavieni.repository.EventList;
 
 import java.io.IOException;
 import java.util.Scanner;
-
 
 public class NewMenu {
 
     public static class Menu {
 
         public String mainMenu() throws IOException {
+            EventList eventList = new EventList();
             System.out.println();
             System.out.println("     ****************************************");
             System.out.println("     *                 MENU                 *");
@@ -27,11 +30,10 @@ public class NewMenu {
             Scanner in = new Scanner(System.in);
             switch (choice) {
                 case "1":
-                    new EventService().printListOfEvents(App.listOfEvents);
+                    new PrinterEvents().printListOfEvents(EventList.getEventList());
                     comebackToChoice(choice);
                     break;
                 case "2":
-                    new SearchEvent().printSelectionMenu();
                     comebackToChoice(choice);
                     break;
                 case "3":
