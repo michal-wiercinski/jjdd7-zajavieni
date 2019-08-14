@@ -2,7 +2,7 @@ package com.isa.zajavieni.jsonclasses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Links {
+public class MediaLink {
     @JsonProperty("www")
     private String wwwAddress;
 
@@ -12,20 +12,20 @@ public class Links {
     @JsonProperty("tickets")
     private String websiteWithTickets;
 
-    public Links() {
+    public MediaLink() {
     }
 
-    public Links(String wwwAddress, String fbSite, String websiteWithTickets) {
+    public MediaLink(String wwwAddress, String fbSite, String websiteWithTickets) {
         this.wwwAddress = wwwAddress;
         this.fbSite = fbSite;
         this.websiteWithTickets = websiteWithTickets;
     }
 
-    public Links(String wwwAddress, String fbSite) {
+    public MediaLink(String wwwAddress, String fbSite) {
         this(wwwAddress, fbSite, null);
     }
 
-    public Links(String wwwAddress) {
+    public MediaLink(String wwwAddress) {
         this(wwwAddress, null, null);
     }
 

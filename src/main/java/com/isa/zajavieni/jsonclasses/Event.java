@@ -35,7 +35,7 @@ public class Event {
     private Organizer organizer;
 
     @JsonProperty("urls")
-    private Links links;
+    private MediaLink hyperlink;
 
     @JsonProperty("tickets")
     private TicketType ticketType;
@@ -82,7 +82,7 @@ public class Event {
                 ", endDate=" + endDate +
                 ", place=" + place +
                 ", organizer=" + organizer +
-                ", url=" + links +
+                ", url=" + hyperlink +
                 ", ticketType=" + ticketType +
                 ", category=" + categoryId +
                 ", attachmentList=" + attachmentList +
