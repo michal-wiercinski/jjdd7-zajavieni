@@ -12,6 +12,14 @@ public class MainMenu {
     BreadcrumbHistory bh = new BreadcrumbHistory();
     public String mainMenu() throws IOException {
         EventList eventList = new EventList();
+        printTextMainMenu();
+        Scanner in = new Scanner(System.in);
+        String choice = in.next();
+        choiceMenu(choice);
+        return choice;
+    }
+
+    private void printTextMainMenu() {
         System.out.println(bh.toString());
         System.out.println();
         System.out.println("     ****************************************");
@@ -21,10 +29,6 @@ public class MainMenu {
         System.out.println("     2. Wyszukaj wydarzenie: ");
         System.out.println("     3. Twoje ulubione wydarzenia: ");
         System.out.println("     0. Koniec");
-        Scanner in = new Scanner(System.in);
-        String choice = in.next();
-        choiceMenu(choice);
-        return choice;
     }
 
     private void choiceMenu(String choice) throws IOException {
