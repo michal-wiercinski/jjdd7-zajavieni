@@ -35,7 +35,8 @@ public class SearchEvent {
                 returnToSearch();
                 break;
             case "3":
-                System.out.println("3. To będzie działać filtrowanie daty");
+                new FiltrEvents().filtr();
+                returnToSearch();
                 break;
             case "4":
                 new MainMenu().mainMenu();
