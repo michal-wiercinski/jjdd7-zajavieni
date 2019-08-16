@@ -7,9 +7,7 @@ import com.isa.zajavieni.service.SearchEvent;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class NewMenu {
-
-    public static class Menu {
+public class MainMenu {
 
         public String mainMenu() throws IOException {
             EventList eventList = new EventList();
@@ -35,7 +33,7 @@ public class NewMenu {
                     comebackToChoice(choice);
                     break;
                 case "2":
-                    new SearchEvent().printSelectionMenu();
+                    new SearchEvent().printSearchMenu();
                     comebackToChoice(choice);
                     break;
                 case "3":
@@ -62,5 +60,4 @@ public class NewMenu {
                 mainMenu();
             }
         }
-    }
 }
