@@ -1,4 +1,4 @@
-package com.infoshareacademy;
+package com.isa.zajavieni.menu;
 
 import java.util.LinkedList;
 
