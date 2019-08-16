@@ -8,9 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventList {
-
-    public static List<Event> eventList = new ArrayList<>();
-    public static final String eventsJson = "events.json";
+    private static List<Event> eventList = new ArrayList<>();
+    private static final String eventsJson = "events.json";
 
     public EventList() throws IOException {
         eventList = new DataParseService().parseEvents(eventsJson);
