@@ -1,4 +1,4 @@
-package com.infoshareacademy;
+package com.isa.zajavieni.jsonclasses;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,7 +26,6 @@ public enum TicketType {
         }
         return null;
     }
-
 
     @Override
     public String toString() {

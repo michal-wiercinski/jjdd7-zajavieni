@@ -1,5 +1,6 @@
-package com.infoshareacademy;
+package com.isa.zajavieni;
 
+import com.isa.zajavieni.menu.NewMenu;
 import java.io.IOException;
 
 public class App {

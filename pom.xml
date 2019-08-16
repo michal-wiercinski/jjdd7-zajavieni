@@ -39,7 +39,7 @@
     <configuration>
       <archive>
         <manifest>
-          <mainClass>com.infoshareacademy.App</mainClass>
+          <mainClass>com.isa.zajavieni.App</mainClass>
         </manifest>
       </archive>
       <descriptorRefs>

@@ -1,31 +1,35 @@
-package com.infoshareacademy;
+package com.isa.zajavieni.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.isa.zajavieni.jsonclasses.Category;
+import com.isa.zajavieni.jsonclasses.Event;
+import com.isa.zajavieni.jsonclasses.Organizer;
+import com.isa.zajavieni.jsonclasses.Place;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class DomainDeserializer {
+public class DataParseService {
     ObjectMapper objectMapper = new ObjectMapper();
 
-    public List<Category> deserializeCategories(String categoriesPathName) throws IOException {
+    public List<Category> parseCategories(String categoriesPathName) throws IOException {
         return objectMapper.readValue(new File(categoriesPathName), new TypeReference<List<Category>>() {
         });
     }
 
-    public List<Place> deserializePlaces(String placePathName) throws IOException {
+    public List<Place> parsePlaces(String placePathName) throws IOException {
         return objectMapper.readValue(new File(placePathName), new TypeReference<List<Place>>() {
         });
     }
 
-    public List<Organizer> deserializeOrganizers(String placePathName) throws IOException {
+    public List<Organizer> parseOrganizers(String placePathName) throws IOException {
         return objectMapper.readValue(new File(placePathName), new TypeReference<List<Organizer>>() {
         });
     }
 
-    public List<Event> deserializeEvents(String placePathName) throws IOException {
+    public List<Event> parseEvents(String placePathName) throws IOException {
         return objectMapper.readValue(new File(placePathName), new TypeReference<List<Event>>() {
         });
     }
