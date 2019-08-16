@@ -5,7 +5,7 @@ import java.io.IOException;
 public class App {
 
     public static void main(String[] args) throws IOException {
-        BreadcrumbHistory bh = new BreadcrumbHistory();
+        /*BreadcrumbHistory bh = new BreadcrumbHistory();
         bh.addToHistory("dzien ");
         bh.addToHistory("dobry");
         bh.addToHistory("krolewno ");
@@ -13,8 +13,8 @@ public class App {
         bh.removeLast();
         bh.removeLast();
         System.out.println(bh.toString());
+        */
 
-
-        //new NewMenu.Menu().mainMenu();
+        new NewMenu.Menu().mainMenu();
     }
 }
