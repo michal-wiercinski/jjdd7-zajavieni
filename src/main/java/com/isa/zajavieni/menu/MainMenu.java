@@ -1,5 +1,6 @@
 package com.isa.zajavieni.menu;
 
+import com.infoshareacademy.BreadcrumbHistory;
 import com.isa.zajavieni.service.PrinterEvents;
 import com.isa.zajavieni.repository.EventList;
 import com.isa.zajavieni.service.SearchEvent;
@@ -8,9 +9,10 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class MainMenu {
-
+    BreadcrumbHistory bh = new BreadcrumbHistory();
     public String mainMenu() throws IOException {
         EventList eventList = new EventList();
+        System.out.println(bh.toString());
         System.out.println();
         System.out.println("     ****************************************");
         System.out.println("     *                 MENU                 *");
@@ -30,14 +32,17 @@ public class MainMenu {
         switch (choice) {
             case "1":
                 new PrinterEvents().printListOfEvents(EventList.getEventList());
+                bh.addToHistory("1. Lista wszystkich wydarzeń -> ");
                 comebackToChoice(choice);
                 break;
             case "2":
                 new SearchEvent().printSearchMenu();
+                bh.addToHistory("2. Wyszukaj wydarzenie: -> ");
                 comebackToChoice(choice);
                 break;
             case "3":
                 System.out.println("Tu będzie lista Twoich ulubionych wydarzeń.");
+                bh.addToHistory("Tu będzie lista Twoich ulubionych wydarzeń -> ");
                 comebackToChoice(choice);
                 break;
             case "0":
@@ -57,6 +62,7 @@ public class MainMenu {
         if (yesOrNot.equalsIgnoreCase("n")) {
             choiceMenu("0");
         } else if (yesOrNot.equalsIgnoreCase("t")) {
+            bh.removeLast();
             mainMenu();
         }
     }
