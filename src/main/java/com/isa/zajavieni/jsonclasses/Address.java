@@ -3,13 +3,8 @@ package com.isa.zajavieni.jsonclasses;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Address {
-    @JsonProperty("street")
     private String street;
-
-    @JsonProperty("zipcode")
     private String zipcode;
-
-    @JsonProperty("city")
     private String city;
 
     @JsonProperty("lat")
@@ -18,15 +13,16 @@ public class Address {
     @JsonProperty("lng")
     private String longitude;
 
-    public Address() {
+    public String getStreet() {
+        return street;
     }
 
-    public Address(String street, String zipcode, String city, String latitude, String longitude) {
-        this.street = street;
-        this.zipcode = zipcode;
-        this.city = city;
-        this.latitude = latitude;
-        this.longitude = longitude;
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     @Override

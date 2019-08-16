@@ -3,7 +3,6 @@ package com.isa.zajavieni.repository;
 import com.isa.zajavieni.service.DataParseService;
 import com.isa.zajavieni.jsonclasses.Event;
 
-import javax.xml.validation.ValidatorHandler;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

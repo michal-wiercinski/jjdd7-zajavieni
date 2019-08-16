@@ -15,8 +15,7 @@ public class OrganizerList {
         organizerList = new DataParseService().parseOrganizers(organizerJson);
     }
 
-    public List<Organizer> getOrganizerList(){
+    public List<Organizer> getOrganizerList() {
         return organizerList;
     }
-
 }

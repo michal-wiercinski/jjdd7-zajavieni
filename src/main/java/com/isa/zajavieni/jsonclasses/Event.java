@@ -10,28 +10,20 @@ public class Event {
     @JsonProperty("id")
     private Long eventId;
 
-    @JsonProperty("name")
     private String name;
 
-    @JsonProperty("descShort")
     private String descShort;
 
-    @JsonProperty("descLong")
     private String descLong;
 
-    @JsonProperty("active")
     private Boolean active;
 
-    @JsonProperty("startDate")
     private Date startDate;
 
-    @JsonProperty("endDate")
     private Date endDate;
 
-    @JsonProperty("place")
     private Place place;
 
-    @JsonProperty("organizer")
     private Organizer organizer;
 
     @JsonProperty("urls")
@@ -40,26 +32,37 @@ public class Event {
     @JsonProperty("tickets")
     private TicketType ticketType;
 
-    @JsonProperty("categoryId")
     private Long categoryId;
 
     @JsonProperty("attachments")
     private List<Attachment> attachmentList;
 
-    public Event() {
-    }
-
-    public Event(String name, Long eventId) {
-        this.name = name;
-        this.eventId = eventId;
+    public Long getEventId() {
+        return eventId;
     }
 
     public String getName() {
         return name;
     }
 
+    public String getDescShort() {
+        return descShort;
+    }
+
+    public String getDescLong() {
+        return descLong;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
     public Date getStartDate() {
         return startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
     }
 
     public Place getPlace() {
@@ -68,6 +71,22 @@ public class Event {
 
     public Organizer getOrganizer() {
         return organizer;
+    }
+
+    public MediaLink getHyperlink() {
+        return hyperlink;
+    }
+
+    public TicketType getTicketType() {
+        return ticketType;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public List<Attachment> getAttachmentList() {
+        return attachmentList;
     }
 
     @Override

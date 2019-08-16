@@ -28,12 +28,17 @@ public class SearchEvent {
         switch (whatYouWant) {
             case "1":
                 eventService.printListOfEvents(searchInListByEventName(EventList.getEventList()));
+                returnToSearch();
                 break;
             case "2":
                 eventService.printListOfEvents(searchInListByOrganizerName(EventList.getEventList()));
+                returnToSearch();
                 break;
             case "3":
                 System.out.println("3. To będzie działać filtrowanie daty");
+                break;
+            case "4":
+                new MainMenu().mainMenu();
                 break;
             default:
                 System.out.println("Prosze podac cyfre z zakresu submenu");
@@ -44,7 +49,7 @@ public class SearchEvent {
         System.out.println("Po czym chcesz wyszukać wydarzenie?");
         System.out.println("1. Nazwa wydarzenia");
         System.out.println("2. Nazwa organizatora");
-        System.out.println("3. Filtruj po dacie");
+        System.out.println("3. Filtruj po dacie i organizatorze");
     }
 
     private String typeWhatYouNeed() {
@@ -82,7 +87,8 @@ public class SearchEvent {
             searchInListByOrganizerName(eventsList);
         }
     }
-    private void comebackToChoice(String choice) throws IOException {
+
+    private void returnToSearch() throws IOException {
         System.out.println("Czy chcesz kontynuować poszukiwania? T / N");
         Scanner scanner = new Scanner(System.in);
         String yesOrNot = scanner.nextLine();

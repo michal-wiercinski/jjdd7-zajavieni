@@ -6,31 +6,24 @@ public class Place {
     @JsonProperty("id")
     private Long placeId;
 
-    @JsonProperty("address")
     private Address address;
-
-    @JsonProperty("name")
     private String name;
-
-    @JsonProperty("subname")
     private String subname;
 
-    public Place() {
+    public Long getPlaceId() {
+        return placeId;
     }
 
-    public Place(Long placeId, Address address, String name, String subname) {
-        this.placeId = placeId;
-        this.address = address;
-        this.name = name;
-        this.subname = subname;
-    }
-
-    public Place(Long placeId, Address address, String name) {
-        this(placeId, address, name, null);
+    public Address getAddress() {
+        return address;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getSubname() {
+        return subname;
     }
 
     @Override
