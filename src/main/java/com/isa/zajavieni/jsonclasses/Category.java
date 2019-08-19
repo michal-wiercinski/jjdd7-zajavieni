@@ -3,7 +3,9 @@ package com.isa.zajavieni.jsonclasses;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Category {
+    @JsonProperty("id")
     private Long id;
+    @JsonProperty("name")
     private String name;
 
     @JsonProperty("root_category")

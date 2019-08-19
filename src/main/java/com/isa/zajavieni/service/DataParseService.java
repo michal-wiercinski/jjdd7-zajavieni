@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class DataParseService {
-    ObjectMapper objectMapper = new ObjectMapper();
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     public List<Category> parseCategories(String categoriesPathName) throws IOException {
         return objectMapper.readValue(new File(categoriesPathName), new TypeReference<List<Category>>() {
