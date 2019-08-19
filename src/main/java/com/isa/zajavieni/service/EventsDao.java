@@ -15,7 +15,7 @@ public class EventsDao {
     public static void main(String[] args) throws IOException {
         EventsDao eventsDao = new EventsDao();
         Event event = new Event();
-        event.setEventId(666L);
+        event.setEventId(1L);
         event.setName("my event");
         event.setDescShort("opis krótki");
         event.setDescLong("opis długi");

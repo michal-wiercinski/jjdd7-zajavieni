@@ -27,6 +27,7 @@ public class MainMenu {
         System.out.println("     1. Lista wszystkich wydarzeń");
         System.out.println("     2. Wyszukaj wydarzenie: ");
         System.out.println("     3. Twoje ulubione wydarzenia: ");
+        System.out.println("     4. Zarządzaj wydarzeniami");
         System.out.println("     0. Koniec");
     }
 
@@ -48,6 +49,10 @@ public class MainMenu {
                 bh.addToHistory("Tu będzie lista Twoich ulubionych wydarzeń -> ");
                 comebackToChoice(choice);
                 break;
+            case "4":
+                new DaoMenu().daoMenu();
+                bh.addToHistory("Zarządzaj wydarzeniami");
+                comebackToChoice(choice);
             case "0":
                 System.out.println("     ****************************************");
                 System.out.println("\n     Koniec programu\n\n");
