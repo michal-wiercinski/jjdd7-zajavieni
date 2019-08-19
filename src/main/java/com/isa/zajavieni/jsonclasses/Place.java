@@ -5,9 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Place {
     @JsonProperty("id")
     private Long placeId;
-
+    @JsonProperty("address")
     private Address address;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("subname")
     private String subname;
 
     public Long getPlaceId() {
