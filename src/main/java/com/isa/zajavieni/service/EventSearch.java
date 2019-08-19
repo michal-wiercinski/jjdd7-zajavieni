@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class SearchEvent {
+public class EventSearch {
     public List<Event> listFound = new ArrayList<>();
 
     public void printSearchMenu() throws IOException {
@@ -22,7 +22,7 @@ public class SearchEvent {
     }
 
     private void printMenu(String whatYouWant) throws IOException {
-        PrinterEvents eventService = new PrinterEvents();
+        EventPrinter eventService = new EventPrinter();
         OrganizerList organizerList = new OrganizerList();
         EventList eventList = new EventList();
         switch (whatYouWant) {
@@ -35,7 +35,7 @@ public class SearchEvent {
                 returnToSearch();
                 break;
             case "3":
-                new FiltrEvents().filtr();
+                new EventFilter().filter();
                 returnToSearch();
                 break;
             case "4":

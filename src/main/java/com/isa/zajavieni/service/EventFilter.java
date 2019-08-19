@@ -14,18 +14,17 @@ import java.util.stream.Collectors;
 
 import static java.util.regex.Pattern.compile;
 
-public class FiltrEvents {
+public class EventFilter {
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_YELLOW = "\u001b[33;1m";
 
-    public void filtr() throws IOException {
-        PrinterEvents printerEvents = new PrinterEvents();
-        printerEvents.printListOfEvents(filtrEvents(EventList.getEventList(), enterStartDate(), enterEndDate(), enterOrganizer()));
-        whatDoYouWant();
-
+    public void filter() throws IOException {
+        EventPrinter eventPrinter = new EventPrinter();
+        eventPrinter.printListOfEvents(filterEventsList(EventList.getEventList(), enterStartDate(), enterEndDate(), enterNameOfOrganizer()));
+        chooseEndingOption();
     }
 
-    private void whatDoYouWant() throws IOException {
+    private void chooseEndingOption() throws IOException {
         System.out.println("Co chcesz teraz zrobić? ");
         System.out.println("1. Kontynuuj filtrowanie.");
         System.out.println("2. Wróć do wyrzukiwania.");
@@ -34,17 +33,17 @@ public class FiltrEvents {
         String choice = scanner.nextLine();
         switch (choice) {
             case "1":
-                filtr();
+                filter();
                 break;
             case "2":
-                new SearchEvent().printSearchMenu();
+                new EventSearch().printSearchMenu();
                 break;
             case "3":
                 new MainMenu().mainMenu();
                 break;
             default:
                 System.out.println("Wpisałeś coś niewłaściwego, wybierz liczbę z zakresu menu.");
-                whatDoYouWant();
+                chooseEndingOption();
         }
     }
 
@@ -57,11 +56,10 @@ public class FiltrEvents {
             String startDateString = scanner.nextLine();
             Matcher matcher = datePattern.matcher(startDateString);
             if (matcher.matches()) {
-                startDate = dateFormater(startDateString);
+                startDate = formatDate(startDateString);
             } else {
                 System.out.println("Wpisano zły format daty. Wpisz ponownie datę w formacie: RRRR-MM-DD");
             }
-
         } while (startDate == null);
         return startDate;
     }
@@ -76,19 +74,17 @@ public class FiltrEvents {
             String endDateString = scanner.nextLine();
             Matcher matcher = datePattern.matcher(endDateString);
             if (matcher.matches()) {
-                endDate = dateFormater(endDateString);
+                endDate = formatDate(endDateString);
             } else {
                 System.out.println("Wpisano zły format daty. Wpisz ponownie datę w formacie: RRRR-MM-DD");
             }
-
         } while (endDate == null);
         System.out.println(ANSI_YELLOW + "Nazwy organizatorów:" + ANSI_RESET);
-        printerOrganizerList(eventList.getEventList());
+        printOrganizerList(eventList.getEventList());
         return endDate;
-
     }
 
-    private void printerOrganizerList(List<Event> eventList) throws IOException {
+    private void printOrganizerList(List<Event> eventList) throws IOException {
         List<String> organizersList = new ArrayList<>();
         for (Event event : eventList) {
             if (!organizersList.contains(event.getOrganizer().getDesignation())) {
@@ -102,11 +98,11 @@ public class FiltrEvents {
         }
     }
 
-    private List<String> enterOrganizer() throws IOException {
+    private List<String> enterNameOfOrganizer() throws IOException {
         Scanner scanner = new Scanner(System.in);
         EventList eventList = new EventList();
         List<String> organizersList = new ArrayList<>();
-        boolean isEndOfFinding = false;
+        boolean isSearchFinished = false;
         do {
             System.out.println("Podaj nazwę organizatora z listy:");
             String organizer = scanner.nextLine();
@@ -122,27 +118,24 @@ public class FiltrEvents {
             if (isParticularOrganizerFound == false) {
                 System.out.println("Nie ma organizatora " + organizer + " na liście wydarzeń.");
             }
-
             System.out.println("Czy chcesz dodac kolejengo organizatora? (t/n)");
             String choice = scanner.nextLine();
-
             switch (choice) {
                 case "t":
                     break;
                 case "n":
-                    isEndOfFinding = true;
+                    isSearchFinished = true;
                     break;
                 default:
                     System.out.println("Wpisałeś coś niewłaściwego, wybierz t lub n");
                     scanner.nextLine();
                     continue;
             }
-
-        } while (isEndOfFinding == false);
+        } while (isSearchFinished == false);
         return organizersList;
     }
 
-    private Date dateFormater(String date) {
+    private Date formatDate(String date) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date formatDate = null;
         try {
@@ -153,7 +146,7 @@ public class FiltrEvents {
         return formatDate;
     }
 
-    private List<Event> filtrEvents(List<Event> eventList, Date upDate, Date toDate, List<String> organizers) {
+    private List<Event> filterEventsList(List<Event> eventList, Date upDate, Date toDate, List<String> organizers) {
         Collections.sort(organizers);
         List<Event> finalList = new ArrayList<>();
         for (String organizer : organizers) {
@@ -170,6 +163,5 @@ public class FiltrEvents {
         }
         return finalList;
     }
-
 }
 
