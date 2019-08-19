@@ -50,6 +50,7 @@ public class SearchEvent {
         System.out.println("1. Nazwa wydarzenia");
         System.out.println("2. Nazwa organizatora");
         System.out.println("3. Filtruj po dacie i organizatorze");
+        System.out.println("4. Wróć do głównego menu");
     }
 
     private String typeWhatYouNeed() {
