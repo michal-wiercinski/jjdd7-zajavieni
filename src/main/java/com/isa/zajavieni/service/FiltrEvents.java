@@ -10,21 +10,27 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static java.util.regex.Pattern.compile;
 
 public class FiltrEvents {
 
     public void filtr() throws IOException {
-        Scanner scanner = new Scanner(System.in);
         PrinterEvents printerEvents = new PrinterEvents();
         printerEvents.printListOfEvents(filtrEvents(EventList.getEventList(), enterStartDate(), enterEndDate(), enterOrganizers()));
-        System.out.println("Czy chcesz kontynuować filtrowanie? ");
+        whatDoYouWant();
+
+    }
+
+    public void whatDoYouWant() throws IOException {
+        System.out.println("Co chcesz teraz zrobić? ");
         System.out.println("1. Kontynuuj filtrowanie.");
         System.out.println("2. Wróć do wyrzukiwania.");
         System.out.println("3. Wróć do głównego menu.");
+        Scanner scanner = new Scanner(System.in);
         String choice = scanner.nextLine();
-        switch(choice){
+        switch (choice) {
             case "1":
                 filtr();
                 break;
@@ -35,7 +41,8 @@ public class FiltrEvents {
                 new MainMenu().mainMenu();
                 break;
             default:
-                System.out.println("Proszę wybrać tak(t) lub nie(n)");
+                System.out.println("Wpisałeś coś niewłaściwego, wybierz liczbę z zakresu menu.");
+                whatDoYouWant();
 
         }
 
@@ -90,7 +97,8 @@ public class FiltrEvents {
             for (int i = 0; i < organizersList.size(); i++) {
                 boolean isParticularOrganizerFound = false;
                 for (int j = 0; j < EventList.getEventList().size(); j++) {
-                    if (organizersList.get(i).toLowerCase().replaceAll("\\s", "").equals(eventList.getEventList().get(j).getOrganizer().getDesignation().toLowerCase().replaceAll("\\s", ""))) {
+                    if (organizersList.get(i).toLowerCase().replaceAll("\\s", "").equals(eventList.getEventList()
+                            .get(j).getOrganizer().getDesignation().toLowerCase().replaceAll("\\s", ""))) {
                         isAnyOrganizerFound = true;
                         isParticularOrganizerFound = true;
                     }
@@ -118,46 +126,19 @@ public class FiltrEvents {
 
     private List<Event> filtrEvents(List<Event> eventList, Date upDate, Date toDate, List<String> organizers) throws IOException {
         Collections.sort(organizers);
-        List<Event> foundList = new ArrayList<>();
-//        eventList.stream()
-//                .filter(//start date >=)
-//                .filter(//end date <=)
-//                .filter(list.contains(event.organizer))
-        for (String organizer : organizers)
-            for (Event event : eventList) {
-                if (event.getStartDate().compareTo(upDate) >= 0 && event.getStartDate().compareTo(toDate) <= 0 &&
-                        event.getOrganizer().getDesignation().toLowerCase().replaceAll("\\s", "").equals(organizer.toLowerCase().replaceAll("\\s", ""))) {
-                    foundList.add(event);
-                }
-            }
-        if(foundList.isEmpty()){
+        List<Event> finalList = new ArrayList<>();
+        for (String organizer : organizers) {
+            List<Event> foundList = eventList.stream()
+                    .filter(e -> e.getStartDate().compareTo(upDate) >= 0)
+                    .filter(e -> e.getStartDate().compareTo(toDate) <= 0)
+                    .filter(e -> e.getOrganizer().getDesignation().toLowerCase().replaceAll("\\s", "").contains(organizer.toLowerCase().replaceAll("\\s", "")))
+                    .collect(Collectors.toList());
+            finalList.addAll(foundList);
+        }
+        if (finalList.isEmpty()) {
             System.out.println("Brak wydarzeń w danym przedziale czasu");
         }
-        return foundList;
+        return finalList;
     }
-
-
-/*
-    private List<Event> filtrEvents(List<Event> eventList, Date upDate, Date toDate, List<String> organizers) throws IOException {
-        Collections.sort(organizers);
-        foundList = eventList.stream()
-                .filter(e->e.getOrganizer().getDesignation().toLowerCase().replaceAll("\\s", "").contains(organizers))
-        for (String organizer : organizers)
-            for (Event event : eventList) {
-                if (event.getStartDate().compareTo(upDate) >= 0 && event.getStartDate().compareTo(toDate) <= 0 &&
-                        event.getOrganizer().getDesignation().toLowerCase().replaceAll("\\s", "").equals(organizer.toLowerCase().replaceAll("\\s", ""))) {
-                    foundList.add(event);
-                }
-            }
-        if(foundList.equals(Collections.emptyList())){
-            System.out.println("Brak wydarzeń z danego okresu");
-
-            filtr();
-        }
-        return foundList;
-    }
-
- */
-
 
 }
