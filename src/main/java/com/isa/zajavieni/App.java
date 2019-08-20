@@ -1,6 +1,7 @@
 package com.isa.zajavieni;
 
 
+import com.isa.zajavieni.jsonclasses.Event;
 import com.isa.zajavieni.menu.MainMenu;
 
 import com.isa.zajavieni.service.DataParseService;
