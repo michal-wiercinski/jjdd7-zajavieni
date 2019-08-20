@@ -9,13 +9,14 @@ import java.util.Scanner;
 
 public class MainMenu {
     BreadcrumbHistory bh = new BreadcrumbHistory();
-    public String mainMenu() throws IOException {
+    public void mainMenu() throws IOException {
         EventList eventList = new EventList();
         printTextMainMenu();
         Scanner in = new Scanner(System.in);
-        String choice = in.next();
+        String choice = in.nextLine();
         choiceMenu(choice);
-        return choice;
+        in.close();
+        //return choice;
     }
 
     private void printTextMainMenu() {
@@ -27,11 +28,11 @@ public class MainMenu {
         System.out.println("     1. Lista wszystkich wydarzeń");
         System.out.println("     2. Wyszukaj wydarzenie: ");
         System.out.println("     3. Twoje ulubione wydarzenia: ");
+        System.out.println("     4. Zarządzaj wydarzeniami");
         System.out.println("     0. Koniec");
     }
 
     private void choiceMenu(String choice) throws IOException {
-        Scanner in = new Scanner(System.in);
         switch (choice) {
             case "1":
                 new EventPrinter().printListOfEvents(EventList.getEventList());
@@ -46,6 +47,12 @@ public class MainMenu {
             case "3":
                 System.out.println("Tu będzie lista Twoich ulubionych wydarzeń.");
                 bh.addToHistory("Tu będzie lista Twoich ulubionych wydarzeń -> ");
+                comebackToChoice(choice);
+                break;
+            case "4":
+                bh.addToHistory("Zarządzaj wydarzeniami");
+                new EventMenu().eventMenu();
+//                mainMenu();
                 comebackToChoice(choice);
                 break;
             case "0":
@@ -67,6 +74,7 @@ public class MainMenu {
         } else if (yesOrNot.equalsIgnoreCase("t")) {
             bh.removeLast();
             mainMenu();
+            scanner.close();
         }
     }
 }
