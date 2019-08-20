@@ -1,8 +1,8 @@
 package com.isa.zajavieni.menu;
 
-import com.isa.zajavieni.service.PrinterEvents;
+import com.isa.zajavieni.service.EventPrinter;
 import com.isa.zajavieni.repository.EventList;
-import com.isa.zajavieni.service.SearchEvent;
+import com.isa.zajavieni.service.EventSearch;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -34,12 +34,12 @@ public class MainMenu {
         Scanner in = new Scanner(System.in);
         switch (choice) {
             case "1":
-                new PrinterEvents().printListOfEvents(EventList.getEventList());
+                new EventPrinter().printListOfEvents(EventList.getEventList());
                 bh.addToHistory("1. Lista wszystkich wydarzeń -> ");
                 comebackToChoice(choice);
                 break;
             case "2":
-                new SearchEvent().printSearchMenu();
+                new EventSearch().printSearchMenu();
                 bh.addToHistory("2. Wyszukaj wydarzenie: -> ");
                 comebackToChoice(choice);
                 break;
