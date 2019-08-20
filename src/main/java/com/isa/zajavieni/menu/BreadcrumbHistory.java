@@ -3,7 +3,6 @@ package com.isa.zajavieni.menu;
 import java.util.LinkedList;
 
 public class BreadcrumbHistory {
-
     private final LinkedList<String> history;
 
 

@@ -5,7 +5,7 @@ import com.isa.zajavieni.jsonclasses.Event;
 import java.io.IOException;
 import java.util.List;
 
-public class PrinterEvents {
+public class EventPrinter {
 
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_YELLOW = "\u001b[33;1m";
