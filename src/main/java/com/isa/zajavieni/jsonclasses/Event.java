@@ -10,20 +10,28 @@ public class Event {
     @JsonProperty("id")
     private Long eventId;
 
+    @JsonProperty("name")
     private String name;
 
+    @JsonProperty("descShort")
     private String descShort;
 
+    @JsonProperty("descLong")
     private String descLong;
 
+    @JsonProperty("active")
     private Boolean active;
 
+    @JsonProperty("startDate")
     private Date startDate;
 
+    @JsonProperty("endDate")
     private Date endDate;
 
+    @JsonProperty("place")
     private Place place;
 
+    @JsonProperty("organizer")
     private Organizer organizer;
 
     @JsonProperty("urls")
@@ -32,6 +40,7 @@ public class Event {
     @JsonProperty("tickets")
     private TicketType ticketType;
 
+    @JsonProperty("categoryId")
     private Long categoryId;
 
     @JsonProperty("attachments")
