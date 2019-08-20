@@ -12,5 +12,5 @@ public class App {
         DataParseService parseService = new DataParseService();
         parseService.parseEvents("events.json");
         new MainMenu().mainMenu();
+        }
     }
-}
