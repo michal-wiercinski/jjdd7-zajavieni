@@ -12,7 +12,7 @@ import java.util.List;
 
 public class EventsDao {
 
-    public static void main(String[] args) throws IOException {
+    public static void addedOneEvent(String[] args) throws IOException {
         EventsDao eventsDao = new EventsDao();
         Event event = new Event();
         event.setEventId(1L);
@@ -36,8 +36,8 @@ public class EventsDao {
         event.setCategoryId(5L);
         event.setAttachmentList(new ArrayList<>());
 
-        eventsDao.addEvent(event);
-        eventsDao.deleteEvent(1L);
+//        eventsDao.addEvent(event);
+//        eventsDao.deleteEvent(1L);
     }
 
     public List<Event> getEvents() throws IOException {
@@ -56,6 +56,9 @@ public class EventsDao {
         }
         if (event1 != null) {
             events.remove(event1);
+            System.out.println("Usunięto wydarzenie");
+        } else {
+            System.out.println("Nie ma wydarzenia o takim ID");
         }
         safeEventsFile(events);
     }

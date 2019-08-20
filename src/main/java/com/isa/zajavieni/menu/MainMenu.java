@@ -9,13 +9,14 @@ import java.util.Scanner;
 
 public class MainMenu {
     BreadcrumbHistory bh = new BreadcrumbHistory();
-    public String mainMenu() throws IOException {
+    public void mainMenu() throws IOException {
         EventList eventList = new EventList();
         printTextMainMenu();
         Scanner in = new Scanner(System.in);
-        String choice = in.next();
+        String choice = in.nextLine();
         choiceMenu(choice);
-        return choice;
+        in.close();
+        //return choice;
     }
 
     private void printTextMainMenu() {
@@ -32,7 +33,6 @@ public class MainMenu {
     }
 
     private void choiceMenu(String choice) throws IOException {
-        Scanner in = new Scanner(System.in);
         switch (choice) {
             case "1":
                 new PrinterEvents().printListOfEvents(EventList.getEventList());
@@ -50,9 +50,11 @@ public class MainMenu {
                 comebackToChoice(choice);
                 break;
             case "4":
-                new DaoMenu().daoMenu();
                 bh.addToHistory("Zarządzaj wydarzeniami");
+                new EventMenu().eventMenu();
+//                mainMenu();
                 comebackToChoice(choice);
+                break;
             case "0":
                 System.out.println("     ****************************************");
                 System.out.println("\n     Koniec programu\n\n");
@@ -72,6 +74,7 @@ public class MainMenu {
         } else if (yesOrNot.equalsIgnoreCase("t")) {
             bh.removeLast();
             mainMenu();
+            scanner.close();
         }
     }
 }
