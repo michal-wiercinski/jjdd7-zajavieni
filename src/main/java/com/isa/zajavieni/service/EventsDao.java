@@ -29,7 +29,7 @@ public class EventsDao {
         }
     }
 
-    private void safeEventsFile(List<Event> events) throws IOException {
+    private void saveEventsFile(List<Event> events) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.writeValue(new File("events2.json"), events);
     }
@@ -38,7 +38,7 @@ public class EventsDao {
         DataParseService dataParseService = new DataParseService();
         List<Event> events = dataParseService.parseEvents("events2.json");
         events.add(event);
-        safeEventsFile(events);
+        saveEventsFile(events);
     }
 
     public void updateEvent(Event event) {
