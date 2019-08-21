@@ -51,7 +51,7 @@ public class MainMenu {
                 break;
             case "4":
                 bh.addToHistory("Zarządzaj wydarzeniami");
-                new EventMenu().eventMenu();
+                new EventMenuHandler().printEventMenu();
 //                mainMenu();
                 comebackToChoice(choice);
                 break;

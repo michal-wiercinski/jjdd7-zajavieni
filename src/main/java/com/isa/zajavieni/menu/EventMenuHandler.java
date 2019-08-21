@@ -5,17 +5,17 @@ import com.isa.zajavieni.service.EventsDao;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class EventMenu {
+public class EventMenuHandler {
 
-    public void eventMenu() throws IOException {
-        EventMenu daoMenu = new EventMenu();
-        daoMenu.printEventMenu();
+    public void printEventMenu() throws IOException {
+        EventMenuHandler daoMenu = new EventMenuHandler();
+        daoMenu.printTextMenu();
         Scanner scanner = new Scanner(System.in);
         String choiceEventMenu = scanner.nextLine();
         daoMenu.choiceEventMenu(choiceEventMenu);
     }
 
-    public void printEventMenu() {
+    private void printTextMenu() {
         System.out.println("Zarządzanie wydarzeniami.");
         System.out.println("1. Usuń wydarzenie");
         System.out.println("2. Dodaj wydarzenie <<W budowie>>");
@@ -28,9 +28,9 @@ public class EventMenu {
         switch (choice) {
             case "1":
                 System.out.println("Podaj ID wydarzenia, które chcesz usunąć:");
-                Long s = scanner.nextLong();
+                Long eventsIdToRemove = scanner.nextLong();
                 EventsDao eventsDao = new EventsDao();
-                eventsDao.deleteEvent(s);
+                eventsDao.removeEventById(eventsIdToRemove);
                 break;
             case "2":
                 System.out.println("Podaj dane: <<W budowie>>");

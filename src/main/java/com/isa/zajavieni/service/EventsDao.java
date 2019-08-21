@@ -1,44 +1,15 @@
 package com.isa.zajavieni.service;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.isa.zajavieni.jsonclasses.*;
+import com.isa.zajavieni.jsonclasses.Event;
+import com.isa.zajavieni.repository.EventList;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EventsDao {
-
-    public static void addedOneEvent(String[] args) throws IOException {
-        EventsDao eventsDao = new EventsDao();
-        Event event = new Event();
-        event.setEventId(1L);
-        event.setName("my event");
-        event.setDescShort("opis krótki");
-        event.setDescLong("opis długi");
-        event.setActive(true);
-        event.setStartDate(new Date());
-        event.setEndDate(new Date());
-        Place place = new Place();
-        place.setName("Gdańsk");
-        place.setPlaceId(2L);
-        event.setPlace(place);
-        Organizer organizer = new Organizer();
-        organizer.setId(3L);
-        organizer.setDesignation("Abc");
-        event.setOrganizer(organizer);
-        MediaLink hyperlink = new MediaLink("http://wp.pl");
-        event.setHyperlink(hyperlink);
-        event.setTicketType(TicketType.FREE);
-        event.setCategoryId(5L);
-        event.setAttachmentList(new ArrayList<>());
-
-//        eventsDao.addEvent(event);
-//        eventsDao.deleteEvent(1L);
-    }
 
     public List<Event> getEvents() throws IOException {
         DataParseService dataParseService = new DataParseService();
@@ -46,21 +17,16 @@ public class EventsDao {
         return events;
     }
 
-    public void deleteEvent(Long id) throws IOException {
-        List<Event> events = getEvents();
-        Event event1 = null;
-        for (Event event : events) {
-            if (event.getEventId().equals(id)) {
-                event1 = event;
-            }
-        }
-        if (event1 != null) {
-            events.remove(event1);
-            System.out.println("Usunięto wydarzenie");
+    public void removeEventById(Long id) throws IOException {
+        List<Event> events = EventList.getEventList();
+        List<Event> eventsAfterRemove = events.stream()
+                .filter(e -> e.getEventId() != id)
+                .collect(Collectors.toList());
+        if (eventsAfterRemove.size() == events.size()) {
+            System.out.println("Nie znaleziono wydarzenia, lista wydarzeń bez zmian ");
         } else {
-            System.out.println("Nie ma wydarzenia o takim ID");
+            System.out.println("Usunięto wydarzenie");
         }
-        safeEventsFile(events);
     }
 
     private void safeEventsFile(List<Event> events) throws IOException {
