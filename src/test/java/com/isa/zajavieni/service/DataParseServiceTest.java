@@ -92,7 +92,6 @@ class DataParseServiceTest {
         assertNotSame(list.get(30), list.get(61));
         assertNotSame(list.get(81).getName(), list.get(82).getName());
         assertNotSame(list.get(2).getEventId(), list.get(90).getName());
-
     }
 
     @Test
