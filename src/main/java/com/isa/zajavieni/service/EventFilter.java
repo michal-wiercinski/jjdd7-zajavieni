@@ -20,7 +20,8 @@ public class EventFilter {
 
     public void filter() throws IOException {
         EventPrinter eventPrinter = new EventPrinter();
-        eventPrinter.printListOfEvents(filterEventsList(EventList.getEventList(), enterStartDate(), enterEndDate(), enterNameOfOrganizer()));
+        filterEventsList(EventList.getEventList(), enterStartDate(), enterEndDate(), enterNameOfOrganizer());
+        eventPrinter.printListOfEvents(sortedAndFilteredEventsList(filterEventsList(EventList.getEventList(), enterStartDate(), enterEndDate(), enterNameOfOrganizer())));
         chooseEndingOption();
     }
 
@@ -174,14 +175,12 @@ public class EventFilter {
         return comparator.reversed();
     }*/
 
-    private List<Event> sortedAndFilteredEventsList(List<Event> filterEventsList, List<String> organizers) {
+    private List<Event> sortedAndFilteredEventsList(List<Event> filterEventsList) {
         List<Event> sortedFinalList = new ArrayList<>();
-        for (String organizer : organizers) {
             List<Event> sortingList = filterEventsList.stream()
                     .sorted(Comparator.comparing(Event::getStartDate).reversed())
                     .collect(Collectors.toList());
             sortedFinalList.addAll(sortingList);
-        }
         return sortedFinalList;
     }
 }
