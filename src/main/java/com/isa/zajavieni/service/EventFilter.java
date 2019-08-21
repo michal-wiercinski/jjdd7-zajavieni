@@ -163,5 +163,26 @@ public class EventFilter {
         }
         return finalList;
     }
+
+    /*
+    private Comparator<Event> getComparatorByProperties() {
+        Comparator<Event> comparator = Comparator.comparing(Event::getStartDate);
+
+        if (asc) {
+            return comparator;
+        }
+        return comparator.reversed();
+    }*/
+
+    private List<Event> sortedAndFilteredEventsList(List<Event> filterEventsList, List<String> organizers) {
+        List<Event> sortedFinalList = new ArrayList<>();
+        for (String organizer : organizers) {
+            List<Event> sortingList = filterEventsList.stream()
+                    .sorted(Comparator.comparing(Event::getStartDate).reversed())
+                    .collect(Collectors.toList());
+            sortedFinalList.addAll(sortingList);
+        }
+        return sortedFinalList;
+    }
 }
 
