@@ -52,8 +52,7 @@ public class MainMenu {
             case "4":
                 bh.addToHistory("Zarządzaj wydarzeniami");
                 new EventMenuHandler().printEventMenu();
-//                mainMenu();
-                comebackToChoice(choice);
+                mainMenu();
                 break;
             case "0":
                 System.out.println("     ****************************************");
@@ -74,7 +73,7 @@ public class MainMenu {
         } else if (yesOrNot.equalsIgnoreCase("t")) {
             bh.removeLast();
             mainMenu();
-            scanner.close();
         }
+        scanner.close();
     }
 }

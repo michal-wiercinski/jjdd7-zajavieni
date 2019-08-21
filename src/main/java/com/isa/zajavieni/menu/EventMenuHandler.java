@@ -8,11 +8,10 @@ import java.util.Scanner;
 public class EventMenuHandler {
 
     public void printEventMenu() throws IOException {
-        EventMenuHandler daoMenu = new EventMenuHandler();
-        daoMenu.printTextMenu();
+        printTextMenu();
         Scanner scanner = new Scanner(System.in);
         String choiceEventMenu = scanner.nextLine();
-        daoMenu.choiceEventMenu(choiceEventMenu);
+        choiceEventMenu(choiceEventMenu);
     }
 
     private void printTextMenu() {
@@ -39,8 +38,7 @@ public class EventMenuHandler {
                 System.out.println("Edytuj dane: <<W budowie>>");
                 break;
             case "4":
-                new MainMenu().mainMenu();
-                break;
+                return;
             default:
                 System.out.println("Proszę podać cyfrę z zakresu menu");
         }
