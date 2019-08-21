@@ -3,8 +3,13 @@ package com.isa.zajavieni.jsonclasses;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Address {
+    @JsonProperty("street")
     private String street;
+
+    @JsonProperty("zipcode")
     private String zipcode;
+
+    @JsonProperty("city")
     private String city;
 
     @JsonProperty("lat")

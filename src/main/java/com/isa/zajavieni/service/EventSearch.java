@@ -14,46 +14,6 @@ import java.util.stream.Collectors;
 public class EventSearch {
     public List<Event> listFound = new ArrayList<>();
 
-    public void printSearchMenu() throws IOException {
-        printTextSearchMenu();
-        Scanner scanner = new Scanner(System.in);
-        String whatYouWant = scanner.nextLine();
-        printMenu(whatYouWant);
-    }
-
-    private void printMenu(String whatYouWant) throws IOException {
-        EventPrinter eventService = new EventPrinter();
-        OrganizerList organizerList = new OrganizerList();
-        EventList eventList = new EventList();
-        switch (whatYouWant) {
-            case "1":
-                eventService.printListOfEvents(searchInListByEventName(EventList.getEventList()));
-                returnToSearch();
-                break;
-            case "2":
-                eventService.printListOfEvents(searchInListByOrganizerName(EventList.getEventList()));
-                returnToSearch();
-                break;
-            case "3":
-                new EventFilter().filter();
-                returnToSearch();
-                break;
-            case "4":
-                new MainMenu().mainMenu();
-                break;
-            default:
-                System.out.println("Prosze podac cyfre z zakresu submenu");
-        }
-    }
-
-    private void printTextSearchMenu() {
-        System.out.println("Po czym chcesz wyszukać wydarzenie?");
-        System.out.println("1. Nazwa wydarzenia");
-        System.out.println("2. Nazwa organizatora");
-        System.out.println("3. Filtruj po dacie i organizatorze");
-        System.out.println("4. Wróć do głównego menu");
-    }
-
     private String typeWhatYouNeed() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Co Cię interesuje?");
@@ -65,7 +25,7 @@ public class EventSearch {
         return name;
     }
 
-    private List<Event> searchInListByEventName(List<Event> eventsList) throws IOException {
+    public List<Event> searchInListByEventName(List<Event> eventsList) throws IOException {
         String eventName = typeWhatYouNeed();
         listFound = eventsList.stream()
                 .filter(e -> e.getName().toLowerCase().contains(eventName.toLowerCase()))
@@ -74,7 +34,7 @@ public class EventSearch {
         return listFound;
     }
 
-    private List<Event> searchInListByOrganizerName(List<Event> eventsList) throws IOException {
+    public List<Event> searchInListByOrganizerName(List<Event> eventsList) throws IOException {
         String organizerName = typeWhatYouNeed();
         listFound = eventsList.stream()
                 .filter(e -> e.getOrganizer().getDesignation().toLowerCase().contains(organizerName.toLowerCase()))
@@ -87,17 +47,6 @@ public class EventSearch {
         if (listFound.isEmpty()) {
             System.out.println("Nie znaleziono żadnych wyników");
             searchInListByOrganizerName(eventsList);
-        }
-    }
-
-    private void returnToSearch() throws IOException {
-        System.out.println("Czy chcesz kontynuować poszukiwania? T / N");
-        Scanner scanner = new Scanner(System.in);
-        String yesOrNot = scanner.nextLine();
-        if (yesOrNot.equalsIgnoreCase("n")) {
-            new MainMenu().mainMenu();
-        } else if (yesOrNot.equalsIgnoreCase("t")) {
-            printSearchMenu();
         }
     }
 }
