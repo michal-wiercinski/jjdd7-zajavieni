@@ -1,6 +1,5 @@
 package com.isa.zajavieni;
 
-
 import com.isa.zajavieni.menu.MainMenu;
 
 import com.isa.zajavieni.service.DataParseService;
