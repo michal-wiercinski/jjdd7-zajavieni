@@ -21,5 +21,16 @@ public class EventFactory {
         return event;
     }
 
+    public static Event prepareEventToFilter(Long id, String organizerName, Date upDate){
+        Event event = new Event();
+        event.setEventId(id);
+        event.getOrganizer().setDesignation(organizerName);
+        event.setStartDate(upDate);
+        event.setEndDate(upDate);
+
+        return event;
+    }
+
+
    // public static Event eventToSearchByName()
 }
