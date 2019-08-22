@@ -2,25 +2,23 @@ package com.isa.zajavieni.menu;
 
 import com.isa.zajavieni.service.EventPrinter;
 import com.isa.zajavieni.repository.EventList;
-import com.isa.zajavieni.service.EventSearch;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class MainMenu {
-    BreadcrumbHistory bh = new BreadcrumbHistory();
+   BreadcrumbHistory bh = new BreadcrumbHistory();
     public void mainMenu() throws IOException {
         EventList eventList = new EventList();
         printTextMainMenu();
         Scanner in = new Scanner(System.in);
         String choice = in.nextLine();
         choiceMenu(choice);
-        in.close();
-        //return choice;
+
     }
 
     private void printTextMainMenu() {
-        System.out.println(bh.toString());
+       System.out.println(bh.toString());
         System.out.println();
         System.out.println("     ****************************************");
         System.out.println("     *                 MENU                 *");
@@ -41,19 +39,15 @@ public class MainMenu {
                 break;
             case "2":
                 new EventSearchingMenu().printSearchMenu();
-                bh.addToHistory("2. Wyszukaj wydarzenie: -> ");
-                comebackToChoice(choice);
+               bh.addToHistory("2. Wyszukaj wydarzenie: -> ");
                 break;
             case "3":
                 System.out.println("Tu będzie lista Twoich ulubionych wydarzeń.");
                 bh.addToHistory("Tu będzie lista Twoich ulubionych wydarzeń -> ");
-                comebackToChoice(choice);
                 break;
             case "4":
                 bh.addToHistory("Zarządzaj wydarzeniami");
                 new EventMenuHandler().printEventMenu();
-//                mainMenu();
-                comebackToChoice(choice);
                 break;
             case "0":
                 System.out.println("     ****************************************");
@@ -71,10 +65,10 @@ public class MainMenu {
         String yesOrNot = scanner.nextLine();
         if (yesOrNot.equalsIgnoreCase("n")) {
             choiceMenu("0");
+            scanner.close();
         } else if (yesOrNot.equalsIgnoreCase("t")) {
             bh.removeLast();
             mainMenu();
-            scanner.close();
         }
     }
 }
