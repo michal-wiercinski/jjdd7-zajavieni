@@ -1,6 +1,7 @@
 package com.isa.zajavieni.menu;
 
 import com.isa.zajavieni.jsonclasses.Event;
+import com.isa.zajavieni.jsonclasses.Organizer;
 import com.isa.zajavieni.repository.EventList;
 import com.isa.zajavieni.service.EventFilter;
 import com.isa.zajavieni.service.EventPrinter;
@@ -29,28 +30,7 @@ public class EventFilteringMenu {
                 enterEndDate(), enterNameOfOrganizer()));
     }
 
-    private void chooseEndingOption() throws IOException {
-        System.out.println("Co chcesz teraz zrobić? ");
-        System.out.println("1. Kontynuuj filtrowanie.");
-        System.out.println("2. Wróć do wyrzukiwania.");
-        System.out.println("3. Wróć do głównego menu.");
-        Scanner scanner = new Scanner(System.in);
-        String choice = scanner.nextLine();
-        switch (choice) {
-            case "1":
-                filter();
-                break;
-            case "2":
-                new EventSearchingMenu().printSearchMenu();
-                break;
-            case "3":
-                new MainMenu().mainMenu();
-                break;
-            default:
-                System.out.println("Wpisałeś coś niewłaściwego, wybierz liczbę z zakresu menu.");
-                chooseEndingOption();
-        }
-    }
+
     private Date enterStartDate() throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Wpisz datę początkową filtrowania (RRRR-MM-DD): ");

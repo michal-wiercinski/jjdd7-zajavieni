@@ -66,6 +66,7 @@ public class MainMenu {
         String yesOrNot = scanner.nextLine();
         if (yesOrNot.equalsIgnoreCase("n")) {
             choiceMenu("0");
+            scanner.close();
         } else if (yesOrNot.equalsIgnoreCase("t")) {
             bh.removeLast();
             mainMenu();
