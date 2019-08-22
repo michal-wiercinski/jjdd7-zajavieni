@@ -37,13 +37,13 @@ public class EventFilter {
         try (InputStream input = new FileInputStream("/home/kacper/Desktop/Zajavieni/jjdd7-zajavieni/target/zajavieni.properties")) {
 
             prop.load(input);
-            String propertiesOrder = prop.getProperty("sortOrder");
+            String propertiesOrder = prop.getProperty("sortOrderDate");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
-        String propertiesOrder = prop.getProperty("sortOrder");
-        if (propertiesOrder == "ASC") {
+        String propertiesOrder = prop.getProperty("sortOrderDate");
+        if (propertiesOrder.equals("ASC")) {
             return comparator;
         }
         return comparator.reversed();
