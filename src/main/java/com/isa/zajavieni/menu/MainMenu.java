@@ -74,6 +74,5 @@ public class MainMenu {
             bh.removeLast();
             mainMenu();
         }
-        scanner.close();
     }
 }
