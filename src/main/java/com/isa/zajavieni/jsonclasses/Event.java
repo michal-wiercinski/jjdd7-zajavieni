@@ -46,6 +46,7 @@ public class Event {
     @JsonProperty("attachments")
     private List<Attachment> attachmentList;
 
+
     public Long getEventId() {
         return eventId;
     }

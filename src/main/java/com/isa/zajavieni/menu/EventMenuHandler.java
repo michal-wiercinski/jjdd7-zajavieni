@@ -2,7 +2,10 @@ package com.isa.zajavieni.menu;
 
 import com.isa.zajavieni.jsonclasses.Address;
 import com.isa.zajavieni.jsonclasses.Event;
+import com.isa.zajavieni.jsonclasses.Organizer;
 import com.isa.zajavieni.jsonclasses.Place;
+import com.isa.zajavieni.repository.OrganizerChooser;
+import com.isa.zajavieni.repository.PlaceChooser;
 import com.isa.zajavieni.service.EventsDao;
 
 import java.io.IOException;
@@ -49,6 +52,7 @@ public class EventMenuHandler {
     }
 
     public Event setEventFieldsToAdd(){
+
         Scanner scanner= new Scanner(System.in);
         Event event = new Event();
         System.out.println("Wydarzenie");
@@ -65,22 +69,13 @@ public class EventMenuHandler {
         event.setStartDate(new Date());
         System.out.println("Podaj datę zakończenia");
         event.setEndDate(new Date());
-        System.out.println("Miejsce");
-        System.out.println("Podaj id miejsca");
-        Place place = new Place();
-        place.setPlaceId(scanner.nextLong());
-        System.out.println("Podaj adres");
-        place.setAddress(new Address());
-        System.out.println("Podaj nazwe miejsca");
-        place.setName(scanner.nextLine());
-        System.out.println("Podaj dokładne miejsce");
-        place.setSubname(scanner.nextLine());
-        System.out.println("Organizator");
+
+        PlaceChooser placeChooser = new PlaceChooser();
+        event.setPlace(placeChooser.placeChoose());
+
+        OrganizerChooser organizerChooser = new OrganizerChooser();
+        event.setOrganizer(organizerChooser.organizerChoose());
+
         return event;
-//        private Organizer organizer;
-//        private MediaLink hyperlink;
-//        private TicketType ticketType;
-//        private Long categoryId;
-//        private List<Attachment> attachmentList;
     }
 }
