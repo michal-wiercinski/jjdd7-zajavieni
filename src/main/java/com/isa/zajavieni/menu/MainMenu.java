@@ -40,7 +40,7 @@ public class MainMenu {
                 comebackToChoice(choice);
                 break;
             case "2":
-                new EventSearch().printSearchMenu();
+                new EventSearchingMenu().printSearchMenu();
                 bh.addToHistory("2. Wyszukaj wydarzenie: -> ");
                 comebackToChoice(choice);
                 break;
@@ -51,7 +51,7 @@ public class MainMenu {
                 break;
             case "4":
                 bh.addToHistory("Zarządzaj wydarzeniami");
-                new EventMenu().eventMenu();
+                new EventMenuHandler().printEventMenu();
 //                mainMenu();
                 comebackToChoice(choice);
                 break;
