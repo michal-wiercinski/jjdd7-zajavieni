@@ -28,43 +28,32 @@ public class EventFilter {
         return finalList;
     }
 
-     /*
-    private Comparator<Event> getComparatorByProperties() {
+
+    public Comparator<Event> getComparatorByProperties() {
         Comparator<Event> comparator = Comparator.comparing(Event::getStartDate);
 
-        try (InputStream input = new FileInputStream("path/to/config.properties")) {
+        Properties prop = new Properties();
 
-            Properties prop = new Properties();
+        try (InputStream input = new FileInputStream("/home/kacper/Desktop/Zajavieni/jjdd7-zajavieni/target/zajavieni.properties")) {
 
-            // load a properties file
             prop.load(input);
-
-            // get the property value and print it out
-            prop.getProperty(
-            System.out.println(prop.getProperty("db.user"));
-            System.out.println(prop.getProperty("db.password"));
-
+            String propertiesOrder = prop.getProperty("sortOrder");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
-    }
-
-}
-
-
-
-
-        if (asc) {
+        String propertiesOrder = prop.getProperty("sortOrder");
+        if (propertiesOrder == "ASC") {
             return comparator;
         }
         return comparator.reversed();
-    }*/
+    }
 
     public List<Event> sortedAndFilteredEventsList(List<Event> filterEventsList) {
         List<Event> sortedFinalList = new ArrayList<>();
         List<Event> sortingList = filterEventsList.stream()
-                .sorted(Comparator.comparing(Event::getStartDate).reversed())
+                //.sorted(Comparator.comparing(Event::getStartDate).reversed())
+                .sorted(getComparatorByProperties())
                 .collect(Collectors.toList());
         sortedFinalList.addAll(sortingList);
         return sortedFinalList;
