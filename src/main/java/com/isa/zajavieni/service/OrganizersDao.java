@@ -3,12 +3,8 @@ package com.isa.zajavieni.service;
 import com.isa.zajavieni.jsonclasses.Organizer;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
 public class OrganizersDao {
 

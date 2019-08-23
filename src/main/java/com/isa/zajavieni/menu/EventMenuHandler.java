@@ -1,9 +1,6 @@
 package com.isa.zajavieni.menu;
 
-import com.isa.zajavieni.jsonclasses.Event;
-import com.isa.zajavieni.jsonclasses.Organizer;
-import com.isa.zajavieni.jsonclasses.Place;
-import com.isa.zajavieni.jsonclasses.TicketType;
+import com.isa.zajavieni.jsonclasses.*;
 import com.isa.zajavieni.service.*;
 
 import java.io.IOException;
@@ -77,14 +74,13 @@ public class EventMenuHandler {
         event.setDescLong(scanner.nextLine());
         event.setActive(true);
 
-        System.out.println("Podaj datę rozpoczęcia w formacie RRRR-MM-DD GG:MM");
+        System.out.println("Podaj datę rozpoczęcia w formacie YYYY-MM-DD HH:MM:SS");
         String stringStartDate = scanner.nextLine();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("Europe/Warsaw"));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date startDate = simpleDateFormat.parse(stringStartDate);
         event.setStartDate(startDate);
 
-        System.out.println("Podaj datę zakończenia w formacie RRRR-MM-DD GG:MM");
+        System.out.println("Podaj datę zakończenia w formacie YYYY-MM-DD HH:MM:SS");
         String stringEndDate = scanner.nextLine();
         Date endDate = simpleDateFormat.parse(stringEndDate);
         event.setStartDate(endDate);
@@ -95,6 +91,7 @@ public class EventMenuHandler {
         while (true) {
             System.out.println("Podaj id miejsca:");
             Long placeId = scanner.nextLong();
+            scanner.nextLine();
             Optional<Place> placeById = placesDao.getPlaceById(placeId);
             if (placeById.isEmpty()) {
                 System.out.println("Nie znaleziono miejsca o takim id. Podaj jeszcze raz id.");
@@ -103,7 +100,16 @@ public class EventMenuHandler {
                 break;
             }
         }
-        event.setHyperlink(null);
+
+        System.out.println("Podaj adres strony www");
+        MediaLink mediaLink = new MediaLink();
+        mediaLink.setWwwAddress(scanner.nextLine());
+        System.out.println("Podaj adres strony fb");
+        mediaLink.setFbSite(scanner.nextLine());
+        System.out.println("Podaj adres strony z biletami");
+        mediaLink.setWebsiteWithTickets(scanner.nextLine());
+        event.setMediaLink(mediaLink);
+
         event.setTicketType(TicketType.FREE);
 
         OrganizersDao organizersDao = new OrganizersDao();
@@ -112,6 +118,7 @@ public class EventMenuHandler {
         while (true) {
             System.out.println("Podaj id organizatora:");
             Long organizerId = scanner.nextLong();
+            scanner.nextLine();
             Optional<Organizer> organizerById = organizersDao.getOrganizerById(organizerId);
             if (organizerById.isEmpty()) {
                 System.out.println("Nie znaleziono organizatora o takim id. Podaj jeszcze raz id.");
@@ -121,11 +128,21 @@ public class EventMenuHandler {
             }
         }
 
-        System.out.println("Podaj id kategorii:");
-
-        event.setCategoryId(scanner.nextLong());
-        event.setAttachmentList(null);
+        CategoriesDao categoriesDao = new CategoriesDao();
+        CategoryPrinter categoryPrinter = new CategoryPrinter();
+        categoryPrinter.printCategories(categoriesDao.getCategories());
+        while (true) {
+            System.out.println("Podaj id kategorii:");
+            Long categoryId = scanner.nextLong();
+            scanner.nextLine();
+            Optional<Category> categoryById = categoriesDao.getCategoryById(categoryId);
+            if (categoryById.isEmpty()) {
+                System.out.println("Nie znaleziono kategorii o takim id. Podaj jeszcze raz id.");
+            } else {
+                event.setCategoryId(categoryId);
+                break;
+            }
+        }
         return event;
     }
-
 }

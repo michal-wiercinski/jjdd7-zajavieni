@@ -1,15 +1,14 @@
 package com.isa.zajavieni.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.isa.zajavieni.jsonclasses.Event;
-import com.isa.zajavieni.jsonclasses.Organizer;
 import com.isa.zajavieni.repository.EventList;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class EventsDao {
@@ -39,6 +38,7 @@ public class EventsDao {
 
     private void saveEventsFile(List<Event> events) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         objectMapper.writeValue(new File("events.json"), events);
     }
 
