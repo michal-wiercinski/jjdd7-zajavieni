@@ -40,7 +40,7 @@ public class EventSearchingMenu {
                 returnToSearch();
                 break;
             case "3":
-                new EventFilteringMenu();
+                new EventFilteringMenu().filter();
                 returnToSearch();
                 break;
             case "4":
