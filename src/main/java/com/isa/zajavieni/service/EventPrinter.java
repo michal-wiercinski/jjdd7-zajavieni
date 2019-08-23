@@ -3,7 +3,9 @@ package com.isa.zajavieni.service;
 import com.isa.zajavieni.jsonclasses.Event;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 public class EventPrinter {
@@ -17,6 +19,13 @@ public class EventPrinter {
     int counter = 1;
     for (Event event : eventList) {
       if (event.getStartDate().getTime() - now <= 172800000) {
+        Date newFormatedDate = event.getStartDate();
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        String strDate = formatter.format(newFormatedDate);
+        System.out.println(strDate);
+
+
+
         System.out.println(
             ANSI_ORANGE + counter + "." + "\tNazwa wydarzenia: " + ANSI_RESET + event.getName() +
                 ANSI_ORANGE + "\n\t\tMiejsce: " + ANSI_RESET + event.getPlace().getName()
