@@ -33,7 +33,7 @@ class EventFilterTest {
 
     List<Event> filterEvents = eventFilter.filterEventsList(events, startDate, endDate, organizersName);
 
-    asset
+
   }
 
 
