@@ -45,7 +45,7 @@ public class EventMenuHandler {
                 }
                 break;
             case "2":
-                System.out.println("Podaj dane:");
+                System.out.println("Podaj dane wydarzenia");
                 Event eventToAdd = askForEventFields();
                 eventsDao.addEvent(eventToAdd);
                 System.out.println("Dodano wydarzenie.");
@@ -63,7 +63,6 @@ public class EventMenuHandler {
     public Event askForEventFields() throws IOException {
         Scanner scanner = new Scanner(System.in);
         Event event = new Event();
-        System.out.println("Wydarzenie");
         System.out.println("Podaj id");
         event.setEventId(scanner.nextLong());
         System.out.println("Podaj nazwę");
@@ -73,7 +72,9 @@ public class EventMenuHandler {
         System.out.println("Podaj długi opis");
         event.setDescLong(scanner.nextLine());
         event.setActive(true);
-//        System.out.println("Podaj datę rozpoczęcia");
+        System.out.println("Podaj datę rozpoczęcia w formacie RRRR-MM-DD GG:MM");
+
+        String stringDate = scanner.nextLine();
         event.setStartDate(new Date());
 //        System.out.println("Podaj datę zakończenia");
         event.setEndDate(new Date());
