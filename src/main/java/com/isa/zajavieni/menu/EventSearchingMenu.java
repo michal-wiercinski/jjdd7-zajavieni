@@ -7,10 +7,11 @@ import com.isa.zajavieni.service.EventPrinter;
 import com.isa.zajavieni.service.EventSearch;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class EventSearchingMenu {
-    public void printSearchMenu() throws IOException {
+    public void printSearchMenu() throws IOException, ParseException {
         printTextSearchMenu();
         Scanner scanner = new Scanner(System.in);
         String whatYouWant = scanner.nextLine();
@@ -25,7 +26,7 @@ public class EventSearchingMenu {
         System.out.println("4. Wróć do głównego menu");
     }
 
-    private void printMenu(String whatYouWant) throws IOException {
+    private void printMenu(String whatYouWant) throws IOException, ParseException {
         EventPrinter eventService = new EventPrinter();
         OrganizerList organizerList = new OrganizerList();
         EventList eventList = new EventList();
@@ -62,7 +63,7 @@ public class EventSearchingMenu {
         }
         return name;
     }
-    private void returnToSearch() throws IOException {
+    private void returnToSearch() throws IOException, ParseException {
         System.out.println("Czy chcesz kontynuować poszukiwania? T / N");
         Scanner scanner = new Scanner(System.in);
         String yesOrNot = scanner.nextLine();

@@ -1,14 +1,16 @@
 package com.isa.zajavieni.menu;
 
-import com.isa.zajavieni.service.EventPrinter;
 import com.isa.zajavieni.repository.EventList;
+import com.isa.zajavieni.service.EventPrinter;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class MainMenu {
-   BreadcrumbHistory bh = new BreadcrumbHistory();
-    public void mainMenu() throws IOException {
+    BreadcrumbHistory bh = new BreadcrumbHistory();
+
+    public void mainMenu() throws IOException, ParseException {
         EventList eventList = new EventList();
         printTextMainMenu();
         Scanner in = new Scanner(System.in);
@@ -18,7 +20,7 @@ public class MainMenu {
     }
 
     private void printTextMainMenu() {
-       System.out.println(bh.toString());
+        System.out.println(bh.toString());
         System.out.println();
         System.out.println("     ****************************************");
         System.out.println("     *                 MENU                 *");
@@ -30,7 +32,7 @@ public class MainMenu {
         System.out.println("     0. Koniec");
     }
 
-    private void choiceMenu(String choice) throws IOException {
+    private void choiceMenu(String choice) throws IOException, ParseException {
         switch (choice) {
             case "1":
                 new EventPrinter().printListOfEvents(EventList.getEventList());
@@ -39,7 +41,7 @@ public class MainMenu {
                 break;
             case "2":
                 new EventSearchingMenu().printSearchMenu();
-               bh.addToHistory("2. Wyszukaj wydarzenie: -> ");
+                bh.addToHistory("2. Wyszukaj wydarzenie: -> ");
                 break;
             case "3":
                 System.out.println("Tu będzie lista Twoich ulubionych wydarzeń.");
@@ -60,7 +62,7 @@ public class MainMenu {
         }
     }
 
-    private void comebackToChoice(String choice) throws IOException {
+    private void comebackToChoice(String choice) throws IOException, ParseException {
         System.out.println("Czy chcesz kontynuować? T / N");
         Scanner scanner = new Scanner(System.in);
         String yesOrNot = scanner.nextLine();

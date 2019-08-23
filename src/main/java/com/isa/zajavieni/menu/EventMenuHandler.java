@@ -7,15 +7,18 @@ import com.isa.zajavieni.jsonclasses.TicketType;
 import com.isa.zajavieni.service.*;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.TimeZone;
 
 public class EventMenuHandler {
 
     private EventsDao eventsDao = new EventsDao();
 
-    public void printEventMenu() throws IOException {
+    public void printEventMenu() throws IOException, ParseException {
         printTextMenu();
         Scanner scanner = new Scanner(System.in);
         String choiceEventMenu = scanner.nextLine();
@@ -30,7 +33,7 @@ public class EventMenuHandler {
         System.out.println("4. Wróć do głównego menu");
     }
 
-    private void choiceEventMenu(String choice) throws IOException {
+    private void choiceEventMenu(String choice) throws IOException, ParseException {
         Scanner scanner = new Scanner(System.in);
         switch (choice) {
             case "1":
@@ -60,11 +63,12 @@ public class EventMenuHandler {
         }
     }
 
-    public Event askForEventFields() throws IOException {
+    public Event askForEventFields() throws IOException, ParseException {
         Scanner scanner = new Scanner(System.in);
         Event event = new Event();
-        System.out.println("Podaj id");
+        System.out.println("Podaj id: ");
         event.setEventId(scanner.nextLong());
+        scanner.nextLine();
         System.out.println("Podaj nazwę");
         event.setName(scanner.nextLine());
         System.out.println("Podaj opis");
@@ -72,12 +76,19 @@ public class EventMenuHandler {
         System.out.println("Podaj długi opis");
         event.setDescLong(scanner.nextLine());
         event.setActive(true);
-        System.out.println("Podaj datę rozpoczęcia w formacie RRRR-MM-DD GG:MM");
 
-        String stringDate = scanner.nextLine();
-        event.setStartDate(new Date());
-//        System.out.println("Podaj datę zakończenia");
-        event.setEndDate(new Date());
+        System.out.println("Podaj datę rozpoczęcia w formacie RRRR-MM-DD GG:MM");
+        String stringStartDate = scanner.nextLine();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("Europe/Warsaw"));
+        Date startDate = simpleDateFormat.parse(stringStartDate);
+        event.setStartDate(startDate);
+
+        System.out.println("Podaj datę zakończenia w formacie RRRR-MM-DD GG:MM");
+        String stringEndDate = scanner.nextLine();
+        Date endDate = simpleDateFormat.parse(stringEndDate);
+        event.setStartDate(endDate);
+
         PlacesDao placesDao = new PlacesDao();
         PlacePrinter placePrinter = new PlacePrinter();
         placePrinter.printPlaces(placesDao.getPlaces());
@@ -116,4 +127,5 @@ public class EventMenuHandler {
         event.setAttachmentList(null);
         return event;
     }
+
 }
