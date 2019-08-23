@@ -1,6 +1,9 @@
 package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.jsonclasses.Event;
+import com.isa.zajavieni.repository.EventList;
+
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,32 +12,40 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import static com.isa.zajavieni.service.EventFactory.anEvent;
-
+import static org.assertj.core.api.Assertions.assertThat;
 
 class EventFilterTest {
 
-@Test
-  void filterEventsList_testIfPrintCorrectEvent() throws ParseException {
-    EventFilter eventFilter  = new EventFilter(); // arrange
+    @Test
+    void filterEventsList_testIfTheListWillBeTheRightSizeWhenIsOneOrganizer() throws IOException, ParseException {
+        EventFilter eventFilter = new EventFilter();
+        List<Event> eventList = new DataParseService().parseEvents("events.json");
+        List<String> organizersName = new ArrayList<>();
+        organizersName.add("Miasto puck");
+        String upDate = "2019-08-24";
+        Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(upDate);
+        String toDate = "2019-08-25";
+        Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(toDate);
 
-    String upDate="2019-07-08";
-    Date startDate = new SimpleDateFormat("yyyy-mm-dd").parse(upDate);
-    String toDate="2019-12-02";
-    Date endDate = new SimpleDateFormat("yyyy-mm-dd").parse(toDate);
+        List<Event> list = eventFilter.filterEventsList(eventList, startDate, endDate, organizersName);
 
-    List<String> organizersName = List.of("codementors");
+        assertThat(list).hasSize(2);
+    }
 
-    List<Event> events = new ArrayList<>();
-    events.add(anEvent(2L, new Date(2019,6,21), "infoshare"));
-    events.add(anEvent(2L, new Date(2019,1,23), "codementors"));
-    events.add(anEvent(3L, new Date(2019,8,22), "sda"));
-    events.add(anEvent(4L, new Date(2019,8,24), "codementors"));
+  @Test
+  void filterEventsList_testIfTheListWillBeTheRightSizeWhenAreTwoOrganizers() throws IOException, ParseException {
+    EventFilter eventFilter = new EventFilter();
+    List<Event> eventList = new DataParseService().parseEvents("events.json");
+    List<String> organizersName = new ArrayList<>();
+    organizersName.add("Miasto puck");
+    organizersName.add("miastomalbork");
+    String upDate = "2019-08-24";
+    Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(upDate);
+    String toDate = "2019-08-25";
+    Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(toDate);
 
-    List<Event> filterEvents = eventFilter.filterEventsList(events, startDate, endDate, organizersName);
+    List<Event> list = eventFilter.filterEventsList(eventList, startDate, endDate, organizersName);
 
-
+    assertThat(list).hasSize(3);
   }
-
-
 }

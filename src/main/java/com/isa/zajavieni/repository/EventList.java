@@ -11,8 +11,7 @@ public class EventList {
     private static List<Event> eventList = new ArrayList<>();
     private static final String eventsJson = "events.json";
 
-    public EventList() throws IOException {
-        eventList = new DataParseService().parseEvents(eventsJson);
+    private EventList() throws IOException {
     }
 
     public static List<Event> getEventList() {

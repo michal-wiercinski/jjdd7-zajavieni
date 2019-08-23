@@ -27,18 +27,16 @@ public class EventSearchingMenu {
 
     private void printMenu(String whatYouWant) throws IOException {
         EventPrinter eventService = new EventPrinter();
-        OrganizerList organizerList = new OrganizerList();
-        EventList eventList = new EventList();
         EventSearch eventSearch = new EventSearch();
         switch (whatYouWant) {
             case "1":
                 eventService.printListOfEvents(eventSearch
-                    .searchInListByEventName(EventList.getEventList(), typeWhatYouNeed()));
+                        .searchInListByEventName(EventList.getEventList(), typeWhatYouNeed()));
                 returnToSearch();
                 break;
             case "2":
                 eventService.printListOfEvents(eventSearch
-                    .searchInListByOrganizerName(EventList.getEventList(), typeWhatYouNeed()));
+                        .searchInListByOrganizerName(EventList.getEventList(), typeWhatYouNeed()));
                 returnToSearch();
                 break;
             case "3":
@@ -53,6 +51,7 @@ public class EventSearchingMenu {
         }
 
     }
+
     private String typeWhatYouNeed() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Co Cię interesuje?");
@@ -63,6 +62,7 @@ public class EventSearchingMenu {
         }
         return name;
     }
+
     private void returnToSearch() throws IOException {
         System.out.println("Czy chcesz kontynuować poszukiwania? T / N");
         Scanner scanner = new Scanner(System.in);

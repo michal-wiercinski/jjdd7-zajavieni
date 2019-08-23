@@ -11,11 +11,11 @@ public class OrganizerList {
     private static List<Organizer> organizerList = new ArrayList<>();
     private static final String organizerJson = "organizers.json";
 
-    public OrganizerList() throws IOException {
-        organizerList = new DataParseService().parseOrganizers(organizerJson);
+    private OrganizerList() throws IOException {
+        //organizerList = new DataParseService().parseOrganizers(organizerJson);
     }
 
-    public List<Organizer> getOrganizerList() {
+    public static List<Organizer> getOrganizerList() {
         return organizerList;
     }
 }

@@ -14,8 +14,6 @@ import java.util.stream.Collectors;
 public class EventSearch {
     public List<Event> listFound = new ArrayList<>();
 
-
-
     public List<Event> searchInListByEventName(List<Event> eventsList, String name) throws IOException {
         listFound = eventsList.stream()
                 .filter(e -> e.getName().toLowerCase().contains(name.toLowerCase()))

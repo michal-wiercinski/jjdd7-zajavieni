@@ -1,6 +1,7 @@
 package com.isa.zajavieni.menu;
 
 import com.isa.zajavieni.jsonclasses.Event;
+import com.isa.zajavieni.jsonclasses.Organizer;
 import com.isa.zajavieni.repository.EventList;
 import com.isa.zajavieni.service.EventFilter;
 import com.isa.zajavieni.service.EventPrinter;
@@ -29,6 +30,7 @@ public class EventFilteringMenu {
                 enterEndDate(), enterNameOfOrganizer()));
     }
 
+
     private Date enterStartDate() throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Wpisz datę początkową filtrowania (RRRR-MM-DD): ");
@@ -47,7 +49,6 @@ public class EventFilteringMenu {
     }
 
     private Date enterEndDate() throws IOException {
-        EventList eventList = new EventList();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Wpisz datę końcową filtrowania (RRRR-MM-DD): ");
         Date endDate = null;
@@ -62,7 +63,7 @@ public class EventFilteringMenu {
             }
         } while (endDate == null);
         System.out.println(ANSI_YELLOW + "Nazwy organizatorów:" + ANSI_RESET);
-        printOrganizerList(eventList.getEventList());
+        printOrganizerList(EventList.getEventList());
         return endDate;
     }
 
@@ -82,7 +83,6 @@ public class EventFilteringMenu {
 
     private List<String> enterNameOfOrganizer() throws IOException {
         Scanner scanner = new Scanner(System.in);
-        EventList eventList = new EventList();
         List<String> organizersList = new ArrayList<>();
         boolean isSearchFinished = false;
         do {
@@ -90,7 +90,7 @@ public class EventFilteringMenu {
             String organizer = scanner.nextLine();
             boolean isParticularOrganizerFound = false;
             for (int i = 0; i < EventList.getEventList().size(); i++) {
-                if (organizer.toLowerCase().replaceAll("\\s", "").equals(eventList.getEventList()
+                if (organizer.toLowerCase().replaceAll("\\s", "").equals(EventList.getEventList()
                         .get(i).getOrganizer().getDesignation().toLowerCase().replaceAll("\\s", ""))) {
                     organizersList.add(organizer);
                     isParticularOrganizerFound = true;

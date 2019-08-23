@@ -1,18 +1,21 @@
 package com.isa.zajavieni.menu;
 
+import com.isa.zajavieni.jsonclasses.Event;
 import com.isa.zajavieni.service.EventsDao;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class EventMenuHandler {
 
+    private EventsDao eventsDao = new EventsDao();
+
     public void printEventMenu() throws IOException {
-        EventMenuHandler daoMenu = new EventMenuHandler();
-        daoMenu.printTextMenu();
+        printTextMenu();
         Scanner scanner = new Scanner(System.in);
         String choiceEventMenu = scanner.nextLine();
-        daoMenu.choiceEventMenu(choiceEventMenu);
+        choiceEventMenu(choiceEventMenu);
     }
 
     private void printTextMenu() {
@@ -27,10 +30,15 @@ public class EventMenuHandler {
         Scanner scanner = new Scanner(System.in);
         switch (choice) {
             case "1":
-                System.out.println("Podaj ID wydarzenia, które chcesz usunąć:");
+                System.out.print("Podaj ID wydarzenia, które chcesz usunąć: ");
                 Long eventsIdToRemove = scanner.nextLong();
-                EventsDao eventsDao = new EventsDao();
-                eventsDao.removeEventById(eventsIdToRemove);
+                Optional<Event> eventToRemove = eventsDao.getEventById(eventsIdToRemove);
+                if (eventToRemove.isEmpty()) {
+                    System.out.println("Nie znaleziono wydarzenia, lista wydarzeń bez zmian.");
+                } else {
+                    eventsDao.removeEventById(eventsIdToRemove);
+                    System.out.println("Usunięto wydarzenie.");
+                }
                 break;
             case "2":
                 System.out.println("Podaj dane: <<W budowie>>");
@@ -39,8 +47,7 @@ public class EventMenuHandler {
                 System.out.println("Edytuj dane: <<W budowie>>");
                 break;
             case "4":
-                new MainMenu().mainMenu();
-                break;
+                return;
             default:
                 System.out.println("Proszę podać cyfrę z zakresu menu");
         }

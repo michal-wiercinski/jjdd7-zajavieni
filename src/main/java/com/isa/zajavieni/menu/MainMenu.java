@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class MainMenu {
    BreadcrumbHistory bh = new BreadcrumbHistory();
     public void mainMenu() throws IOException {
-        EventList eventList = new EventList();
         printTextMainMenu();
         Scanner in = new Scanner(System.in);
         String choice = in.nextLine();
@@ -48,6 +47,7 @@ public class MainMenu {
             case "4":
                 bh.addToHistory("Zarządzaj wydarzeniami");
                 new EventMenuHandler().printEventMenu();
+                mainMenu();
                 break;
             case "0":
                 System.out.println("     ****************************************");
@@ -55,7 +55,7 @@ public class MainMenu {
                 break;
             default:
                 System.out.println("Wpisałeś coś niewłaściwego, wybierz liczbę z zakresu menu.");
-                comebackToChoice(choice);
+                mainMenu();
         }
     }
 
