@@ -35,7 +35,7 @@ public class Event {
     private Organizer organizer;
 
     @JsonProperty("urls")
-    private MediaLink hyperlink;
+    private MediaLink mediaLink;
 
     @JsonProperty("tickets")
     private TicketType ticketType;
@@ -45,6 +45,7 @@ public class Event {
 
     @JsonProperty("attachments")
     private List<Attachment> attachmentList;
+
 
     public Long getEventId() {
         return eventId;
@@ -118,12 +119,12 @@ public class Event {
         this.organizer = organizer;
     }
 
-    public MediaLink getHyperlink() {
-        return hyperlink;
+    public MediaLink getMediaLink() {
+        return mediaLink;
     }
 
-    public void setHyperlink(MediaLink hyperlink) {
-        this.hyperlink = hyperlink;
+    public void setMediaLink(MediaLink mediaLink) {
+        this.mediaLink = mediaLink;
     }
 
     public TicketType getTicketType() {
@@ -162,7 +163,7 @@ public class Event {
                 ", endDate=" + endDate +
                 ", place=" + place +
                 ", organizer=" + organizer +
-                ", url=" + hyperlink +
+                ", url=" + mediaLink +
                 ", ticketType=" + ticketType +
                 ", category=" + categoryId +
                 ", attachmentList=" + attachmentList +
