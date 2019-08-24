@@ -15,7 +15,7 @@ public class EventsDao {
 
     public List<Event> getEvents() throws IOException {
         DataParseService dataParseService = new DataParseService();
-        List<Event> events = dataParseService.parseEvents("events.json");
+        List<Event> events = dataParseService.parseEvents(EventList.getEventsJson());
         return events;
     }
 
@@ -34,17 +34,20 @@ public class EventsDao {
                 .filter(e -> !e.getEventId().equals(id))
                 .collect(Collectors.toList());
         saveEventsFile(eventsAfterRemove);
+        EventList.getEventList().clear();
+        EventList.getEventList().addAll(eventsAfterRemove);
+        saveEventsFile(eventsAfterRemove);
     }
 
     private void saveEventsFile(List<Event> events) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        objectMapper.writeValue(new File("events.json"), events);
+        objectMapper.writeValue(new File(EventList.getEventsJson()), events);
     }
 
     public void addEvent(Event event) throws IOException {
         DataParseService dataParseService = new DataParseService();
-        List<Event> events = dataParseService.parseEvents("events.json");
+        List<Event> events = dataParseService.parseEvents(EventList.getEventsJson());
         events.add(event);
         saveEventsFile(events);
     }

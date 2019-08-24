@@ -1,12 +1,13 @@
 package com.isa.zajavieni.jsonclasses;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 class TicketTypeTest {
-
 
     @Test
     void deserialize_testIfReturnFreeType() {

@@ -11,7 +11,6 @@ public class MainMenu {
     BreadcrumbHistory bh = new BreadcrumbHistory();
 
     public void mainMenu() throws IOException, ParseException {
-        EventList eventList = new EventList();
         printTextMainMenu();
         Scanner in = new Scanner(System.in);
         String choice = in.nextLine();
@@ -58,7 +57,7 @@ public class MainMenu {
                 break;
             default:
                 System.out.println("Wpisałeś coś niewłaściwego, wybierz liczbę z zakresu menu.");
-                comebackToChoice(choice);
+                mainMenu();
         }
     }
 
@@ -68,6 +67,7 @@ public class MainMenu {
         String yesOrNot = scanner.nextLine();
         if (yesOrNot.equalsIgnoreCase("n")) {
             choiceMenu("0");
+            scanner.close();
         } else if (yesOrNot.equalsIgnoreCase("t")) {
             bh.removeLast();
             mainMenu();
