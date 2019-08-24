@@ -1,9 +1,6 @@
 package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.jsonclasses.Event;
-import com.isa.zajavieni.menu.MainMenu;
-import com.isa.zajavieni.repository.EventList;
-import com.isa.zajavieni.repository.OrganizerList;
 
 import java.io.IOException;
 import java.util.ArrayList;

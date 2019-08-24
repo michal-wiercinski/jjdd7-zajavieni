@@ -22,15 +22,14 @@ public class EventFilteringMenu {
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_YELLOW = "\u001b[33;1m";
 
-    public void filter() throws IOException {
+    public void filter() throws IOException, ParseException {
         EventFilter eventFilter = new EventFilter();
         EventPrinter eventPrinter = new EventPrinter();
-        eventPrinter.printListOfEvents(eventFilter.sortedAndFilteredEventsList(eventFilter.filterEventsList(EventList.getEventList(),
-                enterStartDate(), enterEndDate(), enterNameOfOrganizer())));
-        chooseEndingOption();
+        eventPrinter.printListOfEvents(eventFilter.filterEventsList(EventList.getEventList(), enterStartDate(),
+                enterEndDate(), enterNameOfOrganizer()));
     }
 
-    private void chooseEndingOption() throws IOException {
+    private void chooseEndingOption() throws IOException, ParseException {
         System.out.println("Co chcesz teraz zrobić? ");
         System.out.println("1. Kontynuuj filtrowanie.");
         System.out.println("2. Wróć do wyrzukiwania.");
@@ -52,7 +51,7 @@ public class EventFilteringMenu {
                 chooseEndingOption();
         }
     }
-    private Date enterStartDate() {
+    private Date enterStartDate() throws IOException, ParseException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Wpisz datę początkową filtrowania (RRRR-MM-DD): ");
         Date startDate = null;
@@ -63,13 +62,13 @@ public class EventFilteringMenu {
             if (matcher.matches()) {
                 startDate = formatDate(startDateString);
             } else {
-                System.out.println("Wpisano zły format daty. Wpisz ponownie datę w formacie: RRRR-MM-DD");
+                backToSearch();
             }
         } while (startDate == null);
         return startDate;
     }
 
-    private Date enterEndDate() throws IOException {
+    private Date enterEndDate() throws IOException, ParseException {
         EventList eventList = new EventList();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Wpisz datę końcową filtrowania (RRRR-MM-DD): ");
@@ -81,7 +80,7 @@ public class EventFilteringMenu {
             if (matcher.matches()) {
                 endDate = formatDate(endDateString);
             } else {
-                System.out.println("Wpisano zły format daty. Wpisz ponownie datę w formacie: RRRR-MM-DD");
+                backToSearch();
             }
         } while (endDate == null);
         System.out.println(ANSI_YELLOW + "Nazwy organizatorów:" + ANSI_RESET);
@@ -149,5 +148,15 @@ public class EventFilteringMenu {
             System.out.println("Wystąpił błąd formatowania!");
         }
         return formatDate;
+    }
+    private void backToSearch() throws IOException, ParseException {
+        System.out.println("Wpisano zły format daty. Czy chcesz kontynuować filtrowanie? T / N");
+        Scanner scanner = new Scanner(System.in);
+        String yesOrNot = scanner.nextLine();
+        if (yesOrNot.equalsIgnoreCase("n")) {
+            new MainMenu().mainMenu();
+        } else if (yesOrNot.equalsIgnoreCase("t")) {
+            System.out.println("Podaj jeszcze raz datę w prawidłowym formacie RRRR-MM-DD: ");
+        }
     }
 }

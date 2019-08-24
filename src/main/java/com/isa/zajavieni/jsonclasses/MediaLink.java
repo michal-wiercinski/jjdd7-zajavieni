@@ -3,6 +3,7 @@ package com.isa.zajavieni.jsonclasses;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MediaLink {
+
     @JsonProperty("www")
     private String wwwAddress;
 
@@ -18,6 +19,30 @@ public class MediaLink {
     public MediaLink(String wwwAddress, String fbSite, String websiteWithTickets) {
         this.wwwAddress = wwwAddress;
         this.fbSite = fbSite;
+        this.websiteWithTickets = websiteWithTickets;
+    }
+
+    public String getWwwAddress() {
+        return wwwAddress;
+    }
+
+    public void setWwwAddress(String wwwAddress) {
+        this.wwwAddress = wwwAddress;
+    }
+
+    public String getFbSite() {
+        return fbSite;
+    }
+
+    public void setFbSite(String fbSite) {
+        this.fbSite = fbSite;
+    }
+
+    public String getWebsiteWithTickets() {
+        return websiteWithTickets;
+    }
+
+    public void setWebsiteWithTickets(String websiteWithTickets) {
         this.websiteWithTickets = websiteWithTickets;
     }
 
