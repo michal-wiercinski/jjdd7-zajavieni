@@ -1,13 +1,11 @@
 package com.isa.zajavieni.menu;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.isa.zajavieni.jsonclasses.Event;
 import com.isa.zajavieni.repository.EventList;
 import com.isa.zajavieni.repository.FavouriteEventList;
 import com.isa.zajavieni.service.EventPrinter;
 import com.isa.zajavieni.service.FavouriteEventsDao;
-import java.io.File;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
@@ -67,7 +65,6 @@ public class FavouriteEventMenu {
     }
   }
 
-
   private Event prepareToAddingFavouriteEvent() throws IOException, ParseException {
     System.out.println("Wpisz ID wydarzenia które chcesz dodać do ulubionych:");
     Scanner scanner = new Scanner(System.in);
@@ -84,7 +81,6 @@ public class FavouriteEventMenu {
         }
       }
     } while (idOfEvent == null);
-
     EventList eventList = new EventList();
     List<Event> events = eventList.getEventList();
     Event favouriteEventToAdd = null;
@@ -160,5 +156,4 @@ public class FavouriteEventMenu {
       backToSearch();
     }
   }
-
 }
