@@ -14,6 +14,7 @@ public class CategoriesDao {
         return dataParseService.parseCategories("categories.json");
     }
 
+
     public Optional<Category> getCategoryById(Long id) throws IOException {
         for (Category category : getCategories()) {
             if (category.getId().equals(id)) {

@@ -51,6 +51,7 @@ public class EventFilteringMenu {
                 chooseEndingOption();
         }
     }
+
     private Date enterStartDate() throws IOException, ParseException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Wpisz datę początkową filtrowania (RRRR-MM-DD): ");
@@ -69,7 +70,6 @@ public class EventFilteringMenu {
     }
 
     private Date enterEndDate() throws IOException, ParseException {
-        EventList eventList = new EventList();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Wpisz datę końcową filtrowania (RRRR-MM-DD): ");
         Date endDate = null;
@@ -84,7 +84,7 @@ public class EventFilteringMenu {
             }
         } while (endDate == null);
         System.out.println(ANSI_YELLOW + "Nazwy organizatorów:" + ANSI_RESET);
-        printOrganizerList(eventList.getEventList());
+        printOrganizerList(EventList.getEventList());
         return endDate;
     }
 
@@ -104,7 +104,6 @@ public class EventFilteringMenu {
 
     private List<String> enterNameOfOrganizer() throws IOException {
         Scanner scanner = new Scanner(System.in);
-        EventList eventList = new EventList();
         List<String> organizersList = new ArrayList<>();
         boolean isSearchFinished = false;
         do {
@@ -112,7 +111,7 @@ public class EventFilteringMenu {
             String organizer = scanner.nextLine();
             boolean isParticularOrganizerFound = false;
             for (int i = 0; i < EventList.getEventList().size(); i++) {
-                if (organizer.toLowerCase().replaceAll("\\s", "").equals(eventList.getEventList()
+                if (organizer.toLowerCase().replaceAll("\\s", "").equals(EventList.getEventList()
                         .get(i).getOrganizer().getDesignation().toLowerCase().replaceAll("\\s", ""))) {
                     organizersList.add(organizer);
                     isParticularOrganizerFound = true;
@@ -149,6 +148,7 @@ public class EventFilteringMenu {
         }
         return formatDate;
     }
+
     private void backToSearch() throws IOException, ParseException {
         System.out.println("Wpisano zły format daty. Czy chcesz kontynuować filtrowanie? T / N");
         Scanner scanner = new Scanner(System.in);
