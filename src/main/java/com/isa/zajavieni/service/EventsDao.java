@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalLong;
 import java.util.stream.Collectors;
 
 public class EventsDao {
@@ -61,12 +60,12 @@ public class EventsDao {
         saveEventsFile(events);
     }
 
-    public Long lookingForNextId() throws IOException {
+    public Long getNextId() throws IOException {
         List<Event> events = getEvents();
         long maxId = events.stream()
                 .mapToLong(event -> event.getEventId())
                 .max()
-                .getAsLong();
-        return maxId+1;
+                .orElseGet(() -> 0);
+        return maxId + 1;
     }
 }
