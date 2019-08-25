@@ -65,17 +65,6 @@ class DataParseServiceTest {
     }
 
     @Test
-    void testIfTheObjectIsInTheEventList() throws IOException {
-        DataParseService parseEvents = new DataParseService();
-
-        List<Event> list = parseEvents.parseEvents(EventList.getEventsJson());
-
-        assertEquals("Teatr „Stokrotka” dla dzieci", list.get(45).getName());
-        assertEquals("PRZYSTANEK  PLANSZÓWKI", list.get(35).getName());
-        assertEquals("Ceramika // dzieci", list.get(94).getName());
-    }
-
-    @Test
     void testIfTheObjectIsInTheOrganizersList() throws IOException {
         DataParseService parseOrganizers = new DataParseService();
 

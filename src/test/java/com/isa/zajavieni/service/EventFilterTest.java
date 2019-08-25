@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import static org.junit.Assert.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,31 +22,49 @@ class EventFilterTest {
         EventFilter eventFilter = new EventFilter();
         List<Event> eventList = new DataParseService().parseEvents(EventList.getEventsJson());
         List<String> organizersName = new ArrayList<>();
-        organizersName.add("Miasto puck");
-        String upDate = "2019-08-24";
+        organizersName.add("instytutkulturymiejskiej");
+        String upDate = "2019-09-02";
         Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(upDate);
-        String toDate = "2019-08-25";
+        String toDate = "2019-09-10";
         Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(toDate);
 
         List<Event> list = eventFilter.filterEventsList(eventList, startDate, endDate, organizersName);
 
-        assertThat(list).hasSize(2);
+        assertThat(list).hasSize(19);
     }
 
-  @Test
-  void filterEventsList_testIfTheListWillBeTheRightSizeWhenAreTwoOrganizers() throws IOException, ParseException {
-    EventFilter eventFilter = new EventFilter();
-    List<Event> eventList = new DataParseService().parseEvents(EventList.getEventsJson());
-    List<String> organizersName = List.of();
-    organizersName.add("Miasto puck");
-    organizersName.add("miastomalbork");
-    String upDate = "2019-08-27";
-    Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(upDate);
-    String toDate = "2019-09-25";
-    Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(toDate);
+    @Test
+    void filterEventsList_testIfTheListWillBeTheRightSizeWhenAreTwoOrganizers() throws IOException, ParseException {
+        EventFilter eventFilter = new EventFilter();
+        List<Event> eventList = new DataParseService().parseEvents(EventList.getEventsJson());
+        List<String> organizersName = new ArrayList<>();
+        organizersName.add("gdańskiarchipelagkultury");
+        organizersName.add("sopot");
+        String upDate = "2019-09-07";
+        Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(upDate);
+        String toDate = "2019-09-16";
+        Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(toDate);
 
-    List<Event> list = eventFilter.filterEventsList(eventList, startDate, endDate, organizersName);
+        List<Event> list = eventFilter.filterEventsList(eventList, startDate, endDate, organizersName);
 
-    assertThat(list).hasSize(3);
-  }
+        assertThat(list).hasSize(28);
+    }
+
+    @Test
+    void filterEventsList_testIfTheListWillBeEmpty() throws IOException, ParseException {
+        EventFilter eventFilter = new EventFilter();
+        List<Event> eventList = new DataParseService().parseEvents(EventList.getEventsJson());
+        List<String> organizersName = new ArrayList<>();
+        organizersName.add("gdańskiarchipelagkultury");
+        organizersName.add("sopot");
+
+        String upDate = "2017-09-07";
+        Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(upDate);
+        String toDate = "2018-09-16";
+        Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(toDate);
+
+        List<Event> list = eventFilter.filterEventsList(eventList, startDate, endDate, organizersName);
+
+        assertTrue(list.isEmpty());
+    }
 }
