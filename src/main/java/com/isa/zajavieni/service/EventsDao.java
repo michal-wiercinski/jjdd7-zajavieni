@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalLong;
 import java.util.stream.Collectors;
 
 public class EventsDao {
@@ -49,7 +50,23 @@ public class EventsDao {
         saveEventsFile(events);
     }
 
-    public void updateEvent(Event event) {
+    public void updateEvent(Event event) throws IOException {
+        List<Event> events = getEvents();
+        for (int i = 0; i < events.size(); i++) {
+            if (event.getEventId().equals(events.get(i).getEventId())) {
+                events.set(i, event);
+                break;
+            }
+        }
+        saveEventsFile(events);
+    }
 
+    public Long lookingForNextId() throws IOException {
+        List<Event> events = getEvents();
+        long maxId = events.stream()
+                .mapToLong(event -> event.getEventId())
+                .max()
+                .getAsLong();
+        return maxId+1;
     }
 }
