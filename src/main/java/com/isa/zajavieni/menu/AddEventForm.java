@@ -1,9 +1,11 @@
 package com.isa.zajavieni.menu;
 
 import com.isa.zajavieni.jsonclasses.*;
+import com.isa.zajavieni.repository.CategoryList;
+import com.isa.zajavieni.repository.OrganizerList;
+import com.isa.zajavieni.repository.PlaceList;
 import com.isa.zajavieni.service.*;
 
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,7 +17,7 @@ public class AddEventForm {
     private EventsDao eventsDao = new EventsDao();
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
-    public Event askForEventFields() throws IOException {
+    public Event askForEventFields() {
         Scanner scanner = new Scanner(System.in);
         Event event = new Event();
 
@@ -83,10 +85,10 @@ public class AddEventForm {
         }
     }
 
-    private Place askForPlace(Scanner scanner) throws IOException {
+    private Place askForPlace(Scanner scanner) {
         PlacesDao placesDao = new PlacesDao();
         PlacePrinter placePrinter = new PlacePrinter();
-        placePrinter.printPlaces(placesDao.getPlaces());
+        placePrinter.printPlaces(PlaceList.getPlaceList());
         while (true) {
             Long placeId = askForLong(scanner, "Podaj id miejsca");
             Optional<Place> placeById = placesDao.getPlaceById(placeId);
@@ -105,10 +107,10 @@ public class AddEventForm {
         return value;
     }
 
-    private Organizer askForOrganizer(Scanner scanner) throws IOException {
+    private Organizer askForOrganizer(Scanner scanner) {
         OrganizersDao organizersDao = new OrganizersDao();
         OrganizerPrinter organizerPrinter = new OrganizerPrinter();
-        organizerPrinter.printOrganizers(organizersDao.getOrganizers());
+        organizerPrinter.printOrganizers(OrganizerList.getOrganizerList());
         while (true) {
             Long organizerId = askForLong(scanner, "Podaj id organizatora");
             Optional<Organizer> organizerById = organizersDao.getOrganizerById(organizerId);
@@ -120,10 +122,10 @@ public class AddEventForm {
         }
     }
 
-    private long askForCategory(Scanner scanner) throws IOException {
+    private long askForCategory(Scanner scanner) {
         CategoriesDao categoriesDao = new CategoriesDao();
         CategoryPrinter categoryPrinter = new CategoryPrinter();
-        categoryPrinter.printCategories(categoriesDao.getCategories());
+        categoryPrinter.printCategories(CategoryList.getCategoryList());
         while (true) {
             Long categoryId = askForLong(scanner, "Podaj id kategorii");
             Optional<Category> categoryById = categoriesDao.getCategoryById(categoryId);

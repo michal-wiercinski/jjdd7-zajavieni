@@ -1,9 +1,11 @@
 package com.isa.zajavieni.menu;
 
 import com.isa.zajavieni.jsonclasses.*;
+import com.isa.zajavieni.repository.CategoryList;
+import com.isa.zajavieni.repository.OrganizerList;
+import com.isa.zajavieni.repository.PlaceList;
 import com.isa.zajavieni.service.*;
 
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,7 +16,7 @@ public class UpdateEventForm {
 
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
-    public void askForEventFields(Event event) throws IOException {
+    public void askForEventFields(Event event) {
         Scanner scanner = new Scanner(System.in);
 
         String name = askForString(scanner, event.getName(), "Podaj nową nazwę");
@@ -85,10 +87,10 @@ public class UpdateEventForm {
         }
     }
 
-    private Organizer askForOrganizer(Scanner scanner, Organizer defaultOrganizer) throws IOException {
+    private Organizer askForOrganizer(Scanner scanner, Organizer defaultOrganizer) {
         OrganizersDao organizersDao = new OrganizersDao();
         OrganizerPrinter organizerPrinter = new OrganizerPrinter();
-        organizerPrinter.printOrganizers(organizersDao.getOrganizers());
+        organizerPrinter.printOrganizers(OrganizerList.getOrganizerList());
         while (true) {
             System.out.println("Podaj nowe id organizatora: [" + defaultOrganizer.getId() + "]:");
             String organizerIdAsString = scanner.nextLine();
@@ -106,11 +108,10 @@ public class UpdateEventForm {
         }
     }
 
-
-    private Long askForCategory(Scanner scanner, Long defaultValue) throws IOException {
+    private Long askForCategory(Scanner scanner, Long defaultValue) {
         CategoriesDao categoriesDao = new CategoriesDao();
         CategoryPrinter categoryPrinter = new CategoryPrinter();
-        categoryPrinter.printCategories(categoriesDao.getCategories());
+        categoryPrinter.printCategories(CategoryList.getCategoryList());
         while (true) {
             System.out.println("Podaj nowe id kategorii: [" + defaultValue + "]:");
             String categoryIdAsString = scanner.nextLine();
@@ -128,10 +129,10 @@ public class UpdateEventForm {
         }
     }
 
-    private Place askForPlace(Scanner scanner, Place defaultPlace) throws IOException {
+    private Place askForPlace(Scanner scanner, Place defaultPlace) {
         PlacesDao placesDao = new PlacesDao();
         PlacePrinter placePrinter = new PlacePrinter();
-        placePrinter.printPlaces(placesDao.getPlaces());
+        placePrinter.printPlaces(PlaceList.getPlaceList());
         while (true) {
             System.out.println("Podaj id nowego miejsce: [" + defaultPlace.getPlaceId() + "]:");
             String placeIdAsString = scanner.nextLine();
