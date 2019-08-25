@@ -1,19 +1,17 @@
 package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.jsonclasses.Event;
-import com.isa.zajavieni.repository.EventList;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertNotNull;
 
 class EventsDaoTest {
 
+    //ten test maj wpływ na plik json
     /* @Test
      void removeEventById_testIfRemoveEvent() throws IOException {
          EventsDao remove = new EventsDao();
@@ -31,9 +29,7 @@ class EventsDaoTest {
     @Test
     void getEventById_testIfReturnEventIsNotNull() throws IOException {
         EventsDao eventsDao = new EventsDao();
-        List<Event> eventList = new DataParseService().parseEvents(EventList.getEventsJson());
         Long id = 62425L;
-        Event event = eventList.get(0);
 
         Optional<Event> expectedEvent = eventsDao.getEventById(id);
 
@@ -43,7 +39,6 @@ class EventsDaoTest {
     @Test
     void getEventById_testIfReturnEventIsEmpty() throws IOException {
         EventsDao eventsDao = new EventsDao();
-        List<Event> eventList = new DataParseService().parseEvents(EventList.getEventsJson());
         Long id = 65425L;
 
         Optional<Event> expectedEvent = eventsDao.getEventById(id);
@@ -51,6 +46,7 @@ class EventsDaoTest {
         assertThat(expectedEvent).isEqualTo(Optional.empty());
     }
 
+    //ten test ma wpływ na plik json
 /*    @Test
     void addEvent_testIfListWillHaveGreaterSize() throws IOException {
         EventsDao eventsDao = new EventsDao();

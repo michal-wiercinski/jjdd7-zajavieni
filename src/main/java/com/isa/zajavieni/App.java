@@ -18,7 +18,7 @@ public class App {
         EventList.getEventList().addAll(parseService.parseEvents(EventList.getEventsJson()));
         OrganizerList.getOrganizerList().addAll(parseService.parseOrganizers(OrganizerList.getOrganizersJson()));
         PlaceList.getPlaceList().addAll(parseService.parsePlaces(PlaceList.getPlaceJson()));
-        CategoryList.getCategoruList().addAll(parseService.parseCategories(CategoryList.getCategoriesJson()));
+        CategoryList.getCategoryList().addAll(parseService.parseCategories(CategoryList.getCategoriesJson()));
         new MainMenu().mainMenu();
     }
 }

@@ -15,7 +15,6 @@ public class MainMenu {
         Scanner in = new Scanner(System.in);
         String choice = in.nextLine();
         choiceMenu(choice);
-
     }
 
     private void printTextMainMenu() {

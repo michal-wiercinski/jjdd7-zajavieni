@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryList  {
-    private static List<Category> categoruList = new ArrayList<>();
+    private static List<Category> categoryList = new ArrayList<>();
     private static final String CATEGORIES_JSON = "categories.json";
 
     private CategoryList() {
     }
 
-    public static List<Category> getCategoruList() {
-        return categoruList;
+    public static List<Category> getCategoryList() {
+        return categoryList;
     }
 
     public static String getCategoriesJson() {

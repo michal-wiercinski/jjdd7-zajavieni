@@ -6,13 +6,14 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class EventListTest {
 
     @Test
     void getEventList_testIfListIsNotNull() throws IOException {
-        List<Event>  list = EventList.getEventList();
-       assertNotNull(list);
+        List<Event> list = EventList.getEventList();
+
+        assertNotNull(list);
     }
 }
