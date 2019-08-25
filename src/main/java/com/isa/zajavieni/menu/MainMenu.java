@@ -56,7 +56,7 @@ public class MainMenu {
                 break;
             default:
                 System.out.println("Wpisałeś coś niewłaściwego, wybierz liczbę z zakresu menu.");
-                comebackToChoice(choice);
+                mainMenu();
         }
     }
 
@@ -66,6 +66,7 @@ public class MainMenu {
         String yesOrNot = scanner.nextLine();
         if (yesOrNot.equalsIgnoreCase("n")) {
             choiceMenu("0");
+            scanner.close();
         } else if (yesOrNot.equalsIgnoreCase("t")) {
             bh.removeLast();
             mainMenu();

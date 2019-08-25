@@ -12,7 +12,7 @@ class OrganizerListTest {
 
     @Test
     void getOrganizerList_testIfListIsNotNull() throws IOException {
-        List<Organizer> list = new OrganizerList().getOrganizerList();
+        List<Organizer> list = OrganizerList.getOrganizerList();
 
         assertNotNull(list);
     }

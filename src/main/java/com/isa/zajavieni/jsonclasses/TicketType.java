@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public enum TicketType {
+
     UNKNOWN("unknown"),
     FREE("free");
 

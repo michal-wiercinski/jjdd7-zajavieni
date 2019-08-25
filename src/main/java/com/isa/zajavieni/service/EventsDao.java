@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.isa.zajavieni.jsonclasses.Event;
 import com.isa.zajavieni.repository.EventList;
 
-import com.isa.zajavieni.repository.FavouriteEventList;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -35,21 +34,22 @@ public class EventsDao {
                 .filter(e -> !e.getEventId().equals(id))
                 .collect(Collectors.toList());
         saveEventsFile(eventsAfterRemove);
-
+        EventList.getEventList().clear();
+        EventList.getEventList().addAll(eventsAfterRemove);
+        saveEventsFile(eventsAfterRemove);
         FavouriteEventsDao favouriteEventsDao = new FavouriteEventsDao();
         favouriteEventsDao.updateFavouriteEventsAfterRemoveEvent(id);
     }
 
-
-  private void saveEventsFile(List<Event> events) throws IOException {
-    ObjectMapper objectMapper = new ObjectMapper();
-    objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-    objectMapper.writeValue(new File("events.json"), events);
-  }
+    private void saveEventsFile(List<Event> events) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        objectMapper.writeValue(new File(EventList.getEventsJson()), events);
+    }
 
     public void addEvent(Event event) throws IOException {
         DataParseService dataParseService = new DataParseService();
-        List<Event> events = dataParseService.parseEvents("events.json");
+        List<Event> events = dataParseService.parseEvents(EventList.getEventsJson());
         events.add(event);
         saveEventsFile(events);
     }

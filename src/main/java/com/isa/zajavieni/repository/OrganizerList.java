@@ -1,9 +1,7 @@
 package com.isa.zajavieni.repository;
 
 import com.isa.zajavieni.jsonclasses.Organizer;
-import com.isa.zajavieni.service.DataParseService;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,5 +16,4 @@ public class OrganizerList {
     public static List<Organizer> getOrganizerList() {
         return organizerList;
     }
-
 }
