@@ -2909,35 +2909,6 @@
     ]
   },
   {
-    "id": 999,
-    "name": "",
-    "descShort": "",
-    "descLong": "",
-    "active": true,
-    "startDate": "2019-12-12T14:15:00.000+0000",
-    "endDate": null,
-    "place": {
-      "id": 2825,
-      "address": {
-        "street": "3 Maja 9c",
-        "zipcode": "83-330",
-        "city": "Żukowo",
-        "lat": null,
-        "lng": null
-      },
-      "name": "Centrum Kultury - Spichlerz",
-      "subname": null
-    },
-    "organizer": {
-      "id": 409,
-      "designation": "Gmina Pruszcz Gdański"
-    },
-    "urls": null,
-    "tickets": null,
-    "categoryId": 1008,
-    "attachments": null
-  },
-  {
     "id": 33333333,
     "name": "ww",
     "descShort": "ww",
@@ -2964,39 +2935,6 @@
     "urls": null,
     "tickets": null,
     "categoryId": 5,
-    "attachments": null
-  },
-  {
-    "id": 888,
-    "name": "",
-    "descShort": "",
-    "descLong": "",
-    "active": true,
-    "startDate": "2019-11-11T10:11:00.000+0000",
-    "endDate": null,
-    "place": {
-      "id": 2825,
-      "address": {
-        "street": "3 Maja 9c",
-        "zipcode": "83-330",
-        "city": "Żukowo",
-        "lat": null,
-        "lng": null
-      },
-      "name": "Centrum Kultury - Spichlerz",
-      "subname": null
-    },
-    "organizer": {
-      "id": 409,
-      "designation": "Gmina Pruszcz Gdański"
-    },
-    "urls": {
-      "www": "www.w",
-      "fb": "fb",
-      "tickets": "tic"
-    },
-    "tickets": "FREE",
-    "categoryId": 1008,
     "attachments": null
   }
 ]
