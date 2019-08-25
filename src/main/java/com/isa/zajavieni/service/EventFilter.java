@@ -29,12 +29,12 @@ public class EventFilter {
     }
 
 
-    public Comparator<Event> getComparatorByProperties() {
+    public Comparator<Event> getComparatorForEventsByProperties() {
         Comparator<Event> comparator = Comparator.comparing(Event::getStartDate);
 
         Properties prop = new Properties();
 
-        try (InputStream input = new FileInputStream("/home/kacper/Desktop/Zajavieni/jjdd7-zajavieni/target/zajavieni.properties")) {
+        try (InputStream input = new FileInputStream("/home/kacper/Desktop/Zajavieni/target/zajavieni.properties")) {
 
             prop.load(input);
             String propertiesOrder = prop.getProperty("sortOrderDate");
@@ -53,7 +53,7 @@ public class EventFilter {
         List<Event> sortedFinalList = new ArrayList<>();
         List<Event> sortingList = filterEventsList.stream()
                 //.sorted(Comparator.comparing(Event::getStartDate).reversed())
-                .sorted(getComparatorByProperties())
+                .sorted(getComparatorForEventsByProperties())
                 .collect(Collectors.toList());
         sortedFinalList.addAll(sortingList);
         return sortedFinalList;

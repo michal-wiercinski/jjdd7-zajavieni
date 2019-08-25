@@ -25,8 +25,8 @@ public class EventFilteringMenu {
     public void filter() throws IOException, ParseException {
         EventFilter eventFilter = new EventFilter();
         EventPrinter eventPrinter = new EventPrinter();
-        eventPrinter.printListOfEvents(eventFilter.filterEventsList(EventList.getEventList(), enterStartDate(),
-                enterEndDate(), enterNameOfOrganizer()));
+        eventPrinter.printListOfEvents(eventFilter.sortedAndFilteredEventsList(eventFilter.filterEventsList(EventList.getEventList(),
+                enterStartDate(), enterEndDate(), enterNameOfOrganizer())));
     }
 
     private void chooseEndingOption() throws IOException, ParseException {

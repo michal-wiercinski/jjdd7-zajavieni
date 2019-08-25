@@ -52,6 +52,11 @@ public class MainMenu {
                 new EventMenuHandler().printEventMenu();
                 mainMenu();
                 break;
+            case "5":
+                bh.addToHistory("Ładowanie konfiguracji");
+                new EventMenuHandler().printEventMenu();
+                mainMenu();
+                break;
             case "0":
                 System.out.println("     ****************************************");
                 System.out.println("\n     Koniec programu\n\n");
