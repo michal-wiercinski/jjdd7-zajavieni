@@ -1,0 +1,59 @@
+[
+  {
+    "id": 51479,
+    "name": "Combat Self Defense Samoobrona dla Kobiet",
+    "descShort": "Combat Self Defense Samoobrona dla KobietZajęcia dla dorosłychSystem Dźwigni Obezwładniających stosowany w zagrożeniu życia i zdrowia ludzkiegoNauka koncentracji, poprawa sprawności fizycznej, opanowanie emocji w sytuacji zagrożenia.",
+    "descLong": "<p>Combat Self Defense Samoobrona dla Kobiet<br/><br/>Zajęcia dla dorosłych<br/><br/>System Dźwigni Obezwładniających stosowany w zagrożeniu życia i zdrowia ludzkiego<br/><br/>Nauka koncentracji, poprawa sprawności fizycznej, opanowanie emocji w sytuacji zagrożenia.</p>",
+    "active": true,
+    "startDate": "2019-08-26T17:15:00.000+0000",
+    "endDate": "2019-08-26T19:15:00.000+0000",
+    "place": {
+      "id": 8,
+      "address": null,
+      "name": "Gdański Archipelag Kultury",
+      "subname": "Dworek Artura"
+    },
+    "organizer": {
+      "id": 5,
+      "designation": "Gdański Archipelag Kultury"
+    },
+    "urls": {
+      "www": "http://stacjaorunia.weebly.com",
+      "fb": null,
+      "tickets": null
+    },
+    "tickets": null,
+    "categoryId": 83,
+    "attachments": []
+  },
+  {
+    "id": 61728,
+    "name": "Wystawa pokonkursowa \"Plakat FETA 2019\"",
+    "descShort": "Zapraszamy do Plamy GAK na wystawę pokonkursową „Plakatu FETA 2019”.Czym inspirowali się uczestnicy tegorocznego konkursu na plakat FETA 2019?  Na plakatach pojawiły się motywy ze świata teatru i cyrku. Obecne są też zwierzęta. Będzie m...",
+    "descLong": "<p>Zapraszamy do Plamy GAK na wystawę pokonkursową „Plakatu FETA 2019”.</p><p>Czym inspirowali się uczestnicy tegorocznego konkursu na plakat FETA 2019? <br/> Na plakatach pojawiły się motywy ze świata teatru i cyrku. Obecne są też zwierzęta. Będzie można zagłębić się w wielość wzorów, ale także podziwiać minimalizm form. <br/> Najlepiej przekonać się samemu w czwartek 13 czerwca o godz. 18.00 podczas wernisażu w „Plamie” na Zaspie.</p><p><br/> Na wystawie zobaczymy jedynie wycinek wszystkich nadesłanych projektów. Spośród 184 projektów, które wpłynęły na konkurs, zostanie zaprezentowanych 26 najlepszych prac, w tym zwycięski plakat Pawła Króla.</p><p>Wystawa będzie czynna przez cały okres wakacji do 31 sierpnia 2018 r. (od poniedziałku do piątku w godzinach 9.00-17.00).</p>",
+    "active": true,
+    "startDate": "2019-08-27T07:35:00.000+0000",
+    "endDate": "2019-08-27T09:35:00.000+0000",
+    "place": {
+      "id": 10,
+      "address": null,
+      "name": "Gdański Archipelag Kultury",
+      "subname": "Plama"
+    },
+    "organizer": {
+      "id": 5,
+      "designation": "Gdański Archipelag Kultury"
+    },
+    "urls": {
+      "www": "http://plama.art.pl",
+      "fb": null,
+      "tickets": null
+    },
+    "tickets": null,
+    "categoryId": 51,
+    "attachments": [
+      {
+        "fileName": "http://gak.gda.pl/sites/default/files/styles/big_1000w/public/Galeria/ZAPROSZENIE platak Feta 2018.jpg"
+      }
+    ]
+  }]

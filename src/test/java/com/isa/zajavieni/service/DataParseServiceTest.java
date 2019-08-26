@@ -4,10 +4,7 @@ import com.isa.zajavieni.jsonclasses.Category;
 import com.isa.zajavieni.jsonclasses.Event;
 import com.isa.zajavieni.jsonclasses.Organizer;
 import com.isa.zajavieni.jsonclasses.Place;
-import com.isa.zajavieni.repository.CategoryList;
-import com.isa.zajavieni.repository.EventList;
-import com.isa.zajavieni.repository.OrganizerList;
-import com.isa.zajavieni.repository.PlaceList;
+import com.isa.zajavieni.repository.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -125,5 +122,12 @@ class DataParseServiceTest {
 
         assertNotSame(list.get(10), list.get(22));
         assertNotSame(list.get(21), list.get(33));
+    }
+
+    @Test
+    void testIfTheListIsNotNull() throws IOException {
+        DataParseService parseService = new DataParseService();
+        List<Event> favouriteEvent = parseService.parseFavouriteEvents(FavouriteEventList.getFavouriteEventsJson());
+        assertNotNull(favouriteEvent);
     }
 }

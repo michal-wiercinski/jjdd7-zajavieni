@@ -5,13 +5,10 @@ import com.isa.zajavieni.repository.FavouriteEventList;
 import com.isa.zajavieni.service.ConfigurationLoader;
 import com.isa.zajavieni.service.ConsoleCleaner;
 import com.isa.zajavieni.service.EventPrinter;
-
 import com.isa.zajavieni.service.FavouriteEventPrinter;
-import java.io.FileInputStream;
+
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.ParseException;
-import java.util.Properties;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -45,7 +42,7 @@ public class MainMenu {
             case "1":
                 new EventPrinter().printListOfEvents(EventList.getEventList());
                 bh.addToHistory("1. Lista wszystkich wydarzeń -> ");
-                comebackToChoice(choice);
+                comebackToChoice();
                 break;
             case "2":
                 new EventSearchingMenu().printSearchMenu();
@@ -76,7 +73,7 @@ public class MainMenu {
         }
     }
 
-    private void comebackToChoice(String choice) throws IOException, ParseException {
+    private void comebackToChoice() throws IOException, ParseException {
         System.out.println("Czy chcesz kontynuować? T / N");
         Scanner scanner = new Scanner(System.in);
         String yesOrNot = scanner.nextLine();
@@ -86,6 +83,9 @@ public class MainMenu {
         } else if (yesOrNot.equalsIgnoreCase("t")) {
             bh.removeLast();
             mainMenu();
+        } else{
+            System.out.println("Nie podjąłeś odpowiedniej decyzji");
+            comebackToChoice();
         }
     }
 }

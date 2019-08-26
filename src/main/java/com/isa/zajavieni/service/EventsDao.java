@@ -28,7 +28,6 @@ public class EventsDao {
         List<Event> eventsAfterRemove = events.stream()
                 .filter(e -> !e.getEventId().equals(id))
                 .collect(Collectors.toList());
-        saveEventsFile(eventsAfterRemove);
         events.clear();
         events.addAll(eventsAfterRemove);
         saveEventsFile(eventsAfterRemove);

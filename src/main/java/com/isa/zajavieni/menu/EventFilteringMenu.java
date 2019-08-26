@@ -130,8 +130,7 @@ public class EventFilteringMenu {
                     isSearchFinished = true;
                     break;
                 default:
-                    System.out.println("Wpisałeś coś niewłaściwego, wybierz t lub n");
-                    scanner.nextLine();
+                    System.out.println("Wpisałeś coś niewłaściwego.");
             }
         } while (isSearchFinished == false);
         return organizersList;

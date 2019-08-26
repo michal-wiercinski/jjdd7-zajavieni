@@ -38,7 +38,6 @@ public class EventSearchingMenu {
         List<Event> eventsList = EventList.getEventList();
         switch (whatYouWant) {
             case "1":
-
                 eventService.printListOfEvents(eventSearch
                         .sortedByPropertiesSearchInListByEventName(
                                 eventSearch.searchInListByEventName(eventsList, typeWhatYouNeed())));

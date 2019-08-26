@@ -20,7 +20,7 @@ public class EventSearch {
         return listFound;
     }
 
-    public Comparator<Event> getComparatorByForEventsNameProperties() {
+    private Comparator<Event> getComparatorByForEventsNameProperties() {
         Comparator<Event> comparator = Comparator.comparing(Event::getStartDate);
 
         Properties prop = new Properties();
@@ -57,7 +57,7 @@ public class EventSearch {
         return listFound;
     }
 
-    public Comparator<Event> getComparatorForOrganizersByProperties() {
+    private Comparator<Event> getComparatorForOrganizersByProperties() {
         Comparator<Event> comparator = Comparator.comparing(Event::getStartDate);
 
         Properties prop = new Properties();
