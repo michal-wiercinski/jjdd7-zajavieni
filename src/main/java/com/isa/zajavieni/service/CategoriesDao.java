@@ -1,22 +1,14 @@
 package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.jsonclasses.Category;
+import com.isa.zajavieni.repository.CategoryList;
 
-import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 
 public class CategoriesDao {
 
-    private DataParseService dataParseService = new DataParseService();
-
-    public List<Category> getCategories() throws IOException {
-        return dataParseService.parseCategories("categories.json");
-    }
-
-
-    public Optional<Category> getCategoryById(Long id) throws IOException {
-        for (Category category : getCategories()) {
+    public Optional<Category> getCategoryById(Long id) {
+        for (Category category : CategoryList.getCategoryList()) {
             if (category.getId().equals(id)) {
                 return Optional.of(category);
             }
