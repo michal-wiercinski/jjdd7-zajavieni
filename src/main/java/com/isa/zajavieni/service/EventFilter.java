@@ -29,7 +29,7 @@ public class EventFilter {
     }
 
 
-    public Comparator<Event> getComparatorForEventsByProperties() {
+    private Comparator<Event> getComparatorForEventsByProperties() {
         Comparator<Event> comparator = Comparator.comparing(Event::getStartDate);
 
         Properties prop = new Properties();

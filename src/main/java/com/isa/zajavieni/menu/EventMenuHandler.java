@@ -1,8 +1,10 @@
 package com.isa.zajavieni.menu;
 
 import com.isa.zajavieni.jsonclasses.Event;
+import com.isa.zajavieni.repository.EventList;
 import com.isa.zajavieni.repository.FavouriteEventList;
 import com.isa.zajavieni.service.ConsoleCleaner;
+import com.isa.zajavieni.service.EventPrinter;
 import com.isa.zajavieni.service.EventsDao;
 
 import com.isa.zajavieni.service.FavouriteEventPrinter;
@@ -43,6 +45,8 @@ public class EventMenuHandler {
                 executeEventUpdate(scanner);
                 break;
             case "3":
+                EventPrinter eventPrinter = new EventPrinter();
+                eventPrinter.printListOfEventsInFavourite(EventList.getEventList());
                 executeEventDelete(scanner);
                 break;
             case "4":

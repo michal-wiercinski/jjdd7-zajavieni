@@ -1,9 +1,12 @@
 package com.isa.zajavieni.service;
 
+import com.isa.zajavieni.jsonclasses.Category;
 import com.isa.zajavieni.jsonclasses.Event;
+import com.isa.zajavieni.repository.EventList;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;

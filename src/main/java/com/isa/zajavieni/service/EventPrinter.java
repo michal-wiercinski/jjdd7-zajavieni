@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 public class EventPrinter {
 
   private static final String ANSI_RESET = "\u001B[0m";
-  private static final String ANSI_YELLOW = "\u001b[33;1m";
-  public static final String ANSI_ORANGE = "\u001b[38;5;208m";
+  private static final String ANSI_YELLOW = "\u001b[38;5;227m";
+  private static final String ANSI_ORANGE = "\u001b[38;5;202m";
 
   public void printListOfEvents(List<Event> eventList) throws IOException {
     List<Event> eventsList = eventList.stream()
@@ -100,5 +100,4 @@ public class EventPrinter {
       }
     }
   }
-
 }

@@ -5,13 +5,10 @@ import com.isa.zajavieni.repository.FavouriteEventList;
 import com.isa.zajavieni.service.ConfigurationLoader;
 import com.isa.zajavieni.service.ConsoleCleaner;
 import com.isa.zajavieni.service.EventPrinter;
-
 import com.isa.zajavieni.service.FavouriteEventPrinter;
-import java.io.FileInputStream;
+
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.ParseException;
-import java.util.Properties;
 import java.util.Scanner;
 
 public class MainMenu {
