@@ -33,4 +33,8 @@ public class DataParseService {
         return objectMapper.readValue(new File(placePathName), new TypeReference<List<Event>>() {
         });
     }
+    public List<Event> parseFavouriteEvents(String placePathName) throws IOException {
+        return objectMapper.readValue(new File(placePathName), new TypeReference<List<Event>>() {
+        });
+    }
 }

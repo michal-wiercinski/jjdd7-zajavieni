@@ -15,7 +15,7 @@ public class EventsDao {
 
     public List<Event> getEvents() throws IOException {
         DataParseService dataParseService = new DataParseService();
-        List<Event> events = dataParseService.parseEvents(EventList.getEventsJson());
+        List<Event> events = dataParseService.parseEvents("events.json");
         return events;
     }
 
@@ -37,6 +37,8 @@ public class EventsDao {
         EventList.getEventList().clear();
         EventList.getEventList().addAll(eventsAfterRemove);
         saveEventsFile(eventsAfterRemove);
+        FavouriteEventsDao favouriteEventsDao = new FavouriteEventsDao();
+        favouriteEventsDao.updateFavouriteEventsAfterRemoveEvent(id);
     }
 
     private void saveEventsFile(List<Event> events) throws IOException {
