@@ -1,19 +1,12 @@
 package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.jsonclasses.Event;
-import com.isa.zajavieni.menu.EventSearchingMenu;
-import com.isa.zajavieni.menu.MainMenu;
-import com.isa.zajavieni.repository.EventList;
-
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-import static java.util.regex.Pattern.compile;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class EventFilter {
 
@@ -33,6 +26,37 @@ public class EventFilter {
             System.out.println("Brak wydarzeń w danym przedziale czasu");
         }
         return finalList;
+    }
+
+
+    public Comparator<Event> getComparatorForEventsByProperties() {
+        Comparator<Event> comparator = Comparator.comparing(Event::getStartDate);
+
+        Properties prop = new Properties();
+
+        try (InputStream input = new FileInputStream("/home/kacper/Desktop/Zajavieni/target/zajavieni.properties")) {
+
+            prop.load(input);
+            String propertiesOrder = prop.getProperty("sortOrderDate");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        String propertiesOrder = prop.getProperty("sortOrderDate");
+        if (propertiesOrder.equals("ASC")) {
+            return comparator;
+        }
+        return comparator.reversed();
+    }
+
+    public List<Event> sortedAndFilteredEventsList(List<Event> filterEventsList) {
+        List<Event> sortedFinalList = new ArrayList<>();
+        List<Event> sortingList = filterEventsList.stream()
+                //.sorted(Comparator.comparing(Event::getStartDate).reversed())
+                .sorted(getComparatorForEventsByProperties())
+                .collect(Collectors.toList());
+        sortedFinalList.addAll(sortingList);
+        return sortedFinalList;
     }
 }
 

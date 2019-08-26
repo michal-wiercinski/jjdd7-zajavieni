@@ -29,13 +29,11 @@ public class EventSearchingMenu {
         EventSearch eventSearch = new EventSearch();
         switch (whatYouWant) {
             case "1":
-                eventService.printListOfEvents(eventSearch
-                        .searchInListByEventName(EventList.getEventList(), typeWhatYouNeed()));
+                eventService.printListOfEvents(eventSearch.sortedByPropertiesSearchInListByEventName(EventList.getEventList()));
                 returnToSearch();
                 break;
             case "2":
-                eventService.printListOfEvents(eventSearch
-                        .searchInListByOrganizerName(EventList.getEventList(), typeWhatYouNeed()));
+                eventService.printListOfEvents(eventSearch.sortedByPropertiesSearchInListByOrganizerName(EventList.getEventList()));
                 returnToSearch();
                 break;
             case "3":

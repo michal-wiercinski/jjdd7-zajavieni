@@ -1,10 +1,14 @@
 package com.isa.zajavieni.menu;
 
 import com.isa.zajavieni.repository.EventList;
+import com.isa.zajavieni.service.ConfigurationLoader;
 import com.isa.zajavieni.service.EventPrinter;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -27,6 +31,7 @@ public class MainMenu {
         System.out.println("     2. Wyszukaj wydarzenie ");
         System.out.println("     3. Twoje ulubione wydarzenia ");
         System.out.println("     4. Zarządzaj wydarzeniami");
+        System.out.println("     5. Ładowanie konfiguracji");
         System.out.println("     0. Koniec");
     }
 
@@ -48,6 +53,12 @@ public class MainMenu {
             case "4":
                 bh.addToHistory("Zarządzaj wydarzeniami");
                 new EventMenuHandler().printEventMenu();
+                mainMenu();
+                break;
+            case "5":
+                bh.addToHistory("Ładowanie konfiguracji");
+                ConfigurationLoader configurationLoader = new ConfigurationLoader();
+                configurationLoader.getProperties();
                 mainMenu();
                 break;
             case "0":
