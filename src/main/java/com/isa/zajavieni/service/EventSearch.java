@@ -14,18 +14,18 @@ public class EventSearch {
     public List<Event> searchInListByEventName(List<Event> eventsList, String name) throws IOException {
         listFound = eventsList.stream()
                 .filter(e -> e.getName().toLowerCase().contains(name.toLowerCase()))
+
                 .collect(Collectors.toList());
         printIfListIsEmpty(eventsList);
         return listFound;
     }
-
 
     public Comparator<Event> getComparatorByForEventsNameProperties() {
         Comparator<Event> comparator = Comparator.comparing(Event::getStartDate);
 
         Properties prop = new Properties();
 
-        try (InputStream input = new FileInputStream("/home/kacper/Desktop/Zajavieni/target/zajavieni.properties")) {
+        try (InputStream input = new FileInputStream("/home/mwiercinski/jjdd7-zajavieni/src/resources/zajavieni.properties")) {
 
             prop.load(input);
             String propertiesOrder = prop.getProperty("sortEventName");
@@ -49,11 +49,7 @@ public class EventSearch {
         return sortedFinalList;
     }
 
-
-
-    public List<Event> searchInListByOrganizerName(List<Event> eventsList) throws IOException {
-        String organizerName = typeWhatYouNeed();
-
+    public List<Event> searchInListByOrganizerName(List<Event> eventsList, String name) throws IOException {
         listFound = eventsList.stream()
                 .filter(e -> e.getOrganizer().getDesignation().toLowerCase().contains(name.toLowerCase()))
                 .collect(Collectors.toList());
@@ -66,7 +62,7 @@ public class EventSearch {
 
         Properties prop = new Properties();
 
-        try (InputStream input = new FileInputStream("/home/kacper/Desktop/Zajavieni/target/zajavieni.properties")) {
+        try (InputStream input = new FileInputStream("/home/mwiercinski/jjdd7-zajavieni/src/resources/zajavieni.properties")) {
 
             prop.load(input);
             String propertiesOrder = prop.getProperty("sortOrganizerName");
@@ -89,7 +85,6 @@ public class EventSearch {
         sortedFinalList.addAll(sortingList);
         return sortedFinalList;
     }
-
 
 
     private void printIfListIsEmpty(List<Event> eventsList) throws IOException {

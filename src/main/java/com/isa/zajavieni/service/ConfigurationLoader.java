@@ -9,7 +9,7 @@ import java.util.Properties;
 public class ConfigurationLoader {
     public void getProperties() {
         Properties prop = new Properties();
-        try (InputStream input = new FileInputStream("/home/kacper/Desktop/Zajavieni/target/zajavieni.properties")) {
+        try (InputStream input = new FileInputStream("/home/mwiercinski/jjdd7-zajavieni/src/resources/zajavieni.properties")) {
 
             prop.load(input);
         } catch (IOException ex) {
