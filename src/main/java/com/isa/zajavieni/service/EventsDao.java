@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 public class EventsDao {
 
+
     public Optional<Event> getEventById(Long id) {
         for (Event event : EventList.getEventList()) {
             if (event.getEventId().equals(id)) {
@@ -31,6 +32,8 @@ public class EventsDao {
         events.clear();
         events.addAll(eventsAfterRemove);
         saveEventsFile(eventsAfterRemove);
+        FavouriteEventsDao favouriteEventsDao = new FavouriteEventsDao();
+        favouriteEventsDao.updateFavouriteEventsAfterRemoveEvent(id);
     }
 
     private void saveEventsFile(List<Event> events) throws IOException {

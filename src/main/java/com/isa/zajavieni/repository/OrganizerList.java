@@ -16,6 +16,4 @@ public class OrganizerList {
     public static List<Organizer> getOrganizerList() {
         return organizerList;
     }
-
-
 }

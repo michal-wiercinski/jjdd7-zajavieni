@@ -5,6 +5,8 @@ import com.isa.zajavieni.repository.CategoryList;
 import com.isa.zajavieni.repository.EventList;
 import com.isa.zajavieni.repository.OrganizerList;
 import com.isa.zajavieni.repository.PlaceList;
+import com.isa.zajavieni.repository.EventList;
+import com.isa.zajavieni.repository.FavouriteEventList;
 import com.isa.zajavieni.service.DataParseService;
 
 import java.io.IOException;
@@ -18,6 +20,8 @@ public class App {
         OrganizerList.getOrganizerList().addAll(parseService.parseOrganizers(OrganizerList.getOrganizersJson()));
         PlaceList.getPlaceList().addAll(parseService.parsePlaces(PlaceList.getPlaceJson()));
         CategoryList.getCategoryList().addAll(parseService.parseCategories(CategoryList.getCategoriesJson()));
+        EventList.getEventList().addAll(parseService.parseEvents(EventList.getEventsJson()));
+        FavouriteEventList.getFavouriteEventList().addAll(parseService.parseEvents(FavouriteEventList.getFavouriteEventsJson()));
         new MainMenu().mainMenu();
     }
 }

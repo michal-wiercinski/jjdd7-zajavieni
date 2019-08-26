@@ -24,8 +24,8 @@ public class MainMenu {
         System.out.println("     *                 MENU                 *");
         System.out.println("     ****************************************");
         System.out.println("     1. Lista wszystkich wydarzeń");
-        System.out.println("     2. Wyszukaj wydarzenie: ");
-        System.out.println("     3. Twoje ulubione wydarzenia: ");
+        System.out.println("     2. Wyszukaj wydarzenie ");
+        System.out.println("     3. Twoje ulubione wydarzenia ");
         System.out.println("     4. Zarządzaj wydarzeniami");
         System.out.println("     0. Koniec");
     }
@@ -42,8 +42,8 @@ public class MainMenu {
                 bh.addToHistory("2. Wyszukaj wydarzenie: -> ");
                 break;
             case "3":
-                System.out.println("Tu będzie lista Twoich ulubionych wydarzeń.");
-                bh.addToHistory("Tu będzie lista Twoich ulubionych wydarzeń -> ");
+                new FavouriteEventMenu().printFavouriteMenu();
+                bh.addToHistory("Zarządzaj ulubionymi wydarzeniami -> ");
                 break;
             case "4":
                 bh.addToHistory("Zarządzaj wydarzeniami");
