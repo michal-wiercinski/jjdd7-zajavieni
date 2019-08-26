@@ -30,10 +30,10 @@ public class EventFilteringMenu {
     }
 
     private void chooseEndingOption() throws IOException, ParseException {
-        System.out.println("Co chcesz teraz zrobić? ");
-        System.out.println("1. Kontynuuj filtrowanie.");
-        System.out.println("2. Wróć do wyrzukiwania.");
-        System.out.println("3. Wróć do głównego menu.");
+        System.out.println("\tCo chcesz teraz zrobić? ");
+        System.out.println("\t1. Kontynuuj filtrowanie.");
+        System.out.println("\t2. Wróć do wyrzukiwania.");
+        System.out.println("\t3. Wróć do głównego menu.");
         Scanner scanner = new Scanner(System.in);
         String choice = scanner.nextLine();
         switch (choice) {

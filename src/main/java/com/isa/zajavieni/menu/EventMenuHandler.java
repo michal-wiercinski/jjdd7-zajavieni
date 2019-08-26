@@ -1,8 +1,11 @@
 package com.isa.zajavieni.menu;
 
 import com.isa.zajavieni.jsonclasses.Event;
+import com.isa.zajavieni.repository.FavouriteEventList;
+import com.isa.zajavieni.service.ConsoleCleaner;
 import com.isa.zajavieni.service.EventsDao;
 
+import com.isa.zajavieni.service.FavouriteEventPrinter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Optional;
@@ -19,12 +22,15 @@ public class EventMenuHandler {
         choiceEventMenu(choiceEventMenu);
     }
 
-    private void printTextMenu() {
-        System.out.println("Zarządzanie wydarzeniami.");
-        System.out.println("1. Dodaj wydarzenie");
-        System.out.println("2. Edytuj wydarzenie");
-        System.out.println("3. Usuń wydarzenie");
-        System.out.println("4. Wróć do głównego menu");
+    private void printTextMenu() throws IOException {
+        ConsoleCleaner.cleanConsole();
+        FavouriteEventPrinter favouriteEventPrinter = new FavouriteEventPrinter();
+        favouriteEventPrinter.printFavouriteEvent(FavouriteEventList.getFavouriteEventList());
+        System.out.println("\tZarządzanie wydarzeniami.");
+        System.out.println("\t1. Dodaj wydarzenie");
+        System.out.println("\t2. Edytuj wydarzenie");
+        System.out.println("\t3. Usuń wydarzenie");
+        System.out.println("\t4. Wróć do głównego menu");
     }
 
     private void choiceEventMenu(String choice) throws IOException, ParseException {

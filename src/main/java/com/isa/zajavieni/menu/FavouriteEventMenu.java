@@ -3,7 +3,9 @@ package com.isa.zajavieni.menu;
 import com.isa.zajavieni.jsonclasses.Event;
 import com.isa.zajavieni.repository.EventList;
 import com.isa.zajavieni.repository.FavouriteEventList;
+import com.isa.zajavieni.service.ConsoleCleaner;
 import com.isa.zajavieni.service.EventPrinter;
+import com.isa.zajavieni.service.FavouriteEventPrinter;
 import com.isa.zajavieni.service.FavouriteEventsDao;
 
 import java.io.IOException;
@@ -22,7 +24,10 @@ public class FavouriteEventMenu {
     printFavouriteMenu(choice);
   }
 
-  private void printTextFavouriteMenu() {
+  private void printTextFavouriteMenu() throws IOException {
+    ConsoleCleaner.cleanConsole();
+    FavouriteEventPrinter favouriteEventPrinter = new FavouriteEventPrinter();
+    favouriteEventPrinter.printFavouriteEvent(FavouriteEventList.getFavouriteEventList());
     System.out.println("\tCo chcesz zrobić?");
     System.out.println("\t1. Wyświetl ulubione wydarzenia");
     System.out.println("\t2. Dodaj wydarzenie do ulubionych");
