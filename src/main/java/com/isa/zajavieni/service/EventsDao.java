@@ -57,6 +57,8 @@ public class EventsDao {
             }
         }
         saveEventsFile(events);
+        FavouriteEventsDao favouriteEventsDao = new FavouriteEventsDao();
+        favouriteEventsDao.updateFavouriteEventsAfterUpdateEvent(event);
     }
 
     public Long getNextId() {

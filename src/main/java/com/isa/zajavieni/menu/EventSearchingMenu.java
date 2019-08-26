@@ -1,11 +1,13 @@
 package com.isa.zajavieni.menu;
 
+import com.isa.zajavieni.jsonclasses.Event;
 import com.isa.zajavieni.repository.EventList;
 import com.isa.zajavieni.service.EventPrinter;
 import com.isa.zajavieni.service.EventSearch;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.List;
 import java.util.Scanner;
 
 public class EventSearchingMenu {
@@ -27,13 +29,19 @@ public class EventSearchingMenu {
     private void printMenu(String whatYouWant) throws IOException, ParseException {
         EventPrinter eventService = new EventPrinter();
         EventSearch eventSearch = new EventSearch();
+        List<Event> eventsList = EventList.getEventList();
         switch (whatYouWant) {
             case "1":
-                eventService.printListOfEvents(eventSearch.sortedByPropertiesSearchInListByEventName(EventList.getEventList()));
+
+                eventService.printListOfEvents(eventSearch
+                        .sortedByPropertiesSearchInListByEventName(
+                                eventSearch.searchInListByEventName(eventsList, typeWhatYouNeed())));
                 returnToSearch();
                 break;
             case "2":
-                eventService.printListOfEvents(eventSearch.sortedByPropertiesSearchInListByOrganizerName(EventList.getEventList()));
+                eventService.printListOfEvents(eventSearch
+                        .sortedByPropertiesSearchInListByOrganizerName(
+                                eventSearch.searchInListByOrganizerName(eventsList, typeWhatYouNeed())));
                 returnToSearch();
                 break;
             case "3":
@@ -58,6 +66,7 @@ public class EventSearchingMenu {
         }
         return name;
     }
+
 
     private void returnToSearch() throws IOException, ParseException {
         System.out.println("Czy chcesz kontynuować poszukiwania? T / N");

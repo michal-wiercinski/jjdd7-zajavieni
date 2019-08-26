@@ -34,7 +34,7 @@ public class EventFilter {
 
         Properties prop = new Properties();
 
-        try (InputStream input = new FileInputStream("/home/kacper/Desktop/Zajavieni/target/zajavieni.properties")) {
+        try (InputStream input = new FileInputStream("/home/mwiercinski/jjdd7-zajavieni/src/resources/zajavieni.properties")) {
 
             prop.load(input);
             String propertiesOrder = prop.getProperty("sortOrderDate");

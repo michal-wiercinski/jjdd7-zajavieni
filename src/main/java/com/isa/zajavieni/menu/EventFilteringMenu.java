@@ -132,7 +132,6 @@ public class EventFilteringMenu {
                 default:
                     System.out.println("Wpisałeś coś niewłaściwego, wybierz t lub n");
                     scanner.nextLine();
-                    continue;
             }
         } while (isSearchFinished == false);
         return organizersList;
