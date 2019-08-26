@@ -13,14 +13,9 @@ import java.util.stream.Collectors;
 
 public class EventsDao {
 
-    public List<Event> getEvents() throws IOException {
-        DataParseService dataParseService = new DataParseService();
-        List<Event> events = dataParseService.parseEvents("events.json");
-        return events;
-    }
 
-    public Optional<Event> getEventById(Long id) throws IOException {
-        for (Event event : getEvents()) {
+    public Optional<Event> getEventById(Long id) {
+        for (Event event : EventList.getEventList()) {
             if (event.getEventId().equals(id)) {
                 return Optional.of(event);
             }
@@ -34,22 +29,42 @@ public class EventsDao {
                 .filter(e -> !e.getEventId().equals(id))
                 .collect(Collectors.toList());
         saveEventsFile(eventsAfterRemove);
+        events.clear();
+        events.addAll(eventsAfterRemove);
+        saveEventsFile(eventsAfterRemove);
+        FavouriteEventsDao favouriteEventsDao = new FavouriteEventsDao();
+        favouriteEventsDao.updateFavouriteEventsAfterRemoveEvent(id);
     }
 
     private void saveEventsFile(List<Event> events) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        objectMapper.writeValue(new File("events.json"), events);
+        objectMapper.writeValue(new File(EventList.getEventsJson()), events);
     }
 
     public void addEvent(Event event) throws IOException {
-        DataParseService dataParseService = new DataParseService();
-        List<Event> events = dataParseService.parseEvents("events.json");
+        List<Event> events = EventList.getEventList();
         events.add(event);
         saveEventsFile(events);
     }
 
-    public void updateEvent(Event event) {
+    public void updateEvent(Event event) throws IOException {
+        List<Event> events = EventList.getEventList();
+        for (int i = 0; i < events.size(); i++) {
+            if (event.getEventId().equals(events.get(i).getEventId())) {
+                events.set(i, event);
+                break;
+            }
+        }
+        saveEventsFile(events);
+    }
 
+    public Long getNextId() {
+        List<Event> events = EventList.getEventList();
+        long maxId = events.stream()
+                .mapToLong(event -> event.getEventId())
+                .max()
+                .orElseGet(() -> 0);
+        return maxId + 1;
     }
 }

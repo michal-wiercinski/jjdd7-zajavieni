@@ -1,8 +1,6 @@
 package com.isa.zajavieni.menu;
 
 import com.isa.zajavieni.repository.EventList;
-import com.isa.zajavieni.repository.OrganizerList;
-import com.isa.zajavieni.service.EventFilter;
 import com.isa.zajavieni.service.EventPrinter;
 import com.isa.zajavieni.service.EventSearch;
 
@@ -28,8 +26,6 @@ public class EventSearchingMenu {
 
     private void printMenu(String whatYouWant) throws IOException, ParseException {
         EventPrinter eventService = new EventPrinter();
-        OrganizerList organizerList = new OrganizerList();
-        EventList eventList = new EventList();
         EventSearch eventSearch = new EventSearch();
         switch (whatYouWant) {
             case "1":
@@ -50,7 +46,6 @@ public class EventSearchingMenu {
             default:
                 System.out.println("Prosze podac cyfre z zakresu submenu");
         }
-
     }
 
     private String typeWhatYouNeed() {
@@ -63,6 +58,7 @@ public class EventSearchingMenu {
         }
         return name;
     }
+
     private void returnToSearch() throws IOException, ParseException {
         System.out.println("Czy chcesz kontynuować poszukiwania? T / N");
         Scanner scanner = new Scanner(System.in);

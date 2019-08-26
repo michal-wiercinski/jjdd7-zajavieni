@@ -11,25 +11,14 @@ import java.util.stream.Collectors;
 public class EventSearch {
     public List<Event> listFound = new ArrayList<>();
 
-    private String typeWhatYouNeed() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Co Cię interesuje?");
-        String name = scanner.nextLine();
-        if (name.length() < 3) {
-            System.out.println("Podałeś za mało liter, spróbuj ponownie");
-            typeWhatYouNeed();
-        }
-        return name;
-    }
-
-    public List<Event> searchInListByEventName(List<Event> eventsList) throws IOException {
-        String eventName = typeWhatYouNeed();
+    public List<Event> searchInListByEventName(List<Event> eventsList, String name) throws IOException {
         listFound = eventsList.stream()
-                .filter(e -> e.getName().toLowerCase().contains(eventName.toLowerCase()))
+                .filter(e -> e.getName().toLowerCase().contains(name.toLowerCase()))
                 .collect(Collectors.toList());
         printIfListIsEmpty(eventsList);
         return listFound;
     }
+
 
     public Comparator<Event> getComparatorByForEventsNameProperties() {
         Comparator<Event> comparator = Comparator.comparing(Event::getStartDate);
@@ -64,8 +53,9 @@ public class EventSearch {
 
     public List<Event> searchInListByOrganizerName(List<Event> eventsList) throws IOException {
         String organizerName = typeWhatYouNeed();
+
         listFound = eventsList.stream()
-                .filter(e -> e.getOrganizer().getDesignation().toLowerCase().contains(organizerName.toLowerCase()))
+                .filter(e -> e.getOrganizer().getDesignation().toLowerCase().contains(name.toLowerCase()))
                 .collect(Collectors.toList());
         printIfListIsEmpty(eventsList);
         return listFound;
@@ -106,6 +96,7 @@ public class EventSearch {
         if (listFound.isEmpty()) {
             System.out.println("Nie znaleziono żadnych wyników");
             sortedByPropertiesSearchInListByEventName(eventsList);
+
         }
     }
 }

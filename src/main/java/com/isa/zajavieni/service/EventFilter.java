@@ -11,7 +11,7 @@ import java.util.Properties;
 public class EventFilter {
 
     public List<Event> filterEventsList(List<Event> eventList, Date upDate, Date toDate, List<String> organizers) {
-        Collections.sort(organizers);
+       Collections.sort(organizers);
         List<Event> finalList = new ArrayList<>();
         for (String organizer : organizers) {
             List<Event> foundList = eventList.stream()
