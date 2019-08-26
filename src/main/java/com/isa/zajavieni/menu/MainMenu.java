@@ -42,7 +42,7 @@ public class MainMenu {
             case "1":
                 new EventPrinter().printListOfEvents(EventList.getEventList());
                 bh.addToHistory("1. Lista wszystkich wydarzeń -> ");
-                comebackToChoice(choice);
+                comebackToChoice();
                 break;
             case "2":
                 new EventSearchingMenu().printSearchMenu();
@@ -73,7 +73,7 @@ public class MainMenu {
         }
     }
 
-    private void comebackToChoice(String choice) throws IOException, ParseException {
+    private void comebackToChoice() throws IOException, ParseException {
         System.out.println("Czy chcesz kontynuować? T / N");
         Scanner scanner = new Scanner(System.in);
         String yesOrNot = scanner.nextLine();
@@ -83,6 +83,9 @@ public class MainMenu {
         } else if (yesOrNot.equalsIgnoreCase("t")) {
             bh.removeLast();
             mainMenu();
+        } else{
+            System.out.println("Nie podjąłeś odpowiedniej decyzji");
+            comebackToChoice();
         }
     }
 }

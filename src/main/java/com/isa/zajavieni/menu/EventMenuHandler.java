@@ -6,8 +6,8 @@ import com.isa.zajavieni.repository.FavouriteEventList;
 import com.isa.zajavieni.service.ConsoleCleaner;
 import com.isa.zajavieni.service.EventPrinter;
 import com.isa.zajavieni.service.EventsDao;
-
 import com.isa.zajavieni.service.FavouriteEventPrinter;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Optional;
@@ -80,7 +80,7 @@ public class EventMenuHandler {
     }
 
     private void executeEventDelete(Scanner scanner) throws IOException {
-        System.out.print("Podaj ID wydarzenia, które chcesz usunąć: ");
+        System.out.println("Podaj ID wydarzenia, które chcesz usunąć: ");
         Long eventsIdToRemove = scanner.nextLong();
         Optional<Event> eventToRemove = eventsDao.getEventById(eventsIdToRemove);
         if (eventToRemove.isEmpty()) {

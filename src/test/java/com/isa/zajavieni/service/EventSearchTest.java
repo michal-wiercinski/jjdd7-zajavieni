@@ -1,13 +1,13 @@
 package com.isa.zajavieni.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.isa.zajavieni.jsonclasses.Event;
+import com.isa.zajavieni.repository.EventList;
+import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.util.List;
 
-import com.isa.zajavieni.repository.EventList;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class EventSearchTest {
   @Test

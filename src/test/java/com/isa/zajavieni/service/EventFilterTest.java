@@ -2,6 +2,7 @@ package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.jsonclasses.Event;
 import com.isa.zajavieni.repository.EventList;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -9,11 +10,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import static org.junit.Assert.*;
-
-import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertTrue;
 
 class EventFilterTest {
 
