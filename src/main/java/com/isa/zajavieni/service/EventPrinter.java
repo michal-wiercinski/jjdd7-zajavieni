@@ -2,11 +2,14 @@ package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.jsonclasses.Event;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 public class EventPrinter {
 
@@ -18,18 +21,23 @@ public class EventPrinter {
     long now = Instant.now().toEpochMilli();
     int counter = 1;
     for (Event event : eventList) {
+      Date newFormatedDate = event.getStartDate();
+      SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+      String strDate = formatter.format(newFormatedDate);
+      Properties prop = new Properties();
+
+      try (InputStream input = new FileInputStream("/home/kacper/Desktop/Zajavieni/target/zajavieni.properties")) {
+
+        prop.load(input);
+        String propertiesOrder = prop.getProperty("dateFormat");
+      } catch (IOException ex) {
+        ex.printStackTrace();
+      }
       if (event.getStartDate().getTime() - now <= 172800000) {
-        Date newFormatedDate = event.getStartDate();
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-        String strDate = formatter.format(newFormatedDate);
-        System.out.println(strDate);
-
-
-
         System.out.println(
             ANSI_ORANGE + counter + "." + "\tNazwa wydarzenia: " + ANSI_RESET + event.getName() +
                 ANSI_ORANGE + "\n\t\tMiejsce: " + ANSI_RESET + event.getPlace().getName()
-                + ANSI_ORANGE + "\n\t\tData startu: " + ANSI_RESET + event.getStartDate() + ANSI_ORANGE
+                + ANSI_ORANGE + "\n\t\tData startu: " + ANSI_RESET + strDate + ANSI_ORANGE
                 + "\n\t\tNazwa Organizatora: " + ANSI_RESET + event.getOrganizer().getDesignation() + "\n");
         counter++;
       } else if (event.getStartDate().getTime() - now > 172800000
@@ -37,13 +45,13 @@ public class EventPrinter {
         System.out.println(
             ANSI_YELLOW + counter + "." + "\tNazwa wydarzenia: " + ANSI_RESET + event.getName() +
                 ANSI_YELLOW + "\n\t\tMiejsce: " + ANSI_RESET + event.getPlace().getName() + ANSI_YELLOW
-                + "\n\t\tData startu: " + ANSI_RESET + event.getStartDate() + ANSI_YELLOW
+                + "\n\t\tData startu: " + ANSI_RESET + strDate + ANSI_YELLOW
                 + "\n\t\tNazwa Organizatora: " + ANSI_RESET + event.getOrganizer().getDesignation() + "\n");
         counter++;
       } else {
         System.out
             .println(counter + "." + "\tNazwa wydarzenia: " + event.getName() + "\n\t\tMiejsce: "
-                + event.getPlace().getName() + "\n\t\tData startu: " + event.getStartDate()
+                + event.getPlace().getName() + "\n\t\tData startu: " + strDate
                 + "\n\t\tNazwa Organizatora: " + event.getOrganizer().getDesignation() + "\n");
         counter++;
       }
