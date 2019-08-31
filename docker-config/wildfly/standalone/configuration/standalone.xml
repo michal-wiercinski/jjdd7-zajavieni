@@ -96,7 +96,6 @@
     <profile>
         <subsystem xmlns="urn:jboss:domain:logging:7.0">
             <console-handler name="CONSOLE">
-                <level name="INFO"/>
                 <formatter>
                     <named-formatter name="COLOR-PATTERN"/>
                 </formatter>
@@ -111,6 +110,9 @@
             </periodic-rotating-file-handler>
             <periodic-rotating-file-handler name="michal_file">
                 <level name="INFO"/>
+                <formatter>
+                    <named-formatter name="PATTERN"/>
+                </formatter>
                 <file path="/tmp/loggers.log"/>
                 <suffix value="-yyyy-MM-dd"/>
             </periodic-rotating-file-handler>
@@ -131,6 +133,7 @@
                 <handlers>
                     <handler name="CONSOLE"/>
                     <handler name="FILE"/>
+                    <handler name="michal_file"/>
                 </handlers>
             </logger>
             <root-logger>
@@ -540,8 +543,8 @@
         </outbound-socket-binding>
     </socket-binding-group>
     <deployments>
-        <deployment name="web-1.0-SNAPSHOT" runtime-name="web-1.0-SNAPSHOT.war">
-            <fs-exploded path="/home/mich/Pulpit/jjdd7-zajavieni/web/target/web-1.0-SNAPSHOT"/>
+        <deployment name="3cityevent" runtime-name="3cityevent.war">
+            <fs-exploded path="/home/mich/jjdd7-zajavieni/web/target/3cityevent"/>
         </deployment>
     </deployments>
 </server>
