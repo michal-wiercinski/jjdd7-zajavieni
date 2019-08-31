@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 @WebServlet("/loggers")
-public class LogServlet extends HttpServlet {
+public class LoggerServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @Override

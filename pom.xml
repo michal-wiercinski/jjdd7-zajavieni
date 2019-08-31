@@ -12,7 +12,7 @@
 
     <modules>
         <module>web</module>
-        <module>app</module>
+        <module>app</module>git 
     </modules>
 
     <properties>
