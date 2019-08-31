@@ -15,11 +15,26 @@
 
     <name>web Maven Webapp</name>
 
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.infoshareacademy</groupId>
             <artifactId>app</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.28</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -28,4 +43,8 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>3cityevent</finalName>
+    </build>
 </project>
