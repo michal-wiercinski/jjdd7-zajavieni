@@ -542,4 +542,9 @@
             <remote-destination host="localhost" port="25"/>
         </outbound-socket-binding>
     </socket-binding-group>
+    <deployments>
+        <deployment name="3cityevent" runtime-name="3cityevent.war">
+            <fs-exploded path="/home/mich/jjdd7-zajavieni/web/target/3cityevent"/>
+        </deployment>
+    </deployments>
 </server>
