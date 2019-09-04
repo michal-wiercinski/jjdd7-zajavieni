@@ -29,8 +29,8 @@
             </br>Szukaj, znajdź, rezerwuj i baw się dobrze!</p>
     </header>
     <div class="row text-center">
-        <#include "card-of-event.ftlh">
+        <#include "cards-of-events.ftlh">
     </div>
-    <#include "pagination.ftlh">
 </div>
 </body>
+</html>

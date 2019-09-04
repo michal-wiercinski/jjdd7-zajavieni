@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -20,11 +21,13 @@ public class MainServlet extends HttpServlet {
     private Logger logger = Logger.getLogger(getClass().getName());
     @Inject
     private TemplateProvider templateProvider;
-
+    private
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Date today = new Date();
         Template template = templateProvider.getTemplate(getServletContext(), "main-template.ftlh");
         Map<String, Object> model = new HashMap<>();
+        model.put("data", )
         try{
             template.process(model, resp.getWriter());
         } catch (TemplateException e){
