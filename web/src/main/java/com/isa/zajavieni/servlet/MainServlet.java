@@ -33,13 +33,19 @@ public class MainServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         LocalDate currentDate = LocalDate.now();
         parseService.parsePlaces("/home/mich/Pulpit/jjdd7-zajavieni/places.json");
-        List<Event> events = parseService.parseEvents("/home/mich/Pulpit/jjdd7-zajavieni/events.json")
+        List<Event> events = parseService.parseEvents("/home/mich/Pulpit/jjdd7-zajavieni/new_base.json")
                 .stream()
                 .filter(e -> {
                     LocalDate eventDate = e.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     return eventDate.equals(currentDate);
                 }).collect(Collectors.toList());
-
+     /*   Date date = new Date("2019-09-10T18:30:00+0200");
+        EventFactory event = new EventFactory();
+        List<Event> events = new ArrayList<>();
+        events.add(event.getEvent("spływ kajakiem", date, "ZUS", "Gdańsk" ));
+        events.add(event.getEvent("lot nad kukułczym gniazdem",date, "urząd skarbowy", "Gdynia"));
+        events.add(event.getEvent("jazda byle czym", date, "dworzec sopot", "Sopot"));
+*/
         Template template = templateProvider.getTemplate(getServletContext(), "welcome-page.ftlh");
         Map<String, Object> model = new HashMap<>();
         model.put("date", currentDate);
@@ -51,6 +57,4 @@ public class MainServlet extends HttpServlet {
             logger.error(e.getMessage());
         }
     }
-
-
 }
