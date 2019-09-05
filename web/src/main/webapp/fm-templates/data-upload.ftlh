@@ -1,3 +1,5 @@
+<!--Formularz dla admina - awaryjne ładowanie pliku z danymi-->
+
 <div>
     <form class="form-inline my-2 my-lg-0" method="post" action="servlet/FormUploadServlet">
         <label for="dataFile">Plik z danymi</label>
