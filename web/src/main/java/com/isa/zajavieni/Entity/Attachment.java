@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "attachment")
@@ -17,7 +16,6 @@ public class Attachment {
 
   @Id
   @Column(name = "attachment_id")
-  @NotNull
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   Long id;
 
@@ -28,9 +26,8 @@ public class Attachment {
   @JoinColumn(name="event_id")
   Event event;
 
-  public Attachment(String fileName, Event event) {
+  public Attachment(String fileName) {
     this.fileName = fileName;
-    this.event = event;
   }
 
   public Attachment() {

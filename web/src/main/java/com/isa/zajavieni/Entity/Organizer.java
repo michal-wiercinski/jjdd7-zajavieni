@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "organizer")
@@ -15,7 +14,6 @@ public class Organizer {
 
   @Id
   @Column(name = "organizer_id")
-  @NotNull
   Long id;
 
   @Column(name = "designation")
@@ -24,9 +22,8 @@ public class Organizer {
   @OneToMany(mappedBy = "organizer")
   List<Event> events = new ArrayList<>();
 
-  public Organizer(String designation, List<Event> events) {
+  public Organizer(String designation) {
     this.designation = designation;
-    this.events = events;
   }
 
   public Organizer() {

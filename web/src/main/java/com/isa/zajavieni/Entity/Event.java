@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "event")
@@ -19,7 +18,6 @@ public class Event {
 
   @Id
   @Column(name = "event_id")
-  @NotNull
   Long id;
 
   @Column(name = "name")
@@ -63,9 +61,7 @@ public class Event {
   Category category;
 
   public Event(String name, String descShort, String descLong, Boolean active,
-      Date startDate, Date endDate, String type,
-      List<Attachment> attachment, MediaLink mediaLink, Address address,
-      Organizer organizer, Category category) {
+      Date startDate, Date endDate, String type) {
     this.name = name;
     this.descShort = descShort;
     this.descLong = descLong;
@@ -73,11 +69,7 @@ public class Event {
     this.startDate = startDate;
     this.endDate = endDate;
     this.type = type;
-    this.attachment = attachment;
-    this.mediaLink = mediaLink;
-    this.address = address;
-    this.organizer = organizer;
-    this.category = category;
+
   }
 
   public Event() {

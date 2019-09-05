@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "category_type")
@@ -15,7 +14,6 @@ public class CategoryType {
 
   @Id
   @Column(name = "category_type_id")
-  @NotNull
   Long id;
 
   @Column(name = "name")
@@ -24,9 +22,8 @@ public class CategoryType {
   @OneToMany(mappedBy = "categoryType")
   List<Category> categories = new ArrayList<>();
 
-  public CategoryType(String name, List<Category> categories) {
+  public CategoryType(String name) {
     this.name = name;
-    this.categories = categories;
   }
 
   public CategoryType() {

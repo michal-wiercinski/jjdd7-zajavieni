@@ -9,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "category")
@@ -17,24 +16,20 @@ public class Category {
 
   @Id
   @Column(name = "category_id")
-  @NotNull
   Long id;
 
   @Column(name = "name")
   String name;
 
   @ManyToOne
-  @JoinColumn(name = "category_type")
+  @JoinColumn(name = "category_type_id")
   CategoryType categoryType;
 
   @OneToMany(mappedBy = "category")
   List<Event> events = new ArrayList<>();
 
-  public Category(String name, CategoryType categoryType,
-      List<Event> events) {
+  public Category(String name) {
     this.name = name;
-    this.categoryType = categoryType;
-    this.events = events;
   }
 
   public Category() {
