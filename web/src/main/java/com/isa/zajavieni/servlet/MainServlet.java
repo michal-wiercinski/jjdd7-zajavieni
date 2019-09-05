@@ -2,7 +2,6 @@ package com.isa.zajavieni.servlet;
 
 import com.isa.zajavieni.jsonclasses.Event;
 import com.isa.zajavieni.provider.TemplateProvider;
-import com.isa.zajavieni.repository.EventList;
 import com.isa.zajavieni.service.DataParseService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -28,19 +27,20 @@ public class MainServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
     @Inject
     private TemplateProvider templateProvider;
-
+    private DataParseService parseService = new DataParseService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
         LocalDate currentDate = LocalDate.now();
-
-        List<Event> events = new DataParseService().parseEvents("/home/mwiercinski/jjdd7-zajavieni/events.json")
+        parseService.parsePlaces("/home/mich/Pulpit/jjdd7-zajavieni/places.json");
+        List<Event> events = parseService.parseEvents("/home/mich/Pulpit/jjdd7-zajavieni/events.json")
                 .stream()
                 .filter(e -> {
                     LocalDate eventDate = e.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     return eventDate.equals(currentDate);
                 }).collect(Collectors.toList());
 
-        Template template = templateProvider.getTemplate(getServletContext(), "card-of-event.ftlh");
+        Template template = templateProvider.getTemplate(getServletContext(), "welcome-page.ftlh");
         Map<String, Object> model = new HashMap<>();
         model.put("date", currentDate);
         model.put("events", events);
@@ -51,4 +51,6 @@ public class MainServlet extends HttpServlet {
             logger.error(e.getMessage());
         }
     }
+
+
 }
