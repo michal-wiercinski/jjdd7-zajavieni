@@ -21,28 +21,25 @@
     <p class="lead">Witaj w miejscu, gdzie zgromadzone są wydarzenia kulturalne w Trójmiescie i okolicy.
         </br>Szukaj, znajdź, rezerwuj i baw się dobrze!</p>
 </header>
-<div class="container-fluid">
-    <ul>
-        <#list events as event>
-            <li>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">${event.startDate?date}</h5>
-                            <p class="card-text">${event.name}</p>
-                            <p class="card-text">${event.place.address.city}</p>
-                            <p>${event.place.name}</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="btn btn-primary">Zarezerwuj bilet</a>
-                        </div>
-                    </div>
+<div class="container-fluid row">
+    <#list events as event>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">${event.startDate?date}</h5>
+                    <p class="card-text">${event.name}</p>
+                    <p class="card-text">${(event.place.address.city)!"n/a"}</p>
+                    <p>${(event.place.name)!"n/a"}</p>
                 </div>
-            </li>
-        </#list>
-    </ul>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-primary">Zarezerwuj bilet</a>
+                </div>
+            </div>
+        </div>
+    </#list>
 </div>
+<#--
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <li class="page-item disabled">
@@ -56,7 +53,7 @@
         </li>
     </ul>
 </nav>
-
+-->
 
 <#include "footer.ftlh">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -7,7 +7,7 @@
                 <div class="card h-100">
                     <img class="card-img-top" src=${event.attachment.filename} alt="">
                     <div class="card-body">
-                        <h5 class="card-title">${event.startDate}</h5>
+                        <h5 class="card-title">${event.startDate} ${event.startDate.time}</h5>
                         <p class="card-text">${event.name}</p>
                         <p class="card-text">${event.place.address.city}</p>
                         <p>${event.place.name}</p>

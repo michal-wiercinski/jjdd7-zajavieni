@@ -14,8 +14,8 @@
     <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
-    <#include "navbar.ftlh">
-    <#include "card-of-event.ftlh">
+<#include "navbar.ftlh">
+<#include "card-of-event.ftlh">
 
 <header class="jumbotron my-4 text-center">
     <h1 class="display-3 font-weight-bold">3CITYEVENT</h1>
@@ -23,7 +23,7 @@
         </br>Szukaj, znajdź, rezerwuj i baw się dobrze!</p>
 </header>
 
-    <#include "footer.ftlh">
+<#include "footer.ftlh">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
