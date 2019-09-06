@@ -15,7 +15,12 @@
 </head>
 <body>
 <#include "navbar.ftlh">
-
+<form class="form-inline col-2" method="post" action="/upload-json-file">
+    <div class="custom-file text-left">
+        <input type="file" class="custom-file-input" id="customFileLang" lang="pl-Pl">
+        <label class="custom-file-label" for="customFileLang">Wybierz plik</label>
+    </div>
+</form>
 
 <header class="jumbotron my-4 text-center">
     <h1 class="display-3 font-weight-bold">3CITYEVENT</h1>
