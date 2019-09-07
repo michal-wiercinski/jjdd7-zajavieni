@@ -33,8 +33,8 @@ public class MainServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
         LocalDate currentDate = LocalDate.now();
-        parseService.parsePlaces("/jjdd7-zajavieni/places.json");
-        List<Event> events = parseService.parseEvents("/jjdd7-zajavieni/new_base.json")
+        parseService.parsePlaces("home/jjdd7-zajavieni/places.json");
+        List<Event> events = parseService.parseEvents("home/jjdd7-zajavieni/new_base.json")
                 .stream()
                 .filter(e -> {
                     LocalDate eventDate = e.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
