@@ -27,7 +27,8 @@
             <div class="card h-100">
                 <img class="card-img-top" src="http://placehold.it/500x325" alt="">
                 <div class="card-body">
-                    <h5 class="card-title">${event.startDate?date}</h5>
+                    <h5 class="card-title">${event.startDate?string('dd.MM.yyyy (HH:mm)')} -
+                        ${event.endDate?string('dd.MM.yyyy (HH:mm)')} </h5>
                     <p class="card-text">${event.name}</p>
                     <p class="card-text">${(event.place.address.city)!"n/a"}</p>
                     <p>${(event.place.name)!"n/a"}</p>

@@ -5,8 +5,9 @@
         <button class="btn btn-outline-primary btn-rounded btn-sm my-0 waves-effect waves-light" type="submit">Szukaj
         </button>
     </form>
+    <#assign upcoming_link = "/3cityevent/upcoming-events">
     <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="#">Lista wydarzeń</a>
+        <a class="p-2 text-dark" href="${upcoming_link}">Lista wydarzeń</a>
         <a class="p-2 text-dark" href="#">Wyszukiwanie</a>
         <a class="p-2 text-dark" href="#">Ulubione</a>
         <a class="p-2 text-dark" href="#">Koszyk</a>

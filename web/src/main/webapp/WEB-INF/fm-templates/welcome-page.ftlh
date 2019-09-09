@@ -14,6 +14,7 @@
     <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
+
 <#include "navbar.ftlh">
 
 <header class="jumbotron my-4 text-center">
@@ -27,7 +28,8 @@
             <div class="card h-100">
                 <img class="card-img-top" src="http://placehold.it/500x325" alt="">
                 <div class="card-body">
-                    <h5 class="card-title">${event.startDate?date}</h5>
+                    <h5 class="card-title">${event.startDate?string('dd.MM.yyyy (HH:mm)')} -
+                        ${event.endDate?string('dd.MM.yyyy (HH:mm)')} </h5>
                     <p class="card-text">${event.name}</p>
                     <p class="card-text">${(event.place.address.city)!"n/a"}</p>
                     <p>${(event.place.name)!"n/a"}</p>
@@ -39,7 +41,8 @@
         </div>
     </#list>
 </div>
-
+<#assign upcoming_link = "/3cityevent/upcoming-events">
+<a href="${upcoming_link}" class="btn btn-outline-primary my-3 waves-effect waves-light">Więcej nadchodzących wydarzeń</a>
 
 <#include "footer.ftlh">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
