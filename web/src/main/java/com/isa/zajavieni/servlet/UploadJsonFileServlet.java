@@ -4,13 +4,15 @@ import com.isa.zajavieni.provider.TemplateProvider;
 import freemarker.template.Template;
 
 import javax.inject.Inject;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/upload-json-file")
+@WebServlet("/admin/upload-json-file")
+@MultipartConfig
 public class UploadJsonFileServlet extends HttpServlet {
 
     @Inject
@@ -19,6 +21,8 @@ public class UploadJsonFileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         Template template = templateProvider.getTemplate(getServletContext(), "data-upload.ftlh");
+
+
 
     }
 
