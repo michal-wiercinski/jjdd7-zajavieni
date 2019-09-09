@@ -13,9 +13,11 @@
 
     </nav>
     <div class="text-center">
-        <a href="" class="btn btn-outline-primary my-3 waves-effect waves-light" data-toggle="modal"
-           data-target="#modalLRForm">Zaloguj</a>
+        <!--<a class="btn btn-outline-primary" a href="#modalLRForm">Zaloguj</a>-->
+        <a href="#" class="btn btn-outline-primary my-3 waves-effect waves-light" data-toggle="modal"
+           data-target="#<#--#modalLRForm-->">Zaloguj</a>
     </div>
+    <!--Modal: Login / Register Form-->
     <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
         <div class="modal-dialog cascading-modal" role="document">
