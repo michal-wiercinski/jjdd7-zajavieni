@@ -8,6 +8,10 @@
   version="3.1">
   <display-name>Archetype Created Web Application</display-name>
 
+  <welcome-file-list>
+    <welcome-file>main</welcome-file>
+  </welcome-file-list>
+
   <data-source>
     <name>java:ds/zajavieni</name>
     <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>

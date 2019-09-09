@@ -15,12 +15,12 @@
 </head>
 <body>
 <#include "navbar.ftlh">
-
 <header class="jumbotron my-4 text-center">
     <h1 class="display-3 font-weight-bold">3CITYEVENT</h1>
     <p class="lead">Witaj w miejscu, gdzie zgromadzone są wydarzenia kulturalne w Trójmiescie i okolicy.
         </br>Szukaj, znajdź, rezerwuj i baw się dobrze!</p>
 </header>
+
 <div class="container-fluid row">
     <#list events as event>
         <div class="col-lg-3 col-md-6 mb-4">
@@ -39,7 +39,6 @@
         </div>
     </#list>
 </div>
-
 
 <#include "footer.ftlh">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
