@@ -12,6 +12,10 @@ public class CategoryType {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "CategoryType{" +
