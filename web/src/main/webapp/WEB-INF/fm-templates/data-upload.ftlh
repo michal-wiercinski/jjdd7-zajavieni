@@ -15,9 +15,9 @@
 </head>
 <body>
 <#include "navbar.ftlh">
-<form class="form-inline col-2" method="post" action="/upload-json-file">
+<form class="form-inline col-2" method="post" action="/upload-json-file" enctype="multipart/form-data">
     <div class="custom-file text-left">
-        <input type="file" class="custom-file-input" id="customFileLang" lang="pl-Pl">
+        <input type="file" class="custom-file-input" id="customFileLang" name="file" lang="pl-Pl">
         <label class="custom-file-label" for="customFileLang">Wybierz plik</label>
     </div>
 </form>
