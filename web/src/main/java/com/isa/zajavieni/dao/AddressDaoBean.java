@@ -15,4 +15,8 @@ public class AddressDaoBean {
     entityManager.persist(address);
   }
 
+  public Address findAddressById(Long id){
+    return entityManager.find(Address.class, id);
+  }
+
 }

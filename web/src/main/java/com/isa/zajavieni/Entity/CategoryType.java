@@ -2,6 +2,7 @@ package com.isa.zajavieni.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,7 +20,7 @@ public class CategoryType {
   @Column(name = "name")
   String name;
 
-  @OneToMany(mappedBy = "categoryType")
+  @OneToMany(mappedBy = "categoryType", cascade = CascadeType.ALL)
   List<Category> categories = new ArrayList<>();
 
   public CategoryType(String name) {

@@ -4,6 +4,7 @@ import com.isa.zajavieni.jsonclasses.TicketType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -42,10 +43,10 @@ public class Event {
   @Column(name = "type")
   TicketType type;
 
-  @OneToMany(mappedBy = "event")
+  @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
   List<Attachment> attachment = new ArrayList<>();
 
-  @OneToOne
+  @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "media_link_id", unique = true)
   MediaLink mediaLink;
 

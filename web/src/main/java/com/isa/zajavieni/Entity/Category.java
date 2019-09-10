@@ -2,6 +2,7 @@ package com.isa.zajavieni.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ public class Category {
   @Column(name = "name")
   String name;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "category_type_id")
   CategoryType categoryType;
 

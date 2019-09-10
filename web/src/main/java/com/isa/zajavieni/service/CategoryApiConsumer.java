@@ -1,6 +1,6 @@
 package com.isa.zajavieni.service;
 
-import com.isa.zajavieni.jsonclasses.Event;
+import com.isa.zajavieni.jsonclasses.Category;
 import com.isa.zajavieni.parser.DataParseService;
 import java.io.IOException;
 import java.util.List;
@@ -12,23 +12,24 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 @Stateless
-public class EventApiConsumer {
-  private WebTarget webTargetEvent;
-  private static final String URIevent = "http://isa-proxy.blueazurit.com/gdansk-events/events.json";
+public class CategoryApiConsumer {
+  private WebTarget webTargetCategory;
+  private static final String URIcategory = "http://isa-proxy.blueazurit.com/gdansk-events/categories.json";
 
   @Inject
   private DataParseService dataParseService;
 
-  public List<Event> consumeEvent () throws IOException {
-    initEvent();
-    Response response = webTargetEvent.request().get();
+  public List<Category> consumeCategory () throws IOException {
+    initCategory();
+    Response response = webTargetCategory.request().get();
     String resp = response.readEntity(String.class);
 
-    return dataParseService.parseEventsFromApi(resp);
+    return dataParseService.parseCategoriesFromApi(resp);
   }
 
-  private void initEvent() {
+  private void initCategory() {
     Client client = ClientBuilder.newClient();
-    webTargetEvent = client.target(URIevent);
+    webTargetCategory = client.target(URIcategory);
   }
+
 }

@@ -1,12 +1,11 @@
 package com.isa.zajavieni.servlet;
 
-import com.isa.zajavieni.Entity.Event;
 import com.isa.zajavieni.parser.DataParseService;
+import com.isa.zajavieni.service.CategoryApiConsumer;
 import com.isa.zajavieni.service.EventApiConsumer;
-import java.io.File;
+import com.isa.zajavieni.service.LoadDataToDateBase;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +20,9 @@ public class ApiConsumerServlet extends HttpServlet {
   private EventApiConsumer eventApiConsumer;
 
   @Inject
+  private LoadDataToDateBase loadDataToDataBase;
+
+  @Inject
   private DataParseService dataParseService;
 
   @Override
@@ -29,9 +31,12 @@ public class ApiConsumerServlet extends HttpServlet {
 
     PrintWriter writer = resp.getWriter();
 
-    writer.println(eventApiConsumer.consume());
-    writer.println(dataParseService.parseEvents(
-        "/home/hp/jjdd7-zajavieni/events.json"));
+    //writer.println(eventApiConsumer.consumeEvent());
+    //loadDataToDataBase.loadDataToDataBaseEvent();
+    //loadDataToDataBase.loadDataToDataBaseCategory();
+    //loadDataToDataBase.loadDataToDataBaseAddress();
+    //loadDataToDataBase.loadDataToDataBaseOrganizer();
+    //writer.println(dataParseService.parseCategories("/home/hp/jjdd7-zajavieni/categories.json"));
   }
 
 }

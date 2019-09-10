@@ -1,24 +1,21 @@
 package com.isa.zajavieni.mapper;
 
 import com.isa.zajavieni.Entity.Address;
-import java.util.ArrayList;
-import java.util.List;
+import com.isa.zajavieni.jsonclasses.Place;
 import javax.ejb.Stateless;
 
 @Stateless
 public class AddressMapper {
-  public List<Address> mapAddressApiToEntity(List<com.isa.zajavieni.jsonclasses.Place> addressApiList) {
-    List<Address> addresses = new ArrayList<>();
 
-    addressApiList.forEach(addressesApi -> {
-      Address address = new Address();
-      address.setId(addressesApi.getPlaceId());
-      address.setName(addressesApi.getName());
-      address.setStreet(addressesApi.getAddress().getStreet());
-      address.setZipcode(addressesApi.getAddress().getZipcode());
-      address.setCity(addressesApi.getAddress().getCity());
-      addresses.add(address);
-    });
-    return addresses;
+  public Address mapAddressApiToEntity(Place addressApi) {
+
+    Address address = new Address();
+    address.setId(addressApi.getPlaceId());
+    address.setName(addressApi.getName());
+    address.setStreet(addressApi.getAddress().getStreet());
+    address.setZipcode(addressApi.getAddress().getZipcode());
+    address.setCity(addressApi.getAddress().getCity());
+
+    return address;
   }
 }

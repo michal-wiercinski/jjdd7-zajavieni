@@ -15,4 +15,8 @@ public class OrganizersDaoBean {
     entityManager.persist(organizer);
   }
 
+  public Organizer findOrganizerById(Long id){
+    return entityManager.find(Organizer.class, id);
+  }
+
 }

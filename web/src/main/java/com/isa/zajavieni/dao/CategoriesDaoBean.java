@@ -15,6 +15,10 @@ public class CategoriesDaoBean {
     entityManager.persist(category);
   }
 
+  public void editCategory(Category category) {
+    entityManager.merge(category);
+  }
+
   public Category findCategoryById(Long id) {
     return entityManager.find(Category.class, id);
   }
