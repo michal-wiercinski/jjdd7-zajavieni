@@ -6,7 +6,7 @@ import freemarker.template.TemplateExceptionHandler;
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class ConfigProvider {
+public class  ConfigProvider {
 
     private Configuration configuration;
 
