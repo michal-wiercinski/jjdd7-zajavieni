@@ -27,6 +27,21 @@ public class EventApiConsumer {
     return dataParseService.parseEventsFromApi(resp);
   }
 
+    /*
+    List<Event> eventlist = new ArrayList();
+      while (data < today + 7 days){
+        String uri=URIEVENT + "?startDate=data"
+
+        initEvent();
+        Response response = webTargetEvent.request().get();
+        String resp = response.readEntity(String.class);
+        eventlist.addAll(dataParseService.parseEventsFromApi(resp))
+      }
+     */
+
+    //return eventList;
+
+
   private void initEvent() {
     Client client = ClientBuilder.newClient();
     webTargetEvent = client.target(URIevent);

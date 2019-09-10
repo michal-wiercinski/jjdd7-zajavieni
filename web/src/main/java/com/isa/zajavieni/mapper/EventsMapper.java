@@ -40,6 +40,7 @@ public class EventsMapper {
         attachmentApi -> {
           Attachment attachment = new Attachment();
           attachment.setFileName(attachmentApi.getFileName());
+          attachment.setEvent(event);
           attachments.add(attachment);
         }
       );
