@@ -1,4 +1,4 @@
-package com.isa.zajavieni.Entity;
+package com.isa.zajavieni.entity;
 
 import java.util.ArrayList;
 import java.util.List;

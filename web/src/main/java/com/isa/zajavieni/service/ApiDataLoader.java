@@ -12,15 +12,18 @@ import com.isa.zajavieni.mapper.AddressMapper;
 import com.isa.zajavieni.mapper.CategoryMapper;
 import com.isa.zajavieni.mapper.EventsMapper;
 import com.isa.zajavieni.mapper.OrganizersMapper;
+import com.isa.zajavieni.parser.DataParseService;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 
 @Stateless
-public class LoadDataToDateBase {
+public class ApiDataLoader {
+
+  @Inject
+  private DataParseService dataParseService;
 
   @EJB
   private EventsMapper eventsMapper;
@@ -60,48 +63,49 @@ public class LoadDataToDateBase {
 
 
   public void loadDataToDataBaseCategory() {
-
     try {
-      List<Category> categoryList = categoryApiConsumer.consumeCategory();
+      List<Category> categoryList = dataParseService.parseCategoriesFromApi(categoryApiConsumer.consumeCategory());
       categoryList.forEach(category -> {
-        com.isa.zajavieni.Entity.Category categoryEntity = categoryMapper
+        com.isa.zajavieni.entity.Category categoryEntity = categoryMapper
             .mapCategoriesApiToEntity(category);
         categoriesDaoBean.editCategory(categoryEntity);
       });
     } catch (IOException e) {
     }
   }
-    public void loadDataToDataBaseAddress() {
-      try {
-        List<Place> addressList = addressApiConsumer.consumeAddress();
-        addressList.forEach(address -> {
-          com.isa.zajavieni.Entity.Address addressEntity = addressMapper
-              .mapAddressApiToEntity(address);
-          addressDaoBean.savePlace(addressEntity);
-        });
-      } catch (IOException e) {
-      }
+
+  public void loadDataToDataBaseAddress() {
+    try {
+      List<Place> addressList = dataParseService.parsePlacesFromApi(addressApiConsumer.consumeAddress());
+      addressList.forEach(address -> {
+        com.isa.zajavieni.entity.Address addressEntity = addressMapper
+            .mapAddressApiToEntity(address);
+        addressDaoBean.savePlace(addressEntity);
+      });
+    } catch (IOException e) {
     }
+  }
 
   public void loadDataToDataBaseOrganizer() {
     try {
-      List<Organizer> organizerList = organizerApiConsumer.consumeOrganizer();
+      List<Organizer> organizerList = dataParseService.parseOrganizersFromApi(organizerApiConsumer.consumeOrganizer());
       organizerList.forEach(organizer -> {
-        com.isa.zajavieni.Entity.Organizer organizerEntity = organizersMapper.mapOrganizersApiToEntity(organizer);
+        com.isa.zajavieni.entity.Organizer organizerEntity = organizersMapper
+            .mapOrganizersApiToEntity(organizer);
         organizersDaoBean.saveOrganizer(organizerEntity);
       });
-    }catch (IOException e) {
+    } catch (IOException e) {
     }
   }
 
   public void loadDataToDataBaseEvent() {
     try {
-      List<Event> eventsList = eventApiConsumer.consumeEvent();
+      List<Event> eventsList = dataParseService.parseEventsFromApi(eventApiConsumer.consumeEvent());
       eventsList.forEach(event -> {
-        com.isa.zajavieni.Entity.Event eventEntity = eventsMapper.mapEventsApiToEntity(event);
+        com.isa.zajavieni.entity.Event eventEntity = eventsMapper.mapEventsApiToEntity(event);
         eventsDaoBean.saveEvent(eventEntity);
       });
-    }catch (IOException e) {
+    } catch (IOException e) {
     }
   }
 }

@@ -1,6 +1,6 @@
 package com.isa.zajavieni.dao;
 
-import com.isa.zajavieni.Entity.Address;
+import com.isa.zajavieni.entity.Address;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,8 +15,7 @@ public class AddressDaoBean {
     entityManager.persist(address);
   }
 
-  public Address findAddressById(Long id){
+  public Address findAddressById(Long id) {
     return entityManager.find(Address.class, id);
   }
-
 }

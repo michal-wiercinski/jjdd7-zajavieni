@@ -1,6 +1,6 @@
 package com.isa.zajavieni.dao;
 
-import com.isa.zajavieni.Entity.Category;
+import com.isa.zajavieni.entity.Category;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,10 +10,6 @@ public class CategoriesDaoBean {
 
   @PersistenceContext
   EntityManager entityManager;
-
-  public void saveCategory(Category category) {
-    entityManager.persist(category);
-  }
 
   public void editCategory(Category category) {
     entityManager.merge(category);

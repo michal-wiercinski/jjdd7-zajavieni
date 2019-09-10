@@ -16,36 +16,28 @@ public class DataParseService {
   private ObjectMapper objectMapper = new ObjectMapper();
 
   public List<Event> parseEventsFromApi(String events) throws IOException {
-
     JsonNode jsonNode = objectMapper.readTree(events);
-
     return objectMapper.readValue(jsonNode.toString(),
         new TypeReference<List<Event>>() {
         });
   }
 
   public List<Category> parseCategoriesFromApi(String categories) throws IOException {
-
     JsonNode jsonNode = objectMapper.readTree(categories);
-
     return objectMapper.readValue(jsonNode.toString(),
         new TypeReference<List<Category>>() {
         });
   }
 
   public List<Place> parsePlacesFromApi(String places) throws IOException {
-
     JsonNode jsonNode = objectMapper.readTree(places);
-
     return objectMapper.readValue(jsonNode.toString(),
         new TypeReference<List<Place>>() {
         });
   }
 
   public List<Organizer> parseOrganizersFromApi(String organizers) throws IOException {
-
     JsonNode jsonNode = objectMapper.readTree(organizers);
-
     return objectMapper.readValue(jsonNode.toString(),
         new TypeReference<List<Organizer>>() {
         });

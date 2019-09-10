@@ -1,6 +1,6 @@
 package com.isa.zajavieni.dao;
 
-import com.isa.zajavieni.Entity.Event;
+import com.isa.zajavieni.entity.Event;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,5 +14,4 @@ public class EventsDaoBean {
   public void saveEvent(Event event) {
     entityManager.persist(event);
   }
-
 }

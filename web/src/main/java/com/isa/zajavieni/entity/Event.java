@@ -1,4 +1,4 @@
-package com.isa.zajavieni.Entity;
+package com.isa.zajavieni.entity;
 
 import com.isa.zajavieni.jsonclasses.TicketType;
 import java.util.ArrayList;

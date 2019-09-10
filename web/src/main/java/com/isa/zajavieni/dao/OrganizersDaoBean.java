@@ -1,6 +1,6 @@
 package com.isa.zajavieni.dao;
 
-import com.isa.zajavieni.Entity.Organizer;
+import com.isa.zajavieni.entity.Organizer;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,8 +15,7 @@ public class OrganizersDaoBean {
     entityManager.persist(organizer);
   }
 
-  public Organizer findOrganizerById(Long id){
+  public Organizer findOrganizerById(Long id) {
     return entityManager.find(Organizer.class, id);
   }
-
 }
