@@ -34,29 +34,29 @@ public class UploadJsonFileServlet extends HttpServlet {
 
     private Logger logger = LoggerFactory.getLogger(UploadJsonFileServlet.class);
 
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+        response.setContentType("text/html;charset=UTF-8");
         Template template = templateProvider.getTemplate(getServletContext(), "data-upload.ftlh");
-
         Map<String, Object> model = new HashMap<>();
         try {
             template.process(model, response.getWriter());
         } catch (TemplateException e) {
             logger.warn(e.getMessage());
         }
+
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        Part json = req.getPart("file");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        Part json = request.getPart("file");
         String fileUrl = "";
-
         try {
             fileUrl = "files" + fileUploadProcessor.uploadJsonFile(json).getName();
         } catch (UserFileNotFound userFileNotFound) {
             logger.warn(userFileNotFound.getMessage());
         }
-        resp.getWriter().println("plik został dodany poprawnie " + fileUrl);
+        response.getWriter().println("plik został dodany poprawnie " + fileUrl);
     }
 }
