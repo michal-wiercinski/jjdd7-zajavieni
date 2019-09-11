@@ -54,6 +54,7 @@ public class UploadJsonFileServlet extends HttpServlet {
         String fileUrl = "";
         try {
             fileUrl = "files" + fileUploadProcessor.uploadJsonFile(json).getName();
+
         } catch (UserFileNotFound userFileNotFound) {
             logger.warn(userFileNotFound.getMessage());
         }
