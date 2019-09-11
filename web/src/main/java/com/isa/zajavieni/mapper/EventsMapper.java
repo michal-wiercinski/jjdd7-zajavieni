@@ -2,11 +2,9 @@ package com.isa.zajavieni.mapper;
 
 import com.isa.zajavieni.entity.Attachment;
 import com.isa.zajavieni.entity.Event;
-import com.isa.zajavieni.entity.MediaLink;
 import com.isa.zajavieni.dao.AddressDaoBean;
 import com.isa.zajavieni.dao.CategoriesDaoBean;
 import com.isa.zajavieni.dao.OrganizersDaoBean;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -23,6 +21,12 @@ public class EventsMapper {
   @Inject
   private OrganizersDaoBean organizersDaoBean;
 
+  @Inject
+  private MediaLinkMapper mediaLinkMapper;
+
+  @Inject
+  private AttachmentListMapper attachmentListMapper;
+
   public Event mapEventsApiToEntity(com.isa.zajavieni.jsonclasses.Event eventApi) {
     Event event = new Event();
     event.setId(eventApi.getEventId());
@@ -33,21 +37,10 @@ public class EventsMapper {
     event.setStartDate(eventApi.getStartDate());
     event.setEndDate(eventApi.getEndDate());
     event.setType(eventApi.getTicketType());
-    List<Attachment> attachments = new ArrayList<>();
-    eventApi.getAttachmentList().forEach(
-        attachmentApi -> {
-          Attachment attachment = new Attachment();
-          attachment.setFileName(attachmentApi.getFileName());
-          attachment.setEvent(event);
-          attachments.add(attachment);
-        }
-    );
+    List<Attachment> attachments = attachmentListMapper.mapAttachmentApiToEntity(eventApi);
+    attachments.forEach(attachment -> attachment.setEvent(event));
     event.setAttachment(attachments);
-    MediaLink mediaLink = new MediaLink();
-    mediaLink.setFbSite(eventApi.getMediaLink().getFbSite());
-    mediaLink.setWwwAddress(eventApi.getMediaLink().getWwwAddress());
-    mediaLink.setWebsiteWithTickets(eventApi.getMediaLink().getWebsiteWithTickets());
-    event.setMediaLink(mediaLink);
+    event.setMediaLink(mediaLinkMapper.mapMediaLinkApiToEntity(eventApi));
     event.setAddress(addressDaoBean.findAddressById(eventApi.getPlace().getPlaceId()));
     event.setOrganizer(organizersDaoBean.findOrganizerById(eventApi.getOrganizer().getId()));
     event.setCategory(categoriesDaoBean.findCategoryById(eventApi.getCategoryId()));
