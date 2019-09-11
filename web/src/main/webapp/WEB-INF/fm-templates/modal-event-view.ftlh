@@ -8,17 +8,22 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">${event.name}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <img class="card-img-top" src=${(event.attachments.fileName)!0} alt="">
+                <div class="card-body">
+                    <h5 class="card-title">${event.startDate?date}</h5>
+                    <p class="card-text">${(event.place.address.city)!"n/a"}</p>
+                    <p>${(event.place.name)!"n/a"}</p>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Zamknij</button>
+                <button type="button" class="btn btn-primary">Zarezerwuj bilet</button>
             </div>
         </div>
     </div>
