@@ -1,4 +1,4 @@
-package com.isa.zajavieni.Entity;
+package com.isa.zajavieni.entity;
 
 
 import javax.persistence.Column;
