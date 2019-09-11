@@ -64,7 +64,7 @@ public class ApiDataLoader {
 
   public void loadDataToDataBaseCategory() {
     try {
-      List<Category> categoryList = dataParseService.parseCategoriesFromApi(categoryApiConsumer.consumeCategory());
+      List<Category> categoryList = dataParseService.parseCategories(categoryApiConsumer.consumeCategory());
       categoryList.forEach(category -> {
         com.isa.zajavieni.entity.Category categoryEntity = categoryMapper
             .mapCategoriesApiToEntity(category);
@@ -76,7 +76,7 @@ public class ApiDataLoader {
 
   public void loadDataToDataBaseAddress() {
     try {
-      List<Place> addressList = dataParseService.parsePlacesFromApi(addressApiConsumer.consumeAddress());
+      List<Place> addressList = dataParseService.parsePlaces(addressApiConsumer.consumeAddress());
       addressList.forEach(address -> {
         com.isa.zajavieni.entity.Address addressEntity = addressMapper
             .mapAddressApiToEntity(address);
@@ -88,7 +88,7 @@ public class ApiDataLoader {
 
   public void loadDataToDataBaseOrganizer() {
     try {
-      List<Organizer> organizerList = dataParseService.parseOrganizersFromApi(organizerApiConsumer.consumeOrganizer());
+      List<Organizer> organizerList = dataParseService.parseOrganizers(organizerApiConsumer.consumeOrganizer());
       organizerList.forEach(organizer -> {
         com.isa.zajavieni.entity.Organizer organizerEntity = organizersMapper
             .mapOrganizersApiToEntity(organizer);
@@ -100,7 +100,7 @@ public class ApiDataLoader {
 
   public void loadDataToDataBaseEvent() {
     try {
-      List<Event> eventsList = dataParseService.parseEventsFromApi(eventApiConsumer.consumeEvent());
+      List<Event> eventsList = dataParseService.parseEvents(eventApiConsumer.consumeEvent());
       eventsList.forEach(event -> {
         com.isa.zajavieni.entity.Event eventEntity = eventsMapper.mapEventsApiToEntity(event);
         eventsDaoBean.saveEvent(eventEntity);

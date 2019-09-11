@@ -1,8 +1,8 @@
 package com.isa.zajavieni.servlet;
 
 import com.isa.zajavieni.cdi.FileUploadProcessor;
-import com.isa.zajavieni.exception.UserFileNotFound;
 import com.isa.zajavieni.provider.TemplateProvider;
+import com.isa.zajavieni.service.EventsJsonProcessor;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -32,8 +32,10 @@ public class UploadJsonFileServlet extends HttpServlet {
     @Inject
     private FileUploadProcessor fileUploadProcessor;
 
-    private Logger logger = LoggerFactory.getLogger(UploadJsonFileServlet.class);
+    @Inject
+    private EventsJsonProcessor eventsJsonProcessor;
 
+    private Logger logger = LoggerFactory.getLogger(UploadJsonFileServlet.class);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -50,14 +52,9 @@ public class UploadJsonFileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Part json = request.getPart("file");
-        String fileUrl = "";
-        try {
-            fileUrl = "files" + fileUploadProcessor.uploadJsonFile(json).getName();
-
-        } catch (UserFileNotFound userFileNotFound) {
-            logger.warn(userFileNotFound.getMessage());
-        }
-        response.getWriter().println("plik został dodany poprawnie " + fileUrl);
+        Part part = request.getPart("file");
+        String uploadJsonFile = fileUploadProcessor.uploadJsonFile(part);
+        eventsJsonProcessor.processEventsJson(uploadJsonFile);
+        response.getWriter().println("plik został dodany poprawnie ");
     }
 }
