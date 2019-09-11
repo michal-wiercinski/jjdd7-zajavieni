@@ -34,11 +34,13 @@
                 </div>
                 <div class="card-footer">
                     <a href="#" class="btn btn-primary">Zarezerwuj bilet</a>
+                    <a href="#" <#include "modal-event-view.ftlh"></a>
                 </div>
             </div>
         </div>
     </#list>
 </div>
+
 <#--
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
