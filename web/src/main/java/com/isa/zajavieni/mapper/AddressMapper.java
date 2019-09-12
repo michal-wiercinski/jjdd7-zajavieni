@@ -13,7 +13,7 @@ public class AddressMapper {
   private Logger logger = LoggerFactory.getLogger(LoggerServlet.class.getName());
 
   public Address mapAddressApiToEntity(Place addressApi) {
-    logger.info("Map addressApi to entity");
+    logger.info("Map addressApi id: "+addressApi.getPlaceId()+" to entity");
     Address address = new Address();
     address.setId(addressApi.getPlaceId());
     address.setName(addressApi.getName());

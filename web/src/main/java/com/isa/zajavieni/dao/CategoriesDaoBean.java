@@ -17,12 +17,12 @@ public class CategoriesDaoBean {
   EntityManager entityManager;
 
   public void editCategory(Category category) {
-    logger.info("Object category merge to DB");
+    logger.info("Object category id: "+category.getId()+" merge to DB");
     entityManager.merge(category);
   }
 
   public Category findCategoryById(Long id) {
-    logger.info("Object category find");
+    logger.info("Object category id: "+id+" find");
     return entityManager.find(Category.class, id);
   }
 }

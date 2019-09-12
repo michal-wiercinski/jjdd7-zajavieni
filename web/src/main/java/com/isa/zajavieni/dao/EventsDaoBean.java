@@ -17,7 +17,7 @@ public class EventsDaoBean {
   EntityManager entityManager;
 
   public void editEvent(Event event) {
-    logger.info("Object event merge to DB");
+    logger.info("Object event id: "+event.getId()+" merge to DB");
     entityManager.merge(event);
   }
 }

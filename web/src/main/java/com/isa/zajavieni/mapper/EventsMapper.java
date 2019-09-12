@@ -33,7 +33,7 @@ public class EventsMapper {
   private AttachmentListMapper attachmentListMapper;
 
   public Event mapEventsApiToEntity(com.isa.zajavieni.jsonclasses.Event eventApi) {
-    logger.info("Map eventApi to entity");
+    logger.info("Map eventApi id: "+eventApi.getEventId()+" to entity");
     Event event = new Event();
     event.setId(eventApi.getEventId());
     event.setName(eventApi.getName());

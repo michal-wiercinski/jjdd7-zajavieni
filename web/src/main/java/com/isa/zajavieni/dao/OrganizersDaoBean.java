@@ -17,12 +17,12 @@ public class OrganizersDaoBean {
   EntityManager entityManager;
 
   public void saveOrganizer(Organizer organizer) {
-    logger.info("Object organizer persist to DB");
+    logger.info("Object organizer id: "+organizer.getId()+" persist to DB");
     entityManager.persist(organizer);
   }
 
   public Organizer findOrganizerById(Long id) {
-    logger.info("Object organizer find");
+    logger.info("Object organizer id: "+id+" find");
     return entityManager.find(Organizer.class, id);
   }
 }

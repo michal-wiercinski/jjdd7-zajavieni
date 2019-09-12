@@ -17,12 +17,12 @@ public class AddressDaoBean {
   EntityManager entityManager;
 
   public void savePlace(Address address) {
-    logger.info("Object address persist to DB");
+    logger.info("Object address id: "+address.getId()+  " persist to DB");
     entityManager.persist(address);
   }
 
   public Address findAddressById(Long id) {
-    logger.info("Object address find");
+    logger.info("Object address id: "+id+" find");
     return entityManager.find(Address.class, id);
   }
 }
