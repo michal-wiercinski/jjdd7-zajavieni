@@ -24,8 +24,6 @@ import java.util.Map;
 @MultipartConfig
 public class UploadJsonFileServlet extends HttpServlet {
 
-//    private static final Logger logger = Logger.getLogger(UploadJsonFileServlet.class.getName());
-
     @Inject
     private TemplateProvider templateProvider;
 
@@ -46,15 +44,21 @@ public class UploadJsonFileServlet extends HttpServlet {
         } catch (TemplateException e) {
             logger.warn(e.getMessage());
         }
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Part part = request.getPart("file");
-        String uploadJsonFile = fileUploadProcessor.uploadJsonFile(part);
-        eventsJsonProcessor.processEventsJson(uploadJsonFile);
+        Part eventFile = request.getPart("eventFile");
+        Part placeFile = request.getPart("placeFile");
+        Part organizerFile = request.getPart("organizerFile");
+        String uploadEventFile = fileUploadProcessor.uploadJsonFile(eventFile);
+        String uploadPlaceFile = fileUploadProcessor.uploadJsonFile(placeFile);
+        String uploadOrganizerFile = fileUploadProcessor.uploadJsonFile(organizerFile);
+        eventsJsonProcessor.processEventsJson(uploadEventFile);
+        eventsJsonProcessor.processPlaceFile(uploadPlaceFile);
+        eventsJsonProcessor.processOrganizerFile(uploadOrganizerFile);
         response.getWriter().println("plik został dodany poprawnie ");
+        logger.info("dodano pliki");
     }
 }

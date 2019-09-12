@@ -9,14 +9,14 @@ import javax.ejb.Startup;
 @Startup
 public class ApiInitializer {
 
-  @EJB
-  private ApiDataLoader apiDataLoader;
+    @EJB
+    private ApiDataLoader apiDataLoader;
 
-  @PostConstruct
-  protected void init() {
-    apiDataLoader.loadDataToDataBaseCategory();
-    apiDataLoader.loadDataToDataBaseAddress();
-    apiDataLoader.loadDataToDataBaseOrganizer();
-    apiDataLoader.loadDataToDataBaseEvent();
-  }
+    @PostConstruct
+    protected void init() {
+        apiDataLoader.loadDataToDataBaseCategory();
+        apiDataLoader.loadDataToDataBaseAddress();
+        apiDataLoader.loadDataToDataBaseOrganizer();
+        apiDataLoader.loadDataToDataBaseEvent();
+    }
 }

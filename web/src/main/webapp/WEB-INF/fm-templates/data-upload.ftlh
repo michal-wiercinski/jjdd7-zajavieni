@@ -1,11 +1,25 @@
 <#include "navbar.ftlh">
 <body>
 
-<div>
+<div class="container-fluid row">
     <h2> Formularz </h2>
-    <form class="form-inline my-2 my-lg-0" method="post" action="/3cityevent/admin/upload" enctype="multipart/form-data">
-        <label for="dataFile">Plik z danymi</label>
-        <input class="form-control mr-sm-2" type="file" class="form-control-file" id="dataFile" name="file">
+    <form class="form-inline my-2 my-lg-0" method="post" action="/3cityevent/admin/upload"
+          enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="dataFile">Plik .json z wydarzeniami: </label><br/>
+            <input class="form-control mr-sm-2" type="file" class="form-control-file" id="dataFile"
+                   name="eventFile"><br/>
+        </div>
+        <div class="form-group">
+            <label for="dataFile">Plik .json z miejscami: </label><br/>
+            <input class="form-control mr-sm-2" type="file" class="form-control-file" id="dataFile"
+                   name="placeFile"><br/>
+        </div>
+        <div class="form-group">
+            <label for="dataFile">Plik .json z organizatorami: </label><br/>
+            <input class="form-control mr-sm-2" type="file" class="form-control-file" id="dataFile"
+                   name="organizerFile"><br/>
+        </div>
         <button class="btn btn-outline-primary btn-rounded btn-sm my-0 waves-effect waves-light" type="submit">
             Zatwierdź
         </button>
