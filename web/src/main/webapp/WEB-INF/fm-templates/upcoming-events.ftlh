@@ -1,7 +1,6 @@
 
 <#include "navbar.ftlh">
 
-<body>
 <div class="container-fluid row">
     <#list events as event>
         <div class="col-lg-3 col-md-6 mb-4">
@@ -12,8 +11,8 @@
                     <h5 class="card-title">${event.startDate?string('dd.MM.yyyy (HH:mm)')} -
                         ${event.endDate?string('dd.MM.yyyy (HH:mm)')} </h5>
                     <p class="card-text">${event.name}</p>
-                    <p class="card-text">${(event.address.city)!"n/a"}</p>
-                    <p>${(event.address.name)!"n/a"}</p>
+                    <p class="card-text">${(event.addressCity)!"n/a"}</p>
+                    <p>${(event.addressName)!"n/a"}</p>
                 </div>
                 <div class="card-footer">
                     <a href="#" class="btn btn-primary">Zarezerwuj bilet</a>

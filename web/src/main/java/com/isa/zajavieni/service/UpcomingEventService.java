@@ -24,7 +24,7 @@ public class UpcomingEventService {
         Query query = entityManager.createNamedQuery("Event.upcomingEvents");
          query.setParameter("time", new Date());
 
-        List<Event> resultList = query.setMaxResults(30).getResultList();
+        List<Event> resultList = query.setMaxResults(8).setFirstResult(0).getResultList();
         return resultList.stream()
                  .map((event) -> new EventSummaryMapper().mapEventToDto(event))
                 .collect(Collectors.toList());
