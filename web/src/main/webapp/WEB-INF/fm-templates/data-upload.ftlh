@@ -1,32 +1,16 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="generator" content="Jekyll v3.8.5">
-    <title>3cityevent</title>
-    <link rel="canonical" href="#">
-    <!-- Bootstrap core CSS -->
-    <link href="webapp/css/bootstrap/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- Custom styles for this template -->
-    <link href="css/main.css" rel="stylesheet">
-</head>
-<body>
 <#include "navbar.ftlh">
-<form class="form-inline col-2" method="post" action="/upload-json-file" enctype="multipart/form-data">
-    <div class="custom-file text-left">
-        <input type="file" class="custom-file-input" id="customFileLang" name="file" lang="pl-Pl">
-        <label class="custom-file-label" for="customFileLang">Wybierz plik</label>
-    </div>
-</form>
+<body>
 
-<header class="jumbotron my-4 text-center">
-    <h1 class="display-3 font-weight-bold">3CITYEVENT</h1>
-    <p class="lead">Witaj w miejscu, gdzie zgromadzone są wydarzenia kulturalne w Trójmiescie i okolicy.
-        </br>Szukaj, znajdź, rezerwuj i baw się dobrze!</p>
-</header>
+<div>
+    <h2> Formularz </h2>
+    <form class="form-inline my-2 my-lg-0" method="post" action="/3cityevent/admin/upload" enctype="multipart/form-data">
+        <label for="dataFile">Plik z danymi</label>
+        <input class="form-control mr-sm-2" type="file" class="form-control-file" id="dataFile" name="file">
+        <button class="btn btn-outline-primary btn-rounded btn-sm my-0 waves-effect waves-light" type="submit">
+            Zatwierdź
+        </button>
+    </form>
+</div>
 
 <#include "footer.ftlh">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -39,4 +23,3 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 </body>
-</html>

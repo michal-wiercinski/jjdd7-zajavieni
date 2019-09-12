@@ -4,16 +4,14 @@ import com.isa.zajavieni.jsonclasses.TicketType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+@NamedQueries({
+        @NamedQuery(
+                name = "Event.upcomingEvents",
+                query = "SELECT e FROM  Event e WHERE e.startDate >= :time  ORDER BY e.startDate"
+        )
+})
 @Entity
 @Table(name = "event")
 public class Event {
@@ -43,7 +41,7 @@ public class Event {
   @Column(name = "type")
   TicketType type;
 
-  @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   List<Attachment> attachment = new ArrayList<>();
 
   @OneToOne(cascade = CascadeType.ALL)
