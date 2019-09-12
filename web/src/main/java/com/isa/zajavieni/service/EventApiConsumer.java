@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 public class EventApiConsumer {
 
   private Logger logger = LoggerFactory.getLogger(LoggerServlet.class.getName());
-  private static final String URIevent = "http://isa-proxy.blueazurit.com/gdansk-events/events.json?";
+  private static final String URI_EVENT = "http://isa-proxy.blueazurit.com/gdansk-events/events.json?";
 
   public String consumeEvent() throws IOException {
     List<String> eventList = new ArrayList<>();
@@ -30,8 +30,8 @@ public class EventApiConsumer {
     for (int i = 0; i < numberOfPeriods; i++) {
       logger.info("ApiEvent consumer started");
       Client client = ClientBuilder.newClient();
-      WebTarget webTargetEvent = client.target(
-          URIevent + "start_date=" + startDate.toString() + "&end_date=" + endDate.toString());
+      WebTarget webTargetEvent = client.target(String.format("%sstart_date=%s&end_date=%s", URI_EVENT, startDate.toString(),
+              endDate.toString()));
       startDate = startDate.plusDays(intervalTime);
       endDate = endDate.plusDays(intervalTime);
       logger.info("ApiEvent response prepared");

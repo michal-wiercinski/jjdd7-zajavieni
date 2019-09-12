@@ -15,7 +15,7 @@ public class AddressApiConsumer {
 
   private Logger logger = LoggerFactory.getLogger(LoggerServlet.class.getName());
   private WebTarget webTargetAddress;
-  private static final String URIaddress = "http://isa-proxy.blueazurit.com/gdansk-events/places.json";
+  private static final String URI_ADDRESS = "http://isa-proxy.blueazurit.com/gdansk-events/places.json";
 
   public String consumeAddress() throws IOException {
     initAddress();
@@ -28,6 +28,6 @@ public class AddressApiConsumer {
   private void initAddress() {
     logger.info("ApiAdress consumer started");
     Client client = ClientBuilder.newClient();
-    webTargetAddress = client.target(URIaddress);
+    webTargetAddress = client.target(URI_ADDRESS);
   }
 }

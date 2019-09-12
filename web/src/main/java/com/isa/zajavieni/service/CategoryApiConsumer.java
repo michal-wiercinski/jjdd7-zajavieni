@@ -15,7 +15,7 @@ public class CategoryApiConsumer {
 
   private Logger logger = LoggerFactory.getLogger(LoggerServlet.class.getName());
   private WebTarget webTargetCategory;
-  private static final String URIcategory = "http://isa-proxy.blueazurit.com/gdansk-events/categories.json";
+  private static final String URI_CATEGORY = "http://isa-proxy.blueazurit.com/gdansk-events/categories.json";
 
   public String consumeCategory() throws IOException {
     initCategory();
@@ -28,6 +28,6 @@ public class CategoryApiConsumer {
   private void initCategory() {
     logger.info("ApiCategory consumer started");
     Client client = ClientBuilder.newClient();
-    webTargetCategory = client.target(URIcategory);
+    webTargetCategory = client.target(URI_CATEGORY);
   }
 }

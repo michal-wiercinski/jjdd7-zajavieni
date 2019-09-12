@@ -15,7 +15,7 @@ public class OrganizerApiConsumer {
 
   private Logger logger = LoggerFactory.getLogger(LoggerServlet.class.getName());
   private WebTarget webTargetOrganizer;
-  private static final String URIorganizer = "http://isa-proxy.blueazurit.com/gdansk-events/organizers.json";
+  private static final String URI_ORGANIZER = "http://isa-proxy.blueazurit.com/gdansk-events/organizers.json";
 
   public String consumeOrganizer() throws IOException {
     initOrganizer();
@@ -28,6 +28,6 @@ public class OrganizerApiConsumer {
   private void initOrganizer() {
     logger.info("ApiOrganizer consumer started");
     Client client = ClientBuilder.newClient();
-    webTargetOrganizer = client.target(URIorganizer);
+    webTargetOrganizer = client.target(URI_ORGANIZER);
   }
 }
