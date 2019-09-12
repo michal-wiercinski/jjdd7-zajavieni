@@ -1,8 +1,10 @@
-package com.isa.zajavieni.Entity;
+package com.isa.zajavieni.entity;
 
+import com.isa.zajavieni.jsonclasses.TicketType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -23,10 +25,10 @@ public class Event {
   @Column(name = "name")
   String name;
 
-  @Column(name = "desc_short")
+  @Column(name = "desc_short", columnDefinition = "TEXT")
   String descShort;
 
-  @Column(name = "desc_long")
+  @Column(name = "desc_long", columnDefinition = "TEXT")
   String descLong;
 
   @Column(name = "active")
@@ -39,12 +41,12 @@ public class Event {
   Date endDate;
 
   @Column(name = "type")
-  String type;
+  TicketType type;
 
-  @OneToMany(mappedBy = "event")
+  @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
   List<Attachment> attachment = new ArrayList<>();
 
-  @OneToOne
+  @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "media_link_id", unique = true)
   MediaLink mediaLink;
 
@@ -61,7 +63,7 @@ public class Event {
   Category category;
 
   public Event(String name, String descShort, String descLong, Boolean active,
-      Date startDate, Date endDate, String type) {
+      Date startDate, Date endDate, TicketType type) {
     this.name = name;
     this.descShort = descShort;
     this.descLong = descLong;
@@ -131,11 +133,11 @@ public class Event {
     this.endDate = endDate;
   }
 
-  public String getType() {
+  public TicketType getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(TicketType type) {
     this.type = type;
   }
 
