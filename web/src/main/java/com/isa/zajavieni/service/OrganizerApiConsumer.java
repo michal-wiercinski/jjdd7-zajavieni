@@ -30,5 +30,4 @@ public class OrganizerApiConsumer {
     Client client = ClientBuilder.newClient();
     webTargetOrganizer = client.target(URIorganizer);
   }
-
 }

@@ -22,7 +22,7 @@ public class AddressDaoBean {
   }
 
   public Address findAddressById(Long id) {
-    logger.info("Object address id: {} find",id );
+    logger.info("Object address id: {} find", id);
     return entityManager.find(Address.class, id);
   }
 }

@@ -1,10 +1,10 @@
 package com.isa.zajavieni.mapper;
 
-import com.isa.zajavieni.entity.Attachment;
-import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.dao.AddressDaoBean;
 import com.isa.zajavieni.dao.CategoriesDaoBean;
 import com.isa.zajavieni.dao.OrganizersDaoBean;
+import com.isa.zajavieni.entity.Attachment;
+import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.servlet.LoggerServlet;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -33,7 +33,7 @@ public class EventsMapper {
   private AttachmentListMapper attachmentListMapper;
 
   public Event mapEventsApiToEntity(com.isa.zajavieni.jsonclasses.Event eventApi) {
-    logger.info("Map eventApi id: {} to entity",eventApi.getEventId());
+    logger.info("Map eventApi id: {} to entity", eventApi.getEventId());
     Event event = new Event();
     event.setId(eventApi.getEventId());
     event.setName(eventApi.getName());

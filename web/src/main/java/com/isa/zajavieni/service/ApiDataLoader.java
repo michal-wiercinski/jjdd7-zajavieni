@@ -69,7 +69,8 @@ public class ApiDataLoader {
   public void loadDataToDataBaseCategory() {
     try {
       logger.info("Load categories to DB");
-      List<Category> categoryList = dataParseService.parseCategoriesFromApi(categoryApiConsumer.consumeCategory());
+      List<Category> categoryList = dataParseService
+          .parseCategoriesFromApi(categoryApiConsumer.consumeCategory());
       categoryList.forEach(category -> {
         com.isa.zajavieni.entity.Category categoryEntity = categoryMapper
             .mapCategoriesApiToEntity(category);
@@ -83,7 +84,8 @@ public class ApiDataLoader {
   public void loadDataToDataBaseAddress() {
     try {
       logger.info("Load addresses to DB");
-      List<Place> addressList = dataParseService.parsePlacesFromApi(addressApiConsumer.consumeAddress());
+      List<Place> addressList = dataParseService
+          .parsePlacesFromApi(addressApiConsumer.consumeAddress());
       addressList.forEach(address -> {
         com.isa.zajavieni.entity.Address addressEntity = addressMapper
             .mapAddressApiToEntity(address);
@@ -97,7 +99,8 @@ public class ApiDataLoader {
   public void loadDataToDataBaseOrganizer() {
     try {
       logger.info("Load organizers to DB");
-      List<Organizer> organizerList = dataParseService.parseOrganizersFromApi(organizerApiConsumer.consumeOrganizer());
+      List<Organizer> organizerList = dataParseService
+          .parseOrganizersFromApi(organizerApiConsumer.consumeOrganizer());
       organizerList.forEach(organizer -> {
         com.isa.zajavieni.entity.Organizer organizerEntity = organizersMapper
             .mapOrganizersApiToEntity(organizer);

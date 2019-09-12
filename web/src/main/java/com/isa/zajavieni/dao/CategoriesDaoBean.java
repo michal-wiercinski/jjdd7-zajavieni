@@ -17,7 +17,7 @@ public class CategoriesDaoBean {
   EntityManager entityManager;
 
   public void editCategory(Category category) {
-    logger.info("Object category id: {} merge to DB",category.getId());
+    logger.info("Object category id: {} merge to DB", category.getId());
     entityManager.merge(category);
   }
 

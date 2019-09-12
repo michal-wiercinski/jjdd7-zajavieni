@@ -13,7 +13,7 @@ public class AttachmentListMapper {
 
   private Logger logger = LoggerFactory.getLogger(LoggerServlet.class.getName());
 
-  public List<Attachment> mapAttachmentApiToEntity(com.isa.zajavieni.jsonclasses.Event eventApi){
+  public List<Attachment> mapAttachmentApiToEntity(com.isa.zajavieni.jsonclasses.Event eventApi) {
     logger.info("Map attachmentApi to entity");
     List<Attachment> attachments = new ArrayList<>();
     eventApi.getAttachmentList().forEach(

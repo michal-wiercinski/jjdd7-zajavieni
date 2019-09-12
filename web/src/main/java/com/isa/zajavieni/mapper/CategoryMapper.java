@@ -16,7 +16,7 @@ public class CategoryMapper {
   private Logger logger = LoggerFactory.getLogger(LoggerServlet.class.getName());
 
   public Category mapCategoriesApiToEntity(com.isa.zajavieni.jsonclasses.Category categoryApi) {
-    logger.info("Map categoriesApi id: {} to entity",categoryApi.getId());
+    logger.info("Map categoriesApi id: {} to entity", categoryApi.getId());
     Category category = new Category();
     category.setId(categoryApi.getId());
     category.setName(categoryApi.getName());

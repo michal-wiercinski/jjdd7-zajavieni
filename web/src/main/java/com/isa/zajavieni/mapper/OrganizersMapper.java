@@ -12,7 +12,7 @@ public class OrganizersMapper {
   private Logger logger = LoggerFactory.getLogger(LoggerServlet.class.getName());
 
   public Organizer mapOrganizersApiToEntity(com.isa.zajavieni.jsonclasses.Organizer organizerApi) {
-    logger.info("Map organizersApi id: {} to entity",organizerApi.getId());
+    logger.info("Map organizersApi id: {} to entity", organizerApi.getId());
     Organizer organizer = new Organizer();
     organizer.setDesignation(organizerApi.getDesignation());
     organizer.setId(organizerApi.getId());
