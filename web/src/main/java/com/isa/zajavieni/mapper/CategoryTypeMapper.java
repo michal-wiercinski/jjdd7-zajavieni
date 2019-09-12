@@ -13,7 +13,7 @@ public class CategoryTypeMapper {
 
   public CategoryType mapCategoryTypeToEntity(
       com.isa.zajavieni.jsonclasses.CategoryType apiCategoryType) {
-    logger.info("Map categoryTypeApi id: "+apiCategoryType.getId()+" to entity");
+    logger.info("Map categoryTypeApi id: {} to entity",apiCategoryType.getId());
     if (apiCategoryType == null) {
       return null;
     }
