@@ -2,7 +2,7 @@ package com.isa.zajavieni.servlet;
 
 import com.isa.zajavieni.cdi.FileUploadProcessor;
 import com.isa.zajavieni.provider.TemplateProvider;
-import com.isa.zajavieni.service.EventsJsonProcessor;
+import com.isa.zajavieni.service.JsonProcessor;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -31,7 +31,7 @@ public class UploadJsonFileServlet extends HttpServlet {
     private FileUploadProcessor fileUploadProcessor;
 
     @Inject
-    private EventsJsonProcessor eventsJsonProcessor;
+    private JsonProcessor jsonProcessor;
 
     private Logger logger = LoggerFactory.getLogger(UploadJsonFileServlet.class);
 
@@ -55,10 +55,9 @@ public class UploadJsonFileServlet extends HttpServlet {
         String uploadEventFile = fileUploadProcessor.uploadJsonFile(eventFile);
         String uploadPlaceFile = fileUploadProcessor.uploadJsonFile(placeFile);
         String uploadOrganizerFile = fileUploadProcessor.uploadJsonFile(organizerFile);
-        eventsJsonProcessor.processEventsJson(uploadEventFile);
-        eventsJsonProcessor.processPlaceFile(uploadPlaceFile);
-        eventsJsonProcessor.processOrganizerFile(uploadOrganizerFile);
-        response.getWriter().println("plik został dodany poprawnie ");
-        logger.info("dodano pliki");
+        jsonProcessor.processEventsJson(uploadEventFile);
+        jsonProcessor.processPlaceFile(uploadPlaceFile);
+        jsonProcessor.processOrganizerFile(uploadOrganizerFile);
+        response.sendRedirect("/3cityevent/main");
     }
 }

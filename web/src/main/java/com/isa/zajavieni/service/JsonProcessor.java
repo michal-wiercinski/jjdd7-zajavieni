@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Stateless
-public class EventsJsonProcessor {
+public class JsonProcessor {
 
     @EJB
     private DataParseService dataParseService;
