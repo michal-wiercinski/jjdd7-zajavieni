@@ -31,20 +31,20 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LocalDate currentDate = LocalDate.now();
-        parseService.parsePlaces("/tmp/places.json");
-        List<Event> events = parseService
-                .parseEvents("/tmp/new_base.json")
-                .stream()
-                .filter(e -> {
-                    LocalDate eventDate = e.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                    return eventDate.equals(currentDate);
-                }).limit(8)
-                .collect(Collectors.toList());
+//        LocalDate currentDate = LocalDate.now();
+//        parseService.parsePlaces("/tmp/places.json");
+//        List<Event> events = parseService
+//                .parseEvents("/tmp/new_base.json")
+//                .stream()
+//                .filter(e -> {
+//                    LocalDate eventDate = e.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//                    return eventDate.equals(currentDate);
+//                }).limit(8)
+//                .collect(Collectors.toList());
         Template template = templateProvider.getTemplate(getServletContext(), "welcome-page.ftlh");
         Map<String, Object> model = new HashMap<>();
-        model.put("date", currentDate);
-        model.put("events", events);
+//        model.put("date", currentDate);
+//        model.put("events", events);
 
         try {
             template.process(model, resp.getWriter());

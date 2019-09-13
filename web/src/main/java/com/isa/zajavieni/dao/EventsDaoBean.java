@@ -14,4 +14,8 @@ public class EventsDaoBean {
   public void saveEvent(Event event) {
     entityManager.persist(event);
   }
+
+  public void editEvent(Event event) {
+    entityManager.merge(event);
+  }
 }
