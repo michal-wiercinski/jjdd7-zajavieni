@@ -27,6 +27,9 @@ import java.util.stream.Collectors;
 @WebServlet("/upcoming-events")
 public class UpcomingEventServlet extends HttpServlet {
 
+    private static final int EVENTS_PER_PAGE = 8;
+    private static final String PAGE_NUMBER = "pageNo";
+
     @EJB
     private UpcomingEventService upcomingEventService;
 
@@ -40,14 +43,21 @@ public class UpcomingEventServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
 
         LocalDate currentDate = LocalDate.now();
-
-
-        List<EventSummary> events = upcomingEventService.findUpcomingEvents();
+        int pageNumber = 0;
+        int totalPages = upcomingEventService.getUpcomingEventsSize() / EVENTS_PER_PAGE;
+        String pagepar = req.getParameter(PAGE_NUMBER);
+        if(pagepar != null || !pagepar.isEmpty()){
+            pageNumber = Integer.valueOf(pagepar);
+        }
+        List<EventSummary> events = upcomingEventService.findUpcomingEvents(pageNumber, EVENTS_PER_PAGE);
 
         Template template = templateProvider.getTemplate(getServletContext(), "upcoming-events.ftlh");
         Map<String, Object> model = new HashMap<>();
         model.put("date", currentDate);
         model.put("events", events);
+        model.put("pageNumber", pageNumber);
+        model.put("totalPages", totalPages);
+
 
         try {
             template.process(model, resp.getWriter());
@@ -55,5 +65,13 @@ public class UpcomingEventServlet extends HttpServlet {
             logger.error(e.getMessage());
         }
     }
+
+//    private List<Event> fetchEventsOnPage() {
+//        int size = upcomingEventService.getUpcomingEventsSize();
+//        int from = 5;
+//        int to = from + EVENTS_PER_PAGE;
+//        upcomingEventService.
+//
+//    }
 
 }

@@ -10,7 +10,7 @@ import javax.ejb.Stateless;
 import java.io.IOException;
 import java.util.List;
 
-@Stateless
+/*@Stateless
 public class EventsJsonProcessor {
 
     @EJB
@@ -31,4 +31,4 @@ public class EventsJsonProcessor {
     }
 
 
-}
+}*/

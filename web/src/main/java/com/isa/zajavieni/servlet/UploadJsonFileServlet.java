@@ -1,3 +1,4 @@
+/*
 package com.isa.zajavieni.servlet;
 
 import com.isa.zajavieni.cdi.FileUploadProcessor;
@@ -58,3 +59,4 @@ public class UploadJsonFileServlet extends HttpServlet {
         response.getWriter().println("plik został dodany poprawnie ");
     }
 }
+*/

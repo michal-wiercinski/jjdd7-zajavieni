@@ -20,10 +20,12 @@ public class UpcomingEventService {
     @PersistenceContext
     EntityManager entityManager;
 
-    public List<EventSummary> findUpcomingEvents() {
+    public List<EventSummary> findUpcomingEvents(int from, int howMany) {
         Query query = entityManager.createNamedQuery("Event.upcomingEvents");
 
-        query.setParameter("time", new Date());
+        query.setParameter("time", new Date())
+                .setFirstResult(from)
+                .setMaxResults(howMany);
 
         List<Event> resultList = query.getResultList();
         return resultList.stream()
@@ -34,8 +36,8 @@ public class UpcomingEventService {
     public int getUpcomingEventsSize() {
         Query query = entityManager.createNamedQuery(Event.GET_SIZE);
         query.setParameter("time", new Date());
-        List<Integer> results = query.getResultList();
-        return results.get(0);
+        Long result = (Long) query.getSingleResult();
+        return result.intValue();
     }
 
 
