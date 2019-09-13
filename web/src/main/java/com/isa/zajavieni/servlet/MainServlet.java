@@ -39,13 +39,12 @@ public class MainServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
 
         LocalDate currentDate = LocalDate.now();
-        List<EventSummary> events = upcomingEventService.findUpcomingEvents(0, 8).stream().limit(8).collect(Collectors.toList());
-        System.out.println("AAAAAAA" + upcomingEventService.getUpcomingEventsSize());
+
+        List<EventSummary> events = upcomingEventService.findUpcomingEvents(0, 8);
         Template template = templateProvider.getTemplate(getServletContext(), "welcome-page.ftlh");
         Map<String, Object> model = new HashMap<>();
         model.put("date", currentDate);
         model.put("events", events);
-
 
         try {
             template.process(model, resp.getWriter());

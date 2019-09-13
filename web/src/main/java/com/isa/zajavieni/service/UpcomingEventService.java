@@ -39,6 +39,4 @@ public class UpcomingEventService {
         Long result = (Long) query.getSingleResult();
         return result.intValue();
     }
-
-
 }

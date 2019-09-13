@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
 public class UpcomingEventServlet extends HttpServlet {
 
     private static final int EVENTS_PER_PAGE = 8;
+
     private static final String PAGE_NUMBER = "pageNo";
 
     @EJB
@@ -36,18 +37,19 @@ public class UpcomingEventServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
     @Inject
     private TemplateProvider templateProvider;
-    private DataParseService parseService = new DataParseService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
 
         LocalDate currentDate = LocalDate.now();
-        int pageNumber = 0;
+
         int totalPages = upcomingEventService.getUpcomingEventsSize() / EVENTS_PER_PAGE;
-        String pagepar = req.getParameter(PAGE_NUMBER);
-        if(pagepar != null || !pagepar.isEmpty()){
-            pageNumber = Integer.valueOf(pagepar);
+        int pageNumber = 0;
+        String pageParameter = req.getParameter(PAGE_NUMBER);
+
+        if (pageParameter != null || !pageParameter.isEmpty()) {
+            pageNumber = Integer.valueOf(pageParameter);
         }
         List<EventSummary> events = upcomingEventService.findUpcomingEvents(pageNumber, EVENTS_PER_PAGE);
 
@@ -55,9 +57,8 @@ public class UpcomingEventServlet extends HttpServlet {
         Map<String, Object> model = new HashMap<>();
         model.put("date", currentDate);
         model.put("events", events);
-        model.put("pageNumber", pageNumber);
+        model.put("page", pageNumber);
         model.put("totalPages", totalPages);
-
 
         try {
             template.process(model, resp.getWriter());
@@ -65,13 +66,4 @@ public class UpcomingEventServlet extends HttpServlet {
             logger.error(e.getMessage());
         }
     }
-
-//    private List<Event> fetchEventsOnPage() {
-//        int size = upcomingEventService.getUpcomingEventsSize();
-//        int from = 5;
-//        int to = from + EVENTS_PER_PAGE;
-//        upcomingEventService.
-//
-//    }
-
 }

@@ -1,15 +1,16 @@
 
-
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <a class="page-link" href=""${pageNumber - 1}"">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="">1</a></li>
-        <li class="page-item"><a class="page-link" href="">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="">Next</a>
-        </li>
-    </ul>
-</nav>
+<div class="container">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <#if page gt 0> <li class="page-item"><a class="page-link" href="/upcoming-events?pagNo=${page = 0}">Pierwsza</a></li></#if>
+            <#if page -1 gt 0> <li class="page-item"><a class="page-link" href="/upcoming-events?pagNo=${page - 1}">Poprzednia</a></li></#if>
+            <#if page -2 gt 0><li class="page-item"><a class="page-link" href="/upcoming-events?pagNo=${page - 2}">${page - 2}</a></li></#if>
+            <#if page -1 gt 0> <li class="page-item"><a class="page-link" href="/upcoming-events?pagNo=${page -1}">${page - 1}</a></li></#if>
+            <li class="page-item active" aria-current="page"><span class="page-link">${page}<span class="sr-only">(current)</span></span></li>
+            <#if page < totalPages-1> <li class="page-item"><a class="page-link" href="/upcoming-events?pagNo=${page + 1}">${page + 1}</a></li></#if>
+            <#if page < totalPages-1 > <li class="page-item"><a class="page-link" href="/upcoming-events?pagNo=${page + 2}">${page + 2}</a></li></#if>
+            <#if page < totalPages-1><li class="page-item"><a class="page-link" href="/upcoming-events?pagNo=${page + 1}">Następna</a></li></#if>
+            <#if page < totalPages-1><li class="page-item"><a class="page-link" href="/upcoming-events?pagNo=${totalPages -1}">Ostatnia</a></li></#if>
+        </ul>
+    </nav>
+</div>

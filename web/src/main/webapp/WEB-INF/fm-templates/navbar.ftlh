@@ -21,7 +21,7 @@
                 Szukaj
             </button>
         </form>
-        <#assign upcoming_link = "/3cityevent/upcoming-events">
+        <#assign upcoming_link = "/3cityevent/upcoming-events?pageNo=0">
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="${upcoming_link}">Lista wydarzeń</a>
             <a class="p-2 text-dark" href="#">Wyszukiwanie</a>

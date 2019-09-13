@@ -11,8 +11,8 @@
                     <h5 class="card-title">${event.startDate?string('dd.MM.yyyy (HH:mm)')} -
                         ${event.endDate?string('dd.MM.yyyy (HH:mm)')} </h5>
                     <p class="card-text">${event.name}</p>
-                    <p class="card-text">${(event.addressCity)}</p>
-                    <p>${(event.addressName)}</p>
+                    <p class="card-text">${(event.addressCity)!"n/a"}</p>
+                    <p>${(event.addressName)!"n/a"}</p>
                 </div>
                 <div class="card-footer">
                     <a href="#" class="btn btn-primary">Zarezerwuj bilet</a>
@@ -21,19 +21,7 @@
         </div>
     </#list>
 </div>
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="${pageNum}">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="">Next</a>
-        </li>
-    </ul>
-</nav>
+<#include "pagination.ftlh">
 
 <#include "footer.ftlh">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
