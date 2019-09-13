@@ -23,10 +23,10 @@ public class EventsJsonProcessor {
     private EventsDaoBean eventsDaoBean;
 
     public void processEventsJson(String eventsJson) throws IOException {
-        List<Event> events = dataParseService.parseEvents(eventsJson);
+        List<Event> events = dataParseService.parseEventsFromApi(eventsJson);
         for (Event event : events) {
             com.isa.zajavieni.entity.Event mapEventToEntity = eventsMapper.mapEventsApiToEntity(event);
-            eventsDaoBean.saveEvent(mapEventToEntity);
+            eventsDaoBean.(mapEventToEntity);
         }
     }
 
