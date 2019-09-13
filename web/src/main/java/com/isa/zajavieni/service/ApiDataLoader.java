@@ -14,60 +14,58 @@ import com.isa.zajavieni.mapper.EventsMapper;
 import com.isa.zajavieni.mapper.OrganizersMapper;
 import com.isa.zajavieni.parser.DataParseService;
 import com.isa.zajavieni.servlet.LoggerServlet;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import java.io.IOException;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import java.io.IOException;
-import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Stateless
 public class ApiDataLoader {
 
-    private Logger logger = LoggerFactory.getLogger(LoggerServlet.class.getName());
-    @Inject
-    private DataParseService dataParseService;
+  private Logger logger = LoggerFactory.getLogger(LoggerServlet.class.getName());
+  @Inject
+  private DataParseService dataParseService;
 
-    @EJB
-    private EventsMapper eventsMapper;
+  @EJB
+  private EventsMapper eventsMapper;
 
-    @EJB
-    private AddressMapper addressMapper;
+  @EJB
+  private AddressMapper addressMapper;
 
-    @EJB
-    private CategoryMapper categoryMapper;
+  @EJB
+  private CategoryMapper categoryMapper;
 
-    @EJB
-    private OrganizersMapper organizersMapper;
+  @EJB
+  private OrganizersMapper organizersMapper;
 
-    @EJB
-    private CategoryApiConsumer categoryApiConsumer;
+  @EJB
+  private CategoryApiConsumer categoryApiConsumer;
 
-    @EJB
-    private CategoriesDaoBean categoriesDaoBean;
+  @EJB
+  private CategoriesDaoBean categoriesDaoBean;
 
-    @EJB
-    private AddressApiConsumer addressApiConsumer;
+  @EJB
+  private AddressApiConsumer addressApiConsumer;
 
-    @EJB
-    private AddressDaoBean addressDaoBean;
+  @EJB
+  private AddressDaoBean addressDaoBean;
 
-    @EJB
-    private OrganizerApiConsumer organizerApiConsumer;
+  @EJB
+  private OrganizerApiConsumer organizerApiConsumer;
 
-    @EJB
-    private OrganizersDaoBean organizersDaoBean;
+  @EJB
+  private OrganizersDaoBean organizersDaoBean;
 
-    @EJB
-    private EventApiConsumer eventApiConsumer;
+  @EJB
+  private EventApiConsumer eventApiConsumer;
 
-    @EJB
-    private EventsDaoBean eventsDaoBean;
+  @EJB
+  private EventsDaoBean eventsDaoBean;
 
-
-    public void loadDataToDataBaseCategory() {
+  public void loadDataToDataBaseCategory() {
         try {
             logger.info("Load categories to DB");
             List<Category> categoryList = dataParseService
