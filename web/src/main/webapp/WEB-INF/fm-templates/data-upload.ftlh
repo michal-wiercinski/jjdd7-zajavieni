@@ -7,17 +7,17 @@
           enctype="multipart/form-data">
         <div class="form-group">
             <label for="dataFile">Plik .json z wydarzeniami: </label><br/>
-            <input class="form-control mr-sm-2" type="file" class="form-control-file" id="dataFile"
+            <input class="form-control mr-sm-2" type="file" class="form-control-file" id="dataFile1"
                    name="eventFile"><br/>
         </div>
         <div class="form-group">
             <label for="dataFile">Plik .json z miejscami: </label><br/>
-            <input class="form-control mr-sm-2" type="file" class="form-control-file" id="dataFile"
+            <input class="form-control mr-sm-2" type="file" class="form-control-file" id="dataFile2"
                    name="placeFile"><br/>
         </div>
         <div class="form-group">
             <label for="dataFile">Plik .json z organizatorami: </label><br/>
-            <input class="form-control mr-sm-2" type="file" class="form-control-file" id="dataFile"
+            <input class="form-control mr-sm-2" type="file" class="form-control-file" id="dataFile3"
                    name="organizerFile"><br/>
         </div>
         <button class="btn btn-outline-primary btn-rounded btn-sm my-0 waves-effect waves-light" type="submit">
