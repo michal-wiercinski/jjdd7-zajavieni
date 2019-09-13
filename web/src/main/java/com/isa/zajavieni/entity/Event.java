@@ -9,12 +9,20 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(
                 name = "Event.upcomingEvents",
-                query = "SELECT e FROM  Event e WHERE e.startDate >= :time  ORDER BY e.startDate"
+                query = "SELECT e FROM  Event e WHERE e.startDate >= :time ORDER BY e.startDate"
+        ),
+        @NamedQuery(
+                name = Event.GET_SIZE,
+                query = "SELECT count(e) FROM Event e WHERE e.startDate >= :time "
         )
+
 })
 @Entity
 @Table(name = "event")
 public class Event {
+
+  public static final String GET_SIZE = "Event.counter";
+  public static final String UPCOMING_EVENT_BY_RANGE = "GetByRange";
 
   @Id
   @Column(name = "event_id")

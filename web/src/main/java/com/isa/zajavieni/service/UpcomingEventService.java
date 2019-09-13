@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Stateless
@@ -19,14 +20,25 @@ public class UpcomingEventService {
     @PersistenceContext
     EntityManager entityManager;
 
-    public List<EventSummary> findUpcomingEvents() {
-
+    public List<EventSummary> findUpcomingEvents(int from, int howMany) {
         Query query = entityManager.createNamedQuery("Event.upcomingEvents");
-         query.setParameter("time", new Date());
 
-        List<Event> resultList = query.setMaxResults(8).setFirstResult(0).getResultList();
+        query.setParameter("time", new Date())
+                .setFirstResult(from)
+                .setMaxResults(howMany);
+
+        List<Event> resultList = query.getResultList();
         return resultList.stream()
-                 .map((event) -> new EventSummaryMapper().mapEventToDto(event))
+                .map((event) -> new EventSummaryMapper().mapEventToDto(event))
                 .collect(Collectors.toList());
     }
+
+    public int getUpcomingEventsSize() {
+        Query query = entityManager.createNamedQuery(Event.GET_SIZE);
+        query.setParameter("time", new Date());
+        Long result = (Long) query.getSingleResult();
+        return result.intValue();
+    }
+
+
 }
