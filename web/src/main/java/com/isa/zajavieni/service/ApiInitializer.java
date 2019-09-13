@@ -14,7 +14,7 @@ public class ApiInitializer {
 
   @PostConstruct
   protected void init() {
-    apiDataLoader.loadDataToDataBaseCategory();
+    //apiDataLoader.loadDataToDataBaseCategory();
     apiDataLoader.loadDataToDataBaseAddress();
     apiDataLoader.loadDataToDataBaseOrganizer();
     apiDataLoader.loadDataToDataBaseEvent();
