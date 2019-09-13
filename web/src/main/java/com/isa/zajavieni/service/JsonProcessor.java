@@ -51,8 +51,7 @@ public class JsonProcessor {
 
     public void processPlaceFile(String placesJson) throws IOException {
         List<Place> places = dataParseService.parsePlaces(placesJson);
-        for (Place place : places
-        ) {
+        for (Place place : places) {
             Address address = addressMapper.mapAddressApiToEntity(place);
             addressDaoBean.savePlace(address);
         }
@@ -60,8 +59,7 @@ public class JsonProcessor {
 
     public void processOrganizerFile(String organizersJson) throws IOException {
         List<Organizer> organizers = dataParseService.parseOrganizers(organizersJson);
-        for (Organizer organizer : organizers
-        ) {
+        for (Organizer organizer : organizers) {
             com.isa.zajavieni.entity.Organizer mapOrganizerToEntity = organizersMapper.mapOrganizersApiToEntity(organizer);
             organizersDaoBean.saveOrganizer(mapOrganizerToEntity);
         }

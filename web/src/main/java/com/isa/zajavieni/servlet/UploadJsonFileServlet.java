@@ -1,6 +1,6 @@
 package com.isa.zajavieni.servlet;
 
-import com.isa.zajavieni.cdi.FileUploadProcessor;
+import com.isa.zajavieni.cdi.FileReadProcessor;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.JsonProcessor;
 import freemarker.template.Template;
@@ -28,7 +28,7 @@ public class UploadJsonFileServlet extends HttpServlet {
     private TemplateProvider templateProvider;
 
     @Inject
-    private FileUploadProcessor fileUploadProcessor;
+    private FileReadProcessor fileUploadProcessor;
 
     @Inject
     private JsonProcessor jsonProcessor;
@@ -52,12 +52,13 @@ public class UploadJsonFileServlet extends HttpServlet {
         Part eventFile = request.getPart("eventFile");
         Part placeFile = request.getPart("placeFile");
         Part organizerFile = request.getPart("organizerFile");
-        String uploadEventFile = fileUploadProcessor.uploadJsonFile(eventFile);
-        String uploadPlaceFile = fileUploadProcessor.uploadJsonFile(placeFile);
-        String uploadOrganizerFile = fileUploadProcessor.uploadJsonFile(organizerFile);
-        jsonProcessor.processEventsJson(uploadEventFile);
-        jsonProcessor.processPlaceFile(uploadPlaceFile);
-        jsonProcessor.processOrganizerFile(uploadOrganizerFile);
+
+//        String uploadEventFile = fileUploadProcessor.uploadJsonFile(eventFile);
+//        String uploadPlaceFile = fileUploadProcessor.uploadJsonFile(placeFile);
+//        String uploadOrganizerFile = fileUploadProcessor.uploadJsonFile(organizerFile);
+//        jsonProcessor.processEventsJson(uploadEventFile);
+//        jsonProcessor.processPlaceFile(uploadPlaceFile);
+//        jsonProcessor.processOrganizerFile(uploadOrganizerFile);
         response.sendRedirect("/3cityevent/main");
     }
 }

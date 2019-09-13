@@ -33,9 +33,9 @@ public class MainServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
         LocalDate currentDate = LocalDate.now();
-        parseService.parsePlaces("/home/annaossowska/zajavieni/jjdd7-zajavieni/places.json");
+        parseService.parsePlaces("/tmp/places.json");
         List<Event> events = parseService
-                .parseEvents("/home/annaossowska/zajavieni/jjdd7-zajavieni/new_base.json")
+                .parseEvents("/tmp/new_base.json")
                 .stream()
                 .filter(e -> {
                     LocalDate eventDate = e.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
