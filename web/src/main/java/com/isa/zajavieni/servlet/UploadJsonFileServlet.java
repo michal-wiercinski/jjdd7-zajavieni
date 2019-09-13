@@ -1,8 +1,7 @@
 package com.isa.zajavieni.servlet;
 
-import com.isa.zajavieni.cdi.FileReadProcessor;
 import com.isa.zajavieni.provider.TemplateProvider;
-import com.isa.zajavieni.service.JsonProcessor;
+import com.isa.zajavieni.service.PartService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -28,15 +27,11 @@ public class UploadJsonFileServlet extends HttpServlet {
     private TemplateProvider templateProvider;
 
     @Inject
-    private FileReadProcessor fileUploadProcessor;
-
-    @Inject
-    private JsonProcessor jsonProcessor;
+    private PartService partService;
 
     private Logger logger = LoggerFactory.getLogger(UploadJsonFileServlet.class);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=UTF-8");
         Template template = templateProvider.getTemplate(getServletContext(), "data-upload.ftlh");
         Map<String, Object> model = new HashMap<>();
         try {
@@ -48,17 +43,12 @@ public class UploadJsonFileServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         Part eventFile = request.getPart("eventFile");
         Part placeFile = request.getPart("placeFile");
         Part organizerFile = request.getPart("organizerFile");
-
-//        String uploadEventFile = fileUploadProcessor.uploadJsonFile(eventFile);
-//        String uploadPlaceFile = fileUploadProcessor.uploadJsonFile(placeFile);
-//        String uploadOrganizerFile = fileUploadProcessor.uploadJsonFile(organizerFile);
-//        jsonProcessor.processEventsJson(uploadEventFile);
-//        jsonProcessor.processPlaceFile(uploadPlaceFile);
-//        jsonProcessor.processOrganizerFile(uploadOrganizerFile);
+        partService.servicedEventPart(eventFile);
+        partService.servicedPlacePart(placeFile);
+        partService.servicedOrganizerPart(organizerFile);
         response.sendRedirect("/3cityevent/main");
     }
 }

@@ -2,10 +2,12 @@ package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.cdi.FileReadProcessor;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.servlet.http.Part;
 import java.io.IOException;
 
+@ApplicationScoped
 public class PartService {
 
     @Inject
