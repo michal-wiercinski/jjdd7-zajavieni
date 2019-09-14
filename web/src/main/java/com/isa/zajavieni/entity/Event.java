@@ -1,6 +1,7 @@
 package com.isa.zajavieni.entity;
 
 import com.isa.zajavieni.jsonclasses.TicketType;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,7 +14,7 @@ import javax.persistence.*;
         ),
         @NamedQuery(
                 name = Event.GET_SIZE,
-                query = "SELECT count(e) FROM Event e WHERE e.startDate >= :time "
+                query = "SELECT count(e) FROM Event e WHERE e.startDate >= :time"
         )
 
 })
@@ -21,169 +22,168 @@ import javax.persistence.*;
 @Table(name = "event")
 public class Event {
 
-  public static final String GET_SIZE = "Event.counter";
-  public static final String UPCOMING_EVENT_BY_RANGE = "GetByRange";
+    public static final String GET_SIZE = "Event.counter";
 
-  @Id
-  @Column(name = "event_id")
-  Long id;
+    @Id
+    @Column(name = "event_id")
+    Long id;
 
-  @Column(name = "name")
-  String name;
+    @Column(name = "name")
+    String name;
 
-  @Column(name = "desc_short", columnDefinition = "TEXT")
-  String descShort;
+    @Column(name = "desc_short", columnDefinition = "TEXT")
+    String descShort;
 
-  @Column(name = "desc_long", columnDefinition = "TEXT")
-  String descLong;
+    @Column(name = "desc_long", columnDefinition = "TEXT")
+    String descLong;
 
-  @Column(name = "active")
-  Boolean active;
+    @Column(name = "active")
+    Boolean active;
 
-  @Column(name = "start_date")
-  Date startDate;
+    @Column(name = "start_date")
+    Date startDate;
 
-  @Column(name = "end_date")
-  Date endDate;
+    @Column(name = "end_date")
+    Date endDate;
 
-  @Column(name = "type")
-  TicketType type;
+    @Column(name = "type")
+    TicketType type;
 
-  @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  List<Attachment> attachment = new ArrayList<>();
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    List<Attachment> attachment = new ArrayList<>();
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "media_link_id", unique = true)
-  MediaLink mediaLink;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "media_link_id", unique = true)
+    MediaLink mediaLink;
 
-  @ManyToOne
-  @JoinColumn (name = "address_id")
-  Address address;
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    Address address;
 
-  @ManyToOne
-  @JoinColumn (name = "organizer_id")
-  Organizer organizer;
+    @ManyToOne
+    @JoinColumn(name = "organizer_id")
+    Organizer organizer;
 
-  @ManyToOne
-  @JoinColumn (name = "category_id")
-  Category category;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    Category category;
 
-  public Event(String name, String descShort, String descLong, Boolean active,
-      Date startDate, Date endDate, TicketType type) {
-    this.name = name;
-    this.descShort = descShort;
-    this.descLong = descLong;
-    this.active = active;
-    this.startDate = startDate;
-    this.endDate = endDate;
-    this.type = type;
+    public Event(String name, String descShort, String descLong, Boolean active,
+                 Date startDate, Date endDate, TicketType type) {
+        this.name = name;
+        this.descShort = descShort;
+        this.descLong = descLong;
+        this.active = active;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.type = type;
 
-  }
+    }
 
-  public Event() {
-  }
+    public Event() {
+    }
 
-  public Long getId() {
-    return id;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public String getDescShort() {
-    return descShort;
-  }
+    public String getDescShort() {
+        return descShort;
+    }
 
-  public void setDescShort(String descShort) {
-    this.descShort = descShort;
-  }
+    public void setDescShort(String descShort) {
+        this.descShort = descShort;
+    }
 
-  public String getDescLong() {
-    return descLong;
-  }
+    public String getDescLong() {
+        return descLong;
+    }
 
-  public void setDescLong(String descLong) {
-    this.descLong = descLong;
-  }
+    public void setDescLong(String descLong) {
+        this.descLong = descLong;
+    }
 
-  public Boolean getActive() {
-    return active;
-  }
+    public Boolean getActive() {
+        return active;
+    }
 
-  public void setActive(Boolean active) {
-    this.active = active;
-  }
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 
-  public Date getStartDate() {
-    return startDate;
-  }
+    public Date getStartDate() {
+        return startDate;
+    }
 
-  public void setStartDate(Date startDate) {
-    this.startDate = startDate;
-  }
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
 
-  public Date getEndDate() {
-    return endDate;
-  }
+    public Date getEndDate() {
+        return endDate;
+    }
 
-  public void setEndDate(Date endDate) {
-    this.endDate = endDate;
-  }
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 
-  public TicketType getType() {
-    return type;
-  }
+    public TicketType getType() {
+        return type;
+    }
 
-  public void setType(TicketType type) {
-    this.type = type;
-  }
+    public void setType(TicketType type) {
+        this.type = type;
+    }
 
-  public List<Attachment> getAttachment() {
-    return attachment;
-  }
+    public List<Attachment> getAttachment() {
+        return attachment;
+    }
 
-  public void setAttachment(List<Attachment> attachment) {
-    this.attachment = attachment;
-  }
+    public void setAttachment(List<Attachment> attachment) {
+        this.attachment = attachment;
+    }
 
-  public MediaLink getMediaLink() {
-    return mediaLink;
-  }
+    public MediaLink getMediaLink() {
+        return mediaLink;
+    }
 
-  public void setMediaLink(MediaLink mediaLink) {
-    this.mediaLink = mediaLink;
-  }
+    public void setMediaLink(MediaLink mediaLink) {
+        this.mediaLink = mediaLink;
+    }
 
-  public Address getAddress() {
-    return address;
-  }
+    public Address getAddress() {
+        return address;
+    }
 
-  public void setAddress(Address address) {
-    this.address = address;
-  }
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
-  public Organizer getOrganizer() {
-    return organizer;
-  }
+    public Organizer getOrganizer() {
+        return organizer;
+    }
 
-  public void setOrganizer(Organizer organizer) {
-    this.organizer = organizer;
-  }
+    public void setOrganizer(Organizer organizer) {
+        this.organizer = organizer;
+    }
 
-  public Category getCategory() {
-    return category;
-  }
+    public Category getCategory() {
+        return category;
+    }
 
-  public void setCategory(Category category) {
-    this.category = category;
-  }
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }

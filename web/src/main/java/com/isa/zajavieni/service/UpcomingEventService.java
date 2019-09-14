@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +28,7 @@ public class UpcomingEventService {
 
         List<Event> resultList = query.getResultList();
         return resultList.stream()
+                .sorted(Comparator.comparing(Event::getStartDate))
                 .map((event) -> new EventSummaryMapper().mapEventToDto(event))
                 .collect(Collectors.toList());
     }
@@ -38,7 +40,7 @@ public class UpcomingEventService {
         return result.intValue();
     }
 
-    public int getTotalPages(int eventsPerPage){
+    public int getTotalPages(int eventsPerPage) {
         return getUpcomingEventsSize() / eventsPerPage;
     }
 }
