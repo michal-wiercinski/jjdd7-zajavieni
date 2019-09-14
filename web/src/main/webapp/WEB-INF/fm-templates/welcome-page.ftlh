@@ -1,6 +1,6 @@
 <#include "navbar.ftlh">
 
-<#assign upcoming_link = "/3cityevent/upcoming-events?pageNo=0">
+<#assign upcoming_link = "/upcoming-events?pageNo=0">
 <div class="container-fluid row">
     <#list events as event>
         <div class="col-lg-3 col-md-6 mb-4">
