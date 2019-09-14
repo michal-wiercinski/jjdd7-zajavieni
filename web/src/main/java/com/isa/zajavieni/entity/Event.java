@@ -49,7 +49,7 @@ public class Event {
     @Column(name = "type")
     TicketType type;
 
-    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     List<Attachment> attachment = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)

@@ -17,7 +17,7 @@ public class EventSummaryMapper {
         eventSummary.setAddressCity(event.getAddress().getCity());
         List<Attachment> attachment = event.getAttachment();
         if (attachment.isEmpty()) {
-            eventSummary.setAttachmentFileName("http://placehold.it/500x325");
+            eventSummary.setAttachmentFileName("/3cityevent/img/plug.jpg");
         } else {
             eventSummary.setAttachmentFileName(attachment.get(0).getFileName());
         }
