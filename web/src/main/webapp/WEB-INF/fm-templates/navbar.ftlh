@@ -12,21 +12,22 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Custom styles for this template -->
     <link href="/3cityevent/css/main.css" rel="stylesheet">
-
+</head>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-        <img class="my-0 mr-md-auto font-weight-normal" src="/3cityevent/img/logo.jpg" alt="logo">
+        <a href="/" class="my-0 mr-md-auto font-weight-normal"><img src="/3cityevent/img/logo.jpg" alt="logo"></a>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-primary btn-rounded btn-sm my-0 waves-effect waves-light" type="submit">
                 Szukaj
             </button>
         </form>
+        <#assign upcoming_link = "/upcoming-events?pageNo=0">
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="#">Lista wydarzeń</a>
+            <a class="p-2 text-dark" href="${upcoming_link}">Lista wydarzeń</a>
             <a class="p-2 text-dark" href="#">Wyszukiwanie</a>
             <a class="p-2 text-dark" href="#">Ulubione</a>
             <a class="p-2 text-dark" href="#">Koszyk</a>
-            <a class="p-2 text-dark" href="/3cityevent/admin/upload">Admin</a>
+            <a class="p-2 text-dark" href="/admin/upload">Admin</a>
         </nav>
     </div>
 
@@ -36,7 +37,7 @@
             </br>Szukaj, znajdź, rezerwuj i baw się dobrze!</p>
     </header>
 
-</head>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

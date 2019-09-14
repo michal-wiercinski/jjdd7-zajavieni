@@ -5,6 +5,7 @@ import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.UpcomingEventService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,11 +21,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet("/")
-public class MainServlet extends HttpServlet {
+@WebServlet("/upcoming-events")
+public class UpcomingEventServlet extends HttpServlet {
 
+    private static final int EVENTS_PER_PAGE = 8;
+    private static final String PAGE_NUMBER = "pageNo";
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
-    private static final int EVENETS_ON_THE_WELCOME = 8;
 
     @EJB
     private UpcomingEventService upcomingEventService;
@@ -36,10 +38,20 @@ public class MainServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
 
-        List<EventSummary> events = upcomingEventService.findUpcomingEvents(0, EVENETS_ON_THE_WELCOME);
-        Template template = templateProvider.getTemplate(getServletContext(), "welcome-page.ftlh");
+        int totalPages = upcomingEventService.getTotalPages(EVENTS_PER_PAGE);
+        int pageNumber = 0;
+        String pageParameter = req.getParameter(PAGE_NUMBER);
+
+        if (pageParameter != null || !pageParameter.isEmpty() || NumberUtils.isDigits(pageParameter)) {
+            pageNumber = Integer.valueOf(pageParameter);
+        }
+        List<EventSummary> events = upcomingEventService.findUpcomingEvents(pageNumber, EVENTS_PER_PAGE);
+
+        Template template = templateProvider.getTemplate(getServletContext(), "upcoming-events.ftlh");
         Map<String, Object> model = new HashMap<>();
         model.put("events", events);
+        model.put("page", pageNumber);
+        model.put("totalPages", totalPages);
 
         try {
             template.process(model, resp.getWriter());
