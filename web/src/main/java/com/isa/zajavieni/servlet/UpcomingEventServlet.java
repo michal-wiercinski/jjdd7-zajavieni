@@ -1,12 +1,11 @@
 package com.isa.zajavieni.servlet;
 
 import com.isa.zajavieni.dto.EventSummary;
-import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.provider.TemplateProvider;
-import com.isa.zajavieni.service.DataParseService;
 import com.isa.zajavieni.service.UpcomingEventService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,19 +21,17 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @WebServlet("/upcoming-events")
 public class UpcomingEventServlet extends HttpServlet {
 
     private static final int EVENTS_PER_PAGE = 8;
-
     private static final String PAGE_NUMBER = "pageNo";
+    private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @EJB
     private UpcomingEventService upcomingEventService;
 
-    private Logger logger = LoggerFactory.getLogger(getClass().getName());
     @Inject
     private TemplateProvider templateProvider;
 
@@ -42,20 +39,17 @@ public class UpcomingEventServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
 
-        LocalDate currentDate = LocalDate.now();
-
-        int totalPages = upcomingEventService.getUpcomingEventsSize() / EVENTS_PER_PAGE;
+        int totalPages = upcomingEventService.getTotalPages(EVENTS_PER_PAGE);
         int pageNumber = 0;
         String pageParameter = req.getParameter(PAGE_NUMBER);
 
-        if (pageParameter != null || !pageParameter.isEmpty()) {
+        if (pageParameter != null || !pageParameter.isEmpty() || NumberUtils.isDigits(pageParameter)) {
             pageNumber = Integer.valueOf(pageParameter);
         }
         List<EventSummary> events = upcomingEventService.findUpcomingEvents(pageNumber, EVENTS_PER_PAGE);
 
         Template template = templateProvider.getTemplate(getServletContext(), "upcoming-events.ftlh");
         Map<String, Object> model = new HashMap<>();
-        model.put("date", currentDate);
         model.put("events", events);
         model.put("page", pageNumber);
         model.put("totalPages", totalPages);

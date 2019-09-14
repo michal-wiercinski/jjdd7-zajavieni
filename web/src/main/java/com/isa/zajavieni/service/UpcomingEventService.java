@@ -33,10 +33,14 @@ public class UpcomingEventService {
                 .collect(Collectors.toList());
     }
 
-    public int getUpcomingEventsSize() {
+    private int getUpcomingEventsSize() {
         Query query = entityManager.createNamedQuery(Event.GET_SIZE);
         query.setParameter("time", new Date());
         Long result = (Long) query.getSingleResult();
         return result.intValue();
+    }
+
+    public int getTotalPages(int eventsPerPage){
+        return getUpcomingEventsSize() / eventsPerPage;
     }
 }

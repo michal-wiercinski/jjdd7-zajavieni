@@ -21,13 +21,13 @@
                 Szukaj
             </button>
         </form>
-        <#assign upcoming_link = "/3cityevent/upcoming-events?pageNo=0">
+        <#assign upcoming_link = "/upcoming-events?pageNo=0">
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="${upcoming_link}">Lista wydarzeń</a>
             <a class="p-2 text-dark" href="#">Wyszukiwanie</a>
             <a class="p-2 text-dark" href="#">Ulubione</a>
             <a class="p-2 text-dark" href="#">Koszyk</a>
-            <a class="p-2 text-dark" href="/3cityevent/admin/upload">Admin</a>
+            <a class="p-2 text-dark" href="/admin/upload">Admin</a>
         </nav>
     </div>
 
