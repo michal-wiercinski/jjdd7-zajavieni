@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@WebServlet("/main")
+@WebServlet("/")
 public class MainServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
