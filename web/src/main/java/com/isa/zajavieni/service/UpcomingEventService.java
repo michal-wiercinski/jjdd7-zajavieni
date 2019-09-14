@@ -28,8 +28,8 @@ public class UpcomingEventService {
 
         List<Event> resultList = query.getResultList();
         return resultList.stream()
-                .sorted(Comparator.comparing(Event::getStartDate))
                 .map((event) -> new EventSummaryMapper().mapEventToDto(event))
+                .sorted(Comparator.comparing(EventSummary::getStartDate))
                 .collect(Collectors.toList());
     }
 

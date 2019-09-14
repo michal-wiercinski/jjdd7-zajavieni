@@ -19,13 +19,15 @@ html {
 .card-deck .card {
     min-width: 220px;
 }
-.card-img-top {
+/*.img-top {
     width: 100%;
-    height: 15vw;
+    height: 200px;
     object-fit: cover;
-}
+}*/
 
 .form-group {
 margin: 10px;
 }
-
+.embed-responsive .card-img-top {
+    object-fit: cover;
+}
