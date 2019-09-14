@@ -7,7 +7,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 @ApplicationScoped
-public class FileUploadProcessor {
+public class FileReadProcessor {
 
     public String uploadJsonFile(Part filePart) throws IOException {
         InputStream fileInputStream = filePart.getInputStream();
