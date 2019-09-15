@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
 
 @Stateless
 public class EventsDaoBean {
@@ -25,6 +27,12 @@ public class EventsDaoBean {
     public void saveEvent(Event event) {
         logger.info("Object event id: {} persist to DB", event.getId());
         entityManager.persist(event);
+    }
+
+    public List<Event> searchEvents(String phrase){
+        Query query = entityManager.createQuery("SELECT e FROM Event e WHERE e.name LIKE CONCAT('%',:phrase,'%')");
+        List<Event> resultList = query.getResultList();
+        return resultList;
     }
 }
 
