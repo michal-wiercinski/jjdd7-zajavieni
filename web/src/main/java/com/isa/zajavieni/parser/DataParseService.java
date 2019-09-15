@@ -8,48 +8,47 @@ import com.isa.zajavieni.jsonclasses.Event;
 import com.isa.zajavieni.jsonclasses.Organizer;
 import com.isa.zajavieni.jsonclasses.Place;
 import com.isa.zajavieni.servlet.LoggerServlet;
-import java.io.IOException;
-import java.util.List;
-import javax.enterprise.context.RequestScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@RequestScoped
+import javax.ejb.Stateless;
+import java.io.IOException;
+import java.util.List;
+
+@Stateless
 public class DataParseService {
+    private ObjectMapper objectMapper = new ObjectMapper();
+    private Logger logger = LoggerFactory.getLogger(LoggerServlet.class.getName());
 
-  private Logger logger = LoggerFactory.getLogger(LoggerServlet.class.getName());
-  private ObjectMapper objectMapper = new ObjectMapper();
+    public List<Event> parseEvents(String events) throws IOException {
+        logger.info("Parse events");
+        JsonNode jsonNode = objectMapper.readTree(events);
+        return objectMapper.readValue(jsonNode.toString(),
+                new TypeReference<List<Event>>() {
+                });
+    }
 
-  public List<Event> parseEventsFromApi(String events) throws IOException {
-    logger.info("Parse events from API");
-    JsonNode jsonNode = objectMapper.readTree(events);
-    return objectMapper.readValue(jsonNode.toString(),
-        new TypeReference<List<Event>>() {
-        });
-  }
+    public List<Category> parseCategories(String categories) throws IOException {
+        logger.info("Parse categories");
+        JsonNode jsonNode = objectMapper.readTree(categories);
+        return objectMapper.readValue(jsonNode.toString(),
+                new TypeReference<List<Category>>() {
+                });
+    }
 
-  public List<Category> parseCategoriesFromApi(String categories) throws IOException {
-    logger.info("Parse categories from API");
-    JsonNode jsonNode = objectMapper.readTree(categories);
-    return objectMapper.readValue(jsonNode.toString(),
-        new TypeReference<List<Category>>() {
-        });
-  }
+    public List<Place> parsePlaces(String places) throws IOException {
+        logger.info("Parse address");
+        JsonNode jsonNode = objectMapper.readTree(places);
+        return objectMapper.readValue(jsonNode.toString(),
+                new TypeReference<List<Place>>() {
+                });
+    }
 
-  public List<Place> parsePlacesFromApi(String places) throws IOException {
-    logger.info("Parse address from API");
-    JsonNode jsonNode = objectMapper.readTree(places);
-    return objectMapper.readValue(jsonNode.toString(),
-        new TypeReference<List<Place>>() {
-        });
-  }
-
-  public List<Organizer> parseOrganizersFromApi(String organizers) throws IOException {
-    logger.info("Parse organizers from API");
-    JsonNode jsonNode = objectMapper.readTree(organizers);
-    return objectMapper.readValue(jsonNode.toString(),
-        new TypeReference<List<Organizer>>() {
-        });
-  }
-
+    public List<Organizer> parseOrganizers(String organizers) throws IOException {
+        logger.info("Parse organizers");
+        JsonNode jsonNode = objectMapper.readTree(organizers);
+        return objectMapper.readValue(jsonNode.toString(),
+                new TypeReference<List<Organizer>>() {
+                });
+    }
 }
