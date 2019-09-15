@@ -2,7 +2,7 @@ package com.isa.zajavieni.servlet;
 
 import com.isa.zajavieni.dto.EventSummary;
 import com.isa.zajavieni.provider.TemplateProvider;
-import com.isa.zajavieni.service.UpcomingEventService;
+import com.isa.zajavieni.service.EventSummaryService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -29,7 +29,7 @@ public class UpcomingEventServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @EJB
-    private UpcomingEventService upcomingEventService;
+    private EventSummaryService eventSummaryService;
 
     @Inject
     private TemplateProvider templateProvider;
@@ -38,14 +38,14 @@ public class UpcomingEventServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
 
-        int totalPages = upcomingEventService.getTotalPages(EVENTS_PER_PAGE);
+        int totalPages = eventSummaryService.getTotalPages(EVENTS_PER_PAGE);
         int pageNumber = 0;
         String pageParameter = req.getParameter(PAGE_NUMBER);
 
         if (pageParameter != null || !pageParameter.isEmpty() || NumberUtils.isDigits(pageParameter)) {
             pageNumber = Integer.valueOf(pageParameter);
         }
-        List<EventSummary> events = upcomingEventService.findUpcomingEvents(pageNumber, EVENTS_PER_PAGE);
+        List<EventSummary> events = eventSummaryService.findUpcomingEvents(pageNumber, EVENTS_PER_PAGE);
 
         Template template = templateProvider.getTemplate(getServletContext(), "upcoming-events.ftlh");
         Map<String, Object> model = new HashMap<>();

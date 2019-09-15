@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-public class UpcomingEventService {
+public class EventSummaryService {
 
     @PersistenceContext
     EntityManager entityManager;

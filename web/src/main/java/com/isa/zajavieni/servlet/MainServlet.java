@@ -2,7 +2,7 @@ package com.isa.zajavieni.servlet;
 
 import com.isa.zajavieni.dto.EventSummary;
 import com.isa.zajavieni.provider.TemplateProvider;
-import com.isa.zajavieni.service.UpcomingEventService;
+import com.isa.zajavieni.service.EventSummaryService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -27,7 +27,7 @@ public class MainServlet extends HttpServlet {
     private static final int EVENETS_ON_THE_WELCOME = 8;
 
     @EJB
-    private UpcomingEventService upcomingEventService;
+    private EventSummaryService eventSummaryService;
 
     @Inject
     private TemplateProvider templateProvider;
@@ -36,7 +36,7 @@ public class MainServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
 
-        List<EventSummary> events = upcomingEventService.findUpcomingEvents(0, EVENETS_ON_THE_WELCOME);
+        List<EventSummary> events = eventSummaryService.findUpcomingEvents(0, EVENETS_ON_THE_WELCOME);
         Template template = templateProvider.getTemplate(getServletContext(), "welcome-page.ftlh");
         Map<String, Object> model = new HashMap<>();
         model.put("events", events);
