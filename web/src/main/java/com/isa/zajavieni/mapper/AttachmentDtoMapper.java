@@ -10,7 +10,12 @@ public class AttachmentDtoMapper {
 
     public AttachmentDto mapAttachmentToDto(Attachment attachment) {
         AttachmentDto attachmentDto = new AttachmentDto();
-        attachmentDto.setFileName(attachment.getFileName());
+
+        if (attachment.getFileName() == null || attachment.getFileName().isEmpty()) {
+            attachmentDto.setFileName("/img/plug");
+        } else {
+            attachmentDto.setFileName(attachment.getFileName());
+        }
 
         return attachmentDto;
     }

@@ -45,6 +45,8 @@ public class EventDtoService {
         return getUpcomingEventsSize() / eventsPerPage;
     }
 
+
+
     public EventDto findById(Long id) {
         logger.info("Object event id: {} has been found", id);
         return entityManager.find(EventDto.class, id);

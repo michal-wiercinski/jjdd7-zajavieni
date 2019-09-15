@@ -10,9 +10,25 @@ public class MediaLinkDtoMapper {
 
     public MediaLinkDto mapMediaLinkToDto(MediaLink mediaLink) {
         MediaLinkDto mediaLinkDto = new MediaLinkDto();
-        mediaLinkDto.setWwwAddress(mediaLink.getWwwAddress());
-        mediaLinkDto.setFbSite(mediaLink.getFbSite());
-        mediaLinkDto.setWebSiteWithTickets(mediaLink.getWebsiteWithTickets());
+        String noData = "brak danych";
+
+        if (mediaLink.getWwwAddress() == null) {
+            mediaLinkDto.setWwwAddress(noData);
+        } else {
+            mediaLinkDto.setWwwAddress(mediaLink.getWwwAddress());
+        }
+
+        if (mediaLink.getFbSite() == null) {
+            mediaLinkDto.setFbSite(noData);
+        } else {
+            mediaLinkDto.setFbSite(mediaLink.getFbSite());
+        }
+
+        if (mediaLink.getWebsiteWithTickets() == null) {
+            mediaLinkDto.setWebSiteWithTickets(noData);
+        } else {
+            mediaLinkDto.setWebSiteWithTickets(mediaLink.getWebsiteWithTickets());
+        }
 
         return mediaLinkDto;
     }

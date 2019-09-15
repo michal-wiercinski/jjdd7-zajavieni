@@ -10,10 +10,31 @@ public class AddressDtoMapper {
 
     public AddressDto mapAddressToDto(Address address) {
         AddressDto addressDto = new AddressDto();
-        addressDto.setName(address.getName());
-        addressDto.setStreet(address.getStreet());
-        addressDto.setZipcode(address.getZipcode());
-        addressDto.setCity(address.getCity());
+        String noData = "Brak danych";
+
+        if (address.getName() == null) {
+            addressDto.setName(noData);
+        } else {
+            addressDto.setName(address.getName());
+        }
+
+        if (address.getStreet() == null) {
+            addressDto.setName(noData);
+        } else {
+            addressDto.setStreet(address.getStreet());
+        }
+
+        if (address.getZipcode() == null) {
+            addressDto.setZipcode(noData);
+        } else {
+            addressDto.setName(address.getZipcode());
+        }
+
+        if (address.getCity() == null) {
+            addressDto.setCity(noData);
+        } else {
+            addressDto.setName(address.getCity());
+        }
 
         return addressDto;
     }
