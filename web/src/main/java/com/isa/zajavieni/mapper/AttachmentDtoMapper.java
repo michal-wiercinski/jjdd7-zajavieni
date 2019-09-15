@@ -8,7 +8,7 @@ import javax.ejb.Stateless;
 @Stateless
 public class AttachmentDtoMapper {
 
-    public AttachmentDto mapAttachmentToDto(Attachment attachment){
+    public AttachmentDto mapAttachmentToDto(Attachment attachment) {
         AttachmentDto attachmentDto = new AttachmentDto();
         attachmentDto.setFileName(attachment.getFileName());
 
