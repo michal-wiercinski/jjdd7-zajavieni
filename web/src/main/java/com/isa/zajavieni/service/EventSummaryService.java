@@ -3,6 +3,8 @@ package com.isa.zajavieni.service;
 import com.isa.zajavieni.dto.EventSummary;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.mapper.EventSummaryMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,6 +18,7 @@ import java.util.stream.Collectors;
 @Stateless
 public class EventSummaryService {
 
+    private Logger logger = LoggerFactory.getLogger(getClass().getName());
     @PersistenceContext
     EntityManager entityManager;
 
@@ -42,4 +45,10 @@ public class EventSummaryService {
     public int getTotalPages(int eventsPerPage) {
         return getUpcomingEventsSize() / eventsPerPage;
     }
+
+    public EventSummary findById(Long id) {
+        logger.info("Object event id: {} has been found", id);
+        return entityManager.find(EventSummary.class, id);
+    }
+
 }

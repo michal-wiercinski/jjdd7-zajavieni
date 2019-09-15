@@ -1,1 +1,14 @@
-git checkout -b JJDD7ZAJ-59-mw
+<div class="card text-center">
+    <div class="card-header">
+        <h5 class="card-title">${event.startDate?string('dd.MM.yyyy (HH:mm)')} -
+            ${event.endDate?string('dd.MM.yyyy (HH:mm)')} </h5>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    <div class="card-footer text-muted">
+        2 days ago
+    </div>
+</div>
