@@ -1,8 +1,11 @@
 package com.isa.zajavieni.dto;
 
-import java.util.Date;
+import com.isa.zajavieni.entity.Attachment;
 
-public class EventSummary {
+import java.util.Date;
+import java.util.List;
+
+public class EventDto {
 
     private Long id;
     private String name;
@@ -12,12 +15,38 @@ public class EventSummary {
     private String addressCity;
     private String addressStreet;
     private String addressZipCode;
-    private String attachmentFileName;
+    private List<AttachmentDto> attachments;
     private String descShort;
     private String descLong;
     private String wwwAddress;
     private String fbSite;
     private String websiteWithTickets;
+    private String organizerName;
+    private String attachmentFileName;
+
+    public String getAttachmentFileName() {
+        return attachmentFileName;
+    }
+
+    public void setAttachmentFileName(String attachmentFileName) {
+        this.attachmentFileName = attachmentFileName;
+    }
+
+    public String getOrganizerName() {
+        return organizerName;
+    }
+
+    public List<AttachmentDto> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<AttachmentDto> attachments) {
+        this.attachments = attachments;
+    }
+
+    public void setOrganizerName(String organizerName) {
+        this.organizerName = organizerName;
+    }
 
     public Long getId() {
         return id;
@@ -65,14 +94,6 @@ public class EventSummary {
 
     public void setAddressCity(String addressCity) {
         this.addressCity = addressCity;
-    }
-
-    public String getAttachmentFileName() {
-        return attachmentFileName;
-    }
-
-    public void setAttachmentFileName(String attachmentFileName) {
-        this.attachmentFileName = attachmentFileName;
     }
 
     public String getAddressStreet() {

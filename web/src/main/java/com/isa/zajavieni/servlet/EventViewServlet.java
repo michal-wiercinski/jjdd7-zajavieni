@@ -1,8 +1,8 @@
 package com.isa.zajavieni.servlet;
 
-import com.isa.zajavieni.dto.EventSummary;
+import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.provider.TemplateProvider;
-import com.isa.zajavieni.service.EventSummaryService;
+import com.isa.zajavieni.service.EventDtoService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -24,7 +24,7 @@ import java.util.Map;
 public class EventViewServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
     @EJB
-    private EventSummaryService eventSummaryService;
+    private EventDtoService eventDtoService;
 
     @Inject
     private TemplateProvider templateProvider;
@@ -35,11 +35,10 @@ public class EventViewServlet extends HttpServlet {
 
         Long id;
         String eventId = req.getParameter("id");
-        EventSummary event = new EventSummary();
+        EventDto event = new EventDto();
         if (eventId != null || !eventId.isEmpty() || NumberUtils.isDigits(eventId)) {
             id = Long.valueOf(eventId);
-            event = eventSummaryService.findById(id);
-
+            event = eventDtoService.findById(id);
         }
 
         Template template = templateProvider.getTemplate(getServletContext(), "event-details.ftlh");
@@ -53,5 +52,3 @@ public class EventViewServlet extends HttpServlet {
         }
     }
 }
-
-
