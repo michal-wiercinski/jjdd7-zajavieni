@@ -10,12 +10,20 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "event")
+@NamedQueries({
+    @NamedQuery(
+        name = "User.findFavouriteEvents",
+        query = "SELECT e FROM Event e WHERE e.isFavourite=:true"
+    )
+})
 public class Event {
 
   @Id
@@ -42,6 +50,9 @@ public class Event {
 
   @Column(name = "type")
   TicketType type;
+
+  @Column(name = "favourite")
+  Boolean isFavourite = false;
 
   @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
   List<Attachment> attachment = new ArrayList<>();
@@ -179,5 +190,13 @@ public class Event {
 
   public void setCategory(Category category) {
     this.category = category;
+  }
+
+  public Boolean getIsFavourite() {
+    return isFavourite;
+  }
+
+  public void setIsFavourite(Boolean isFavourite) {
+    this.isFavourite = isFavourite;
   }
 }
