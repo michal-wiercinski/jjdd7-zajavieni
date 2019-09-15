@@ -8,13 +8,13 @@
     <title>3cityevent</title>
     <link rel="canonical" href="#">
     <!-- Bootstrap core CSS -->
-    <link href="/3cityevent/css/bootstrap/bootstrap.min.css" rel="stylesheet"
+    <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Custom styles for this template -->
-    <link href="/3cityevent/css/main.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
 </head>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-        <a href="/" class="my-0 mr-md-auto font-weight-normal"><img src="/3cityevent/img/logo.jpg" alt="logo"></a>
+        <a href="/main" class="my-0 mr-md-auto font-weight-normal"><img src="/img/logo.jpg" alt="logo"></a>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-primary btn-rounded btn-sm my-0 waves-effect waves-light" type="submit">

@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet("/")
+@WebServlet("/main")
 public class MainServlet extends HttpServlet {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
