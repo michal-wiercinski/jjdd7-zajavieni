@@ -107,14 +107,6 @@ public class EventSummary {
         this.descLong = descLong;
     }
 
-/*    public String getTicketType() {
-        return ticketType;
-    }
-
-    public void setTicketType(String ticketType) {
-        this.ticketType = ticketType;
-    }*/
-
     public String getWwwAddress() {
         return wwwAddress;
     }
