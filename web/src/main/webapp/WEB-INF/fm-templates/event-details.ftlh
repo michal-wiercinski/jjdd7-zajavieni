@@ -45,16 +45,16 @@
             ${event.endDate?string('dd.MM.yyyy (HH:mm)')} </h5>
     </div>
     <div class="card-body text-center">
-        <img class="card-img-top h-100 "  src="${(event.attachments[0].fileName)!"/img/plug.jpg"}" alt="">
+        <img class="card-img-top img-fluid" style="max-height: 500px; max-width: 400px" src="${(event.attachments[0].fileName)!"/img/plug.jpg"}" alt="">
         <h5 class="card-title">${event.name}</h5>
         <p class="card-text">Miejsce: ${event.addressName!"n/a"}</p>
-        <p class="card-text">Adres: ${event.addressStreet!"n/a"}</p>
+        <p class="card-text">Adres: ${event.addressStreet!" "}</p>
         <p class="card-text"> ${event.addressCity!"n/a"}</p>
         <p class="card-text"> ${event.addressZipCode!"n/a"}</p>
-        <p class="card-text">${event.descLong!"Brak opisu"}</p>
-        <#if event.wwwAddress?has_content><p class="card-text">Miejsce: ${event.addressName}</p></#if>
-        <#if event.fbSite?has_content><p class="card-text">Miejsce: ${event.addressName}</p></#if>
-        <#if event.websiteWithTickets?has_content><p class="card-text">Miejsce: ${event.addressName}</p></#if>
+        <p class="card-text">${event.descShort!"Brak opisu"}</p>
+        <#if event.wwwAddress?has_content><p class="card-text"><a href="${event.wwwAddress}"> Strona WWW </a> </p></#if>
+        <#if event.fbSite?has_content><p class="card-text"><a href="${event.fbSite}"> Facebook </a></p></#if>
+        <#if event.websiteWithTickets?has_content><p class="card-text"><a href="${event.websiteWithTickets}"> Strona z biletami</a></p></#if>
 
     </div>
     <div class="card-footer d-inline">
