@@ -7,9 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,10 +19,16 @@ import java.util.stream.Collectors;
 @Stateless
 public class EventDtoService {
 
+
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
+
     @PersistenceContext
     EntityManager entityManager;
 
+    @Inject
+    private EventDtoMapper dtoMapper;
+
+    @Transactional
     public List<EventDto> findUpcomingEvents(int from, int howMany) {
         Query query = entityManager.createNamedQuery("Event.upcomingEvents");
 
@@ -30,7 +38,7 @@ public class EventDtoService {
 
         List<Event> resultList = query.getResultList();
         return resultList.stream()
-                .map((event) -> new EventDtoMapper().mapEventToDto(event))
+                .map((event) -> dtoMapper.mapEventToDto(event))
                 .collect(Collectors.toList());
     }
 
@@ -49,7 +57,7 @@ public class EventDtoService {
 
     public EventDto findById(Long id) {
         logger.info("Object event id: {} has been found", id);
-        return entityManager.find(EventDto.class, id);
+        return dtoMapper.mapEventToDto(entityManager.find(Event.class, id));
     }
 
 }

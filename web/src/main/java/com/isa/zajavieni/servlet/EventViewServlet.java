@@ -1,6 +1,7 @@
 package com.isa.zajavieni.servlet;
 
 import com.isa.zajavieni.dto.EventDto;
+import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.EventDtoService;
 import freemarker.template.Template;
@@ -34,16 +35,16 @@ public class EventViewServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
 
         Long id;
+        EventDto eventDto = new EventDto();
         String eventId = req.getParameter("id");
-        EventDto event = new EventDto();
         if (eventId != null || !eventId.isEmpty() || NumberUtils.isDigits(eventId)) {
             id = Long.valueOf(eventId);
-            event = eventDtoService.findById(id);
+            eventDto = eventDtoService.findById(id);
         }
 
         Template template = templateProvider.getTemplate(getServletContext(), "event-details.ftlh");
         Map<String, Object> model = new HashMap<>();
-        model.put("event", event);
+        model.put("event", eventDto);
 
         try {
             template.process(model, resp.getWriter());

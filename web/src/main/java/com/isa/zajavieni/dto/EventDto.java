@@ -1,6 +1,8 @@
 package com.isa.zajavieni.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class EventDto {
 
@@ -18,7 +20,7 @@ public class EventDto {
     private String fbSite;
     private String websiteWithTickets;
     private String organizerName;
-    private String attachmentFileName;
+    private List<AttachmentDto> attachments = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -132,12 +134,12 @@ public class EventDto {
         this.organizerName = organizerName;
     }
 
-    public String getAttachmentFileName() {
-        return attachmentFileName;
+    public List<AttachmentDto> getAttachments() {
+        return attachments;
     }
 
-    public void setAttachmentFileName(String attachmentFileName) {
-        this.attachmentFileName = attachmentFileName;
+    public void setAttachments(List<AttachmentDto> attachments) {
+        this.attachments = attachments;
     }
 
 }
