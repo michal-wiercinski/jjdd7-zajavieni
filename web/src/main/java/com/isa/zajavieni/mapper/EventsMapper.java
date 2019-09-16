@@ -6,13 +6,12 @@ import com.isa.zajavieni.dao.OrganizersDaoBean;
 import com.isa.zajavieni.entity.Attachment;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.servlet.LoggerServlet;
-
-import java.util.List;
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import java.util.List;
 
 @Stateless
 public class EventsMapper {
