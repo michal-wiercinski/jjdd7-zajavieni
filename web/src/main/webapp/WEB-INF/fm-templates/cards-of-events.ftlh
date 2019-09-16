@@ -12,6 +12,7 @@
                 </div>
                 <div class="card-footer">
                     <a href="#" class="btn btn-primary">Zarezerwuj bilet</a>
+                    <a href="/event-view?id=${event.id?c}" class="btn btn-primary show-event" <#--data-id="${event.id}"-->>Szczegóły</a>
                 </div>
             </div>
         </div>

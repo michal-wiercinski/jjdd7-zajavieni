@@ -26,5 +26,10 @@ public class EventsDaoBean {
         logger.info("Object event id: {} persist to DB", event.getId());
         entityManager.persist(event);
     }
+
+    public Event findById(Long id) {
+        logger.info("Object event id: {} has been found", id);
+        return entityManager.find(Event.class, id);
+    }
 }
 

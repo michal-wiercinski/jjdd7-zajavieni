@@ -1,25 +1,27 @@
 package com.isa.zajavieni.service;
 
-import com.isa.zajavieni.dto.EventSummary;
+import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
-import com.isa.zajavieni.mapper.EventSummaryMapper;
+import com.isa.zajavieni.mapper.EventDtoMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-public class UpcomingEventService {
+public class EventDtoService {
 
+    private Logger logger = LoggerFactory.getLogger(getClass().getName());
     @PersistenceContext
     EntityManager entityManager;
 
-    public List<EventSummary> findUpcomingEvents(int from, int howMany) {
+    public List<EventDto> findUpcomingEvents(int from, int howMany) {
         Query query = entityManager.createNamedQuery("Event.upcomingEvents");
 
         query.setParameter("time", new Date())
@@ -28,7 +30,7 @@ public class UpcomingEventService {
 
         List<Event> resultList = query.getResultList();
         return resultList.stream()
-                .map((event) -> new EventSummaryMapper().mapEventToDto(event))
+                .map((event) -> new EventDtoMapper().mapEventToDto(event))
                 .collect(Collectors.toList());
     }
 
@@ -42,4 +44,12 @@ public class UpcomingEventService {
     public int getTotalPages(int eventsPerPage) {
         return getUpcomingEventsSize() / eventsPerPage;
     }
+
+
+
+    public EventDto findById(Long id) {
+        logger.info("Object event id: {} has been found", id);
+        return entityManager.find(EventDto.class, id);
+    }
+
 }
