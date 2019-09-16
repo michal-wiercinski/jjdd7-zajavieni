@@ -4,6 +4,7 @@ import com.isa.zajavieni.dto.AddressDto;
 import com.isa.zajavieni.entity.Address;
 
 import javax.ejb.Stateless;
+import java.util.Optional;
 
 @Stateless
 public class AddressDtoMapper {
@@ -12,28 +13,28 @@ public class AddressDtoMapper {
         AddressDto addressDto = new AddressDto();
         String noData = "Brak danych";
 
-        if (address.getName() == null) {
+        if (Optional.ofNullable(address.getName()).isPresent()) {
             addressDto.setName(noData);
         } else {
             addressDto.setName(address.getName());
         }
 
-        if (address.getStreet() == null) {
-            addressDto.setName(noData);
+        if (Optional.ofNullable(address.getStreet()).isPresent()) {
+            addressDto.setStreet(noData);
         } else {
             addressDto.setStreet(address.getStreet());
         }
 
-        if (address.getZipcode() == null) {
+        if (Optional.ofNullable(address.getZipcode()).isPresent()) {
             addressDto.setZipcode(noData);
         } else {
-            addressDto.setName(address.getZipcode());
+            addressDto.setZipcode(address.getZipcode());
         }
 
-        if (address.getCity() == null) {
+        if (Optional.ofNullable(address.getCity()).isPresent()) {
             addressDto.setCity(noData);
         } else {
-            addressDto.setName(address.getCity());
+            addressDto.setCity(address.getCity());
         }
 
         return addressDto;

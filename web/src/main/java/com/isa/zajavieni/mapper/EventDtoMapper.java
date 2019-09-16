@@ -6,6 +6,7 @@ import com.isa.zajavieni.entity.Event;
 
 import javax.ejb.EJB;
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 public class EventDtoMapper {
 
@@ -30,68 +31,76 @@ public class EventDtoMapper {
         eventDto.setStartDate(event.getStartDate());
         eventDto.setEndDate(event.getEndDate());
 
-        if (addressDtoMapper.mapAddressToDto(event.getAddress()).getName() == null) {
+        Optional<String> addressName = Optional.ofNullable(addressDtoMapper.mapAddressToDto(event.getAddress()).getName());
+        if (addressName.isPresent()) {
+            eventDto.setAddressName(String.valueOf(addressName));
+        } else {
             eventDto.setAddressName(noData);
-        } else {
-            eventDto.setAddressName(addressDtoMapper.mapAddressToDto(event.getAddress()).getName());
         }
 
-        if (addressDtoMapper.mapAddressToDto(event.getAddress()).getCity() == null) {
+        Optional<String> adddressCity = Optional.ofNullable(addressDtoMapper.mapAddressToDto(event.getAddress()).getCity());
+        if (adddressCity.isPresent()) {
+            eventDto.setAddressCity(String.valueOf(adddressCity));
+        } else {
             eventDto.setAddressCity(noData);
-        } else {
-            eventDto.setAddressCity(addressDtoMapper.mapAddressToDto(event.getAddress()).getCity());
         }
 
-        if (addressDtoMapper.mapAddressToDto(event.getAddress()).getStreet() == null) {
-            eventDto.setAddressStreet(noData);
+        Optional<String> addressStreet = Optional.ofNullable(addressDtoMapper.mapAddressToDto(event.getAddress()).getStreet());
+        if (addressStreet.isPresent()) {
+            eventDto.setAddressStreet(String.valueOf(adddressCity));
         } else {
-            eventDto.setAddressCity(addressDtoMapper.mapAddressToDto(event.getAddress()).getStreet());
+            eventDto.setAddressCity(noData);
         }
 
-        if (addressDtoMapper.mapAddressToDto(event.getAddress()).getZipcode() == null) {
+        Optional<String> addressZipCode = Optional.ofNullable(addressDtoMapper.mapAddressToDto(event.getAddress()).getZipcode());
+        if (addressZipCode.isPresent()) {
+            eventDto.setAddressZipCode(String.valueOf(addressZipCode));
+        } else {
             eventDto.setAddressZipCode(noData);
-        } else {
-            eventDto.setAddressZipCode(addressDtoMapper.mapAddressToDto(event.getAddress()).getZipcode());
         }
 
-        if (event.getDescShort()== null) {
+        Optional<String> descShort = Optional.ofNullable(event.getDescShort());
+        if (descShort.isPresent()) {
+            eventDto.setDescShort(String.valueOf(descShort));
+        } else {
             eventDto.setDescShort(noData);
-        } else {
-            eventDto.setDescShort(event.getDescShort());
         }
 
-        if (event.getDescLong() == null) {
+        Optional<String> descLong = Optional.ofNullable(event.getDescLong());
+        if (descLong.isPresent()) {
+            eventDto.setDescLong(String.valueOf(descLong));
+        } else {
             eventDto.setDescLong(noData);
-        } else {
-            eventDto.setDescLong(event.getDescLong());
         }
 
-        if (mediaLinkDtoMapper.mapMediaLinkToDto(event.getMediaLink()).getWwwAddress() == null) {
+        Optional<String> wwwAddress = Optional.ofNullable(mediaLinkDtoMapper.mapMediaLinkToDto(event.getMediaLink()).getWwwAddress());
+        if (wwwAddress.isPresent()) {
+            eventDto.setWwwAddress(String.valueOf(wwwAddress));
+        } else {
             eventDto.setWwwAddress(noData);
-        } else {
-            eventDto.setWwwAddress(mediaLinkDtoMapper.mapMediaLinkToDto(event.getMediaLink()).getWwwAddress());
         }
 
-        if (mediaLinkDtoMapper.mapMediaLinkToDto(event.getMediaLink()).getFbSite() == null) {
+        Optional<String> fbSite = Optional.ofNullable(mediaLinkDtoMapper.mapMediaLinkToDto(event.getMediaLink()).getFbSite());
+        if (fbSite.isPresent()) {
+            eventDto.setFbSite(String.valueOf(fbSite));
+        } else {
             eventDto.setFbSite(noData);
-        } else {
-            eventDto.setFbSite(mediaLinkDtoMapper.mapMediaLinkToDto(event.getMediaLink()).getFbSite());
         }
 
-        if (mediaLinkDtoMapper.mapMediaLinkToDto(event.getMediaLink()).getWebSiteWithTickets()== null) {
+        if (mediaLinkDtoMapper.mapMediaLinkToDto(event.getMediaLink()).getWebSiteWithTickets() == null) {
             eventDto.setWebsiteWithTickets(noData);
-        }else {
+        } else {
             eventDto.setWebsiteWithTickets(mediaLinkDtoMapper.mapMediaLinkToDto(event.getMediaLink()).getWebSiteWithTickets());
         }
 
         eventDto.setOrganizerName(organizerDtoMapper.mapOrganizerToDto(event.getOrganizer()).getName());
 
-        if (attachmentDtoMapper.mapAttachmentToDto(event.getAttachment()
-                .get(0)).getFileName().isEmpty()) {
-            eventDto.setAttachmentFileName("/img/plug.jpg");
+        Optional<String> fileName = Optional.ofNullable(attachmentDtoMapper.mapAttachmentToDto(event.getAttachment()
+                .get(0)).getFileName());
+        if (fileName.isPresent() || !fileName.isEmpty()) {
+            eventDto.setAttachmentFileName(String.valueOf(fileName));
         } else {
-            eventDto.setAttachmentFileName(attachmentDtoMapper.mapAttachmentToDto(event.getAttachment()
-                    .get(0)).getFileName());
+            eventDto.setAttachmentFileName("/img/plug.jpg");
         }
         return eventDto;
     }
