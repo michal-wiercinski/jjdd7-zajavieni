@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/*
 @WebFilter(
     filterName = "FavouriteEventsFilter",
     urlPatterns = {"/favourite-events"}
@@ -26,8 +26,12 @@ public class FavouriteEventsFilter implements Filter {
 
   private Logger logger = LoggerFactory.getLogger(LoggerServlet.class.getName());
 
+  private final int maxNumberOfFavouriteEvents = 3;
+
   @Inject
   FavouriteEventService favouriteEventService;
+
+  @Inject
   EventService eventService;
 
   @Override
@@ -36,15 +40,14 @@ public class FavouriteEventsFilter implements Filter {
     HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
     HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
     Long id = Long.parseLong(httpServletRequest.getParameter("event_id"));
-    int maxNumberOfFavouriteEvents = 3;
-
     List<Event> favouriteEventsList = favouriteEventService.findListOfFavouriteEvents();
-    if(favouriteEventsList.size() <= maxNumberOfFavouriteEvents && eventService.findEventById(id) != null) {
-        httpServletResponse.sendRedirect("/favourite-events");
+    if(favouriteEventsList.size() < maxNumberOfFavouriteEvents && eventService.findEventById(id) != null) {
+      filterChain.doFilter(httpServletRequest, httpServletResponse);
     } else{
       logger.info("Max numbers of favourite events");
+      httpServletResponse.sendError(1,"Lista wydarzeń ulubionych przekroczyła maksymalną liczbę.");
     }
-    filterChain.doFilter(httpServletRequest, httpServletResponse);
-
   }
 }
+
+ */

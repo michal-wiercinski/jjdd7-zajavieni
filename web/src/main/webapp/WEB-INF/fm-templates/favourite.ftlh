@@ -8,29 +8,43 @@
   <title>3cityevent</title>
   <link rel="canonical" href="#">
   <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet"
+  <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <!-- Custom styles for this template -->
-  <link href="css/main.css" rel="stylesheet">
+  <link href="/css/main.css" rel="stylesheet">
 </head>
-<body>
-<#include "navbar.ftlh">
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <a href="/main" class="my-0 mr-md-auto font-weight-normal"><img src="/img/logo.jpg" alt="logo"></a>
+  <form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-primary btn-rounded btn-sm my-0 waves-effect waves-light" type="submit">
+      Szukaj
+    </button>
+  </form>
+    <#assign upcoming_link = "/upcoming-events?pageNo=0">
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a class="p-2 text-dark" href="${upcoming_link}">Lista wydarzeń</a>
+    <a class="p-2 text-dark" href="#">Wyszukiwanie</a>
+    <a class="p-2 text-dark" href="#">Ulubione</a>
+    <a class="p-2 text-dark" href="#">Koszyk</a>
+    <a class="p-2 text-dark" href="/admin/upload">Admin</a>
+  </nav>
+</div>
 
 <header class="jumbotron my-4 text-center">
-  <h1 class="display-3 font-weight-bold">3CITYEVENT</h1>
-  <p class="lead">Witaj w miejscu, gdzie zgromadzone są wydarzenia kulturalne w Trójmiescie i okolicy.
-    </br>Szukaj, znajdź, rezerwuj i baw się dobrze!</p>
+  <h4 class="display-3 font-weight-bold">TWOJE ULUBIONE WYDARZENIA</h4>
 </header>
 <div class="container-fluid row">
-    <#list events as event>
-      <div class="col-lg-3 col-md-6 mb-4">
+    <#list favouriteEvents as event>
+      <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h5 class="card-title">${event.startDate?date}</h5>
+          <img class="card-img-top " style="max-height: 250px" src="${event.attachmentFileName}" alt="">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">${event.startDate?string('dd.MM.yyyy (HH:mm)')} -
+                ${event.endDate?string('dd.MM.yyyy (HH:mm)')} </h5>
             <p class="card-text">${event.name}</p>
-            <p class="card-text">${(event.place.address.city)!"n/a"}</p>
-            <p>${(event.place.name)!"n/a"}</p>
+            <p class="card-text">${(event.addressCity)!"n/a"}</p>
+            <p>${(event.addressName)!"n/a"}</p>
           </div>
           <div class="card-footer">
             <a href="#" class="btn btn-primary">Zarezerwuj bilet</a>
@@ -39,31 +53,5 @@
       </div>
     </#list>
 </div>
-<#--
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="+1">Next</a>
-        </li>
-    </ul>
-</nav>
--->
 
 <#include "footer.ftlh">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-</body>
-</html>

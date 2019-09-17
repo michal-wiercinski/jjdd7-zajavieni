@@ -23,8 +23,9 @@ public class FavouriteEventService {
     return favouriteEvents;
   }
 
-  public void setEventFavouriteStatus(Long id) {
+  public void setEventFavouriteStatus(String idString) {
     logger.info("Set status of favourite");
+    Long id = Long.parseLong(idString);
     Event searchingEvent = eventsDaoBean.findEventById(id);
     searchingEvent.setIsFavourite(!searchingEvent.getIsFavourite());
     eventsDaoBean.editEvent(searchingEvent);
