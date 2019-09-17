@@ -33,10 +33,9 @@ public class EventsDaoBean {
     return query.getResultList();
   }
 
-  public Event findEventById(Long id) {
-    logger.info("Find event id: {}", id);
-    Event event = entityManager.find(Event.class, id);
-    return event;
-  }
+    public Event findById(Long id) {
+        logger.info("Object event id: {} has been found", id);
+        return entityManager.find(Event.class, id);
+    }
 }
 

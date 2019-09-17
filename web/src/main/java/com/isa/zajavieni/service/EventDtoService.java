@@ -1,25 +1,39 @@
 package com.isa.zajavieni.service;
 
-import com.isa.zajavieni.dto.EventSummary;
+import com.isa.zajavieni.dao.EventsDaoBean;
+import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
-import com.isa.zajavieni.mapper.EventSummaryMapper;
+import com.isa.zajavieni.mapper.EventDtoMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.Comparator;
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-public class UpcomingEventService {
+public class EventDtoService {
+
+    private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @PersistenceContext
     EntityManager entityManager;
 
-    public List<EventSummary> findUpcomingEvents(int from, int howMany) {
+    @EJB
+    EventsDaoBean eventsDaoBean;
+
+    @Inject
+    private EventDtoMapper dtoMapper;
+
+    @Transactional
+    public List<EventDto> findUpcomingEvents(int from, int howMany) {
         Query query = entityManager.createNamedQuery("Event.upcomingEvents");
 
         query.setParameter("time", new Date())
@@ -28,7 +42,7 @@ public class UpcomingEventService {
 
         List<Event> resultList = query.getResultList();
         return resultList.stream()
-                .map((event) -> new EventSummaryMapper().mapEventToDto(event))
+                .map((event) -> dtoMapper.mapEventToDto(event))
                 .collect(Collectors.toList());
     }
 
@@ -36,10 +50,18 @@ public class UpcomingEventService {
         Query query = entityManager.createNamedQuery(Event.GET_SIZE);
         query.setParameter("time", new Date());
         Long result = (Long) query.getSingleResult();
+        logger.info("{} events found", result);
         return result.intValue();
     }
 
     public int getTotalPages(int eventsPerPage) {
         return getUpcomingEventsSize() / eventsPerPage;
     }
+
+    public EventDto findById(Long id) {
+        EventDto eventDto = dtoMapper.mapEventToDto(eventsDaoBean.findById(id));
+        logger.info("Object event id: {} has been found", id);
+        return eventDto;
+    }
+
 }
