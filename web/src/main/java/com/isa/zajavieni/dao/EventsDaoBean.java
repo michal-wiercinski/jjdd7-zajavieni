@@ -30,9 +30,9 @@ public class EventsDaoBean {
     }
 
     public List<Event> searchEvents(String phrase) {
-        Query query = entityManager.createQuery("SELECT e FROM Event e WHERE e.name LIKE CONCAT('%',:phrase,'%')");
-        List<Event> resultList = query.getResultList();
-        return resultList;
+        Query query = entityManager.createNamedQuery("Event.foundEvents");
+        query.setParameter("phrase",phrase);
+        return query.getResultList();
     }
 
     public Event findById(Long id) {

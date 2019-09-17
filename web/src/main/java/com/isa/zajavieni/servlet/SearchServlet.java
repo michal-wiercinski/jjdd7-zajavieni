@@ -23,6 +23,8 @@ public class SearchServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String phrase = request.getParameter("phrase");
         List<Event> foundEvents = searchService.searchEvents(phrase);
-        foundEvents.forEach(f-> System.out.println(f.getName()));
+        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        foundEvents.forEach(f-> System.out.println(f.getId()+"---------"+f.getName()+ "------"+f.getAddress()));
+        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
     }
 }

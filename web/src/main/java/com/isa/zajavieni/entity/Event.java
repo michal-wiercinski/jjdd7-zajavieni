@@ -15,6 +15,10 @@ import javax.persistence.*;
         @NamedQuery(
                 name = Event.GET_SIZE,
                 query = "SELECT count(e) FROM Event e WHERE e.startDate >= :time"
+        ),
+        @NamedQuery(
+                name = "Event.foundEvents",
+                query = "SELECT e FROM Event e WHERE e.name LIKE CONCAT('%',:phrase,'%')"
         )
 
 })
