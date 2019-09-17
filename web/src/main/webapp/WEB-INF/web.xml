@@ -9,7 +9,7 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <welcome-file-list>
-    <welcome-file>main</welcome-file>
+    <welcome-file>/main</welcome-file>
   </welcome-file-list>
 
   <data-source>

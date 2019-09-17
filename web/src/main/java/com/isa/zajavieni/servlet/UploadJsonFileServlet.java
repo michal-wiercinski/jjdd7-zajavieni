@@ -49,6 +49,6 @@ public class UploadJsonFileServlet extends HttpServlet {
         partService.servicedEventPart(eventFile);
         partService.servicedPlacePart(placeFile);
         partService.servicedOrganizerPart(organizerFile);
-        response.sendRedirect("/3cityevent/main");
+        response.sendRedirect("/main");
     }
 }

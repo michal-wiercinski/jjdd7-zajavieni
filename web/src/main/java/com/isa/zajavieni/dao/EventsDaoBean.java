@@ -29,10 +29,15 @@ public class EventsDaoBean {
         entityManager.persist(event);
     }
 
-    public List<Event> searchEvents(String phrase){
+    public List<Event> searchEvents(String phrase) {
         Query query = entityManager.createQuery("SELECT e FROM Event e WHERE e.name LIKE CONCAT('%',:phrase,'%')");
         List<Event> resultList = query.getResultList();
         return resultList;
+    }
+
+    public Event findById(Long id) {
+        logger.info("Object event id: {} has been found", id);
+        return entityManager.find(Event.class, id);
     }
 }
 

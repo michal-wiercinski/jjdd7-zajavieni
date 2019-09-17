@@ -18,16 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-@WebServlet("/upcoming-events")
-public class UpcomingEventServlet extends HttpServlet {
-
-    private static final int EVENTS_PER_PAGE = 8;
-    private static final String PAGE_NUMBER = "pageNo";
+@WebServlet("/event-view")
+public class EventViewServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
-
     @EJB
     private EventDtoService eventDtoService;
 
@@ -36,21 +31,19 @@ public class UpcomingEventServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
 
-        int totalPages = eventDtoService.getTotalPages(EVENTS_PER_PAGE);
-        int pageNumber = 1;
-        String pageParameter = req.getParameter(PAGE_NUMBER);
-
-        if (pageParameter != null || !pageParameter.isEmpty() || NumberUtils.isDigits(pageParameter)) {
-            pageNumber = Integer.valueOf(pageParameter);
+        Long id;
+        EventDto eventDto = new EventDto();
+        String eventId = req.getParameter("id");
+        if (eventId != null || !eventId.isEmpty() || NumberUtils.isDigits(eventId)) {
+            id = Long.valueOf(eventId);
+            eventDto = eventDtoService.findById(id);
         }
-        List<EventDto> events = eventDtoService.findUpcomingEvents(pageNumber, EVENTS_PER_PAGE);
 
-        Template template = templateProvider.getTemplate(getServletContext(), "upcoming-events.ftlh");
+        Template template = templateProvider.getTemplate(getServletContext(), "event-details.ftlh");
         Map<String, Object> model = new HashMap<>();
-        model.put("events", events);
-        model.put("page", pageNumber);
-        model.put("totalPages", totalPages);
+        model.put("event", eventDto);
 
         try {
             template.process(model, resp.getWriter());
