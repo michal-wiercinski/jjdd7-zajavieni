@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -34,6 +36,26 @@ public class EventsDaoBean {
         return entityManager.find(Event.class, id);
     }
 
-    public List<Event> findAllByOrganizerId(Organizer organi)
+    public List<Event> findUpcomingEvents(int from, int howMany) {
+        Query query = entityManager.createNamedQuery("Event.upcomingEvents");
+        query.setParameter("time", new Date())
+                .setFirstResult(from)
+                .setMaxResults(howMany);
+        return query.getResultList();
+    }
+
+    public int getUpcomingEventsSize(){
+        Query query = entityManager.createNamedQuery(Event.GET_SIZE);
+        query.setParameter("time", new Date());
+        Long result = (Long) query.getSingleResult();
+        return result.intValue();
+    }
+
+    public List<Event> findAllByOrganizerId(Long id) {
+        Query query = entityManager.createNamedQuery("Event.filtrByOrganizer");
+        query.setParameter("organizer_id", id);
+        query.setParameter("time", new Date());
+        return query.getResultList();
+    }
 }
 

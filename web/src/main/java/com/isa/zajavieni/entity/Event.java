@@ -15,11 +15,12 @@ import javax.persistence.*;
         @NamedQuery(
                 name = Event.GET_SIZE,
                 query = "SELECT count(e) FROM Event e WHERE e.startDate >= :time"
-        )
+        ),
 
         @NamedQuery(
                 name = "Event.filtrByOrganizer",
-                query = "SELECT e FROM Event e WHERE e.organizer.id = :id_organizer"
+                query = "SELECT e FROM Event e WHERE e.organizer.id = :id_organizer " +
+                        "AND e.startDate >= :time ORDER BY e.startDate"
         )
 })
 @Entity
