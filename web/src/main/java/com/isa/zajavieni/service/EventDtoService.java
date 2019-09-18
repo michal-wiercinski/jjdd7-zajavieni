@@ -2,6 +2,7 @@ package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.dao.EventsDaoBean;
 import com.isa.zajavieni.dto.EventDto;
+import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.mapper.EventDtoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +43,7 @@ public class EventDtoService {
         return size;
     }
 
-    public int getTotalPages(int eventsPerPage) {
+    public int getTotalPagesUpcomingEvent(int eventsPerPage) {
         return getUpcomingEventsSize() / eventsPerPage;
     }
 
@@ -53,11 +54,24 @@ public class EventDtoService {
     }
 
     public List<EventDto> findEventsByOrganizerId(Long id, int from, int howMany) {
-        List<EventDto> eventsList = eventsDaoBean.findAllByOrganizerId(id).stream()
+        if (from > 0) {
+            from *= howMany;
+        }
+        List<EventDto> eventsList = eventsDaoBean.findAllByOrganizerId(id, from, howMany).stream()
                 .map((event) -> dtoMapper.mapEventToDto(event))
                 .collect(Collectors.toList());
         logger.info("{} results have been found for the organizer for id: {}", eventsList.size(), id);
         return eventsList;
+    }
+
+    private int getOrganizersEventsSize(Long id) {
+        int size = eventsDaoBean.getUpcomingEventsSize(id);
+        logger.info("{} events found", size);
+        return size;
+    }
+
+    public int getTotalPagesOrganizersEvent(Long id, int perPage){
+        return getOrganizersEventsSize(id) / perPage;
     }
 
 }

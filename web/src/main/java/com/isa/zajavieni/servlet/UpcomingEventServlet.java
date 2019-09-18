@@ -37,7 +37,7 @@ public class UpcomingEventServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        int totalPages = eventDtoService.getTotalPages(EVENTS_PER_PAGE);
+        int totalPages = eventDtoService.getTotalPagesUpcomingEvent(EVENTS_PER_PAGE);
         int pageNumber = 1;
         String pageParameter = req.getParameter(PAGE_NUMBER);
 

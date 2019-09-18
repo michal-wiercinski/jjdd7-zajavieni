@@ -13,21 +13,23 @@ import javax.persistence.*;
                 query = "SELECT e FROM  Event e WHERE e.startDate >= :time ORDER BY e.startDate"
         ),
         @NamedQuery(
-                name = Event.GET_SIZE,
+                name = "Event.counterByDate",
                 query = "SELECT count(e) FROM Event e WHERE e.startDate >= :time"
         ),
-
         @NamedQuery(
                 name = "Event.filterByOrganizer",
                 query = "SELECT e FROM Event e WHERE e.organizer.id = :id_organizer " +
                         "AND e.startDate >= :time ORDER BY e.startDate"
+        ),
+        @NamedQuery(
+                name = "Event.counterByOrganizer",
+                query = "SELECT e FROM Event e WHERE e.organizer.id = :id_organizer " +
+                "AND e.startDate >= :time"
         )
 })
 @Entity
 @Table(name = "event")
 public class Event {
-
-    public static final String GET_SIZE = "Event.counter";
 
     @Id
     @Column(name = "event_id")
