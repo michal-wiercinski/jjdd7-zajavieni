@@ -25,7 +25,7 @@ public class EventApiConsumer {
     LocalDate today = LocalDate.now();
     LocalDate startDate = today;
     int intervalTime = 4;
-    int numberOfPeriods = 8;
+    int numberOfPeriods = 1;
     LocalDate endDate = today.plusDays(intervalTime);
     for (int i = 0; i < numberOfPeriods; i++) {
       logger.info("ApiEvent consumer started");

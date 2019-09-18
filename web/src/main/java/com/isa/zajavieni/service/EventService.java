@@ -18,7 +18,7 @@ public class EventService {
 
   public Event findEventById(Long id) {
     logger.info("Find event id: {}", id);
-    Event event = eventsDaoBean.findEventById(id);
+    Event event = eventsDaoBean.findById(id);
     return event;
   }
 

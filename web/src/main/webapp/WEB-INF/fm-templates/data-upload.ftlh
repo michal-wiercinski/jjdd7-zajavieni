@@ -5,7 +5,7 @@
 
     <div class="container-fluid row">
 
-        <form method="post" action="/3cityevent/admin/upload" enctype="multipart/form-data">
+        <form method="post" action="/admin/upload" enctype="multipart/form-data">
 
             <div class="custom-file ">
                 <input type="file" class="custom-file-input" id="dataFile1" name="eventFile">
