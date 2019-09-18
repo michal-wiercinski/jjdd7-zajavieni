@@ -12,15 +12,17 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Custom styles for this template -->
     <link href="/css/main.css" rel="stylesheet">
+    <script src="jquery.js"></script>
 </head>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
         <a href="/main" class="my-0 mr-md-auto font-weight-normal"><img src="/img/logo.jpg" alt="logo"></a>
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search">
             <button class="btn btn-outline-primary btn-rounded btn-sm my-0 waves-effect waves-light" type="submit">
                 Szukaj
             </button>
         </form>
+        <ul class="list-group" id="result"></ul>
         <#assign upcoming_link = "/upcoming-events?pageNo=0">
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="${upcoming_link}">Lista wydarzeń</a>
@@ -49,3 +51,7 @@
         crossorigin="anonymous"></script>
 </body>
 </html>
+
+<script>
+
+</script>
