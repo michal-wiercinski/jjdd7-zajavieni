@@ -18,7 +18,7 @@ import javax.persistence.*;
         ),
 
         @NamedQuery(
-                name = "Event.filtrByOrganizer",
+                name = "Event.filterByOrganizer",
                 query = "SELECT e FROM Event e WHERE e.organizer.id = :id_organizer " +
                         "AND e.startDate >= :time ORDER BY e.startDate"
         )

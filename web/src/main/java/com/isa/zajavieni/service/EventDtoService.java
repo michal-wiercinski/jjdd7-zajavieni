@@ -26,7 +26,10 @@ public class EventDtoService {
 
     @Transactional
     public List<EventDto> findUpcomingEvents(int from, int howMany) {
-        List<EventDto> upcomingEventsList = eventsDaoBean.findUpcomingEvents(from,howMany)
+        if (from > 0) {
+            from *= howMany;
+        }
+        List<EventDto> upcomingEventsList = eventsDaoBean.findUpcomingEvents(from, howMany)
                 .stream()
                 .map((event) -> dtoMapper.mapEventToDto(event))
                 .collect(Collectors.toList());
@@ -49,7 +52,7 @@ public class EventDtoService {
         return eventDto;
     }
 
-    public List<EventDto> findEventsByOrganizerId(Long id){
+    public List<EventDto> findEventsByOrganizerId(Long id, int from, int howMany) {
         List<EventDto> eventsList = eventsDaoBean.findAllByOrganizerId(id).stream()
                 .map((event) -> dtoMapper.mapEventToDto(event))
                 .collect(Collectors.toList());

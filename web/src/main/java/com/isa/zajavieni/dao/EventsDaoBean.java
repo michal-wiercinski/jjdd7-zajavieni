@@ -51,9 +51,9 @@ public class EventsDaoBean {
     }
 
     public List<Event> findAllByOrganizerId(Long id) {
-        Query query = entityManager.createNamedQuery("Event.filtrByOrganizer");
-        query.setParameter("organizer_id", id);
-        query.setParameter("time", new Date());
+        Query query = entityManager.createNamedQuery("Event.filterByOrganizer");
+        query.setParameter("id_organizer", id)
+            .setParameter("time", new Date());
         return query.getResultList();
     }
 }
