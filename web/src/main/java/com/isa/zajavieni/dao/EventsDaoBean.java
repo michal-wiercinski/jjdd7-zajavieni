@@ -31,5 +31,7 @@ public class EventsDaoBean {
         logger.info("Object event id: {} has been found", id);
         return entityManager.find(Event.class, id);
     }
+
+    public Event getResultSize
 }
 
