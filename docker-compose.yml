@@ -4,11 +4,11 @@ services:
   mysql:
     image: mysql
     environment:
-      MYSQL_DATABASE: eventsdb
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: "eventsdb"
+      MYSQL_USER: "root"
+      MYSQL_ROOT_PASSWORD: "root"
     ports:
-      - 4351:3309
+      - 4351:3306
       command: ["mysqld",
                 "--character-set-server=utf8",
                 "--collation-server=utf8_unicode_ci",
@@ -16,12 +16,12 @@ services:
                 "--innodb-flush-log-at-trx-commit=0" ]
 
   wildfly:
-      build:
-        context: ./web
-      ports:
-        - 4350:8080
-        - 4352:9990
+    build:
+      context: ./web
+    ports:
+      - 4350:8080
+      - 4352:9990
     depends_on:
-       mysql
+      mysql
     links:
       mysql
