@@ -1,11 +1,13 @@
 package com.isa.zajavieni.service;
 
+import com.isa.zajavieni.dao.EventsDaoBean;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.mapper.EventDtoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -19,11 +21,13 @@ import java.util.stream.Collectors;
 @Stateless
 public class EventDtoService {
 
-
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @PersistenceContext
     EntityManager entityManager;
+
+    @EJB
+    EventsDaoBean eventsDaoBean;
 
     @Inject
     private EventDtoMapper dtoMapper;
@@ -46,6 +50,7 @@ public class EventDtoService {
         Query query = entityManager.createNamedQuery(Event.GET_SIZE);
         query.setParameter("time", new Date());
         Long result = (Long) query.getSingleResult();
+        logger.info("{} events found", result);
         return result.intValue();
     }
 
@@ -53,11 +58,10 @@ public class EventDtoService {
         return getUpcomingEventsSize() / eventsPerPage;
     }
 
-
-
     public EventDto findById(Long id) {
+        EventDto eventDto = dtoMapper.mapEventToDto(eventsDaoBean.findById(id));
         logger.info("Object event id: {} has been found", id);
-        return dtoMapper.mapEventToDto(entityManager.find(Event.class, id));
+        return eventDto;
     }
 
 }
