@@ -26,14 +26,17 @@ public class FavouriteEventService {
   public List<EventDto> findListOfFavouriteEvents() {
     logger.info("Find list of favourite events");
     List<Event> favouriteEvents = eventsDaoBean.findAllFavouriteEvents();
-    return favouriteEvents.stream().map(event -> dtoMapper.mapEventToDto(event)).collect(Collectors.toList());
+    return favouriteEvents.stream().map(event -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
   }
 
   public void setEventFavouriteStatus(String idString) {
-    logger.info("Set status of favourite");
     Long id = Long.parseLong(idString);
+    logger.info("Set status of favourite event id: {}", id);
     Event searchingEvent = eventsDaoBean.findById(id);
-    searchingEvent.setIsFavourite(!searchingEvent.getIsFavourite());
+    if (!(findListOfFavouriteEvents().size() == 3 && searchingEvent.getIsFavourite() == false)) {
+      searchingEvent.setIsFavourite(!searchingEvent.getIsFavourite());
+    }
     eventsDaoBean.editEvent(searchingEvent);
   }
 }

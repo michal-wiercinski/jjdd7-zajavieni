@@ -1,7 +1,6 @@
 package com.isa.zajavieni.servlet;
 
 import com.isa.zajavieni.dto.EventDto;
-import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.FavouriteEventService;
 import freemarker.template.Template;
@@ -30,7 +29,6 @@ public class FavouriteEventsServlet extends HttpServlet {
   @Inject
   private TemplateProvider templateProvider;
 
-
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
@@ -50,7 +48,7 @@ public class FavouriteEventsServlet extends HttpServlet {
   protected void doPut(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     logger.info("Request PUT method");
-    String id = req.getParameter("event");
+    String id = req.getParameter("id");
     favouriteEventService.setEventFavouriteStatus(id);
   }
 }
