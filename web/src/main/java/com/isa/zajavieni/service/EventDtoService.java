@@ -64,4 +64,11 @@ public class EventDtoService {
         return eventDto;
     }
 
+
+    public List<EventDto> searchEvents(String phrase){
+        return eventsDaoBean.searchEvents(phrase).stream()
+                .map((event) -> dtoMapper.mapEventToDto(event))
+                .collect(Collectors.toList());
+    }
+
 }

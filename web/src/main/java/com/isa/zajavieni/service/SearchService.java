@@ -1,7 +1,6 @@
 package com.isa.zajavieni.service;
 
-import com.isa.zajavieni.dao.EventsDaoBean;
-import com.isa.zajavieni.entity.Event;
+import com.isa.zajavieni.dto.EventDto;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -11,9 +10,9 @@ import java.util.List;
 public class SearchService {
 
     @EJB
-    private EventsDaoBean eventsDaoBean;
+    private EventDtoService eventDtoService;
 
-    public List<Event> searchEvents(String phrase){
-        return eventsDaoBean.searchEvents(phrase);
+    public List<EventDto> searchEvents(String phrase) {
+        return eventDtoService.searchEvents(phrase);
     }
 }
