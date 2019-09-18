@@ -1,6 +1,7 @@
 package com.isa.zajavieni.dao;
 
 import com.isa.zajavieni.entity.Event;
+import com.isa.zajavieni.entity.Organizer;
 import com.isa.zajavieni.servlet.LoggerServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Stateless
 public class EventsDaoBean {
@@ -31,5 +33,7 @@ public class EventsDaoBean {
         logger.info("Object event id: {} has been found", id);
         return entityManager.find(Event.class, id);
     }
+
+    public List<Event> findAllByOrganizerId(Organizer organi)
 }
 

@@ -17,6 +17,10 @@ import javax.persistence.*;
                 query = "SELECT count(e) FROM Event e WHERE e.startDate >= :time"
         )
 
+        @NamedQuery(
+                name = "Event.filtrByOrganizer",
+                query = "SELECT e FROM Event e WHERE e.organizer.id = :id_organizer"
+        )
 })
 @Entity
 @Table(name = "event")
