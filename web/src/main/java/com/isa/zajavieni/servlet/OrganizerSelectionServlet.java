@@ -1,11 +1,11 @@
 package com.isa.zajavieni.servlet;
 
-import com.isa.zajavieni.dto.EventDto;
+import com.isa.zajavieni.dto.OrganizerDto;
 import com.isa.zajavieni.provider.TemplateProvider;
-import com.isa.zajavieni.service.EventDtoService;
+import com.isa.zajavieni.service.OrganizerDtoService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,20 +17,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet("/upcoming-events")
-public class UpcomingEventServlet extends HttpServlet {
-
-    private static final int EVENTS_PER_PAGE = 8;
-    private static final String PAGE_NUMBER = "pageNo";
+@WebServlet("/organizers")
+public class OrganizerSelectionServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-
     @EJB
-    private EventDtoService eventDtoService;
+    OrganizerDtoService organizerDtoService;
 
     @Inject
     private TemplateProvider templateProvider;
@@ -38,20 +35,20 @@ public class UpcomingEventServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        int totalPages = eventDtoService.getTotalPagesUpcomingEvent(EVENTS_PER_PAGE);
-        int pageNumber = 1;
-        String pageParameter = req.getParameter(PAGE_NUMBER);
+        List<OrganizerDto> organizers = new ArrayList<>();
 
-        if (pageParameter != null || !pageParameter.isEmpty() || NumberUtils.isDigits(pageParameter)) {
-            pageNumber = Integer.valueOf(pageParameter);
+        String letter;
+        String letterParam = req.getParameter("letter");
+        if (letterParam != null || !letterParam.isEmpty() || StringUtils.isAlpha(letterParam)) {
+            letter = letterParam;
+            organizers = organizerDtoService.getListByFirstLetter(letter);
+        } else {
+            organizers = organizerDtoService.getListByFirstLetter("A");
         }
-        List<EventDto> events = eventDtoService.findUpcomingEvents(pageNumber, EVENTS_PER_PAGE);
 
-        Template template = templateProvider.getTemplate(getServletContext(), "upcoming-events.ftlh");
+        Template template = templateProvider.getTemplate(getServletContext(), "organizers-list.ftlh");
         Map<String, Object> model = new HashMap<>();
-        model.put("events", events);
-        model.put("page", pageNumber);
-        model.put("totalPages", totalPages);
+        model.put("organizers", organizers);
 
         try {
             template.process(model, resp.getWriter());
@@ -60,3 +57,4 @@ public class UpcomingEventServlet extends HttpServlet {
         }
     }
 }
+

@@ -21,13 +21,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet("/upcoming-events")
-public class UpcomingEventServlet extends HttpServlet {
+@WebServlet("/filter-by-organizer")
+public class FilterByOrganizerServlet extends HttpServlet {
 
     private static final int EVENTS_PER_PAGE = 8;
     private static final String PAGE_NUMBER = "pageNo";
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
-
 
     @EJB
     private EventDtoService eventDtoService;
@@ -37,17 +36,23 @@ public class UpcomingEventServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Long id = null;
+        String idParam = req.getParameter("id");
+        if (idParam != null || !idParam.isEmpty() || NumberUtils.isDigits(idParam)) {
+            id = Long.valueOf(idParam);
+        }
 
-        int totalPages = eventDtoService.getTotalPagesUpcomingEvent(EVENTS_PER_PAGE);
         int pageNumber = 1;
         String pageParameter = req.getParameter(PAGE_NUMBER);
-
         if (pageParameter != null || !pageParameter.isEmpty() || NumberUtils.isDigits(pageParameter)) {
             pageNumber = Integer.valueOf(pageParameter);
         }
-        List<EventDto> events = eventDtoService.findUpcomingEvents(pageNumber, EVENTS_PER_PAGE);
 
-        Template template = templateProvider.getTemplate(getServletContext(), "upcoming-events.ftlh");
+        int totalPages = eventDtoService.getTotalPagesOrganizersEvent(id, EVENTS_PER_PAGE);
+
+        List<EventDto> events = eventDtoService.findEventsByOrganizerId(id, pageNumber, EVENTS_PER_PAGE);
+
+        Template template = templateProvider.getTemplate(getServletContext(), "organizers-event.ftlh");
         Map<String, Object> model = new HashMap<>();
         model.put("events", events);
         model.put("page", pageNumber);
@@ -60,3 +65,5 @@ public class UpcomingEventServlet extends HttpServlet {
         }
     }
 }
+
+

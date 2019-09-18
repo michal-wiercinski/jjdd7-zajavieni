@@ -1,12 +1,17 @@
 package com.isa.zajavieni.dao;
 
+import com.isa.zajavieni.dto.OrganizerDto;
 import com.isa.zajavieni.entity.Organizer;
 import com.isa.zajavieni.servlet.LoggerServlet;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 @Stateless
 public class OrganizersDaoBean {
@@ -24,5 +29,11 @@ public class OrganizersDaoBean {
   public Organizer findOrganizerById(Long id) {
     logger.info("Object organizer id: {} find", id);
     return entityManager.find(Organizer.class, id);
+  }
+
+  public List<Organizer> findOrganizersByFirstLetter(String letter){
+    Query query = entityManager.createNamedQuery("Organizer.SearchByFirstLetter");
+    query.setParameter("first_letter", letter);
+    return query.getResultList();
   }
 }

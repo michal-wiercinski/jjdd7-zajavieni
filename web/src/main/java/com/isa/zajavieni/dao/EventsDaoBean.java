@@ -8,6 +8,10 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 @Stateless
 public class EventsDaoBean {
@@ -32,6 +36,37 @@ public class EventsDaoBean {
         return entityManager.find(Event.class, id);
     }
 
-    public Event getResultSize
+    public List<Event> findUpcomingEvents(int from, int howMany) {
+        Query query = entityManager.createNamedQuery("Event.upcomingEvents");
+        query.setParameter("time", new Date())
+                .setFirstResult(from)
+                .setMaxResults(howMany);
+        return query.getResultList();
+    }
+
+    public int getUpcomingEventsSize() {
+        Query query = entityManager.createNamedQuery("Event.counterByDate");
+        query.setParameter("time", new Date());
+        Long result = (Long) query.getSingleResult();
+        return result.intValue();
+    }
+
+    public List<Event> findAllByOrganizerId(Long id, int from, int howMany) {
+        Query query = entityManager.createNamedQuery("Event.filterByOrganizer");
+        query.setParameter("id_organizer", id)
+                .setParameter("time", new Date())
+                .setFirstResult(from)
+                .setMaxResults(howMany);
+        return query.getResultList();
+    }
+
+    public int getOrganizersEventSize(Long id) {
+        Query query = entityManager.createNamedQuery("Event.counterByOrganizer");
+        query.setParameter("time", new Date())
+                .setParameter("id_organizer", id);
+        Long result = (Long) query.getSingleResult();
+        return result.intValue();
+    }
+
 }
 
