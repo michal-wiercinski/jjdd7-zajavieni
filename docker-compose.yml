@@ -1,4 +1,4 @@
-version: '1'
+version: '2'
 
 services:
   mysql:
@@ -9,11 +9,11 @@ services:
       MYSQL_ROOT_PASSWORD: "root"
     ports:
       - 4351:3306
-      command: ["mysqld",
-                "--character-set-server=utf8",
-                "--collation-server=utf8_unicode_ci",
-                "--init-connect='SET NAMES UTF8;'",
-                "--innodb-flush-log-at-trx-commit=0" ]
+    command: ["mysqld",
+              "--character-set-server=utf8",
+              "--collation-server=utf8_unicode_ci",
+              "--init-connect='SET NAMES UTF8;'",
+              "--innodb-flush-log-at-trx-commit=0" ]
 
   wildfly:
     build:
@@ -22,6 +22,6 @@ services:
       - 4350:8080
       - 4352:9990
     depends_on:
-      mysql
+      - mysql
     links:
-      mysql
+      - mysql
