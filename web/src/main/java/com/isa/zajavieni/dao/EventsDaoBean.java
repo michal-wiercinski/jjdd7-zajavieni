@@ -1,7 +1,6 @@
 package com.isa.zajavieni.dao;
 
 import com.isa.zajavieni.entity.Event;
-import com.isa.zajavieni.entity.Organizer;
 import com.isa.zajavieni.servlet.LoggerServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +43,7 @@ public class EventsDaoBean {
         return query.getResultList();
     }
 
-    public int getUpcomingEventsSize(){
+    public int getUpcomingEventsSize() {
         Query query = entityManager.createNamedQuery(Event.GET_SIZE);
         query.setParameter("time", new Date());
         Long result = (Long) query.getSingleResult();

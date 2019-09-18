@@ -9,8 +9,6 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,9 +17,6 @@ import java.util.stream.Collectors;
 public class EventDtoService {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
-
-    @PersistenceContext
-    EntityManager entityManager;
 
     @EJB
     EventsDaoBean eventsDaoBean;
