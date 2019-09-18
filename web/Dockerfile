@@ -1,6 +1,6 @@
 FROM jboss/widlfly
 
-RUN /opt/jboss/wildfly/bin/add-user.sh admin 123!zajava
+RUN /opt/jboss/wildfly/bin/add-user.sh admin 123#zajava
     --silent
 
 ADD target/3cityevent.war
