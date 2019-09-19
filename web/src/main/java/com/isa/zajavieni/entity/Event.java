@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -84,6 +85,9 @@ public class Event {
   @ManyToOne
   @JoinColumn(name = "category_id")
   Category category;
+
+  @ManyToMany(mappedBy = "events")
+  List<User> users = new ArrayList<>();
 
   public Event(String name, String descShort, String descLong, Boolean active,
       Date startDate, Date endDate, TicketType type) {
@@ -212,4 +216,11 @@ public class Event {
     this.isFavourite = isFavourite;
   }
 
+  public List<User> getUsers() {
+    return users;
+  }
+
+  public void setUsers(List<User> users) {
+    this.users = users;
+  }
 }
