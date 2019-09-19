@@ -195,4 +195,12 @@ public class Event {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 }
