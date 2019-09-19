@@ -64,7 +64,7 @@ public class EventDtoService {
         return eventsList;
     }
 
-    private int getOrganizersEventsSize(Long id) {
+    public int getOrganizersEventsSize(Long id) {
         int size = eventsDaoBean.getOrganizersEventSize(id);
         logger.info("{} events found", size);
         return size;

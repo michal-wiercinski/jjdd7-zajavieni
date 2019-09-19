@@ -37,13 +37,13 @@ public class OrganizerSelectionServlet extends HttpServlet {
 
         List<OrganizerDto> organizers = new ArrayList<>();
 
-        String letter;
+        String letter = "A";
         String letterParam = req.getParameter("letter");
         if (letterParam != null || !letterParam.isEmpty() || StringUtils.isAlpha(letterParam)) {
-            letter = letterParam;
+            letter = letterParam.toUpperCase();
             organizers = organizerDtoService.getListByFirstLetter(letter);
         } else {
-            organizers = organizerDtoService.getListByFirstLetter("A");
+            organizers = organizerDtoService.getListByFirstLetter(letter);
         }
 
         Template template = templateProvider.getTemplate(getServletContext(), "organizers-list.ftlh");
