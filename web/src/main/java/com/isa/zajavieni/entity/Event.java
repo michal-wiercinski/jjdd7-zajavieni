@@ -68,6 +68,9 @@ public class Event {
     @JoinColumn(name = "category_id")
     Category category;
 
+    @ManyToMany(mappedBy = "events")
+    List<User> users = new ArrayList<>();
+
     public Event(String name, String descShort, String descLong, Boolean active,
                  Date startDate, Date endDate, TicketType type) {
         this.name = name;
@@ -77,7 +80,6 @@ public class Event {
         this.startDate = startDate;
         this.endDate = endDate;
         this.type = type;
-
     }
 
     public Event() {
