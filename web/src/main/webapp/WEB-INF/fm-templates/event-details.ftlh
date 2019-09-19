@@ -21,6 +21,9 @@
                         <p class="card-text">${event.addressName}</p>
                     </#if>
 
+                    <h3><span class="badge badge-secondary">Organizator</span></h3>
+                    <p class="card-text">${event.organizerName}</p>
+
                     <h3><span class="badge badge-secondary">Adres</span></h3>
                     <#if event.addressStreet??>
                         <p class="card-text">${event.addressStreet}</p>
