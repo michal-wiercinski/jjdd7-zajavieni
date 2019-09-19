@@ -1,6 +1,10 @@
 <#include "navbar.ftlh">
-
-<h1 class="text-center" style="background-color:cadetblue;">TWOJE ULUBIONE WYDARZENIA</h1>
+<div class="alert alert-dark text-center" role="alert">
+  <h1>
+    <strong>Twoje ulubione wydarzenia</strong>
+  </h1>
+</div>
+<#--<h1 class="text-center" style="background-color:cadetblue;">TWOJE ULUBIONE WYDARZENIA</h1>-->
 <div class="container-fluid row">
     <#if favouriteEvents?size == 0>
       <div class="container-fluid">
