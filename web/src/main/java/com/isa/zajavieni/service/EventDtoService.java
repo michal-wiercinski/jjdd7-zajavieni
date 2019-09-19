@@ -2,7 +2,6 @@ package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.dao.EventsDaoBean;
 import com.isa.zajavieni.dto.EventDto;
-import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.mapper.EventDtoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,6 +52,7 @@ public class EventDtoService {
         return eventDto;
     }
 
+    @Transactional
     public List<EventDto> findEventsByOrganizerId(Long id, int from, int howMany) {
         if (from > 0) {
             from *= howMany;
@@ -70,11 +70,11 @@ public class EventDtoService {
         return size;
     }
 
-    public int getTotalPagesOrganizersEvent(Long id, int perPage){
+    public int getTotalPagesOrganizersEvent(Long id, int perPage) {
         return getOrganizersEventsSize(id) / perPage;
     }
 
-    public int getTotalPages(int numberFound, int perPage){
+    public int getTotalPages(int numberFound, int perPage) {
         return numberFound / perPage;
     }
 

@@ -5,7 +5,6 @@ import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.OrganizerDtoService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,5 +51,3 @@ public class OrganizerSelectionServlet extends HttpServlet {
         }
     }
 }
-
-

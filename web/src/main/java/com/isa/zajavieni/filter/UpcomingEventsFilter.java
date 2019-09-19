@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.annotation.WebInitParam;
 import java.io.IOException;
 
 @WebFilter(
@@ -24,9 +23,9 @@ public class UpcomingEventsFilter implements Filter {
 
         String pageParameter = servletRequest.getParameter(PAGE_NUMBER);
 
-        int pageNumber = 1;
+        int pageNumber = 0;
         if (pageParameter != null && !pageParameter.isEmpty()
-            && NumberUtils.isDigits(pageParameter)) {
+                && NumberUtils.isDigits(pageParameter)) {
             pageNumber = Integer.valueOf(pageParameter);
         } else {
             logger.warn("Bad format");

@@ -23,8 +23,8 @@ import javax.persistence.*;
         ),
         @NamedQuery(
                 name = "Event.counterByOrganizer",
-                query = "SELECT e FROM Event e WHERE e.organizer.id = :id_organizer " +
-                "AND e.startDate >= :time"
+                query = "SELECT count(e) FROM Event e WHERE e.organizer.id = :id_organizer " +
+                        "AND e.startDate >= :time"
         )
 })
 @Entity

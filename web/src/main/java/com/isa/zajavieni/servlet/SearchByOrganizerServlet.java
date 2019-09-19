@@ -38,14 +38,18 @@ public class SearchByOrganizerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long id = null;
         String idParam = req.getParameter("id");
-        if (idParam != null || !idParam.isEmpty() || NumberUtils.isDigits(idParam)) {
+        if (idParam != null && !idParam.isEmpty() && NumberUtils.isDigits(idParam)) {
             id = Long.valueOf(idParam);
+        } else {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
 
-        int pageNumber = 1;
+        int pageNumber = 0;
         String pageParameter = req.getParameter(PAGE_NUMBER);
-        if (pageParameter != null || !pageParameter.isEmpty() || NumberUtils.isDigits(pageParameter)) {
+        if (pageParameter != null && !pageParameter.isEmpty() && NumberUtils.isDigits(pageParameter)) {
             pageNumber = Integer.valueOf(pageParameter);
+        } else {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
 
         int totalPages = eventDtoService.getTotalPagesOrganizersEvent(id, EVENTS_PER_PAGE);
@@ -65,5 +69,3 @@ public class SearchByOrganizerServlet extends HttpServlet {
         }
     }
 }
-
-
