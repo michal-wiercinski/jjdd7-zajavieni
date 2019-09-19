@@ -39,12 +39,10 @@ public class UpcomingEventServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         int totalPages = eventDtoService.getTotalPagesUpcomingEvent(EVENTS_PER_PAGE);
-        int pageNumber = 1;
         String pageParameter = req.getParameter(PAGE_NUMBER);
 
-        if (pageParameter != null || !pageParameter.isEmpty() || NumberUtils.isDigits(pageParameter)) {
-            pageNumber = Integer.valueOf(pageParameter);
-        }
+        int pageNumber = Integer.valueOf(pageParameter);
+
         List<EventDto> events = eventDtoService.findUpcomingEvents(pageNumber, EVENTS_PER_PAGE);
 
         Template template = templateProvider.getTemplate(getServletContext(), "upcoming-events.ftlh");

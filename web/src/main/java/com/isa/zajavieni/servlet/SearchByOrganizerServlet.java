@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @WebServlet("/filter-by-organizer")
-public class FilterByOrganizerServlet extends HttpServlet {
+public class SearchByOrganizerServlet extends HttpServlet {
 
     private static final int EVENTS_PER_PAGE = 8;
     private static final String PAGE_NUMBER = "pageNo";

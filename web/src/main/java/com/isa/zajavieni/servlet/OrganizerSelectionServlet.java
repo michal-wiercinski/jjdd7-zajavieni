@@ -32,19 +32,14 @@ public class OrganizerSelectionServlet extends HttpServlet {
     @Inject
     private TemplateProvider templateProvider;
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         List<OrganizerDto> organizers = new ArrayList<>();
 
-        String letter = "A";
-        String letterParam = req.getParameter("letter");
-        if (letterParam != null || !letterParam.isEmpty() || StringUtils.isAlpha(letterParam)) {
-            letter = letterParam.toUpperCase();
-            organizers = organizerDtoService.getListByFirstLetter(letter);
-        } else {
-            organizers = organizerDtoService.getListByFirstLetter(letter);
-        }
+        String letter = req.getParameter("letter");
+        organizers = organizerDtoService.getListByFirstLetter(letter.toUpperCase());
 
         Template template = templateProvider.getTemplate(getServletContext(), "organizers-list.ftlh");
         Map<String, Object> model = new HashMap<>();
@@ -57,4 +52,5 @@ public class OrganizerSelectionServlet extends HttpServlet {
         }
     }
 }
+
 

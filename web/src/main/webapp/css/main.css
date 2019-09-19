@@ -32,3 +32,8 @@ margin: 10px;
     /*height: 11vw;*/
     object-fit: cover;
 }
+
+#alpha-page {
+    display: flex;
+    justify-content: center;
+}

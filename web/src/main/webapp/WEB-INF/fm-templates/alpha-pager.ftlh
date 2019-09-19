@@ -1,7 +1,6 @@
-<div class="container text-center">
+<div class="container text-center" id="alpha-page">
     <nav>
         <ul class="pagination">
-            <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
             <li><a href="/organizers?letter=A">A</a></li>
             <li><a href="/organizers?letter=B">B</a></li>
             <li><a href="/organizers?letter=C">C</a></li>
@@ -28,7 +27,6 @@
             <li><a href="/organizers?letter=X">X</a></li>
             <li><a href="/organizers?letter=Y">Y</a></li>
             <li><a href="/organizers?letter=Z">Z</a></li>
-            <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
         </ul>
     </nav>
 </div>
