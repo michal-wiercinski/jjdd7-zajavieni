@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -31,7 +32,12 @@ public class EventsDaoBean {
 
     public List<Event> searchEvents(String phrase) {
         Query query = entityManager.createNamedQuery("Event.foundEvents");
-        query.setParameter("phrase",phrase);
+        query.setParameter("phrase", phrase);
+        return query.getResultList();
+    }
+
+    public List<Event> searchEventsWithPhraseAndDates(String phrase, Date startDate, Date endDate) {
+        Query query = entityManager.createQuery("Event.foundWithPhraseAndBetweenDates");
         return query.getResultList();
     }
 

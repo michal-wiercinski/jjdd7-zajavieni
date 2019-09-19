@@ -10,7 +10,11 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(
                 name = "Event.upcomingEvents",
-                query = "SELECT e FROM  Event e WHERE e.startDate >= :time ORDER BY e.startDate"
+                query = "SELECT e FROM Event e WHERE e.startDate >= :time ORDER BY e.startDate"
+        ),
+        @NamedQuery(
+                name = "Event.foundWithPhraseAndBetweenDates",
+                query = "SELECT e FROM Event e WHERE e.name LIKE CONCAT('%',:phrase,'%') AND (e.startDate BETWEEN :startDate AND :endDate)"
         ),
         @NamedQuery(
                 name = Event.GET_SIZE,

@@ -5,8 +5,12 @@ import com.isa.zajavieni.servlet.LoggerServlet;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 @Stateless
 public class OrganizersDaoBean {
@@ -24,5 +28,10 @@ public class OrganizersDaoBean {
   public Organizer findOrganizerById(Long id) {
     logger.info("Object organizer id: {} find", id);
     return entityManager.find(Organizer.class, id);
+  }
+
+  public List<Organizer> searchOrganizersByName(String phrase){
+    Query query = entityManager.createQuery("Organizer.foundOrganizer");
+    return query.getResultList();
   }
 }

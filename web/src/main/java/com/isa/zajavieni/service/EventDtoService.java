@@ -65,9 +65,15 @@ public class EventDtoService {
     }
 
 
-    public List<EventDto> searchEvents(String phrase){
+    public List<EventDto> searchEvents(String phrase) {
         return eventsDaoBean.searchEvents(phrase).stream()
-                .map((event) -> dtoMapper.mapEventToDto(event))
+                .map((e) -> dtoMapper.mapEventToDto(e))
+                .collect(Collectors.toList());
+    }
+
+    public List<EventDto> searchEventsWithPhraseAndDates(String phrase, Date startDate, Date endDate) {
+        return eventsDaoBean.searchEventsWithPhraseAndDates(phrase, startDate, endDate).stream()
+                .map((e) -> dtoMapper.mapEventToDto(e))
                 .collect(Collectors.toList());
     }
 
