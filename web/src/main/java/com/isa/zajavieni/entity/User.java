@@ -1,3 +1,4 @@
+/*
 package com.isa.zajavieni.entity;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "user")
@@ -21,6 +23,9 @@ public class User {
   @Column(name = "user_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   Long id;
+
+  @Column(name = "email")
+  String email;
 
   @Column(name = "user_type")
   UserType userType;
@@ -62,3 +67,4 @@ public class User {
     this.events = events;
   }
 }
+*/

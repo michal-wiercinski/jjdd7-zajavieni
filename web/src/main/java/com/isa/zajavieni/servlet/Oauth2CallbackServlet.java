@@ -22,11 +22,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 
-@WebServlet(name = "oauth2callback", value = "/oauth2callback")
+@WebServlet("/oauth2callback")
 @SuppressWarnings("serial")
 public class Oauth2CallbackServlet extends HttpServlet {
 
-    private static final Collection<String> SCOPES = Arrays.asList("email", "profile");
+    private static final Collection<String> SCOPES = Arrays.asList("id", "email");
     private static final String USERINFO_ENDPOINT
             = "https://www.googleapis.com/plus/v1/people/me/openIdConnect";
     private static final JsonFactory JSON_FACTORY = new JacksonFactory();
@@ -43,7 +43,7 @@ public class Oauth2CallbackServlet extends HttpServlet {
         if (req.getSession().getAttribute("state") == null
                 || !req.getParameter("state").equals((String) req.getSession().getAttribute("state"))) {
             resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            resp.sendRedirect("/books");
+            resp.sendRedirect("/main");
             return;
         }
 
@@ -52,13 +52,13 @@ public class Oauth2CallbackServlet extends HttpServlet {
         flow = new GoogleAuthorizationCodeFlow.Builder(
                 HTTP_TRANSPORT,
                 JSON_FACTORY,
-                getServletContext().getInitParameter("bookshelf.clientID"),
-                getServletContext().getInitParameter("bookshelf.clientSecret"),
+                getServletContext().getInitParameter("client.id"),
+                getServletContext().getInitParameter("client.secret"),
                 SCOPES).build();
 
         final TokenResponse tokenResponse =
                 flow.newTokenRequest(req.getParameter("code"))
-                        .setRedirectUri(getServletContext().getInitParameter("bookshelf.callback"))
+                        .setRedirectUri(getServletContext().getInitParameter("/oauth2callback"))
                         .execute();
 
         req.getSession().setAttribute("token", tokenResponse.toString()); // Keep track of the token.

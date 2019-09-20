@@ -33,7 +33,8 @@ public class EventApiConsumer {
       WebTarget webTargetEvent = client.target(String.format("%sstart_date=%s&end_date=%s", URI_EVENT, startDate.toString(),
               endDate.toString()));
       startDate = startDate.plusDays(intervalTime);
-      endDate = endDate.plusDays(intervalTime);
+      endDate = startDate.plusDays(2);
+      /*endDate = endDate.plusDays(intervalTime);*/
       logger.info("ApiEvent response prepared");
       Response response = webTargetEvent.request().get();
       String resp = response.readEntity(String.class);
