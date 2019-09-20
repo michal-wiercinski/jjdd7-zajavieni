@@ -15,7 +15,7 @@
     <link href="/css/main.css" rel="stylesheet">
 
 </head>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <div class="d-flex flex-column flex-md-row align-hitems-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
         <a href="/main" class="my-0 mr-md-auto font-weight-normal"><img src="/img/logo.jpg" alt="logo"></a>
         <form class="form-inline my-2 my-lg-0" >
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search">
