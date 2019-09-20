@@ -1,3 +1,8 @@
+$.ui.autocomplete.prototype._resizeMenu = function () {
+    let ul = this.menu.element;
+    ul.outerWidth(this.element.outerWidth()*2
+    );
+}
 $("#search").autocomplete({
     source: function (request, response) {
         $.ajax({
@@ -7,8 +12,8 @@ $("#search").autocomplete({
                 if (!data.length) {
                     let result = [
                         {
-                            label: noResult,
-                            value: 'Brak wyników'
+                            label: "noResult",
+                            value: "noResult"
                         }
                     ];
                     response(result);
