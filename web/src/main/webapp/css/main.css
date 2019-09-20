@@ -54,3 +54,8 @@ html {
 #search {
     width: 300px;
 }
+
+#alpha-page {
+    display: flex;
+    justify-content: center;
+}

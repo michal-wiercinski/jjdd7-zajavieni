@@ -15,10 +15,9 @@
     <data-source>
         <name>java:ds/zajavieni</name>
         <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
-        <!--    na pullrequest-->
-<!--        <url>jdbc:mysql://mysql/eventsdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>-->
-        <!--    na testy-->
-                <url>jdbc:mysql://0.0.0.0:3309/eventsdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
+        <!--<url>jdbc:mysql://0.0.0.0:3309/eventsdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>-->
+        <!--Na PR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+        <url>jdbc:mysql://mysql/eventsdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
         <user>root</user>
         <password>root</password>
     </data-source>

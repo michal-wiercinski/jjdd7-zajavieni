@@ -15,6 +15,7 @@ public class OrganizerDtoMapper {
 
     public OrganizerDto mapOrganizerToDto(Organizer organizer){
         OrganizerDto organizerDto = new OrganizerDto();
+        organizerDto.setId(organizer.getId());
         organizerDto.setName(organizer.getDesignation());
 
         logger.info("Map event entity id: {} to dto", organizer.getId());
