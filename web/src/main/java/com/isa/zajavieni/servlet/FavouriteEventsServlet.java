@@ -1,6 +1,9 @@
 package com.isa.zajavieni.servlet;
 
+import com.isa.zajavieni.dao.UserDaoBean;
 import com.isa.zajavieni.dto.EventDto;
+import com.isa.zajavieni.entity.User;
+import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.FavouriteEventService;
 import freemarker.template.Template;
@@ -29,11 +32,15 @@ public class FavouriteEventsServlet extends HttpServlet {
   @Inject
   private TemplateProvider templateProvider;
 
+  @Inject
+  private UserDaoBean userDaoBean;
+
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     logger.info("Request GET method");
-    List<EventDto> favouriteEvents = favouriteEventService.findListOfFavouriteEvents();
+    Long idUser = 2L;
+    List<EventDto> favouriteEvents = favouriteEventService.findListOfUserFavouriteEventsDto(idUser);
     Template template = templateProvider.getTemplate(getServletContext(), "favourite.ftlh");
     Map<String, Object> model = new HashMap<>();
     model.put("favouriteEvents", favouriteEvents);
@@ -42,13 +49,32 @@ public class FavouriteEventsServlet extends HttpServlet {
     } catch (TemplateException e) {
       logger.error(e.getMessage());
     }
+    if(userDaoBean.findById(2L) == null){
+      User user = new User();
+      user.setUserType(UserType.USER);
+      userDaoBean.saveEvent(user);
+
+      User user1 = new User();
+      user1.setUserType(UserType.USER);
+      userDaoBean.saveEvent(user1);
+    }
   }
 
   @Override
-  protected void doPut(HttpServletRequest req, HttpServletResponse resp)
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    logger.info("Request PUT method");
-    String id = req.getParameter("id");
-    favouriteEventService.setEventFavouriteStatus(id);
+    logger.info("Request POST method");
+    String idEvent = req.getParameter("id");
+    String idUser = "2";
+    favouriteEventService.addEventToUserFavouriteEvents(idEvent, idUser);
+  }
+
+  @Override
+  protected void doDelete(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    logger.info("Request DELETE method");
+    String idEvent = req.getParameter("id");
+    String idUser = "2";
+    favouriteEventService.deleteEventFromUserFavouriteEvents(idEvent, idUser);
   }
 }

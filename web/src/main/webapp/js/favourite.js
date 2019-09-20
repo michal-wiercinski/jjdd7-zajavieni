@@ -1,9 +1,9 @@
 $(function () {
-    $('#change').click(function (event) {
+    $('#addE').click(function (event) {
       var buttonId = $(event.target).attr('data-id');
       $.ajax({
         url: "/favourite-events",
-        method: "PUT",
+        method: "POST",
         data: {id: buttonId},
         success: function () {
           location.reload();
@@ -13,4 +13,18 @@ $(function () {
         }
       });
     });
+});
+
+$(function () {
+  $('#deleteE').click(function (event) {
+    var buttonId = $(event.target).attr('data-id');
+    $.ajax({
+      url: "/favourite-events",
+      method: "DELETE",
+      data: {id: buttonId},
+      success: function () {
+        location.reload();
+      }
+    });
+  });
 });

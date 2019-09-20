@@ -64,4 +64,10 @@ public class EventDtoService {
         return eventDto;
     }
 
+    public Event findEventById(Long id) {
+        Event event = eventsDaoBean.findById(id);
+        logger.info("Object event id: {} has been found", id);
+        return event;
+    }
+
 }

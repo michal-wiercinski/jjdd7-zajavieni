@@ -51,10 +51,12 @@
   </div>
   <div class="card-footer d-inline">
     <a href="#" class="btn btn-primary">Zarezerwuj bilet</a>
+
     <button type="button"
-            class="${event.favourite?then('btn btn-outline-danger','btn btn-outline-success')}"
-            id='change' data-id='${event.id?c}'>
-        ${event.favourite?then('Usuń z ulubionych ❌', 'Dodaj do ulubionych ✅')}
+            class="${isFavourite?then('btn btn-outline-danger','btn btn-outline-success')}"
+            id='${isFavourite?then('deleteE','addE')}'
+            data-id='${event.id?c}'>
+        ${isFavourite?then('Usuń z ulubionych ❌', 'Dodaj do ulubionych ✅')}
     </button>
   </div>
 </div>

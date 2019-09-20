@@ -27,8 +27,8 @@ import javax.persistence.Table;
         query = "SELECT count(e) FROM Event e WHERE e.startDate >= :time"
     ),
     @NamedQuery(
-        name = "User.findFavouriteEvents",
-        query = "SELECT e FROM Event e WHERE e.isFavourite = true"
+        name = "User.findUserFavouriteEvents",
+        query = "select e from Event e inner join e.users u where u.id = :id"
     )
 
 })
@@ -67,9 +67,6 @@ public class Event {
   @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
   List<Attachment> attachment = new ArrayList<>();
 
-  @Column(name = "favourite")
-  Boolean isFavourite = false;
-
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "media_link_id", unique = true)
   MediaLink mediaLink;
@@ -87,7 +84,7 @@ public class Event {
   Category category;
 
   @ManyToMany(mappedBy = "events")
-  List<User> users = new ArrayList<>();
+  List<User> users;
 
   public Event(String name, String descShort, String descLong, Boolean active,
       Date startDate, Date endDate, TicketType type) {
@@ -206,14 +203,6 @@ public class Event {
 
   public void setCategory(Category category) {
     this.category = category;
-  }
-
-  public Boolean getIsFavourite() {
-    return isFavourite;
-  }
-
-  public void setIsFavourite(Boolean isFavourite) {
-    this.isFavourite = isFavourite;
   }
 
   public List<User> getUsers() {

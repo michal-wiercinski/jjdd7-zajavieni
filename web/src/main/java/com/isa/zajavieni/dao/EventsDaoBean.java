@@ -28,8 +28,9 @@ public class EventsDaoBean {
     entityManager.persist(event);
   }
 
-  public List<Event> findAllFavouriteEvents() {
-    Query query = entityManager.createNamedQuery("User.findFavouriteEvents");
+  public List<Event> findAllUserFavouriteEvents(Long id) {
+    Query query = entityManager.createNamedQuery("User.findUserFavouriteEvents");
+    query.setParameter("id", id);
     return query.getResultList();
   }
 

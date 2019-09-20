@@ -1,6 +1,6 @@
 package com.isa.zajavieni.filter;
 
-import com.isa.zajavieni.dto.EventDto;
+import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
 import com.isa.zajavieni.servlet.LoggerServlet;
@@ -40,12 +40,11 @@ public class FavouriteEventsFilter implements Filter {
       FilterChain filterChain) throws IOException, ServletException {
     HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
     HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
-    if (httpServletRequest.getMethod().equalsIgnoreCase(HttpMethod.PUT)) {
-      Long id = Long.parseLong(httpServletRequest.getParameter("id"));
-      List<EventDto> favouriteEventsList = favouriteEventService.findListOfFavouriteEvents();
+    if (httpServletRequest.getMethod().equalsIgnoreCase(HttpMethod.POST)) {
+      Long id = 2L;
+      List<Event> favouriteEventsList = favouriteEventService.findListOfUserFavouriteEvents(id);
       if (favouriteEventsList.size() == maxNumberOfFavouriteEvents
-          && eventDtoService.findById(id) != null
-          && eventDtoService.findById(id).isFavourite() == false) {
+          && eventDtoService.findEventById(id) != null) {
         logger.warn("Max numbers of favourite events");
         httpServletResponse
             .sendError(1, "Lista wydarzeń ulubionych przekroczyła maksymalną liczbę 3.");

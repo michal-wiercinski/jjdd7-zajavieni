@@ -1,5 +1,6 @@
 package com.isa.zajavieni.dto;
 
+import com.isa.zajavieni.entity.User;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +22,7 @@ public class EventDto {
   private String websiteWithTickets;
   private String organizerName;
   private List<AttachmentDto> attachments = new ArrayList<>();
-  private boolean isFavourite;
+  private List<User> users = new ArrayList<>();
 
   public Long getId() {
     return id;
@@ -143,11 +144,11 @@ public class EventDto {
     this.attachments = attachments;
   }
 
-  public boolean isFavourite() {
-    return isFavourite;
+  public List<User> getUsers() {
+    return users;
   }
 
-  public void setFavourite(boolean favourite) {
-    isFavourite = favourite;
+  public void setUsers(List<User> users) {
+    this.users = users;
   }
 }

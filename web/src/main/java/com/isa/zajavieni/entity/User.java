@@ -25,10 +25,13 @@ public class User {
   @Column(name = "user_type")
   UserType userType;
 
+  @Column(name = "email")
+  String email;
+
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "user_event",
-      joinColumns = @JoinColumn(name = "id_user", referencedColumnName = "id"),
-      inverseJoinColumns = @JoinColumn(name = "id_event", referencedColumnName = "id"))
+      joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "event_id", referencedColumnName = "event_id"))
   List<Event> events = new ArrayList<>();
 
   public User(UserType userType) {
@@ -60,5 +63,13 @@ public class User {
 
   public void setEvents(List<Event> events) {
     this.events = events;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 }

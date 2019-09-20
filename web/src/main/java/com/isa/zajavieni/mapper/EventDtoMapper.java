@@ -49,7 +49,7 @@ public class EventDtoMapper {
     eventDto.setOrganizerName(organizerDtoMapper.mapOrganizerToDto(event.getOrganizer()).getName());
     event.getAttachment()
         .forEach(a -> eventDto.getAttachments().add(attachmentDtoMapper.mapAttachmentToDto(a)));
-      eventDto.setFavourite(event.getIsFavourite());
+    eventDto.setUsers(event.getUsers());
     logger.info("Map event entity id: {} to dto", event.getId());
     return eventDto;
   }
