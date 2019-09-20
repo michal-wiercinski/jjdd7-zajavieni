@@ -12,8 +12,8 @@ $("#search").autocomplete({
                 if (!data.length) {
                     let result = [
                         {
-                            label: "noResult",
-                            value: "noResult"
+                            label: 'Brak wyników',
+                            value: request.term
                         }
                     ];
                     response(result);

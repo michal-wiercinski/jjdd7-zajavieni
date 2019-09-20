@@ -47,9 +47,8 @@ html {
 
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-state-active.ui-button:hover
 {
-    border: 1px solid #000;
     color: #0056b3;
-    background-color: #e9ecef;
+    background-color: #dee2e6;
 }
 
 #search {
