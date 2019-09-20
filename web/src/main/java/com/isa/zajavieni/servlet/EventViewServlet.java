@@ -5,6 +5,7 @@ import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
+import com.isa.zajavieni.service.SendEmailService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import java.util.stream.Collectors;
@@ -34,6 +35,9 @@ public class EventViewServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
+
+    @Inject
+    private SendEmailService sendEmailService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -69,5 +73,7 @@ public class EventViewServlet extends HttpServlet {
         } catch (TemplateException e) {
             logger.error(e.getMessage());
         }
+
+        sendEmailService.sendEmailForAllUsers(id);
     }
 }

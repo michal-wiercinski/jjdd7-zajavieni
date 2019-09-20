@@ -23,7 +23,7 @@ public class EmailEventService {
     String subject = "Zmiana w Twoich ulubionych wydarzeniach";
 
     String emailContent = String.format("Drogi użytkowniku,<br><br>"
-        + "Z przykrością informujemy, że wydarzenie: %s zostało usunięte z serwisu.<br><br>"
+        + "Z przykrością informujemy, że jedno z Twoich wydarzeń zostało usunięte z serwisu.<br><br>"
         + "Administratorzy serwisu 3cityevent", event.getName());
 
     try {

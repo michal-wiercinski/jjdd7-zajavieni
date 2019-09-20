@@ -29,7 +29,7 @@ public class EventsDaoBean {
   }
 
   public List<Event> findAllUserFavouriteEvents(Long id) {
-    Query query = entityManager.createNamedQuery("User.findUserFavouriteEvents");
+    Query query = entityManager.createNamedQuery("Event.findUserFavouriteEvents");
     query.setParameter("id", id);
     return query.getResultList();
   }

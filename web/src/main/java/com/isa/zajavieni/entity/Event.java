@@ -27,8 +27,13 @@ import javax.persistence.Table;
         query = "SELECT count(e) FROM Event e WHERE e.startDate >= :time"
     ),
     @NamedQuery(
-        name = "User.findUserFavouriteEvents",
+        name = "Event.findUserFavouriteEvents",
         query = "select e from Event e inner join e.users u where u.id = :id"
+    ),
+
+    @NamedQuery(
+        name = "User.findUsersWithFavouriteEvents",
+        query = "select u from User u inner join u.events e where e.id = :id"
     )
 
 })
