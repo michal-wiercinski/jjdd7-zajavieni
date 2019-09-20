@@ -19,6 +19,7 @@ html {
 .card-deck .card {
     min-width: 220px;
 }
+
 .card-img-top {
     width: 100%;
     max-height: 150px;
@@ -26,11 +27,32 @@ html {
 }
 
 .form-group {
-margin: 10px;
+    margin: 10px;
 }
+
 .card-img-top {
     /*height: 11vw;*/
     object-fit: cover;
+}
+
+.ui-menu-item-wrapper {
+    overflow-wrap: break-word;
+    overflow: hidden;
+}
+
+.ui-autocomplete {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-state-active.ui-button:hover
+{
+    color: #0056b3;
+    background-color: #dee2e6;
+}
+
+#search {
+    width: 300px;
 }
 
 #alpha-page {

@@ -30,6 +30,12 @@ public class EventsDaoBean {
         entityManager.persist(event);
     }
 
+    public List<Event> searchEvents(String phrase) {
+        Query query = entityManager.createNamedQuery("Event.foundEvents");
+        query.setParameter("phrase", phrase);
+        return query.getResultList();
+    }
+
     public Event findById(Long id) {
         logger.info("Object event id: {} has been found", id);
         return entityManager.find(Event.class, id);
@@ -66,6 +72,5 @@ public class EventsDaoBean {
         Long result = (Long) query.getSingleResult();
         return result.intValue();
     }
-
 }
 

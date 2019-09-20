@@ -27,8 +27,8 @@ public class User {
 
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "user_event",
-      joinColumns = @JoinColumn(name = "id_user", referencedColumnName = "id"),
-      inverseJoinColumns = @JoinColumn(name = "id_event", referencedColumnName = "id"))
+      joinColumns = @JoinColumn(name = "id_user", referencedColumnName = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "id_event", referencedColumnName = "event_id"))
   List<Event> events = new ArrayList<>();
 
   public User(UserType userType) {

@@ -17,6 +17,10 @@ import javax.persistence.*;
                 query = "SELECT count(e) FROM Event e WHERE e.startDate >= :time"
         ),
         @NamedQuery(
+                name = "Event.foundEvents",
+                query = "SELECT e FROM Event e WHERE e.name LIKE CONCAT('%',:phrase,'%')"
+        ),
+        @NamedQuery(
                 name = "Event.filterByOrganizer",
                 query = "SELECT e FROM Event e WHERE e.organizer.id = :id_organizer " +
                         "AND e.startDate >= :time ORDER BY e.startDate"

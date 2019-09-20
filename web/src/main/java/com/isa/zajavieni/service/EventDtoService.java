@@ -52,6 +52,12 @@ public class EventDtoService {
         return eventDto;
     }
 
+    public List<EventDto> searchEvents(String phrase) {
+        return eventsDaoBean.searchEvents(phrase).stream()
+                .map((event) -> dtoMapper.mapEventToDto(event))
+                .collect(Collectors.toList());
+    }
+
     @Transactional
     public List<EventDto> findEventsByOrganizerId(Long id, int from, int howMany) {
         if (from > 0) {
@@ -77,5 +83,5 @@ public class EventDtoService {
     public int getTotalPages(int numberFound, int perPage) {
         return numberFound / perPage;
     }
-
 }
+
