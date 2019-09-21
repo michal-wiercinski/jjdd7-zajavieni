@@ -1,8 +1,8 @@
 package com.isa.zajavieni.servlet;
 
-import com.isa.zajavieni.dto.EventDto;
+import com.isa.zajavieni.dto.OrganizerDto;
 import com.isa.zajavieni.provider.TemplateProvider;
-import com.isa.zajavieni.service.EventDtoService;
+import com.isa.zajavieni.service.OrganizerDtoService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -16,39 +16,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet("/upcoming-events")
-public class UpcomingEventServlet extends HttpServlet {
-
-    private static final int EVENTS_PER_PAGE = 8;
-    private static final String PAGE_NUMBER = "pageNo";
+@WebServlet("/organizers")
+public class OrganizerSelectionServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-
     @EJB
-    private EventDtoService eventDtoService;
+    OrganizerDtoService organizerDtoService;
 
     @Inject
     private TemplateProvider templateProvider;
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        int totalPages = eventDtoService.getTotalPagesUpcomingEvent(EVENTS_PER_PAGE);
-        String pageParameter = req.getParameter(PAGE_NUMBER);
+        List<OrganizerDto> organizers = new ArrayList<>();
 
-        int pageNumber = Integer.valueOf(pageParameter);
+        String letter = req.getParameter("letter");
+        organizers = organizerDtoService.getListByFirstLetter(letter.toUpperCase());
 
-        List<EventDto> events = eventDtoService.findUpcomingEvents(pageNumber, EVENTS_PER_PAGE);
-
-        Template template = templateProvider.getTemplate(getServletContext(), "upcoming-events.ftlh");
+        Template template = templateProvider.getTemplate(getServletContext(), "organizers-list.ftlh");
         Map<String, Object> model = new HashMap<>();
-        model.put("events", events);
-        model.put("page", pageNumber);
-        model.put("totalPages", totalPages);
+        model.put("organizers", organizers);
 
         try {
             template.process(model, resp.getWriter());

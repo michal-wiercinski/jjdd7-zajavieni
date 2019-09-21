@@ -13,16 +13,27 @@ import javax.persistence.*;
                 query = "SELECT e FROM  Event e WHERE e.startDate >= :time ORDER BY e.startDate"
         ),
         @NamedQuery(
-                name = Event.GET_SIZE,
+                name = "Event.counterByDate",
                 query = "SELECT count(e) FROM Event e WHERE e.startDate >= :time"
+        ),
+        @NamedQuery(
+                name = "Event.foundEvents",
+                query = "SELECT e FROM Event e WHERE e.name LIKE CONCAT('%',:phrase,'%')"
+        ),
+        @NamedQuery(
+                name = "Event.filterByOrganizer",
+                query = "SELECT e FROM Event e WHERE e.organizer.id = :id_organizer " +
+                        "AND e.startDate >= :time ORDER BY e.startDate"
+        ),
+        @NamedQuery(
+                name = "Event.counterByOrganizer",
+                query = "SELECT count(e) FROM Event e WHERE e.organizer.id = :id_organizer " +
+                        "AND e.startDate >= :time"
         )
-
 })
 @Entity
 @Table(name = "event")
 public class Event {
-
-    public static final String GET_SIZE = "Event.counter";
 
     @Id
     @Column(name = "event_id")
@@ -68,6 +79,9 @@ public class Event {
     @JoinColumn(name = "category_id")
     Category category;
 
+    @ManyToMany(mappedBy = "events")
+    List<User> users = new ArrayList<>();
+
     public Event(String name, String descShort, String descLong, Boolean active,
                  Date startDate, Date endDate, TicketType type) {
         this.name = name;
@@ -77,7 +91,6 @@ public class Event {
         this.startDate = startDate;
         this.endDate = endDate;
         this.type = type;
-
     }
 
     public Event() {
@@ -185,5 +198,13 @@ public class Event {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }
