@@ -14,29 +14,31 @@
                 <div class="card-footer">
                     <a href="#" class="btn btn-primary">Zarezerwuj bilet</a>
                     <a href="/event-view?id=${event.id?c}"
-                       class="btn btn-primary show-event" <#--data-id="${event.id}"-->>Szczegóły</a>-->
-                    <a<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button></a>
+                       class="btn btn-primary show-event" <#--data-id="${event.id}"-->>Szczegóły</a>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#event_modal_${event.id}">
+                        Launch demo modal
+                    </button>
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="myModal" role="dialog">
-                            <div class="modal-dialog">
-
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Modal Header</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>${event.name}</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="event_modal_${event.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-
+                                <div class="modal-body">
+                                    <#include "event-details.ftlh">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
                             </div>
-
+                        </div>
                     </div>
                 </div>
             </div>
