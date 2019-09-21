@@ -32,12 +32,4 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    <filter>
-        <filter-name>ConnectionFilter</filter-name>
-        <filter-class>com.isa.zajavieni.rest_api.ConnectionFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>ConnectionFilter</filter-name>
-        <url-pattern>/api/*</url-pattern>
-    </filter-mapping>
 </web-app>
