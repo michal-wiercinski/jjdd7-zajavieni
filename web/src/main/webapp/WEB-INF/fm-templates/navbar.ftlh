@@ -52,5 +52,6 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script src="/js/autocomplete.js"></script>
+<script src="/js/event-details.js"></script>
 </body>
 </html>

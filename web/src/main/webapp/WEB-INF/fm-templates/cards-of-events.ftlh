@@ -15,13 +15,19 @@
                     <a href="#" class="btn btn-primary">Zarezerwuj bilet</a>
                     <a href="/event-view?id=${event.id?c}"
                        class="btn btn-primary show-event" <#--data-id="${event.id}"-->>Szczegóły</a>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#event_modal_${event.id}">
-                        Launch demo modal
-                    </button>
+
+                    <form class="modal_event_details_form" onsubmit="fetchEventDetails(event, this)">
+                        <input type="hidden" id="modal_event_id" name="event_id" value="${event.id?c}">
+                        <!-- Button trigger modal -->
+                        <button type="submit" class="btn btn-primary" data-toggle="modal"
+                                data-target="#event_modal_${event.id?c}">
+                            Szczegółyv2
+                        </button>
+                    </form>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="event_modal_${event.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal fade" id="event_modal_${event.id?c}" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -31,7 +37,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <#include "event-details.ftlh">
+                                    <#include "event-details-modal.ftlh">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
