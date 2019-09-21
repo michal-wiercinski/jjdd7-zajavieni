@@ -6,7 +6,6 @@ import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.FavouriteEventService;
-import com.isa.zajavieni.service.SendEmailService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import java.io.IOException;
@@ -36,8 +35,6 @@ public class FavouriteEventsServlet extends HttpServlet {
   @Inject
   private UserDaoBean userDaoBean;
 
-
-
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
@@ -60,7 +57,7 @@ public class FavouriteEventsServlet extends HttpServlet {
 
       User user1 = new User();
       user1.setUserType(UserType.USER);
-      user1.setEmail("bbb");
+      user1.setEmail("maciej.sitarski@onet.pl");
       userDaoBean.saveEvent(user1);
     }
   }

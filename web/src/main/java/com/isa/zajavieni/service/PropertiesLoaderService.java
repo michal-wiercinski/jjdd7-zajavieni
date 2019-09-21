@@ -1,4 +1,4 @@
-package com.isa.zajavieni.service.propertiesmanager;
+package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.servlet.LoggerServlet;
 import java.io.IOException;
