@@ -31,7 +31,9 @@
             <a class="p-2 text-dark" href="${upcoming_link}">Lista wydarzeń</a>
             <a class="p-2 text-dark" href="${search_by_organizer}">Organizatorzy</a>
             <a class="p-2 text-dark" href="#">Wyszukiwanie</a>
+            <#if userId??>
             <a class="p-2 text-dark" href="${favourite_link}">Ulubione</a>
+            </#if>
             <a class="p-2 text-dark" href="#">Koszyk</a>
             <a class="p-2 text-dark" href="/admin/upload">Admin</a>
         </nav>

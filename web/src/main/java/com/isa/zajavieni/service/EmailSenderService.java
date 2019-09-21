@@ -46,7 +46,6 @@ public class EmailSenderService {
     String content = "Drogi użytkowniku,<br><br>"
         + "Z przykrością informujemy, że jedno z Twoich wydarzeń zostało usunięte z serwisu przez administratora.<br><br>"
         + "Administratorzy serwisu 3cityevent";
-
     Session session = Session
         .getDefaultInstance(propertiesLoaderService.loadMailProperties(), null);
     MimeMessage message = new MimeMessage(session);
@@ -54,13 +53,11 @@ public class EmailSenderService {
     message.setSubject(subject);
     message.setContent(content, "text/html; charset=utf-8");
     Transport transport = session.getTransport(mailTransportProtocol);
-
     String username = propertiesLoaderService.loadCredentialsProperties()
         .getProperty("user.name");
     String password = propertiesLoaderService.loadCredentialsProperties()
         .getProperty("user.password");
     String server = propertiesLoaderService.loadServerProperties().getProperty("mail.smtp.host");
-
     transport.connect(server, username, password);
     transport.sendMessage(message, message.getAllRecipients());
     transport.close();

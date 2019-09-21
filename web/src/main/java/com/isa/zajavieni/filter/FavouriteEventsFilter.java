@@ -1,7 +1,6 @@
 package com.isa.zajavieni.filter;
 
 import com.isa.zajavieni.entity.Event;
-import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
 import com.isa.zajavieni.servlet.LoggerServlet;
 import java.io.IOException;
@@ -26,14 +25,10 @@ import org.slf4j.LoggerFactory;
 public class FavouriteEventsFilter implements Filter {
 
   private Logger logger = LoggerFactory.getLogger(LoggerServlet.class.getName());
-
   private final int maxNumberOfFavouriteEvents = 3;
 
   @Inject
   FavouriteEventService favouriteEventService;
-
-  @Inject
-  EventDtoService eventDtoService;
 
   @Override
   public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
@@ -41,10 +36,9 @@ public class FavouriteEventsFilter implements Filter {
     HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
     HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
     if (httpServletRequest.getMethod().equalsIgnoreCase(HttpMethod.POST)) {
-      Long id = 2L;
+      Long id = Long.parseLong((String) httpServletRequest.getSession().getAttribute("idUser"));
       List<Event> favouriteEventsList = favouriteEventService.findListOfUserFavouriteEvents(id);
-      if (favouriteEventsList.size() == maxNumberOfFavouriteEvents
-          && eventDtoService.findEventById(id) != null) {
+      if (favouriteEventsList.size() == maxNumberOfFavouriteEvents) {
         logger.warn("Max numbers of favourite events");
         httpServletResponse
             .sendError(1, "Lista wydarzeń ulubionych przekroczyła maksymalną liczbę 3.");

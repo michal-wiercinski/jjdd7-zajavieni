@@ -17,7 +17,6 @@ public class PropertiesLoaderService {
   private static final String SERVER_PROPERTIES = "servermail.properties";
 
   public Properties loadMailProperties() throws IOException {
-
     Properties mailProperties = new Properties();
     mailProperties.load(Objects.requireNonNull(Thread.currentThread()
         .getContextClassLoader().getResource(SENDMAIL_PROPERTIES))
@@ -27,7 +26,6 @@ public class PropertiesLoaderService {
   }
 
   public Properties loadCredentialsProperties() throws IOException {
-
     Properties credentialsProperties = new Properties();
     credentialsProperties.load(Objects.requireNonNull(Thread.currentThread()
         .getContextClassLoader().getResource(CREDENTIALS_PROPERTIES))
@@ -37,7 +35,6 @@ public class PropertiesLoaderService {
   }
 
   public Properties loadServerProperties() throws IOException {
-
     Properties serverProperties = new Properties();
     serverProperties.load(Objects.requireNonNull(Thread.currentThread()
         .getContextClassLoader().getResource(SERVER_PROPERTIES))
@@ -45,5 +42,4 @@ public class PropertiesLoaderService {
     logger.info("Load {}", SERVER_PROPERTIES);
     return serverProperties;
   }
-
 }

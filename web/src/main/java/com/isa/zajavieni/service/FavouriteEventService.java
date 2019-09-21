@@ -41,12 +41,13 @@ public class FavouriteEventService {
     return favouriteEvents;
   }
 
-  public void addEventToUserFavouriteEvents(String idEventString, String idUserString){
+  public void addEventToUserFavouriteEvents(String idEventString, String idUserString) {
     Long idEvent = Long.parseLong(idEventString);
     Long idUser = Long.parseLong(idUserString);
     Event searchingEvent = eventsDaoBean.findById(idEvent);
     EventDto searchingEventDto = dtoMapper.mapEventToDto(searchingEvent);
-    if(findListOfUserFavouriteEvents(idUser).size() < 3 && !findListOfUserFavouriteEvents(idUser).contains(searchingEvent)){
+    if (findListOfUserFavouriteEvents(idUser).size() < 3 && !findListOfUserFavouriteEvents(idUser)
+        .contains(searchingEvent)) {
       User user = userDaoBean.findById(idUser);
       user.getEvents().add(searchingEvent);
       searchingEvent.getUsers().add(user);
@@ -54,7 +55,7 @@ public class FavouriteEventService {
     eventsDaoBean.editEvent(searchingEvent);
   }
 
-  public void deleteEventFromUserFavouriteEvents(String idEventString, String idUserString){
+  public void deleteEventFromUserFavouriteEvents(String idEventString, String idUserString) {
     Long idEvent = Long.parseLong(idEventString);
     Long idUser = Long.parseLong(idUserString);
     Event searchingEvent = eventsDaoBean.findById(idEvent);
