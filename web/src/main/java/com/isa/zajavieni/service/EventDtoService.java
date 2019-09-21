@@ -23,9 +23,6 @@ public class EventDtoService {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-    @PersistenceContext
-    EntityManager entityManager;
-
     @EJB
     EventsDaoBean eventsDaoBean;
 
@@ -34,27 +31,23 @@ public class EventDtoService {
 
     @Transactional
     public List<EventDto> findUpcomingEvents(int from, int howMany) {
-        Query query = entityManager.createNamedQuery("Event.upcomingEvents");
-
-        query.setParameter("time", new Date())
-                .setFirstResult(from)
-                .setMaxResults(howMany);
-
-        List<Event> resultList = query.getResultList();
-        return resultList.stream()
+        if (from > 0) {
+            from *= howMany;
+        }
+        List<EventDto> upcomingEventsList = eventsDaoBean.findUpcomingEvents(from, howMany)
+                .stream()
                 .map((event) -> dtoMapper.mapEventToDto(event))
                 .collect(Collectors.toList());
+        return upcomingEventsList;
     }
 
     private int getUpcomingEventsSize() {
-        Query query = entityManager.createNamedQuery(Event.GET_SIZE);
-        query.setParameter("time", new Date());
-        Long result = (Long) query.getSingleResult();
-        logger.info("{} events found", result);
-        return result.intValue();
+        int size = eventsDaoBean.getUpcomingEventsSize();
+        logger.info("{} events found", size);
+        return size;
     }
 
-    public int getTotalPages(int eventsPerPage) {
+    public int getTotalPagesUpcomingEvent(int eventsPerPage) {
         return getUpcomingEventsSize() / eventsPerPage;
     }
 
@@ -71,3 +64,36 @@ public class EventDtoService {
     }
 
 }
+    public List<EventDto> searchEvents(String phrase) {
+        return eventsDaoBean.searchEvents(phrase).stream()
+                .map((event) -> dtoMapper.mapEventToDto(event))
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public List<EventDto> findEventsByOrganizerId(Long id, int from, int howMany) {
+        if (from > 0) {
+            from *= howMany;
+        }
+        List<EventDto> eventsList = eventsDaoBean.findAllByOrganizerId(id, from, howMany).stream()
+                .map((event) -> dtoMapper.mapEventToDto(event))
+                .collect(Collectors.toList());
+        logger.info("{} results have been found for the organizer for id: {}", eventsList.size(), id);
+        return eventsList;
+    }
+
+    public int getOrganizersEventsSize(Long id) {
+        int size = eventsDaoBean.getOrganizersEventSize(id);
+        logger.info("{} events found", size);
+        return size;
+    }
+
+    public int getTotalPagesOrganizersEvent(Long id, int perPage) {
+        return getOrganizersEventsSize(id) / perPage;
+    }
+
+    public int getTotalPages(int numberFound, int perPage) {
+        return numberFound / perPage;
+    }
+}
+
