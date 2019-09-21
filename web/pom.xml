@@ -83,7 +83,21 @@
             <artifactId>jsoup</artifactId>
             <version>1.12.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-bundle</artifactId>
+            <version>1.19.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>1.19.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-core</artifactId>
+            <version>1.19.4</version>
+        </dependency>
     </dependencies>
 
     <build>
