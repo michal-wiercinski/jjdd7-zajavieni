@@ -51,13 +51,20 @@
         </div>
         </br></br></br>
 
-
-
-    </div>
-    <div class="card-footer d-inline">
-        <a href="#" class="btn btn-primary">Zarezerwuj bilet</a>
-        <a href="#" class="btn btn-primary">Dodaj do ulubionych</a>
-    </div>
+  </div>
+  <div class="card-footer d-inline">
+    <a href="#" class="btn btn-primary">Zarezerwuj bilet</a>
+    <#if userId??>
+    <button type="button"
+            class="${isFavourite?then('btn btn-outline-danger','btn btn-outline-success')}"
+            id='${isFavourite?then('deleteE','addE')}'
+            data-id='${event.id?c}'>
+        ${isFavourite?then('Usuń z ulubionych ❌', 'Dodaj do ulubionych ✅')}
+    </button>
+    </#if>
+  </div>
 </div>
-
+<script src="/js/favourite.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <#include "footer.ftlh">

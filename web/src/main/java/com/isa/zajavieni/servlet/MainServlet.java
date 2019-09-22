@@ -34,12 +34,10 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         List<EventDto> events = eventDtoService.findUpcomingEvents(0, EVENETS_ON_THE_WELCOME);
         Template template = templateProvider.getTemplate(getServletContext(), "welcome-page.ftlh");
         Map<String, Object> model = new HashMap<>();
         model.put("events", events);
-
         try {
             template.process(model, resp.getWriter());
         } catch (TemplateException e) {
