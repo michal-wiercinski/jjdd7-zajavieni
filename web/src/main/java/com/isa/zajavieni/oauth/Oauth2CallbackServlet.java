@@ -10,12 +10,13 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.oauth2.Oauth2;
 import com.google.api.services.oauth2.model.Userinfoplus;
 import com.isa.zajavieni.dto.UserDto;
-import com.isa.zajavieni.entity.User;
-import com.isa.zajavieni.service.UserDtoService;
+import com.isa.zajavieni.provider.TemplateProvider;
+import com.isa.zajavieni.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,10 @@ public class Oauth2CallbackServlet extends AbstractAuthorizationCodeCallbackServ
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @EJB
-    UserDtoService userDtoService;
+    UserService userService;
+    @Inject
+    private TemplateProvider templateProvider;
+
 
     @Override
     protected void onSuccess(HttpServletRequest req, HttpServletResponse resp, Credential credential) throws ServletException, IOException {
@@ -50,14 +54,17 @@ public class Oauth2CallbackServlet extends AbstractAuthorizationCodeCallbackServ
         resp.sendRedirect("/");
 
 
-        UserDto user = new UserDto();
-        user.setName(name);
-        user.setEmail(email);
+        if (!userService.ifExist(email)) {
+            UserDto user = new UserDto();
+            user.setName(name);
+            user.setEmail(email);
 
-        userDtoService.saveUser(user);
-        logger.info("User for name: {} has been save in base.", user.getName());
+            userService.createNewUser(user);
+            logger.info("User for name: {} has been save in base.", user.getName());
+        }
 
     }
+
 
     @Override
     protected void onError(HttpServletRequest req, HttpServletResponse resp, AuthorizationCodeResponseUrl errorResponse) throws ServletException, IOException {

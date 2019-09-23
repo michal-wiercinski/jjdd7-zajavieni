@@ -3,8 +3,10 @@ package com.isa.zajavieni.dao;
 import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.servlet.LoggerServlet;
 import java.util.List;
+import java.util.Optional;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.slf4j.Logger;
@@ -18,6 +20,11 @@ public class UserDaoBean {
   @PersistenceContext
   EntityManager entityManager;
 
+  public List<User> findAll(){
+    Query query = entityManager.createNamedQuery("User.findAll", User.class);
+    return query.getResultList();
+  }
+
   public void saveUser(User user){
     logger.info("Object user id: {} persist to DB", user.getId());
     entityManager.persist(user);
@@ -26,6 +33,18 @@ public class UserDaoBean {
   public User findById(Long id) {
     logger.info("Object event id: {} has been found", id);
     return entityManager.find(User.class, id);
+  }
+
+  public Optional<User> findByEmail(String email){
+    logger.info("Object User: {} has been found", email);
+    Query query = entityManager.createNamedQuery("User.findByEmail");
+    query.setParameter("email", email);
+    try{
+      return Optional.of((User)query.getSingleResult());
+    }catch (NoResultException e){
+      logger.warn("User for email {} not found", email);
+      return Optional.empty();
+    }
   }
 
   public void saveEvent(User user) {

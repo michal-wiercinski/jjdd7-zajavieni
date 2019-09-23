@@ -22,7 +22,7 @@ public class UserDtoMapper {
         userDto.setEvents(user.getEvents().stream()
                 .map(event -> eventDtoMapper.mapEventToDto(event))
                 .collect(Collectors.toList()));
-      //  userDto.setUserType(user.getUserType());
+       userDto.setUserType(user.getUserType());
 
         return userDto;
     }
@@ -32,7 +32,7 @@ public class UserDtoMapper {
 
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
-       // user.setUserType(userDto.getUserType());
+        user.setUserType(userDto.getUserType());
 
         return user;
     }
