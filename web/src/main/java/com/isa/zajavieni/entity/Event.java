@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 @NamedQueries({
         @NamedQuery(
                 name = "Event.upcomingEvents",
@@ -37,7 +38,7 @@ import java.util.List;
         @NamedQuery(
                 name = "User.findUsersWithFavouriteEvents",
                 query = "select u from User u inner join u.events e where e.id = :id"
-        )
+    )
 
 })
 @Entity
@@ -48,60 +49,60 @@ public class Event {
     @Column(name = "event_id")
     Long id;
 
-    @Column(name = "name")
-    String name;
+  @Column(name = "name")
+  String name;
 
-    @Column(name = "desc_short", columnDefinition = "TEXT")
-    String descShort;
+  @Column(name = "desc_short", columnDefinition = "TEXT")
+  String descShort;
 
-    @Column(name = "desc_long", columnDefinition = "TEXT")
-    String descLong;
+  @Column(name = "desc_long", columnDefinition = "TEXT")
+  String descLong;
 
-    @Column(name = "active")
-    Boolean active;
+  @Column(name = "active")
+  Boolean active;
 
-    @Column(name = "start_date")
-    Date startDate;
+  @Column(name = "start_date")
+  Date startDate;
 
-    @Column(name = "end_date")
-    Date endDate;
+  @Column(name = "end_date")
+  Date endDate;
 
-    @Column(name = "type")
-    TicketType type;
+  @Column(name = "type")
+  TicketType type;
 
-    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
-    List<Attachment> attachment = new ArrayList<>();
+  @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+  List<Attachment> attachment = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "media_link_id", unique = true)
-    MediaLink mediaLink;
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "media_link_id", unique = true)
+  MediaLink mediaLink;
 
-    @ManyToOne
-    @JoinColumn(name = "address_id")
-    Address address;
+  @ManyToOne
+  @JoinColumn(name = "address_id")
+  Address address;
 
-    @ManyToOne
-    @JoinColumn(name = "organizer_id")
-    Organizer organizer;
+  @ManyToOne
+  @JoinColumn(name = "organizer_id")
+  Organizer organizer;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    Category category;
+  @ManyToOne
+  @JoinColumn(name = "category_id")
+  Category category;
 
-    @ManyToMany(mappedBy = "events")
-    List<User> users;
+  @ManyToMany(mappedBy = "events")
+  List<User> users;
 
-    public Event(String name, String descShort, String descLong, Boolean active,
-                 Date startDate, Date endDate, TicketType type) {
-        this.name = name;
-        this.descShort = descShort;
-        this.descLong = descLong;
-        this.active = active;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.type = type;
+  public Event(String name, String descShort, String descLong, Boolean active,
+      Date startDate, Date endDate, TicketType type) {
+    this.name = name;
+    this.descShort = descShort;
+    this.descLong = descLong;
+    this.active = active;
+    this.startDate = startDate;
+    this.endDate = endDate;
+    this.type = type;
 
-    }
+  }
 
     public Event() {
     }
@@ -206,15 +207,15 @@ public class Event {
         return category;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+  public void setCategory(Category category) {
+    this.category = category;
+  }
 
-    public List<User> getUsers() {
-        return users;
-    }
+  public List<User> getUsers() {
+    return users;
+  }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
+  public void setUsers(List<User> users) {
+    this.users = users;
+  }
 }
