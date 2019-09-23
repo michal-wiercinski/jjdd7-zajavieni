@@ -14,56 +14,47 @@
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <!-- Custom styles for this template -->
     <link href="/css/main.css" rel="stylesheet">
+
 </head>
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <a href="/main" class="my-0 mr-md-auto font-weight-normal"><img src="/img/logo.jpg" alt="logo"></a>
-    <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-primary btn-rounded btn-sm my-0 waves-effect waves-light" type="submit">
-            Szukaj
-        </button>
-    </form>
-    <#assign upcoming_link = "/upcoming-events?pageNo=0">
-    <#assign search_by_organizer = "/organizers?letter=A">
-    <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="${upcoming_link}">Lista wydarzeń</a>
-        <a class="p-2 text-dark" href="${search_by_organizer}">Wyszukiwanie</a>
-        <a class="p-2 text-dark" href="#">Ulubione</a>
-        <a class="p-2 text-dark" href="#">Koszyk</a>
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        <a href="#" onclick="signOut();">Sign out</a>
-      <#--  <a class="p-2 text-dark" href="/admin/upload">Admin</a>-->
-    </nav>
-</div>
+    <div class="d-flex flex-column flex-md-row align-hitems-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <a href="/main" class="my-0 mr-md-auto font-weight-normal"><img src="/img/logo.jpg" alt="logo"></a>
+        <form class="form-inline my-2 my-lg-0" >
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search">
+            <button class="btn btn-outline-primary btn-rounded btn-sm my-0 waves-effect waves-light" type="submit">
+                Szukaj
+            </button>
+        </form>
+        <ul class="list-group" id="result"></ul>
+        <#assign upcoming_link = "/upcoming-events?pageNo=0">
+        <#assign favourite_link = "/favourite-events">
+        <#assign search_by_organizer = "/organizers?letter=A">
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-dark" href="${upcoming_link}">Lista wydarzeń</a>
+            <a class="p-2 text-dark" href="${search_by_organizer}">Organizatorzy</a>
+            <a class="p-2 text-dark" href="#">Wyszukiwanie</a>
+            <#if userId??>
+            <a class="p-2 text-dark" href="${favourite_link}">Ulubione</a>
+            </#if>
+            <a class="p-2 text-dark" href="#">Koszyk</a>
 
-<header class="jumbotron my-4 text-center">
-    <h1 class="display-3 font-weight-bold">3CITYEVENT</h1>
-    <p class="lead">Witaj w miejscu, gdzie zgromadzone są wydarzenia kulturalne w Trójmiescie i okolicy.
-        </br>Szukaj, znajdź, rezerwuj i baw się dobrze!</p>
-</header>
+            <a href="/login" class="btn btn-danger btn-sm"><i class="fa fa-google"></i> Zaloguj się przez <b>Google</b></a>
+            <#--  <a class="p-2 text-dark" href="/admin/upload">Admin</a>-->
+        </nav>
+    </div>
 
-<script>function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    }
-</script>
-<script>
-    function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-            console.log('User signed out.');
-        });
-    }
-</script>
+    <header class="jumbotron my-4 text-center">
+        <h1 class="display-3 font-weight-bold">3CITYEVENT</h1>
+        <p class="lead">Witaj w miejscu, gdzie zgromadzone są wydarzenia kulturalne w Trójmiescie i okolicy.
+            </br>Szukaj, znajdź, rezerwuj i baw się dobrze!</p>
+    </header>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>

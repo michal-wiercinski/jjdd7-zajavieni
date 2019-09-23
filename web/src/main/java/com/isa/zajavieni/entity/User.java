@@ -1,4 +1,3 @@
-/*
 package com.isa.zajavieni.entity;
 
 import java.util.ArrayList;
@@ -13,58 +12,75 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "user")
 public class User {
 
-  @Id
-  @Column(name = "user_id")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  Long id;
+    @Id
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
-  @Column(name = "email")
-  String email;
+    @Column(name = "user_type")
+    UserType userType;
 
-  @Column(name = "user_type")
-  UserType userType;
+    @Column(name = "user_name")
+    String name;
 
-  @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "user_event",
-      joinColumns = @JoinColumn(name = "id_user", referencedColumnName = "id"),
-      inverseJoinColumns = @JoinColumn(name = "id_event", referencedColumnName = "id"))
-  List<Event> events = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_event",
+            joinColumns = @JoinColumn(name = "id_user", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "id_event", referencedColumnName = "event_id"))
+    List<Event> events = new ArrayList<>();
 
-  public User(UserType userType) {
-    this.userType = userType;
-  }
+    @Column(name = "email")
+    String email;
 
-  public User() {
-  }
+    public User(UserType userType) {
+        this.userType = userType;
+    }
 
-  public Long getId() {
-    return id;
-  }
+    public User() {
+    }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public UserType getUserType() {
-    return userType;
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-  public void setUserType(UserType userType) {
-    this.userType = userType;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public List<Event> getEvents() {
-    return events;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public void setEvents(List<Event> events) {
-    this.events = events;
-  }
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
-*/

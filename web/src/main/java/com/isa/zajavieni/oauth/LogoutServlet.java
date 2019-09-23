@@ -1,4 +1,4 @@
-package com.isa.zajavieni.servlet;
+package com.isa.zajavieni.oauth;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
