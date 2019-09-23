@@ -30,12 +30,14 @@
                          aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                <#--<div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">
+                                        <p id="name" class="card-text"></p>
+                                    </h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
-                                </div>
+                                </div>-->
                                 <div class="modal-body">
                                     <#include "event-details-modal.ftlh">
                                 </div>
@@ -52,4 +54,5 @@
     </#list>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="/js/event-details.js"></script>
 </div>
