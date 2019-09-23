@@ -2,13 +2,12 @@ package com.isa.zajavieni.dao;
 
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.servlet.LoggerServlet;
-import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import javax.persistence.Query;
 import java.util.Date;
 import java.util.List;
@@ -31,11 +30,11 @@ public class EventsDaoBean {
         entityManager.persist(event);
     }
 
-  public List<Event> findAllUserFavouriteEvents(Long id) {
-    Query query = entityManager.createNamedQuery("Event.findUserFavouriteEvents");
-    query.setParameter("id", id);
-    return query.getResultList();
-  }
+    public List<Event> findAllUserFavouriteEvents(Long id) {
+        Query query = entityManager.createNamedQuery("Event.findUserFavouriteEvents");
+        query.setParameter("id", id);
+        return query.getResultList();
+    }
 
     public List<Event> searchEvents(String phrase) {
         Query query = entityManager.createNamedQuery("Event.foundEvents");
@@ -78,6 +77,12 @@ public class EventsDaoBean {
                 .setParameter("id_organizer", id);
         Long result = (Long) query.getSingleResult();
         return result.intValue();
+    }
+
+    public List<Event> findByNameAndDate(String name, Date startDate, Date endDate) {
+        Query query = entityManager.createNamedQuery("Event.findByNameAndDate");
+        query.setParameter("name", name).setParameter("startDate", startDate).setParameter("endDate", endDate);
+        return query.getResultList();
     }
 }
 
