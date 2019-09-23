@@ -1,3 +1,4 @@
+
 <div class="card text-center">
     <div class="card-header">
         <h2 class="card-title">
@@ -17,21 +18,17 @@
                 </div>
                 <div class="col-4 text-center">
                     <h3><span class="badge badge-secondary">Organizator</span></h3>
-                        <p id="addressName" class="card-text"></p>
-
+                        <p id="organizerName" class="card-text"></p>
                     <h3><span class="badge badge-secondary">Miejsce</span></h3>
+                        <p id="addressName" class="card-text"></p>
+                    <h3><span class="badge badge-secondary">Adres</span></h3>
                         <p id="addressCity" class="card-text"></p>
                         <p id="addressStreet" class="card-text"></p>
                         <p id="addressZipCode" class="card-text"></p>
-                    <h3><span class="badge badge-secondary">Adres</span></h3>
-                        <p id="address" class="card-text"></p>
-                        <p class="card-text"></p>
-                        <p class="card-text"></p>
                     <h3><span class="badge badge-secondary">Linki</span></h3>
-                        <p class="card-text"><a href=""> Strona WWW </a></p>
-                        <p class="card-text"><a href=""> Facebook </a></p>
-                        <p class="card-text"><a href=""> Strona z
-                            biletami</a></p>
+                        <p id="wwwAddress" class="card-text"><a href="#"> Strona WWW </a></p>
+                        <p id="fbSite" class="card-text"><a href="#"> Facebook </a></p>
+                        <p id="websiteWithTickets" class="card-text"><a href="#"> Strona z biletami</a></p>
                 </div>
             </div>
         </div>

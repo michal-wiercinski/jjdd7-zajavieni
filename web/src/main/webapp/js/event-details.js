@@ -20,18 +20,4 @@ function fetchEventDetails(event, that) {
     });
     return false;
 };
-/*
-private Long id;
-private String name;
-private Date startDate;
-private Date endDate;
-private String addressName;
-private String addressCity;
-private String addressStreet;
-private String addressZipCode;
-private String descShort;
-private String descLong;
-private String wwwAddress;
-private String fbSite;
-private String websiteWithTickets;
-private String organizerName;*/
+
