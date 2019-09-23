@@ -38,6 +38,11 @@ public class UserService {
         userDaoBean.saveUser(user);
     }
 
+    public Optional<UserDto> getUserByEmail(String email){
+        return userDaoBean.findByEmail(email).map(userDtoMapper::mapEntityToDto);
+
+    }
+
    public Boolean ifExist(String email){
       return userDaoBean.findByEmail(email).isPresent();
    }
@@ -63,5 +68,6 @@ public class UserService {
                 .openStream());
         return settings.getProperty("user.name");
     }
+
 
 }

@@ -22,7 +22,6 @@ public class EventDto {
   private String websiteWithTickets;
   private String organizerName;
   private List<AttachmentDto> attachments = new ArrayList<>();
-  private List<UserDto> users = new ArrayList<>();
 
   public Long getId() {
     return id;
@@ -144,11 +143,4 @@ public class EventDto {
     this.attachments = attachments;
   }
 
-  public List<UserDto> getUsers() {
-    return users;
-  }
-
-  public void setUsers(List<UserDto> users) {
-    this.users = users;
-  }
 }

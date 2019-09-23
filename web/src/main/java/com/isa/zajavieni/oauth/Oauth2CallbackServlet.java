@@ -26,16 +26,15 @@ import java.io.IOException;
 import java.util.UUID;
 
 @WebServlet("/oauth2callback")
-@SuppressWarnings("serial")
 public class Oauth2CallbackServlet extends AbstractAuthorizationCodeCallbackServlet {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @EJB
     UserService userService;
+
     @Inject
     private TemplateProvider templateProvider;
-
 
     @Override
     protected void onSuccess(HttpServletRequest req, HttpServletResponse resp, Credential credential) throws ServletException, IOException {
@@ -53,7 +52,6 @@ public class Oauth2CallbackServlet extends AbstractAuthorizationCodeCallbackServ
         req.getSession().setAttribute("email", email);
         resp.sendRedirect("/");
 
-
         if (!userService.ifExist(email)) {
             UserDto user = new UserDto();
             user.setName(name);
@@ -64,7 +62,6 @@ public class Oauth2CallbackServlet extends AbstractAuthorizationCodeCallbackServ
         }
 
     }
-
 
     @Override
     protected void onError(HttpServletRequest req, HttpServletResponse resp, AuthorizationCodeResponseUrl errorResponse) throws ServletException, IOException {

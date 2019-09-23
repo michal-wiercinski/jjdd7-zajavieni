@@ -57,9 +57,6 @@ public class EventDtoMapper {
         event.getAttachment()
                 .forEach(a -> eventDto.getAttachments()
                         .add(attachmentDtoMapper.mapAttachmentToDto(a)));
-        eventDto.setUsers(event.getUsers().stream()
-                .map(user -> userDtoMapper.mapEntityToDto(user))
-                .collect(Collectors.toList()));
         logger.info("Map event entity id: {} to dto", event.getId());
         return eventDto;
     }

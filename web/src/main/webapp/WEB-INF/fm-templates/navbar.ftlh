@@ -41,6 +41,7 @@
             <a class="p-2 text-dark" href="#">Koszyk</a>
 
             <a href="/login" class="btn btn-danger btn-sm"><i class="fa fa-google"></i> Zaloguj się przez <b>Google</b></a>
+            <a href="/logout" class="btn btn-danger btn-sm"><i class="fa fa-google"></i> Wyloguj się <b>Google</b></a>
             <#--  <a class="p-2 text-dark" href="/admin/upload">Admin</a>-->
         </nav>
     </div>

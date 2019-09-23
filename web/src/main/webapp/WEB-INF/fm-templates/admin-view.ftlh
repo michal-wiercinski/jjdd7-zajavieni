@@ -1,5 +1,5 @@
 <#include "navbar.ftlh">
-<a class="p-2 text-dark" href="/admin/upload">Admin</a>
+<a class="p-2 text-dark" href="/admin/upload">Upload danych</a>
 
 <div>
 <ul class="list-group"
