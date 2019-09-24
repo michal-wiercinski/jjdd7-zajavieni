@@ -35,8 +35,12 @@ import java.util.List;
                 query = "select e from Event e inner join e.users u where u.id = :id"
         ),
         @NamedQuery(
-                name = "Event.findByNameAndDate",
-                query = "SELECT e FROM Event e WHERE e.name LIKE :name AND e.startDate>= :startDate AND e.startDate<= :endDate"
+                name = "Event.findByNameAndDates",
+                query = "SELECT e FROM Event e WHERE e.name LIKE :name AND e.startDate>= :startDate AND e.startDate<= :endDate ORDER BY e.startDate"
+        ),
+        @NamedQuery(
+                name = "Event.findByNameAndStartDate",
+                query = "SELECT e FROM Event e WHERE e.name LIKE :name AND e.startDate>= :startDate ORDER BY e.startDate"
         ),
         @NamedQuery(
                 name = "User.findUsersWithFavouriteEvents",

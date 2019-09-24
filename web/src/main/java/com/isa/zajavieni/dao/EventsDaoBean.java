@@ -1,5 +1,6 @@
 package com.isa.zajavieni.dao;
 
+import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.servlet.LoggerServlet;
 import org.slf4j.Logger;
@@ -79,9 +80,15 @@ public class EventsDaoBean {
         return result.intValue();
     }
 
-    public List<Event> findByNameAndDate(String name, Date startDate, Date endDate) {
-        Query query = entityManager.createNamedQuery("Event.findByNameAndDate");
+    public List<Event> findByNameAndDate(String name, String startDate, String endDate) {
+        Query query = entityManager.createNamedQuery("Event.findByNameAndDates");
         query.setParameter("name", name).setParameter("startDate", startDate).setParameter("endDate", endDate);
+        return query.getResultList();
+    }
+
+    public List<Event> searchEventsByNameAndStartDate(String name, String startDate) {
+        Query query = entityManager.createNamedQuery("Event.findByNameAndStartDate");
+        query.setParameter("name", name).setParameter("startDate", startDate);
         return query.getResultList();
     }
 }

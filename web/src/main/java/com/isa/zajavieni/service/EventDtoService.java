@@ -89,5 +89,9 @@ public class EventDtoService {
   public int getTotalPages(int numberFound, int perPage) {
     return numberFound / perPage;
   }
+
+  public List<EventDto> searchEventsByNameAndStartDate(String name, String startDate) {
+    return eventsDaoBean.searchEventsByNameAndStartDate(name,startDate);
+  }
 }
 

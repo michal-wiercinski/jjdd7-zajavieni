@@ -15,4 +15,12 @@ public class SearchService {
     public List<EventDto> searchEvents(String phrase) {
         return eventDtoService.searchEvents(phrase);
     }
+
+    public List<EventDto> searchEventsByNameAndStartDate(String name, String startDate) {
+        return eventDtoService.searchEventsByNameAndStartDate(name,startDate);
+    }
+
+    public List<EventDto> searchEventsByNameAndDates(String name, String startDate, String endDate) {
+        return null;
+    }
 }
