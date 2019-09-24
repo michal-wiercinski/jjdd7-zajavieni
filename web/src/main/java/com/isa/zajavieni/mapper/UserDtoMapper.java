@@ -13,7 +13,7 @@ public class UserDtoMapper {
     @EJB
     EventDtoMapper eventDtoMapper;
 
-    public UserDto mapEntityToDto(User user){
+    public UserDto mapEntityToDto(User user) {
         UserDto userDto = new UserDto();
 
         userDto.setId(user.getId());
@@ -22,12 +22,12 @@ public class UserDtoMapper {
         userDto.setEvents(user.getEvents().stream()
                 .map(event -> eventDtoMapper.mapEventToDto(event))
                 .collect(Collectors.toList()));
-       userDto.setUserType(user.getUserType());
+        userDto.setUserType(user.getUserType());
 
         return userDto;
     }
 
-    public User mapDtoToEntity(UserDto userDto){
+    public User mapDtoToEntity(UserDto userDto) {
         User user = new User();
 
         user.setName(userDto.getName());

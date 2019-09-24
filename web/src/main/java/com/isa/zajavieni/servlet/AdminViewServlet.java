@@ -30,28 +30,29 @@ public class AdminViewServlet extends HttpServlet {
 
     @Inject
     TemplateProvider templateProvider;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getSession().getAttribute("email").toString();
 
-    if(!userService.isAdmin(email) && !userService.isSuperAdmin(email)){
-        resp.setStatus(404);
-        return;
-    }else{
+        if (!userService.isAdmin(email) && !userService.isSuperAdmin(email)) {
+            resp.setStatus(404);
+            return;
+        } else {
 
-        List<UserDto> users = userService.getUsers();
+            List<UserDto> users = userService.getUsers();
 
-        Template template = templateProvider.getTemplate(getServletContext(), "admin-view.ftlh");
-        Map<String, Object> model = new HashMap<>();
-        model.put("users", users);
+            Template template = templateProvider.getTemplate(getServletContext(), "admin-view.ftlh");
+            Map<String, Object> model = new HashMap<>();
+            model.put("users", users);
 
-        try {
-            template.process(model, resp.getWriter());
-        } catch (TemplateException e) {
-            logger.error(e.getMessage());
+            try {
+                template.process(model, resp.getWriter());
+            } catch (TemplateException e) {
+                logger.error(e.getMessage());
+            }
+
         }
-
-    }
 
     }
 

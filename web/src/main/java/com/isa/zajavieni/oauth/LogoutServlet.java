@@ -17,7 +17,7 @@ public class LogoutServlet extends HttpServlet {
             throws IOException, ServletException {
         // you can also make an authenticated request to logout, but here we choose to
         // simply delete the session variables for simplicity
-        HttpSession session =  req.getSession(false);
+        HttpSession session = req.getSession(false);
         if (session != null) {
             session.invalidate();
         }

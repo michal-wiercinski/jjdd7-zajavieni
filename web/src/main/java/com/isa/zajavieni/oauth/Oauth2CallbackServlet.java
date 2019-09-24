@@ -21,7 +21,6 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 import java.util.UUID;
 
@@ -56,7 +55,6 @@ public class Oauth2CallbackServlet extends AbstractAuthorizationCodeCallbackServ
             UserDto user = new UserDto();
             user.setName(name);
             user.setEmail(email);
-
             userService.createNewUser(user);
             logger.info("User for name: {} has been save in base.", user.getName());
         }
