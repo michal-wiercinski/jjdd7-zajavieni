@@ -16,6 +16,7 @@ function fetchEventDetails(event, that) {
             $("#event_modal_" + that.modal_event_id.value + " .modal-body .card-text#fbSite").first().text(data.fbSite);
             $("#event_modal_" + that.modal_event_id.value + " .modal-body .card-text#websiteWithTickets").first().text(data.websiteWithTickets);
             $("#event_modal_" + that.modal_event_id.value + " .modal-body .card-text#organizerName").first().text(data.organizerName);
+            $("#event_modal_" + that.modal_event_id.value + " .modal-body .wwwAddress#wwwAddress").first().text(data.wwwAddress);
         }
     });
     return false;

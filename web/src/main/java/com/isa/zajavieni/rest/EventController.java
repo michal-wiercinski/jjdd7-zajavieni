@@ -1,4 +1,4 @@
-package com.isa.zajavieni.rest_api;
+package com.isa.zajavieni.rest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.isa.zajavieni.service.EventDtoService;
@@ -8,11 +8,12 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/v1.0")
-public class EventController {
+public class EventController extends Application {
 
     @Inject
     EventDtoService eventDtoService;

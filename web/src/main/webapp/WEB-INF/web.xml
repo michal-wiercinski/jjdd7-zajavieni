@@ -17,19 +17,8 @@
         <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
         <url>jdbc:mysql://0.0.0.0:3309/eventsdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
         <!--Na PR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-        <!--<url>jdbc:mysql://mysql/eventsdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>-->
-        <user>root</user>
+        <!--<url>jdbc:mysql://mysql/eventsdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
+        --><user>root</user>
         <password>root</password>
     </data-source>
-
-    <servlet>
-        <servlet-name>JerseyDemo</servlet-name>
-        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-        <!-- Define the ResourceConfig class -->
-        <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
-            <param-value>com.isa.zajavieni.rest_api.AppResourceConfig</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
 </web-app>

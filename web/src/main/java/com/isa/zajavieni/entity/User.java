@@ -31,6 +31,9 @@ public class User {
       inverseJoinColumns = @JoinColumn(name = "id_event", referencedColumnName = "event_id"))
   List<Event> events = new ArrayList<>();
 
+  @Column(name = "email")
+  String email;
+
   public User(UserType userType) {
     this.userType = userType;
   }
@@ -60,5 +63,13 @@ public class User {
 
   public void setEvents(List<Event> events) {
     this.events = events;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 }

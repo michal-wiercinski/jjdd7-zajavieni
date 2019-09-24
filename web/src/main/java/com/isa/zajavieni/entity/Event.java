@@ -2,10 +2,10 @@ package com.isa.zajavieni.entity;
 
 import com.isa.zajavieni.jsonclasses.TicketType;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.*;
 
 @NamedQueries({
         @NamedQuery(
@@ -29,7 +29,16 @@ import javax.persistence.*;
                 name = "Event.counterByOrganizer",
                 query = "SELECT count(e) FROM Event e WHERE e.organizer.id = :id_organizer " +
                         "AND e.startDate >= :time"
+        ),
+        @NamedQuery(
+                name = "Event.findUserFavouriteEvents",
+                query = "select e from Event e inner join e.users u where u.id = :id"
+        ),
+        @NamedQuery(
+                name = "User.findUsersWithFavouriteEvents",
+                query = "select u from User u inner join u.events e where e.id = :id"
         )
+
 })
 @Entity
 @Table(name = "event")
@@ -80,7 +89,7 @@ public class Event {
     Category category;
 
     @ManyToMany(mappedBy = "events")
-    List<User> users = new ArrayList<>();
+    List<User> users;
 
     public Event(String name, String descShort, String descLong, Boolean active,
                  Date startDate, Date endDate, TicketType type) {
@@ -91,6 +100,7 @@ public class Event {
         this.startDate = startDate;
         this.endDate = endDate;
         this.type = type;
+
     }
 
     public Event() {

@@ -2,12 +2,13 @@ package com.isa.zajavieni.dao;
 
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.servlet.LoggerServlet;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.persistence.Query;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +30,12 @@ public class EventsDaoBean {
         logger.info("Object event id: {} persist to DB", event.getId());
         entityManager.persist(event);
     }
+
+  public List<Event> findAllUserFavouriteEvents(Long id) {
+    Query query = entityManager.createNamedQuery("Event.findUserFavouriteEvents");
+    query.setParameter("id", id);
+    return query.getResultList();
+  }
 
     public List<Event> searchEvents(String phrase) {
         Query query = entityManager.createNamedQuery("Event.foundEvents");

@@ -25,12 +25,15 @@
         </form>
         <ul class="list-group" id="result"></ul>
         <#assign upcoming_link = "/upcoming-events?pageNo=0">
+        <#assign favourite_link = "/favourite-events">
         <#assign search_by_organizer = "/organizers?letter=A">
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="${upcoming_link}">Lista wydarzeń</a>
             <a class="p-2 text-dark" href="${search_by_organizer}">Organizatorzy</a>
             <a class="p-2 text-dark" href="#">Wyszukiwanie</a>
-            <a class="p-2 text-dark" href="#">Ulubione</a>
+            <#if userId??>
+            <a class="p-2 text-dark" href="${favourite_link}">Ulubione</a>
+            </#if>
             <a class="p-2 text-dark" href="#">Koszyk</a>
             <a class="p-2 text-dark" href="/admin/upload">Admin</a>
         </nav>
