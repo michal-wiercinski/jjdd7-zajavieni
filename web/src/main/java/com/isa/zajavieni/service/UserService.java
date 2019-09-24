@@ -32,6 +32,7 @@ public class UserService {
     return userDaoBean.findById(id);
   }
 
+
   public void createNewUser(UserDto userDto) throws IOException {
     User user = userDtoMapper.mapDtoToEntity(userDto);
     if (userDto.getEmail().equals(getAdminEmail())) {
@@ -41,6 +42,11 @@ public class UserService {
     }
     userDaoBean.saveUser(user);
   }
+
+  public void editUser(User user){
+      userDaoBean.updateUser(user);
+  }
+
 
   public Optional<UserDto> getUserByEmail(String email) {
     return userDaoBean.findByEmail(email).map(userDtoMapper::mapEntityToDto);

@@ -30,6 +30,10 @@ public class UserDaoBean {
     entityManager.persist(user);
   }
 
+  public void updateUser(User user){
+    entityManager.merge(user);
+  }
+
   public User findById(Long id) {
     logger.info("Object event id: {} has been found", id);
     return entityManager.find(User.class, id);

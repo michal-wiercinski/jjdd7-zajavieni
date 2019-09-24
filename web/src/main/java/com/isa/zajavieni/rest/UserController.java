@@ -43,6 +43,7 @@ public class UserController {
     }
 
     user.setUserType(UserType.ADMIN);
+    userService.editUser(user);
 
     logger.info("User with id: {} received admin privileges",id);
     return Response.ok().build();
@@ -71,6 +72,7 @@ public class UserController {
     }
 
     user.setUserType(UserType.USER);
+    userService.editUser(user);
 
     logger.info("User with id: {} admin privileges revoked",id);
     return Response.ok().build();
