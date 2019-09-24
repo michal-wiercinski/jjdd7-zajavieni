@@ -13,43 +13,42 @@ import java.util.Properties;
 
 public class GoogleLoginCommons {
 
-    private static final String CLIENT_FILE = "google.properties";
-    private static final String REDIRECT_URL = "/oauth2callback";
-    private static final List<String> SCOPES = List.of("openid", "email", "profile");
+  private static final String CLIENT_FILE = "google.properties";
+  private static final String REDIRECT_URL = "/oauth2callback";
+  private static final List<String> SCOPES = List.of("openid", "email", "profile");
 
 
-    static String buildRedirectUri(HttpServletRequest req) {
-        GenericUrl url = new GenericUrl(req.getRequestURL().toString());
-        url.setRawPath(REDIRECT_URL);
-        return url.build();
-    }
+  static String buildRedirectUri(HttpServletRequest req) {
+    GenericUrl url = new GenericUrl(req.getRequestURL().toString());
+    url.setRawPath(REDIRECT_URL);
+    return url.build();
+  }
 
-    static GoogleAuthorizationCodeFlow buildFlow() throws IOException {
-        GoogleAuthorizationCodeFlow online = new GoogleAuthorizationCodeFlow.Builder(
-                new NetHttpTransport(),
-                JacksonFactory.getDefaultInstance(), getClientID(),
-                getClientSecret(), SCOPES)
-                .setAccessType("online")
-                .build();
-        return online;
-    }
+  static GoogleAuthorizationCodeFlow buildFlow() throws IOException {
+    GoogleAuthorizationCodeFlow online = new GoogleAuthorizationCodeFlow.Builder(
+        new NetHttpTransport(),
+        JacksonFactory.getDefaultInstance(), getClientID(),
+        getClientSecret(), SCOPES)
+        .setAccessType("online")
+        .build();
+    return online;
+  }
 
 
-    private static String getClientID() throws IOException {
-        Properties settings = new Properties();
-        settings.load(Objects.requireNonNull(Thread.currentThread()
-                .getContextClassLoader().getResource(CLIENT_FILE))
-                .openStream());
-        return settings.getProperty("client.id");
-    }
+  private static String getClientID() throws IOException {
+    Properties settings = new Properties();
+    settings.load(Objects.requireNonNull(Thread.currentThread()
+        .getContextClassLoader().getResource(CLIENT_FILE))
+        .openStream());
+    return settings.getProperty("client.id");
+  }
 
-    private static String getClientSecret() throws IOException {
-        Properties settings = new Properties();
-        settings.load(Objects.requireNonNull(Thread.currentThread()
-                .getContextClassLoader().getResource(CLIENT_FILE))
-                .openStream());
-        return settings.getProperty("client.secret");
-    }
-
+  private static String getClientSecret() throws IOException {
+    Properties settings = new Properties();
+    settings.load(Objects.requireNonNull(Thread.currentThread()
+        .getContextClassLoader().getResource(CLIENT_FILE))
+        .openStream());
+    return settings.getProperty("client.secret");
+  }
 
 }

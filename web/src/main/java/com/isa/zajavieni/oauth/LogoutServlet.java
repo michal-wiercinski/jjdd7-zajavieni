@@ -12,18 +12,14 @@ import java.io.IOException;
 @SuppressWarnings("serial")
 public class LogoutServlet extends HttpServlet {
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException, ServletException {
-        // you can also make an authenticated request to logout, but here we choose to
-        // simply delete the session variables for simplicity
-        HttpSession session = req.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
-        // rebuild session
-        req.getSession();
-        resp.sendRedirect("/");
+  @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+      throws IOException, ServletException {
+    HttpSession session = req.getSession(false);
+    if (session != null) {
+      session.invalidate();
     }
-
+    req.getSession();
+    resp.sendRedirect("/");
+  }
 }

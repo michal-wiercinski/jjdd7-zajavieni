@@ -23,41 +23,42 @@ import java.util.Map;
 @WebServlet("/admin-view")
 public class AdminViewServlet extends HttpServlet {
 
-    private Logger logger = LoggerFactory.getLogger(getClass().getName());
+  private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-    @EJB
-    UserService userService;
+  @EJB
+  UserService userService;
 
-    @Inject
-    TemplateProvider templateProvider;
+  @Inject
+  TemplateProvider templateProvider;
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String email = req.getSession().getAttribute("email").toString();
+  @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    String email = req.getSession().getAttribute("email").toString();
 
-        if (!userService.isAdmin(email) && !userService.isSuperAdmin(email)) {
-            resp.setStatus(404);
-            return;
-        } else {
+    if (!userService.isAdmin(email) && !userService.isSuperAdmin(email)) {
+      resp.setStatus(404);
+      return;
+    } else {
 
-            List<UserDto> users = userService.getUsers();
+      List<UserDto> users = userService.getUsers();
 
-            Template template = templateProvider.getTemplate(getServletContext(), "admin-view.ftlh");
-            Map<String, Object> model = new HashMap<>();
-            model.put("users", users);
+      Template template = templateProvider.getTemplate(getServletContext(), "admin-view.ftlh");
+      Map<String, Object> model = new HashMap<>();
+      model.put("users", users);
 
-            try {
-                template.process(model, resp.getWriter());
-            } catch (TemplateException e) {
-                logger.error(e.getMessage());
-            }
-
-        }
-
-    }
-
-    @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      try {
+        template.process(model, resp.getWriter());
+      } catch (TemplateException e) {
+        logger.error(e.getMessage());
+      }
 
     }
+  }
+
+  @Override
+  protected void doPut(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+
+  }
 }
