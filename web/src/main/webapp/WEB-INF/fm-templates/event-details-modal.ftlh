@@ -26,7 +26,7 @@
                         <p id="addressStreet" class="card-text"></p>
                         <p id="addressZipCode" class="card-text"></p>
                     <h3><span class="badge badge-secondary">Linki</span></h3>
-                        <p id="wwwAddress" class="card-text"><a href="#"> Strona WWW </a></p>
+                        <p id="wwwAddress" class="card-text"><a id="wwwAddress" href="#" Strona WWW </a></p>
                         <p id="fbSite" class="card-text"><a href="#"> Facebook </a></p>
                         <p id="websiteWithTickets" class="card-text"><a href="#"> Strona z biletami</a></p>
                 </div>
