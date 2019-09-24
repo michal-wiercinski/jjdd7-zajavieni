@@ -1,9 +1,7 @@
 package com.isa.zajavieni.servlet;
 
-import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.isa.zajavieni.dto.UserDto;
-import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.service.UserService;
 
 import javax.ejb.EJB;
@@ -12,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.text.html.Option;
 import java.io.IOException;
 import java.util.Optional;
 

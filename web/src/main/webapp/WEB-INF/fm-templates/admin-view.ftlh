@@ -22,8 +22,8 @@
       <td>${user.userType}</td>
       <td>
         <div class="btn-group" role="group" aria-label="Basic example">
-          <a href="/api/admin/give/${user.id}" class="btn btn-success">Daj uprawnienia Admina</a>
-            <a href="/api/admin/revoke/${user.id}" class="btn btn-danger">Odbierz uprawnienia Admina</a>
+          <button type="button" data-id="${user.id}" class="btn btn-outline-success give">Daj uprawnienia Admina</button>
+          <button type="button" data-id="${user.id}" class="btn btn-outline-danger revoke">Odbierz uprawnienia Admina</button>
         </div>
       </td>
     </tr>

@@ -37,7 +37,8 @@ public class UserController {
 
     User user = userService.findUserById(id);
 
-    if(user.getUserType().equals(UserType.ADMIN)){
+    if(user.getUserType().equals(UserType.ADMIN) ||
+            user.getUserType().equals(UserType.SUPER_ADMIN)){
       return Response.status(Status.NOT_MODIFIED).build();
     }
 
@@ -64,7 +65,8 @@ public class UserController {
 
     User user = userService.findUserById(id);
 
-    if(user.getUserType().equals(UserType.USER)){
+    if(user.getUserType().equals(UserType.USER) ||
+            user.getUserType().equals(UserType.SUPER_ADMIN)){
       return Response.status(Status.NOT_MODIFIED).build();
     }
 
