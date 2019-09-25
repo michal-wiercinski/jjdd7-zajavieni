@@ -1,8 +1,10 @@
 package com.isa.zajavieni.servlet;
 
 import com.isa.zajavieni.dto.EventDto;
+import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.EventDtoService;
+import com.isa.zajavieni.service.UserService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -31,11 +33,17 @@ public class UpcomingEventServlet extends HttpServlet {
     @EJB
     private EventDtoService eventDtoService;
 
+    @EJB
+    private UserService userService;
+
     @Inject
     private TemplateProvider templateProvider;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        Long id = Long.valueOf(String.valueOf(req.getSession().getAttribute("user_id")));
+        User user = userService.findUserById(id);
 
         int totalPages = eventDtoService.getTotalPagesUpcomingEvent(EVENTS_PER_PAGE);
         String pageParameter = req.getParameter(PAGE_NUMBER);
@@ -49,6 +57,7 @@ public class UpcomingEventServlet extends HttpServlet {
         model.put("events", events);
         model.put("page", pageNumber);
         model.put("totalPages", totalPages);
+        model.put("user", user);
 
         try {
             template.process(model, resp.getWriter());
