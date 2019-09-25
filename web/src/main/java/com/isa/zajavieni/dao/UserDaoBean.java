@@ -59,7 +59,7 @@ public class UserDaoBean {
   }
 
   public List<User> findUsersWithFavouriteEvents(Long id) {
-    Query query = entityManager.createNamedQuery("User.findUsersWithFavouriteEvents");
+    Query query = entityManager.createNamedQuery("User.findWithFavouriteEvents");
     query.setParameter("id", id);
     return query.getResultList();
   }
