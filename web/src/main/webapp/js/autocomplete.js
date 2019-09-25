@@ -2,7 +2,7 @@ $.ui.autocomplete.prototype._resizeMenu = function () {
   let ul = this.menu.element;
   ul.outerWidth(this.element.outerWidth() * 2
   );
-}
+};
 $("#search").autocomplete({
   source: function (request, response) {
     $.ajax({
@@ -19,7 +19,7 @@ $("#search").autocomplete({
           response(result);
         } else {
           let result = data.map(
-              r = > {
+              r => {
             return {
               id: r.id,
               label: r.name,
