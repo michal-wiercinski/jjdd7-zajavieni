@@ -3,6 +3,7 @@ package com.isa.zajavieni.servlet;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.EventDtoService;
+import com.isa.zajavieni.service.FavouriteEventService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -24,48 +25,64 @@ import java.util.Map;
 @WebServlet("/filter-by-organizer")
 public class SearchByOrganizerServlet extends HttpServlet {
 
-    private static final int EVENTS_PER_PAGE = 8;
-    private static final String PAGE_NUMBER = "pageNo";
-    private Logger logger = LoggerFactory.getLogger(getClass().getName());
+  private static final int EVENTS_PER_PAGE = 8;
+  private static final String PAGE_NUMBER = "pageNo";
+  private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-    @EJB
-    private EventDtoService eventDtoService;
+  @EJB
+  private EventDtoService eventDtoService;
 
-    @Inject
-    private TemplateProvider templateProvider;
+  @Inject
+  private TemplateProvider templateProvider;
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Long id = null;
-        String idParam = req.getParameter("id");
-        if (idParam != null && !idParam.isEmpty() && NumberUtils.isDigits(idParam)) {
-            id = Long.valueOf(idParam);
-        } else {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        }
+  @Inject
+  private FavouriteEventService favouriteEventService;
 
-        int pageNumber = 0;
-        String pageParameter = req.getParameter(PAGE_NUMBER);
-        if (pageParameter != null && !pageParameter.isEmpty() && NumberUtils.isDigits(pageParameter)) {
-            pageNumber = Integer.valueOf(pageParameter);
-        } else {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        }
-
-        int totalPages = eventDtoService.getTotalPagesOrganizersEvent(id, EVENTS_PER_PAGE);
-
-        List<EventDto> events = eventDtoService.findEventsByOrganizerId(id, pageNumber, EVENTS_PER_PAGE);
-
-        Template template = templateProvider.getTemplate(getServletContext(), "organizers-event.ftlh");
-        Map<String, Object> model = new HashMap<>();
-        model.put("events", events);
-        model.put("page", pageNumber);
-        model.put("totalPages", totalPages);
-
-        try {
-            template.process(model, resp.getWriter());
-        } catch (TemplateException e) {
-            logger.error(e.getMessage());
-        }
+  @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    Long id = null;
+    String idParam = req.getParameter("id");
+    if (idParam != null && !idParam.isEmpty() && NumberUtils.isDigits(idParam)) {
+      id = Long.valueOf(idParam);
+    } else {
+      resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
     }
+
+    int pageNumber = 0;
+    String pageParameter = req.getParameter(PAGE_NUMBER);
+    if (pageParameter != null && !pageParameter.isEmpty() && NumberUtils.isDigits(pageParameter)) {
+      pageNumber = Integer.valueOf(pageParameter);
+    } else {
+      resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+    }
+
+    int totalPages = eventDtoService.getTotalPagesOrganizersEvent(id, EVENTS_PER_PAGE);
+
+    List<EventDto> events = eventDtoService
+        .findEventsByOrganizerId(id, pageNumber, EVENTS_PER_PAGE);
+
+    Template template = templateProvider.getTemplate(getServletContext(), "organizers-event.ftlh");
+    Map<String, Object> model = new HashMap<>();
+    model.put("events", events);
+    model.put("page", pageNumber);
+    model.put("totalPages", totalPages);
+
+    //Long userId = Long.parseLong((String) req.getSession().getAttribute("userId"));
+    Long userId = 2L;
+    List<EventDto> favouriteEvents = favouriteEventService.findListOfUserFavouriteEventsDto(userId);
+
+    if (req.getSession().getAttribute("isVisible").equals("visible")) {
+      if (favouriteEvents.size() != 0) {
+        EventDto upcomingEvent = favouriteEvents.stream().findFirst().get();
+        model.put("upcomingEvent", upcomingEvent);
+      }
+    }
+
+    try {
+      template.process(model, resp.getWriter());
+    } catch (TemplateException e) {
+      logger.error(e.getMessage());
+    }
+  }
 }

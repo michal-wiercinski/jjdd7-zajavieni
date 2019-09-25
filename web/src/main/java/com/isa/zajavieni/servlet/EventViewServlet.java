@@ -1,7 +1,10 @@
 package com.isa.zajavieni.servlet;
 
+import com.isa.zajavieni.dao.UserDaoBean;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
+import com.isa.zajavieni.entity.User;
+import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
@@ -9,6 +12,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
@@ -19,6 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.hibernate.Incubating;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,6 +64,18 @@ public class EventViewServlet extends HttpServlet {
     Map<String, Object> model = new HashMap<>();
     model.put("event", eventDto);
     model.put("isFavourite", isFavourite);
+
+    //Long userId = Long.parseLong((String) req.getSession().getAttribute("userId"));
+    List<EventDto> favouriteEvents = favouriteEventService.findListOfUserFavouriteEventsDto(userId);
+
+
+    if (req.getSession().getAttribute("isVisible").equals("visible")) {
+      if (favouriteEvents.size() != 0) {
+        EventDto upcomingEvent = favouriteEvents.stream().findFirst().get();
+        model.put("upcomingEvent", upcomingEvent);
+      }
+    }
+
     try {
       template.process(model, resp.getWriter());
     } catch (TemplateException e) {

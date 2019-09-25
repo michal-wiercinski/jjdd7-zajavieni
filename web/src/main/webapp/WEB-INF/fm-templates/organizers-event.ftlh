@@ -1,5 +1,7 @@
 <#include "navbar.ftlh">
 
+<#include "favourite-beam.ftlh">
+
 <#include "alpha-pager.ftlh">
 
 <#include "cards-of-events.ftlh">

@@ -1,5 +1,6 @@
 
 <#include "navbar.ftlh">
+<#include "favourite-beam.ftlh">
 <div class="alert alert-dark text-center" role="alert">
   <h1>
     <strong>Twoje ulubione wydarzenia</strong>

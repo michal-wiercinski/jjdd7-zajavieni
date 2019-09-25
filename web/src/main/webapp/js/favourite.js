@@ -28,3 +28,15 @@ $(function () {
     });
   });
 });
+
+$(function () {
+  $('#close').click(function () {
+    $.ajax({
+      url: "/favourite-events",
+      method: "PUT",
+      success: function () {
+        location.reload();
+      }
+    });
+  });
+});

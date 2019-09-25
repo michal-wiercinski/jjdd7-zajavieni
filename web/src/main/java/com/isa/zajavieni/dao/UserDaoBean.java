@@ -23,7 +23,7 @@ public class UserDaoBean {
     return entityManager.find(User.class, id);
   }
 
-  public void saveEvent(User user) {
+  public void saveUser(User user) {
     logger.info("Object event id: {} persist to DB", user.getId());
     entityManager.persist(user);
   }
@@ -33,5 +33,4 @@ public class UserDaoBean {
     query.setParameter("id", id);
     return query.getResultList();
   }
-
 }

@@ -33,11 +33,22 @@ public class FavouriteEventsServlet extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     logger.info("Request GET method");
-    Long userId = Long.parseLong((String) req.getSession().getAttribute("userId"));
+    //Long userId = Long.parseLong((String) req.getSession().getAttribute("userId"));
+    Long userId = 2L;
     List<EventDto> favouriteEvents = favouriteEventService.findListOfUserFavouriteEventsDto(userId);
+
     Template template = templateProvider.getTemplate(getServletContext(), "favourite.ftlh");
     Map<String, Object> model = new HashMap<>();
     model.put("favouriteEvents", favouriteEvents);
+
+    if (req.getSession().getAttribute("isVisible").equals("visible")) {
+      //Long userId = Long.parseLong((String) req.getSession().getAttribute("userId"));
+      if (favouriteEvents.size() != 0) {
+        EventDto upcomingEvent = favouriteEvents.stream().findFirst().get();
+        model.put("upcomingEvent", upcomingEvent);
+      }
+    }
+
     try {
       template.process(model, resp.getWriter());
     } catch (TemplateException e) {
@@ -50,7 +61,8 @@ public class FavouriteEventsServlet extends HttpServlet {
       throws ServletException, IOException {
     logger.info("Request POST method");
     String eventId = req.getParameter("id");
-    String userId = (String) req.getSession().getAttribute("userId");
+    //String userId = (String) req.getSession().getAttribute("userId");
+    String userId = "2";
     favouriteEventService.addEventToUserFavouriteEvents(eventId, userId);
   }
 
@@ -59,7 +71,14 @@ public class FavouriteEventsServlet extends HttpServlet {
       throws ServletException, IOException {
     logger.info("Request DELETE method");
     String eventId = req.getParameter("id");
-    String userId = (String) req.getSession().getAttribute("userId");
+    //String userId = (String) req.getSession().getAttribute("userId");
+    String userId = "2";
     favouriteEventService.deleteEventFromUserFavouriteEvents(eventId, userId);
+  }
+
+  @Override
+  protected void doPut(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    req.getSession().setAttribute("view", "invisible");
   }
 }

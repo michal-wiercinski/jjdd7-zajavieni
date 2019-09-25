@@ -1,4 +1,5 @@
 <#include "navbar.ftlh">
+<#include "favourite-beam.ftlh">
 <div class="card text-center">
     <div class="card-header">
         <h2 class="card-title">${event.startDate?string('dd.MM.yyyy (HH:mm)')} -
@@ -54,14 +55,14 @@
   </div>
   <div class="card-footer d-inline">
     <a href="#" class="btn btn-primary">Zarezerwuj bilet</a>
-    <#if userId??>
+<#--    <#if userId??>-->
     <button type="button"
             class="${isFavourite?then('btn btn-outline-danger','btn btn-outline-success')}"
             id='${isFavourite?then('deleteE','addE')}'
             data-id='${event.id?c}'>
         ${isFavourite?then('Usuń z ulubionych ❌', 'Dodaj do ulubionych ✅')}
     </button>
-    </#if>
+<#--    </#if>-->
   </div>
 </div>
 <script src="/js/favourite.js"></script>

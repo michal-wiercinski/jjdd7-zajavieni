@@ -31,15 +31,15 @@
             <a class="p-2 text-dark" href="${upcoming_link}">Lista wydarzeń</a>
             <a class="p-2 text-dark" href="${search_by_organizer}">Organizatorzy</a>
             <a class="p-2 text-dark" href="#">Wyszukiwanie</a>
-            <#if userId??>
+<#--            <#if userId??>-->
             <a class="p-2 text-dark" href="${favourite_link}">Ulubione</a>
-            </#if>
+<#--            </#if>-->
             <a class="p-2 text-dark" href="#">Koszyk</a>
             <a class="p-2 text-dark" href="/admin/upload">Admin</a>
         </nav>
     </div>
 
-    <header class="jumbotron my-4 text-center">
+    <header class="jumbotron my-4 text-center ">
         <h1 class="display-3 font-weight-bold">3CITYEVENT</h1>
         <p class="lead">Witaj w miejscu, gdzie zgromadzone są wydarzenia kulturalne w Trójmiescie i okolicy.
             </br>Szukaj, znajdź, rezerwuj i baw się dobrze!</p>

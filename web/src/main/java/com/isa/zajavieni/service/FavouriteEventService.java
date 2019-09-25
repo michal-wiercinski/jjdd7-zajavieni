@@ -7,6 +7,7 @@ import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.mapper.EventDtoMapper;
 import com.isa.zajavieni.servlet.LoggerServlet;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.Stateless;
@@ -30,7 +31,8 @@ public class FavouriteEventService {
 
   public List<EventDto> findListOfUserFavouriteEventsDto(Long id) {
     logger.info("Find list of favourite events");
-    List<Event> favouriteEvents = eventsDaoBean.findAllUserFavouriteEvents(id);
+    List<Event> favouriteEvents = eventsDaoBean.findAllUserFavouriteEvents(id).stream().sorted(
+        Comparator.comparing(Event::getStartDate)).collect(Collectors.toList());
     return favouriteEvents.stream().map(event -> dtoMapper.mapEventToDto(event))
         .collect(Collectors.toList());
   }

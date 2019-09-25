@@ -1,4 +1,5 @@
 <#include "navbar.ftlh">
+<#include "favourite-beam.ftlh">
 <#include "alpha-pager.ftlh">
 <div>
 <ul class="list-group">

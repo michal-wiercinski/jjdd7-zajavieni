@@ -1,7 +1,12 @@
 package com.isa.zajavieni.servlet;
 
+import com.isa.zajavieni.dao.UserDaoBean;
+import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.dto.OrganizerDto;
+import com.isa.zajavieni.entity.User;
+import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
+import com.isa.zajavieni.service.FavouriteEventService;
 import com.isa.zajavieni.service.OrganizerDtoService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -23,31 +28,62 @@ import java.util.Map;
 
 @WebServlet("/organizers")
 public class OrganizerSelectionServlet extends HttpServlet {
-    private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-    @EJB
-    OrganizerDtoService organizerDtoService;
+  private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-    @Inject
-    private TemplateProvider templateProvider;
+  @EJB
+  OrganizerDtoService organizerDtoService;
+
+  @Inject
+  private TemplateProvider templateProvider;
+
+  @Inject
+  UserDaoBean userDaoBean;
+
+  @Inject
+  private FavouriteEventService favouriteEventService;
 
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+  @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
 
-        List<OrganizerDto> organizers = new ArrayList<>();
+    List<OrganizerDto> organizers = new ArrayList<>();
 
-        String letter = req.getParameter("letter");
-        organizers = organizerDtoService.getListByFirstLetter(letter.toUpperCase());
+    String letter = req.getParameter("letter");
+    organizers = organizerDtoService.getListByFirstLetter(letter.toUpperCase());
 
-        Template template = templateProvider.getTemplate(getServletContext(), "organizers-list.ftlh");
-        Map<String, Object> model = new HashMap<>();
-        model.put("organizers", organizers);
+    Template template = templateProvider.getTemplate(getServletContext(), "organizers-list.ftlh");
+    Map<String, Object> model = new HashMap<>();
+    model.put("organizers", organizers);
 
-        try {
-            template.process(model, resp.getWriter());
-        } catch (TemplateException e) {
-            logger.error(e.getMessage());
-        }
+    //Long userId = Long.parseLong((String) req.getSession().getAttribute("userId"));
+    Long userId = 2L;
+    List<EventDto> favouriteEvents = favouriteEventService.findListOfUserFavouriteEventsDto(userId);
+
+    if (req.getSession().getAttribute("isVisible").equals("visible")) {
+      if (favouriteEvents.size() != 0) {
+        EventDto upcomingEvent = favouriteEvents.stream().findFirst().get();
+        model.put("upcomingEvent", upcomingEvent);
+      }
     }
+
+    try {
+      template.process(model, resp.getWriter());
+    } catch (TemplateException e) {
+      logger.error(e.getMessage());
+    }
+
+    if (userDaoBean.findById(2L) == null) {
+      User user = new User();
+      user.setUserType(UserType.USER);
+      user.setEmail("aaa");
+      userDaoBean.saveUser(user);
+
+      User user2 = new User();
+      user2.setUserType(UserType.USER);
+      user2.setEmail("aaa");
+      userDaoBean.saveUser(user2);
+    }
+  }
 }
