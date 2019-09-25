@@ -1,5 +1,5 @@
 package com.isa.zajavieni.entity;
 
 public enum UserType {
-  ADMIN, USER;
+  ADMIN, SUPER_ADMIN, USER;
 }

@@ -1,24 +1,25 @@
 <!DOCTYPE web-app PUBLIC
-        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
-        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-         version="3.1">
-    <display-name>Archetype Created Web Application</display-name>
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+  version="3.1">
+  <display-name>Archetype Created Web Application</display-name>
 
-    <welcome-file-list>
-        <welcome-file>/main</welcome-file>
-    </welcome-file-list>
+  <welcome-file-list>
+    <welcome-file>/main</welcome-file>
+  </welcome-file-list>
 
-    <data-source>
-        <name>java:ds/zajavieni</name>
-        <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
-        <url>jdbc:mysql://0.0.0.0:3309/eventsdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
-        <!--Na PR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-        <!--<url>jdbc:mysql://mysql/eventsdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
-        --><user>root</user>
-        <password>root</password>
-    </data-source>
+  <data-source>
+    <name>java:ds/zajavieni</name>
+    <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
+
+    <!--<url>jdbc:mysql://0.0.0.0:3309/eventsdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>-->
+    <!--Na PR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <url>jdbc:mysql://mysql/eventsdb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
+    <user>root</user>
+    <password>root</password>
+  </data-source>
 </web-app>
