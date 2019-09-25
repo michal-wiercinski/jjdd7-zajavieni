@@ -2,86 +2,103 @@ package com.isa.zajavieni.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @NamedQueries({
-        @NamedQuery(
-                name = "User.findAll",
-                query = "SELECT u FROM User u"
-        ),
-        @NamedQuery(
-                name = "User.findByEmail",
-                query = "SELECT u FROM User u WHERE u.email = :email"
-        )
+    @NamedQuery(
+        name = "User.findAll",
+        query = "SELECT u FROM User u"
+    ),
+    @NamedQuery(
+        name = "User.findByEmail",
+        query = "SELECT u FROM User u WHERE u.email = :email"
+    ),
+    @NamedQuery(
+        name = "User.findWithFavouriteEvents",
+        query = "select u from User u inner join u.events e where e.id = :id"
+    )
 })
 @Entity
-@Table(name = "user")
+@Table(name = "user", indexes = {@Index(name = "user_email", columnList = "email")})
 public class User {
 
-    @Id
-    @Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+  @Id
+  @Column(name = "user_id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  Long id;
 
-    @Column(name = "user_type")
-    UserType userType;
+  @Column(name = "user_type")
+  UserType userType;
 
-    @Column(name = "user_name")
-    String name;
+  @Column(name = "user_name")
+  String name;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_event",
-            joinColumns = @JoinColumn(name = "id_user", referencedColumnName = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "id_event", referencedColumnName = "event_id"))
-    List<Event> events = new ArrayList<>();
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "user_event",
+      joinColumns = @JoinColumn(name = "id_user", referencedColumnName = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "id_event", referencedColumnName = "event_id"))
+  List<Event> events = new ArrayList<>();
 
-    @Column(name = "email")
-    String email;
 
-    public User(UserType userType) {
-        this.userType = userType;
-    }
+  @Column(name = "email")
+  String email;
 
-    public User() {
-    }
+  public User(UserType userType) {
+    this.userType = userType;
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public User() {
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public UserType getUserType() {
-        return userType;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setUserType(UserType userType) {
-        this.userType = userType;
-    }
+  public UserType getUserType() {
+    return userType;
+  }
 
-    public List<Event> getEvents() {
-        return events;
-    }
+  public void setUserType(UserType userType) {
+    this.userType = userType;
+  }
 
-    public void setEvents(List<Event> events) {
-        this.events = events;
-    }
+  public List<Event> getEvents() {
+    return events;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public void setEvents(List<Event> events) {
+    this.events = events;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
 }

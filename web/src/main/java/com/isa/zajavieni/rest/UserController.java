@@ -23,11 +23,12 @@ public class UserController {
     Optional<Object> emailParam = Optional.ofNullable(req.getSession().getAttribute("email"));
     if (emailParam.isPresent()) {
       email = String.valueOf(emailParam);
-      if (userService.ifExist(email) == null) {
+      if (userService.findByEmail(email).isPresent()) {
         return Response.status(Response.Status.UNAUTHORIZED).build();
       } else {
         return Response.ok().build();
       }
+
     }
     return Response.status(Response.Status.UNAUTHORIZED).build();
   }

@@ -53,7 +53,6 @@ public class Oauth2CallbackServlet extends AbstractAuthorizationCodeCallbackServ
       userService.createNewUser(user);
       logger.info("User for name: {} has been save in base.", user.getName());
     }
-
   }
 
   @Override

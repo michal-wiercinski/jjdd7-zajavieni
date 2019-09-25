@@ -48,13 +48,11 @@ public class UserService {
 
   public Optional<UserDto> getUserByEmail(String email) {
     return userDaoBean.findByEmail(email).map(userDtoMapper::mapEntityToDto);
-
   }
 
   public Boolean ifExist(String email) {
     return userDaoBean.findByEmail(email).isPresent();
   }
-
 
   public Boolean isAdmin(String email) {
     Optional<User> user = userDaoBean.findByEmail(email);
@@ -63,6 +61,7 @@ public class UserService {
         .equals(UserType.ADMIN))
         .orElse(false);
   }
+
  public Boolean isSuperAdmin(String email) {
     Optional<User> user = userDaoBean.findByEmail(email);
 
@@ -85,8 +84,7 @@ public class UserService {
     return settings.getProperty("user.name");
   }
 
-  public void setUserType(UserDto userDto){
-
+  public Optional<User> findByEmail(String email){
+    return userDaoBean.findByEmail(email);
   }
-
 }

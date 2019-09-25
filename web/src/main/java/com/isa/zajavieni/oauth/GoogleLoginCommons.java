@@ -17,7 +17,6 @@ public class GoogleLoginCommons {
   private static final String REDIRECT_URL = "/oauth2callback";
   private static final List<String> SCOPES = List.of("openid", "email", "profile");
 
-
   static String buildRedirectUri(HttpServletRequest req) {
     GenericUrl url = new GenericUrl(req.getRequestURL().toString());
     url.setRawPath(REDIRECT_URL);
@@ -34,7 +33,6 @@ public class GoogleLoginCommons {
     return online;
   }
 
-
   private static String getClientID() throws IOException {
     Properties settings = new Properties();
     settings.load(Objects.requireNonNull(Thread.currentThread()
@@ -50,5 +48,4 @@ public class GoogleLoginCommons {
         .openStream());
     return settings.getProperty("client.secret");
   }
-
 }

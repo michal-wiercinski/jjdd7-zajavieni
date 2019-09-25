@@ -10,30 +10,30 @@ import java.util.stream.Collectors;
 @Stateless
 public class UserDtoMapper {
 
-    @EJB
-    EventDtoMapper eventDtoMapper;
+  @EJB
+  EventDtoMapper eventDtoMapper;
 
-    public UserDto mapEntityToDto(User user) {
-        UserDto userDto = new UserDto();
+  public UserDto mapEntityToDto(User user) {
+    UserDto userDto = new UserDto();
 
-        userDto.setId(user.getId());
-        userDto.setName(user.getName());
-        userDto.setEmail(user.getEmail());
-        userDto.setEvents(user.getEvents().stream()
-                .map(event -> eventDtoMapper.mapEventToDto(event))
-                .collect(Collectors.toList()));
-        userDto.setUserType(user.getUserType());
+    userDto.setId(user.getId());
+    userDto.setName(user.getName());
+    userDto.setEmail(user.getEmail());
+    userDto.setEvents(user.getEvents().stream()
+        .map(event -> eventDtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList()));
+    userDto.setUserType(user.getUserType());
 
-        return userDto;
-    }
+    return userDto;
+  }
 
-    public User mapDtoToEntity(UserDto userDto) {
-        User user = new User();
+  public User mapDtoToEntity(UserDto userDto) {
+    User user = new User();
 
-        user.setName(userDto.getName());
-        user.setEmail(userDto.getEmail());
-        user.setUserType(userDto.getUserType());
+    user.setName(userDto.getName());
+    user.setEmail(userDto.getEmail());
+    user.setUserType(userDto.getUserType());
 
-        return user;
-    }
+    return user;
+  }
 }

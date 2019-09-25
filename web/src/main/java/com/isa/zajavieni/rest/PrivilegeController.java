@@ -26,7 +26,7 @@ public class PrivilegeController {
   @Path("/give/{id}")
   public Response givePermissions(@PathParam("id") String idParam) {
 
-    if (idParam == null || idParam.isEmpty() || !NumberUtils.isDigits(idParam)) {
+    if (!NumberUtils.isDigits(idParam)) {
       return Response.status(Status.BAD_REQUEST).build();
     }
     Long id = Long.valueOf(idParam);
@@ -55,7 +55,7 @@ public class PrivilegeController {
   @Path("/revoke/{id}")
   public Response revokePermissions(@PathParam("id") String idParam) {
 
-    if (idParam == null || idParam.isEmpty() || !NumberUtils.isDigits(idParam)) {
+    if (!NumberUtils.isDigits(idParam)) {
       return Response.status(Status.BAD_REQUEST).build();
     }
     Long id = Long.valueOf(idParam);

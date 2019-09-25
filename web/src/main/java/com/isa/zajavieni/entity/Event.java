@@ -32,14 +32,9 @@ import java.util.List;
                         "AND e.startDate >= :time"
         ),
         @NamedQuery(
-                name = "Event.findUserFavouriteEvents",
+                name = "Event.findFavouriteEvents",
                 query = "select e from Event e inner join e.users u where u.id = :id"
-        ),
-        @NamedQuery(
-                name = "User.findUsersWithFavouriteEvents",
-                query = "select u from User u inner join u.events e where e.id = :id"
-    )
-
+        )
 })
 @Entity
 @Table(name = "event")

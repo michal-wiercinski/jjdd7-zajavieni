@@ -47,8 +47,7 @@ public class EventDtoMapper {
         eventDto.setWebsiteWithTickets(mediaLinkDtoMapper.mapMediaLinkToDto(event.getMediaLink())
                 .getWebSiteWithTickets());
         eventDto.setOrganizerName(organizerDtoMapper.mapOrganizerToDto(event.getOrganizer()).getName());
-        event.getAttachment()
-                .forEach(a -> eventDto.getAttachments()
+        event.getAttachment().forEach(a -> eventDto.getAttachments()
                         .add(attachmentDtoMapper.mapAttachmentToDto(a)));
         logger.info("Map event entity id: {} to dto", event.getId());
         return eventDto;
