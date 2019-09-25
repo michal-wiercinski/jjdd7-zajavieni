@@ -4,6 +4,7 @@ import com.isa.zajavieni.dao.EventsDaoBean;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.mapper.EventDtoMapper;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
@@ -90,8 +91,16 @@ public class EventDtoService {
     return numberFound / perPage;
   }
 
-  public List<EventDto> searchEventsByNameAndStartDate(String name, String startDate) {
-    return eventsDaoBean.searchEventsByNameAndStartDate(name,startDate);
+  public List<EventDto> searchEventsByNameAndStartDate(String name, Date startDate) {
+    return eventsDaoBean.findByNameAndStartDate(name, startDate).stream()
+        .map((event) -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
+  }
+
+  public List<EventDto> searchEventsByNameAndDates(String name, Date startDate, Date endDate) {
+    return eventsDaoBean.findByNameAndDates(name, startDate, endDate).stream()
+        .map((event) -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
   }
 }
 
