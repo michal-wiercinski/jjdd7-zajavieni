@@ -27,7 +27,8 @@ import java.util.Map;
 public class MainServlet extends HttpServlet {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
-    private static final int EVENETS_ON_THE_WELCOME = 8;
+    private static final int EVENTS_PER_PAGE = 8;
+    private static final  int FIRST_ELEMENT = 0;
 
     @EJB
     private EventDtoService eventDtoService;
@@ -40,6 +41,8 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        List<EventDto> events = eventDtoService.findUpcomingEvents(FIRST_ELEMENT, EVENTS_PER_PAGE);
         //Long userId = Long.parseLong((String) req.getSession().getAttribute("userId"));
         Long userId = 2L;
         List<EventDto> favouriteEvents = favouriteEventService.findListOfUserFavouriteEventsDto(userId);

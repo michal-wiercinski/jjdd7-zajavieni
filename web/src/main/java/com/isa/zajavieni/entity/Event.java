@@ -2,21 +2,11 @@ package com.isa.zajavieni.entity;
 
 import com.isa.zajavieni.jsonclasses.TicketType;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+
 
 @NamedQueries({
         @NamedQuery(
@@ -42,14 +32,9 @@ import javax.persistence.Table;
                         "AND e.startDate >= :time"
         ),
         @NamedQuery(
-                name = "Event.findUserFavouriteEvents",
-                query = "select e from Event e inner join e.users u where u.id = :id"
-        ),
-        @NamedQuery(
-                name = "User.findUsersWithFavouriteEvents",
-                query = "select u from User u inner join u.events e where e.id = :id"
-    )
-
+                name = "Event.findFavouriteEvents",
+                query = "SELECT e FROM Event e INNER JOIN e.users u WHERE u.id = :id"
+        )
 })
 @Entity
 @Table(name = "event")
