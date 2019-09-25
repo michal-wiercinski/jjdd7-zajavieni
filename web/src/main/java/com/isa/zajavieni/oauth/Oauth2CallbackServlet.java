@@ -53,6 +53,9 @@ public class Oauth2CallbackServlet extends AbstractAuthorizationCodeCallbackServ
       userService.createNewUser(user);
       logger.info("User for name: {} has been save in base.", user.getName());
     }
+
+    Long userId = userService.findByEmail(email).get().getId();
+    req.getSession().setAttribute("user_id", userId);
   }
 
   @Override
