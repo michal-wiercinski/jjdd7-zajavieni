@@ -49,6 +49,7 @@
         <a href="#" class="btn btn-primary">Dodaj do ulubionych</a>
     </div>
     <script src="/js/event-details.js"></script>
+    <script src="/js/favourite.js"></script>
 
 </div>
 
