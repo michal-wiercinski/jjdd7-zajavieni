@@ -46,7 +46,7 @@ public class Oauth2CallbackServlet extends AbstractAuthorizationCodeCallbackServ
     req.getSession().setAttribute("email", email);
     resp.sendRedirect("/");
 
-    if (!userService.ifExist(email)) {
+    if (!userService.userExists(email)) {
       UserDto user = new UserDto();
       user.setName(name);
       user.setEmail(email);

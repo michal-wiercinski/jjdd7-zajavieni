@@ -27,7 +27,7 @@ import javax.persistence.Table;
     ),
     @NamedQuery(
         name = "User.findWithFavouriteEvents",
-        query = "select u from User u inner join u.events e where e.id = :id"
+        query = "SELECT u FROM User u INNER JOIN u.events e WHERE e.id = :id"
     )
 })
 @Entity

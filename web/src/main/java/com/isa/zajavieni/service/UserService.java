@@ -50,7 +50,7 @@ public class UserService {
     return userDaoBean.findByEmail(email).map(userDtoMapper::mapEntityToDto);
   }
 
-  public Boolean ifExist(String email) {
+  public Boolean userExists(String email) {
     return userDaoBean.findByEmail(email).isPresent();
   }
 

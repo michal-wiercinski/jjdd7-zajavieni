@@ -33,7 +33,7 @@ import java.util.List;
         ),
         @NamedQuery(
                 name = "Event.findFavouriteEvents",
-                query = "select e from Event e inner join e.users u where u.id = :id"
+                query = "SELECT e FROM Event e INNER JOIN e.users u WHERE u.id = :id"
         )
 })
 @Entity

@@ -28,7 +28,6 @@ public class UserController {
       } else {
         return Response.ok().build();
       }
-
     }
     return Response.status(Response.Status.UNAUTHORIZED).build();
   }

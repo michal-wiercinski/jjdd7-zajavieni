@@ -5,6 +5,8 @@ import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.UserService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,7 +39,7 @@ public class AdminViewServlet extends HttpServlet {
     String email = req.getSession().getAttribute("email").toString();
 
     if (!userService.isAdmin(email) && !userService.isSuperAdmin(email)) {
-      resp.setStatus(404);
+      resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
       return;
     } else {
 
