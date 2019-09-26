@@ -52,7 +52,7 @@ import javax.persistence.TemporalType;
     ),
     @NamedQuery(
         name = "Event.findByNameAndStartDate",
-        query = "SELECT e FROM Event e WHERE e.name LIKE :name"// AND e.startDate>= :startDate ORDER BY e.startDate"
+        query = "SELECT e FROM Event e WHERE e.name LIKE :name AND e.startDate>= :startDate ORDER BY e.startDate"
     ),
     @NamedQuery(
         name = "User.findUsersWithFavouriteEvents",

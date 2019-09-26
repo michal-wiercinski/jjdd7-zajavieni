@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AdvancedSearchServlet extends HttpServlet {
 
   @Inject
-  SearchService searchService;
+  private SearchService searchService;
 
   @Inject
   private TemplateProvider templateProvider;
@@ -46,7 +46,6 @@ public class AdvancedSearchServlet extends HttpServlet {
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     String name = req.getParameter("name");
 
-    List<EventDto> events = new ArrayList<>();
     Date startDate;
     if (req.getParameter("startDate").isEmpty() || req.getParameter("startDate") == null) {
       startDate = new Date();
@@ -59,6 +58,7 @@ public class AdvancedSearchServlet extends HttpServlet {
       }
     }
 
+    List<EventDto> events;
     if (req.getParameter("endDate").isEmpty() || req.getParameter("endDate") == null) {
       events = searchService.searchEventsByNameAndStartDate(name, startDate);
     } else {
