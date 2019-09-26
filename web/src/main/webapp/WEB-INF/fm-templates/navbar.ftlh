@@ -38,6 +38,7 @@
             <#if userId??>
             <a class="p-2 text-dark" href="${favourite_link}">Ulubione</a>
             </#if>
+            <#if
             <a class="p-2 text-dark" href="#">Koszyk</a>
 
             <a href="/login" class="btn btn-danger btn-sm" id="login">
