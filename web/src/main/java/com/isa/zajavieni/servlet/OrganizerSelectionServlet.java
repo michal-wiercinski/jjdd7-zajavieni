@@ -3,6 +3,7 @@ package com.isa.zajavieni.servlet;
 import com.isa.zajavieni.dao.UserDaoBean;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.dto.OrganizerDto;
+import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.FavouriteEventService;
 import com.isa.zajavieni.service.OrganizerDtoService;
@@ -64,7 +65,7 @@ public class OrganizerSelectionServlet extends HttpServlet {
       userType = String.valueOf(req.getSession().getAttribute("userType"));
       model.put("type", userType);
     } else {
-      userType = "QUEST";
+      userType = UserType.QUEST.name();
       model.put("type", userType);
     }
 

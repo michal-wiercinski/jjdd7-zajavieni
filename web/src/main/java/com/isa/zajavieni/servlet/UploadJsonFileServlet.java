@@ -1,5 +1,6 @@
 package com.isa.zajavieni.servlet;
 
+import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.PartService;
 import freemarker.template.Template;
@@ -39,7 +40,7 @@ public class UploadJsonFileServlet extends HttpServlet {
       userType = String.valueOf(request.getSession().getAttribute("userType"));
       model.put("type", userType);
     } else {
-      userType = "QUEST";
+      userType = UserType.QUEST.name();
       model.put("type", userType);
     }
     try {

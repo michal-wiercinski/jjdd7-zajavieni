@@ -1,6 +1,7 @@
 package com.isa.zajavieni.servlet;
 
 import com.isa.zajavieni.dto.EventDto;
+import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.FavouriteEventService;
 import freemarker.template.Template;
@@ -47,7 +48,7 @@ public class FavouriteEventsServlet extends HttpServlet {
       userType = String.valueOf(req.getSession().getAttribute("userType"));
       model.put("type", userType);
     } else {
-      userType = "QUEST";
+      userType = UserType.QUEST.name();
       model.put("type", userType);
     }
 
