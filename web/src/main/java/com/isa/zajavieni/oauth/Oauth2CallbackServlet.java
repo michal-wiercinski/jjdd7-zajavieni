@@ -7,12 +7,10 @@ import com.google.api.client.extensions.servlet.auth.oauth2.AbstractAuthorizatio
 import com.google.api.services.oauth2.Oauth2;
 import com.google.api.services.oauth2.model.Userinfoplus;
 import com.isa.zajavieni.dto.UserDto;
-import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.UserService;
 import java.io.IOException;
 import java.util.UUID;
 import javax.ejb.EJB;
-import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,9 +29,6 @@ public class Oauth2CallbackServlet extends AbstractAuthorizationCodeCallbackServ
   @EJB
   OauthBuilder oauthBuilder;
 
-  @Inject
-  private TemplateProvider templateProvider;
-
   @Override
   protected void onSuccess(HttpServletRequest req, HttpServletResponse resp, Credential credential)
       throws ServletException, IOException {
@@ -42,7 +37,7 @@ public class Oauth2CallbackServlet extends AbstractAuthorizationCodeCallbackServ
     Userinfoplus info = oauth2.userinfo().get().execute();
     String name = info.getName();
     String email = info.getEmail();
-    req.getSession().setAttribute("google_name", name);
+    req.getSession().setAttribute("googleName", name);
     req.getSession().setAttribute("email", email);
     resp.sendRedirect("/");
 
@@ -53,6 +48,8 @@ public class Oauth2CallbackServlet extends AbstractAuthorizationCodeCallbackServ
       userService.createNewUser(user);
       logger.info("User for name: {} has been save in base.", user.getName());
     }
+    Long userId = userService.findByEmail(email).get().getId();
+    req.getSession().setAttribute("userId", userId);
   }
 
   @Override

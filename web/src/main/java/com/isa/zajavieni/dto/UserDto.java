@@ -1,59 +1,58 @@
 package com.isa.zajavieni.dto;
 
 import com.isa.zajavieni.entity.UserType;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDto {
 
-    private Long id;
+  private Long id;
 
-    private UserType userType;
+  private UserType userType;
 
-    private String name;
+  private String name;
 
-    private List<EventDto> events = new ArrayList<>();
+  private List<EventDto> events = new ArrayList<>();
 
-    private String email;
+  private String email;
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public UserType getUserType() {
-        return userType;
-    }
+  public UserType getUserType() {
+    return userType;
+  }
 
-    public void setUserType(UserType userType) {
-        this.userType = userType;
-    }
+  public void setUserType(UserType userType) {
+    this.userType = userType;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public List<EventDto> getEvents() {
-        return events;
-    }
+  public List<EventDto> getEvents() {
+    return events;
+  }
 
-    public void setEvents(List<EventDto> events) {
-        this.events = events;
-    }
+  public void setEvents(List<EventDto> events) {
+    this.events = events;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 }
