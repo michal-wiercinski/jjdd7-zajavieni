@@ -38,7 +38,7 @@
             <a class="p-2 text-dark" href="${upcoming_link}">Lista wydarzeń</a>
             <a class="p-2 text-dark" href="${search_by_organizer}">Organizatorzy</a>
             <a class="p-2 text-dark" href="#">Wyszukiwanie</a>
-            <#if type != "QUEST">
+            <#if type != "GUEST">
             <a class="p-2 text-dark" href="${favourite_link}">Ulubione</a>
             <a class="p-2 text-dark" href="#">Koszyk</a>
             </#if>
