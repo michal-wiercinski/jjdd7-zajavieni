@@ -1,227 +1,241 @@
 package com.isa.zajavieni.entity;
 
 import com.isa.zajavieni.jsonclasses.TicketType;
-
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @NamedQueries({
-        @NamedQuery(
-                name = "Event.upcomingEvents",
-                query = "SELECT e FROM  Event e WHERE e.startDate >= :time ORDER BY e.startDate"
-        ),
-        @NamedQuery(
-                name = "Event.counterByDate",
-                query = "SELECT count(e) FROM Event e WHERE e.startDate >= :time"
-        ),
-        @NamedQuery(
-                name = "Event.foundEvents",
-                query = "SELECT e FROM Event e WHERE e.name LIKE CONCAT('%',:phrase,'%')"
-        ),
-        @NamedQuery(
-                name = "Event.filterByOrganizer",
-                query = "SELECT e FROM Event e WHERE e.organizer.id = :id_organizer " +
-                        "AND e.startDate >= :time ORDER BY e.startDate"
-        ),
-        @NamedQuery(
-                name = "Event.counterByOrganizer",
-                query = "SELECT count(e) FROM Event e WHERE e.organizer.id = :id_organizer " +
-                        "AND e.startDate >= :time"
-        ),
-        @NamedQuery(
-                name = "Event.findUserFavouriteEvents",
-                query = "select e from Event e inner join e.users u where u.id = :id"
-        ),
-        @NamedQuery(
-                name = "Event.findByNameAndDates",
-                query = "SELECT e FROM Event e WHERE e.name LIKE :name AND e.startDate>= :startDate AND e.startDate<= :endDate ORDER BY e.startDate"
-        ),
-        @NamedQuery(
-                name = "Event.findByNameAndStartDate",
-                query = "SELECT e FROM Event e WHERE e.name LIKE :name AND e.startDate>= :startDate ORDER BY e.startDate"
-        ),
-        @NamedQuery(
-                name = "User.findUsersWithFavouriteEvents",
-                query = "select u from User u inner join u.events e where e.id = :id"
-        )
+    @NamedQuery(
+        name = "Event.upcomingEvents",
+        query = "SELECT e FROM  Event e WHERE e.startDate >= :time ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.counterByDate",
+        query = "SELECT count(e) FROM Event e WHERE e.startDate >= :time"
+    ),
+    @NamedQuery(
+        name = "Event.foundEvents",
+        query = "SELECT e FROM Event e WHERE e.name LIKE CONCAT('%',:phrase,'%')"
+    ),
+    @NamedQuery(
+        name = "Event.filterByOrganizer",
+        query = "SELECT e FROM Event e WHERE e.organizer.id = :id_organizer " +
+            "AND e.startDate >= :time ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.counterByOrganizer",
+        query = "SELECT count(e) FROM Event e WHERE e.organizer.id = :id_organizer " +
+            "AND e.startDate >= :time"
+    ),
+    @NamedQuery(
+        name = "Event.findUserFavouriteEvents",
+        query = "select e from Event e inner join e.users u where u.id = :id"
+    ),
+    @NamedQuery(
+        name = "Event.findByNameAndDates",
+        query = "SELECT e FROM Event e WHERE e.name LIKE :name AND e.startDate>= :startDate AND e.startDate<= :endDate ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.findByNameAndStartDate",
+        query = "SELECT e FROM Event e WHERE e.name LIKE :name"// AND e.startDate>= :startDate ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "User.findUsersWithFavouriteEvents",
+        query = "select u from User u inner join u.events e where e.id = :id"
+    )
 })
 @Entity
 @Table(name = "event")
 public class Event {
 
-    @Id
-    @Column(name = "event_id")
-    Long id;
+  @Id
+  @Column(name = "event_id")
+  Long id;
 
-    @Column(name = "name")
-    String name;
+  @Column(name = "name")
+  String name;
 
-    @Column(name = "desc_short", columnDefinition = "TEXT")
-    String descShort;
+  @Column(name = "desc_short", columnDefinition = "TEXT")
+  String descShort;
 
-    @Column(name = "desc_long", columnDefinition = "TEXT")
-    String descLong;
+  @Column(name = "desc_long", columnDefinition = "TEXT")
+  String descLong;
 
-    @Column(name = "active")
-    Boolean active;
+  @Column(name = "active")
+  Boolean active;
 
-    @Column(name = "start_date")
-    Date startDate;
+  @Column(name = "start_date")
+  @Temporal(TemporalType.TIMESTAMP)
+  Date startDate;
 
-    @Column(name = "end_date")
-    Date endDate;
+  @Column(name = "end_date")
+  @Temporal(TemporalType.TIMESTAMP)
+  Date endDate;
 
-    @Column(name = "type")
-    TicketType type;
+  @Column(name = "type")
+  TicketType type;
 
-    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
-    List<Attachment> attachment = new ArrayList<>();
+  @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+  List<Attachment> attachment = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "media_link_id", unique = true)
-    MediaLink mediaLink;
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "media_link_id", unique = true)
+  MediaLink mediaLink;
 
-    @ManyToOne
-    @JoinColumn(name = "address_id")
-    Address address;
+  @ManyToOne
+  @JoinColumn(name = "address_id")
+  Address address;
 
-    @ManyToOne
-    @JoinColumn(name = "organizer_id")
-    Organizer organizer;
+  @ManyToOne
+  @JoinColumn(name = "organizer_id")
+  Organizer organizer;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    Category category;
+  @ManyToOne
+  @JoinColumn(name = "category_id")
+  Category category;
 
-    @ManyToMany(mappedBy = "events")
-    List<User> users;
+  @ManyToMany(mappedBy = "events")
+  List<User> users;
 
-    public Event(String name, String descShort, String descLong, Boolean active,
-                 Date startDate, Date endDate, TicketType type) {
-        this.name = name;
-        this.descShort = descShort;
-        this.descLong = descLong;
-        this.active = active;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.type = type;
+  public Event(String name, String descShort, String descLong, Boolean active,
+      Date startDate, Date endDate, TicketType type) {
+    this.name = name;
+    this.descShort = descShort;
+    this.descLong = descLong;
+    this.active = active;
+    this.startDate = startDate;
+    this.endDate = endDate;
+    this.type = type;
 
-    }
+  }
 
-    public Event() {
-    }
+  public Event() {
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public String getDescShort() {
-        return descShort;
-    }
+  public String getDescShort() {
+    return descShort;
+  }
 
-    public void setDescShort(String descShort) {
-        this.descShort = descShort;
-    }
+  public void setDescShort(String descShort) {
+    this.descShort = descShort;
+  }
 
-    public String getDescLong() {
-        return descLong;
-    }
+  public String getDescLong() {
+    return descLong;
+  }
 
-    public void setDescLong(String descLong) {
-        this.descLong = descLong;
-    }
+  public void setDescLong(String descLong) {
+    this.descLong = descLong;
+  }
 
-    public Boolean getActive() {
-        return active;
-    }
+  public Boolean getActive() {
+    return active;
+  }
 
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
+  public void setActive(Boolean active) {
+    this.active = active;
+  }
 
-    public Date getStartDate() {
-        return startDate;
-    }
+  public Date getStartDate() {
+    return startDate;
+  }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
+  public void setStartDate(Date startDate) {
+    this.startDate = startDate;
+  }
 
-    public Date getEndDate() {
-        return endDate;
-    }
+  public Date getEndDate() {
+    return endDate;
+  }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
+  public void setEndDate(Date endDate) {
+    this.endDate = endDate;
+  }
 
-    public TicketType getType() {
-        return type;
-    }
+  public TicketType getType() {
+    return type;
+  }
 
-    public void setType(TicketType type) {
-        this.type = type;
-    }
+  public void setType(TicketType type) {
+    this.type = type;
+  }
 
-    public List<Attachment> getAttachment() {
-        return attachment;
-    }
+  public List<Attachment> getAttachment() {
+    return attachment;
+  }
 
-    public void setAttachment(List<Attachment> attachment) {
-        this.attachment = attachment;
-    }
+  public void setAttachment(List<Attachment> attachment) {
+    this.attachment = attachment;
+  }
 
-    public MediaLink getMediaLink() {
-        return mediaLink;
-    }
+  public MediaLink getMediaLink() {
+    return mediaLink;
+  }
 
-    public void setMediaLink(MediaLink mediaLink) {
-        this.mediaLink = mediaLink;
-    }
+  public void setMediaLink(MediaLink mediaLink) {
+    this.mediaLink = mediaLink;
+  }
 
-    public Address getAddress() {
-        return address;
-    }
+  public Address getAddress() {
+    return address;
+  }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+  public void setAddress(Address address) {
+    this.address = address;
+  }
 
-    public Organizer getOrganizer() {
-        return organizer;
-    }
+  public Organizer getOrganizer() {
+    return organizer;
+  }
 
-    public void setOrganizer(Organizer organizer) {
-        this.organizer = organizer;
-    }
+  public void setOrganizer(Organizer organizer) {
+    this.organizer = organizer;
+  }
 
-    public Category getCategory() {
-        return category;
-    }
+  public Category getCategory() {
+    return category;
+  }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+  public void setCategory(Category category) {
+    this.category = category;
+  }
 
-    public List<User> getUsers() {
-        return users;
-    }
+  public List<User> getUsers() {
+    return users;
+  }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
+  public void setUsers(List<User> users) {
+    this.users = users;
+  }
 }

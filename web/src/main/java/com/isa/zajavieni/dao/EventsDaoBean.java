@@ -91,8 +91,8 @@ public class EventsDaoBean {
   public List<Event> findByNameAndStartDate(String name, Date startDate) {
     Query query = entityManager.createNamedQuery("Event.findByNameAndStartDate");
     query
-        .setParameter("name", name)
-        .setParameter("startDate", startDate, TemporalType.TIMESTAMP);
+        .setParameter("name", name+"%");
+//        .setParameter("startDate", startDate);
     return query.getResultList();
   }
 }
