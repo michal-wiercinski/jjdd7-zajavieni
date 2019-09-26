@@ -81,7 +81,7 @@ public class SearchByOrganizerServlet extends HttpServlet {
       userType = String.valueOf(req.getSession().getAttribute("userType"));
       model.put("type", userType);
     } else {
-      userType = UserType.QUEST.name();
+      userType = UserType.GUEST.name();
       model.put("type", userType);
     }
 

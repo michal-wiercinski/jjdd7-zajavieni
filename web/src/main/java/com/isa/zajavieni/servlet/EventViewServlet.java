@@ -2,7 +2,6 @@ package com.isa.zajavieni.servlet;
 
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
-import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.EventDtoService;
@@ -81,7 +80,7 @@ public class EventViewServlet extends HttpServlet {
       userType = String.valueOf(req.getSession().getAttribute("userType"));
       model.put("type", userType);
     } else {
-      userType = UserType.QUEST.name();
+      userType = UserType.GUEST.name();
       model.put("type", userType);
     }
 

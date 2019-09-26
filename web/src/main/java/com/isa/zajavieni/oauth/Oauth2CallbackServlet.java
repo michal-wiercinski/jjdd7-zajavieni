@@ -7,12 +7,10 @@ import com.google.api.client.extensions.servlet.auth.oauth2.AbstractAuthorizatio
 import com.google.api.services.oauth2.Oauth2;
 import com.google.api.services.oauth2.model.Userinfoplus;
 import com.isa.zajavieni.dto.UserDto;
-import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.UserService;
 import java.io.IOException;
-import java.util.Optional;
 import java.util.UUID;
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -65,7 +63,7 @@ public class Oauth2CallbackServlet extends AbstractAuthorizationCodeCallbackServ
       user = userService.getUserByEmail(email).get();
       userType = user.getUserType().name();
     } else {
-      userType = UserType.QUEST.name();
+      userType = UserType.GUEST.name();
     }
 
     req.getSession().setAttribute("userType", userType);
