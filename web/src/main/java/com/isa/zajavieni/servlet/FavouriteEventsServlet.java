@@ -33,15 +33,15 @@ public class FavouriteEventsServlet extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     logger.info("Request GET method");
-    Long user_id = (Long) req.getSession().getAttribute("user_id");
+    Long userId = (Long) req.getSession().getAttribute("userId");
     List<EventDto> favouriteEvents = favouriteEventService
-        .findListOfUserFavouriteEventsDto(user_id);
+        .findListOfUserFavouriteEventsDto(userId);
 
     Template template = templateProvider.getTemplate(getServletContext(), "favourite.ftlh");
     Map<String, Object> model = new HashMap<>();
     favouriteEventService.displayFavouriteEventBeam(req,favouriteEvents,model);
     model.put("favouriteEvents", favouriteEvents);
-    model.put("user_id",user_id);
+    model.put("userId",userId);
 
     try {
       template.process(model, resp.getWriter());
@@ -54,18 +54,18 @@ public class FavouriteEventsServlet extends HttpServlet {
   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     logger.info("Request POST method");
-    String event_id = req.getParameter("id");
-    String user_id = String.valueOf(req.getSession().getAttribute("user_id"));
-    favouriteEventService.addEventToUserFavouriteEvents(event_id, user_id);
+    String eventId = req.getParameter("id");
+    String userId = String.valueOf(req.getSession().getAttribute("userId"));
+    favouriteEventService.addEventToUserFavouriteEvents(eventId, userId);
   }
 
   @Override
   protected void doDelete(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     logger.info("Request DELETE method");
-    String event_id = req.getParameter("id");
-    String user_id = String.valueOf(req.getSession().getAttribute("user_id"));
-    favouriteEventService.deleteEventFromUserFavouriteEvents(event_id, user_id);
+    String eventId = req.getParameter("id");
+    String userId = String.valueOf(req.getSession().getAttribute("userId"));
+    favouriteEventService.deleteEventFromUserFavouriteEvents(eventId, userId);
   }
 
   @Override

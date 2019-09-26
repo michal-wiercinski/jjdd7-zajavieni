@@ -55,20 +55,20 @@ public class EventViewServlet extends HttpServlet {
     Map<String, Object> model = new HashMap<>();
     model.put("event", eventDto);
 
-    Long user_id = (Long) req.getSession().getAttribute("user_id");
+    Long userId = (Long) req.getSession().getAttribute("userId");
 
-    if (user_id != null) {
+    if (userId != null) {
       Boolean isFavourite = false;
-      if (favouriteEventService.findListOfUserFavouriteEvents(user_id).stream().map(e -> e.getId())
+      if (favouriteEventService.findListOfUserFavouriteEvents(userId).stream().map(e -> e.getId())
           .collect(
               Collectors.toList()).contains(event.getId())) {
         isFavourite = true;
       }
       List<EventDto> favouriteEvents = favouriteEventService
-          .findListOfUserFavouriteEventsDto(user_id);
+          .findListOfUserFavouriteEventsDto(userId);
       favouriteEventService.displayFavouriteEventBeam(req,favouriteEvents,model);
       model.put("isFavourite", isFavourite);
-      model.put("user_id", user_id);
+      model.put("userId", userId);
     }
 
     try {

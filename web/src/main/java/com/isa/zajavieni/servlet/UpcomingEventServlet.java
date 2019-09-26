@@ -54,14 +54,14 @@ public class UpcomingEventServlet extends HttpServlet {
     model.put("page", pageNumber);
     model.put("totalPages", totalPages);
 
-    Long user_id = (Long) req.getSession().getAttribute("user_id");
+    Long userId = (Long) req.getSession().getAttribute("userId");
 
-    if(user_id!=null) {
+    if(userId!=null) {
       List<EventDto> favouriteEvents = favouriteEventService
-          .findListOfUserFavouriteEventsDto(user_id);
+          .findListOfUserFavouriteEventsDto(userId);
 
       favouriteEventService.displayFavouriteEventBeam(req,favouriteEvents,model);
-      model.put("user_id",user_id);
+      model.put("userId",userId);
     }
 
     try {

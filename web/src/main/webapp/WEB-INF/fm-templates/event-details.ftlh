@@ -54,7 +54,7 @@
   </div>
   <div class="card-footer d-inline">
     <a href="#" class="btn btn-primary">Zarezerwuj bilet</a>
-      <#if user_id??>
+      <#if userId??>
         <button type="button"
                 class="${isFavourite?then('btn btn-outline-danger','btn btn-outline-success')}"
                 id='${isFavourite?then('deleteE','addE')}'

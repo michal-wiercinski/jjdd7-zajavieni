@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -33,12 +34,12 @@ import javax.persistence.Table;
     ),
     @NamedQuery(
         name = "Event.filterByOrganizer",
-        query = "SELECT e FROM Event e WHERE e.organizer.id = :id_organizer " +
+        query = "SELECT e FROM Event e WHERE e.organizer.id = :organizerId " +
             "AND e.startDate >= :time ORDER BY e.startDate"
     ),
     @NamedQuery(
         name = "Event.counterByOrganizer",
-        query = "SELECT count(e) FROM Event e WHERE e.organizer.id = :id_organizer " +
+        query = "SELECT count(e) FROM Event e WHERE e.organizer.id = :organizerId " +
             "AND e.startDate >= :time"
     ),
     @NamedQuery(
@@ -47,7 +48,7 @@ import javax.persistence.Table;
     )
 })
 @Entity
-@Table(name = "event")
+@Table(name = "event", indexes = {@Index(name = "name", columnList = "name")})
 public class Event {
 
   @Id

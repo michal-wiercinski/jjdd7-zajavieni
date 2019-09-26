@@ -63,7 +63,7 @@ public class EventsDaoBean {
 
   public List<Event> findAllByOrganizerId(Long id, int from, int howMany) {
     Query query = entityManager.createNamedQuery("Event.filterByOrganizer");
-    query.setParameter("id_organizer", id)
+    query.setParameter("organizerId", id)
         .setParameter("time", new Date())
         .setFirstResult(from)
         .setMaxResults(howMany);
@@ -73,7 +73,7 @@ public class EventsDaoBean {
   public int getOrganizersEventSize(Long id) {
     Query query = entityManager.createNamedQuery("Event.counterByOrganizer");
     query.setParameter("time", new Date())
-        .setParameter("id_organizer", id);
+        .setParameter("organizerId", id);
     Long result = (Long) query.getSingleResult();
     return result.intValue();
   }

@@ -37,9 +37,9 @@ public class FavouriteEventsFilter implements Filter {
     HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
     HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
     if (httpServletRequest.getMethod().equalsIgnoreCase(HttpMethod.POST)) {
-      Long user_id = (Long) httpServletRequest.getSession().getAttribute("user_id");
+      Long userId = (Long) httpServletRequest.getSession().getAttribute("userId");
       List<Event> favouriteEventsList = favouriteEventService
-          .findListOfUserFavouriteEvents(user_id);
+          .findListOfUserFavouriteEvents(userId);
       if (favouriteEventsList.size() == maxNumberOfFavouriteEvents) {
         logger.warn("Max numbers of favourite events");
         httpServletResponse
