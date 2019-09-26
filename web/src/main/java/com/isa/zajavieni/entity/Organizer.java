@@ -2,14 +2,20 @@ package com.isa.zajavieni.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @NamedQueries(
-        @NamedQuery(
-                name = "Organizer.SearchByFirstLetter",
-                query = "SELECT o FROM Organizer o WHERE o.designation LIKE CONCAT(:first_letter,'%') " +
-                        "ORDER BY o.designation"
-        )
+    @NamedQuery(
+        name = "Organizer.SearchByFirstLetter",
+        query = "SELECT o FROM Organizer o WHERE o.designation LIKE CONCAT(:first_letter,'%') " +
+            "ORDER BY o.designation"
+    )
 )
 @Entity
 @Table(name = "organizer")

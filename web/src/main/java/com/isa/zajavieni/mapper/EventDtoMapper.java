@@ -39,17 +39,20 @@ public class EventDtoMapper {
     eventDto.setAddressCity(addressDtoMapper.mapAddressToDto(event.getAddress()).getCity());
     eventDto.setAddressStreet(addressDtoMapper.mapAddressToDto(event.getAddress()).getStreet());
     eventDto.setAddressZipCode(addressDtoMapper.mapAddressToDto(event.getAddress()).getZipcode());
-    eventDto.setDescShort(event.getDescShort());
-    eventDto.setDescLong(Jsoup.parse(event.getDescLong()).text());
+    if(event.getDescShort() != null){
+      eventDto.setDescShort(event.getDescShort());
+    }
+    if(event.getDescLong() != null){
+      eventDto.setDescLong(Jsoup.parse(event.getDescLong()).text());
+    }
     eventDto
         .setWwwAddress(mediaLinkDtoMapper.mapMediaLinkToDto(event.getMediaLink()).getWwwAddress());
     eventDto.setFbSite(mediaLinkDtoMapper.mapMediaLinkToDto(event.getMediaLink()).getFbSite());
     eventDto.setWebsiteWithTickets(mediaLinkDtoMapper.mapMediaLinkToDto(event.getMediaLink())
         .getWebSiteWithTickets());
     eventDto.setOrganizerName(organizerDtoMapper.mapOrganizerToDto(event.getOrganizer()).getName());
-    event.getAttachment()
-        .forEach(a -> eventDto.getAttachments().add(attachmentDtoMapper.mapAttachmentToDto(a)));
-//    eventDto.setUsers(event.getUsers());
+    event.getAttachment().forEach(a -> eventDto.getAttachments()
+        .add(attachmentDtoMapper.mapAttachmentToDto(a)));
     logger.info("Map event entity id: {} to dto", event.getId());
     return eventDto;
   }

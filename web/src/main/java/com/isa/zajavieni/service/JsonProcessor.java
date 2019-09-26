@@ -11,57 +11,57 @@ import com.isa.zajavieni.mapper.AddressMapper;
 import com.isa.zajavieni.mapper.EventsMapper;
 import com.isa.zajavieni.mapper.OrganizersMapper;
 import com.isa.zajavieni.parser.DataParseService;
-
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
 import java.io.IOException;
 import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 @Stateless
 public class JsonProcessor {
 
-    @EJB
-    private DataParseService dataParseService;
+  @EJB
+  private DataParseService dataParseService;
 
-    @EJB
-    private EventsMapper eventsMapper;
+  @EJB
+  private EventsMapper eventsMapper;
 
-    @EJB
-    private AddressMapper addressMapper;
+  @EJB
+  private AddressMapper addressMapper;
 
-    @EJB
-    private OrganizersMapper organizersMapper;
+  @EJB
+  private OrganizersMapper organizersMapper;
 
-    @EJB
-    private EventsDaoBean eventsDaoBean;
+  @EJB
+  private EventsDaoBean eventsDaoBean;
 
-    @EJB
-    private AddressDaoBean addressDaoBean;
+  @EJB
+  private AddressDaoBean addressDaoBean;
 
-    @EJB
-    private OrganizersDaoBean organizersDaoBean;
+  @EJB
+  private OrganizersDaoBean organizersDaoBean;
 
-    public void processEventsJson(String eventsJson) throws IOException {
-        List<Event> events = dataParseService.parseEvents(eventsJson);
-        for (Event event : events) {
-            com.isa.zajavieni.entity.Event mapEventToEntity = eventsMapper.mapEventsApiToEntity(event);
-            eventsDaoBean.saveEvent(mapEventToEntity);
-        }
+  public void processEventsJson(String eventsJson) throws IOException {
+    List<Event> events = dataParseService.parseEvents(eventsJson);
+    for (Event event : events) {
+      com.isa.zajavieni.entity.Event mapEventToEntity = eventsMapper.mapEventsApiToEntity(event);
+      eventsDaoBean.saveEvent(mapEventToEntity);
     }
+  }
 
-    public void processPlaceFile(String placesJson) throws IOException {
-        List<Place> places = dataParseService.parsePlaces(placesJson);
-        for (Place place : places) {
-            Address address = addressMapper.mapAddressApiToEntity(place);
-            addressDaoBean.savePlace(address);
-        }
+  public void processPlaceFile(String placesJson) throws IOException {
+    List<Place> places = dataParseService.parsePlaces(placesJson);
+    for (Place place : places) {
+      Address address = addressMapper.mapAddressApiToEntity(place);
+      addressDaoBean.savePlace(address);
     }
+  }
 
-    public void processOrganizerFile(String organizersJson) throws IOException {
-        List<Organizer> organizers = dataParseService.parseOrganizers(organizersJson);
-        for (Organizer organizer : organizers) {
-            com.isa.zajavieni.entity.Organizer mapOrganizerToEntity = organizersMapper.mapOrganizersApiToEntity(organizer);
-            organizersDaoBean.saveOrganizer(mapOrganizerToEntity);
-        }
+  public void processOrganizerFile(String organizersJson) throws IOException {
+    List<Organizer> organizers = dataParseService.parseOrganizers(organizersJson);
+    for (Organizer organizer : organizers) {
+      com.isa.zajavieni.entity.Organizer mapOrganizerToEntity = organizersMapper
+          .mapOrganizersApiToEntity(organizer);
+      organizersDaoBean.saveOrganizer(mapOrganizerToEntity);
     }
+  }
 }

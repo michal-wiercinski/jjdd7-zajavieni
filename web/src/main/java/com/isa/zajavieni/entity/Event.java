@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -34,17 +35,17 @@ import javax.persistence.TemporalType;
     ),
     @NamedQuery(
         name = "Event.filterByOrganizer",
-        query = "SELECT e FROM Event e WHERE e.organizer.id = :id_organizer " +
+        query = "SELECT e FROM Event e WHERE e.organizer.id = :organizerId " +
             "AND e.startDate >= :time ORDER BY e.startDate"
     ),
     @NamedQuery(
         name = "Event.counterByOrganizer",
-        query = "SELECT count(e) FROM Event e WHERE e.organizer.id = :id_organizer " +
+        query = "SELECT count(e) FROM Event e WHERE e.organizer.id = :organizerId " +
             "AND e.startDate >= :time"
     ),
     @NamedQuery(
-        name = "Event.findUserFavouriteEvents",
-        query = "select e from Event e inner join e.users u where u.id = :id"
+        name = "Event.findFavouriteEvents",
+        query = "SELECT e FROM Event e INNER JOIN e.users u WHERE u.id = :id"
     ),
     @NamedQuery(
         name = "Event.findByNameAndDates",
@@ -53,14 +54,11 @@ import javax.persistence.TemporalType;
     @NamedQuery(
         name = "Event.findByNameAndStartDate",
         query = "SELECT e FROM Event e WHERE e.name LIKE :name AND e.startDate>= :startDate ORDER BY e.startDate"
-    ),
-    @NamedQuery(
-        name = "User.findUsersWithFavouriteEvents",
-        query = "select u from User u inner join u.events e where e.id = :id"
     )
 })
+
 @Entity
-@Table(name = "event")
+@Table(name = "event", indexes = {@Index(name = "name", columnList = "name")})
 public class Event {
 
   @Id

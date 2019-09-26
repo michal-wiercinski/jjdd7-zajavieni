@@ -8,13 +8,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+@NamedQueries({
+    @NamedQuery(
+        name = "User.findAll",
+        query = "SELECT u FROM User u"
+    ),
+    @NamedQuery(
+        name = "User.findByEmail",
+        query = "SELECT u FROM User u WHERE u.email = :email"
+    ),
+    @NamedQuery(
+        name = "User.findWithFavouriteEvents",
+        query = "SELECT u FROM User u INNER JOIN u.events e WHERE e.id = :id"
+    )
+})
 @Entity
-@Table(name = "user")
+@Table(name = "user", indexes = {@Index(name = "user_email", columnList = "email")})
 public class User {
 
   @Id
@@ -25,11 +42,15 @@ public class User {
   @Column(name = "user_type")
   UserType userType;
 
+  @Column(name = "user_name")
+  String name;
+
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "user_event",
       joinColumns = @JoinColumn(name = "id_user", referencedColumnName = "user_id"),
       inverseJoinColumns = @JoinColumn(name = "id_event", referencedColumnName = "event_id"))
   List<Event> events = new ArrayList<>();
+
 
   @Column(name = "email")
   String email;
@@ -47,6 +68,14 @@ public class User {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public UserType getUserType() {
