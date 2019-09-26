@@ -7,7 +7,7 @@
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">${event.startDate?string('dd.MM.yyyy (HH:mm)')} -
                         ${event.endDate?string('dd.MM.yyyy (HH:mm)')} </h5>
-                    <p class="card-text">${event.name}</p>
+                    <p class="card-text">${event.name!"n/a"}</p>
                     <p class="card-text">${(event.addressCity)!"n/a"}</p>
                     <p>${(event.addressName)!"n/a"}</p>
                 </div>

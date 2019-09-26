@@ -22,7 +22,7 @@
     <div class="d-flex flex-column flex-md-row align-hitems-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
         <a href="/main" class="my-0 mr-md-auto font-weight-normal"><img src="/img/logo.jpg" alt="logo"></a>
         <ul class="list-group" id="result"></ul>
-        <#assign upcoming_link = "/upcoming-events?pageNo=0">
+        <#assign upcoming_link = "/upcoming-events?pageNo=1">
         <#assign favourite_link = "/favourite-events">
         <#assign search_by_organizer = "/organizers?letter=A">
         <form class="form-inline my-2 my-lg-0" >

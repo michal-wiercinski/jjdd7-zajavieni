@@ -23,9 +23,8 @@ public class UpcomingEventsFilter implements Filter {
 
         String pageParameter = servletRequest.getParameter(PAGE_NUMBER);
 
-        int pageNumber = 0;
-        if (pageParameter != null && !pageParameter.isEmpty()
-                && NumberUtils.isDigits(pageParameter)) {
+        int pageNumber = 1;
+        if (NumberUtils.isDigits(pageParameter)) {
             pageNumber = Integer.valueOf(pageParameter);
         } else {
             logger.warn("Bad format");
