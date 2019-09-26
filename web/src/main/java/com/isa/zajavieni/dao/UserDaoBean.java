@@ -2,15 +2,12 @@ package com.isa.zajavieni.dao;
 
 import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.servlet.LoggerServlet;
-
 import java.util.List;
 import java.util.Optional;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,12 +43,12 @@ public class UserDaoBean {
     Query query = entityManager.createNamedQuery("User.findByEmail");
     query.setParameter("email", email);
     List<User> users = query.getResultList();
-    if(users.isEmpty()) {
-        logger.warn("User for email {} not found", email);
-        return Optional.empty();
+    if (users.isEmpty()) {
+      logger.warn("User for email {} not found", email);
+      return Optional.empty();
     }
     return Optional.of(users.get(0));
-}
+  }
 
   public void saveEvent(User user) {
     logger.info("Object event id: {} persist to DB", user.getId());
@@ -59,9 +56,8 @@ public class UserDaoBean {
   }
 
   public List<User> findUsersWithFavouriteEvents(Long id) {
-    Query query = entityManager.createNamedQuery("User.findUsersWithFavouriteEvents");
+    Query query = entityManager.createNamedQuery("User.findWithFavouriteEvents");
     query.setParameter("id", id);
     return query.getResultList();
   }
-
 }

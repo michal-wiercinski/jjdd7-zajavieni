@@ -23,7 +23,7 @@ public class Attachment {
   String fileName;
 
   @ManyToOne
-  @JoinColumn(name="event_id")
+  @JoinColumn(name = "event_id")
   Event event;
 
   public Attachment(String fileName) {

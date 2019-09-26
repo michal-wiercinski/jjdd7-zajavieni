@@ -5,7 +5,7 @@ import com.isa.zajavieni.service.FavouriteEventService;
 import com.isa.zajavieni.servlet.LoggerServlet;
 import java.io.IOException;
 import java.util.List;
-import javax.inject.Inject;
+import javax.ejb.EJB;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -27,7 +27,7 @@ public class FavouriteEventsFilter implements Filter {
   private Logger logger = LoggerFactory.getLogger(LoggerServlet.class.getName());
   private final int maxNumberOfFavouriteEvents = 3;
 
-  @Inject
+  @EJB
   FavouriteEventService favouriteEventService;
 
   @Override
@@ -36,8 +36,9 @@ public class FavouriteEventsFilter implements Filter {
     HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
     HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
     if (httpServletRequest.getMethod().equalsIgnoreCase(HttpMethod.POST)) {
-      Long id = Long.parseLong((String) httpServletRequest.getSession().getAttribute("idUser"));
-      List<Event> favouriteEventsList = favouriteEventService.findListOfUserFavouriteEvents(id);
+      Long userId = (Long) httpServletRequest.getSession().getAttribute("userId");
+      List<Event> favouriteEventsList = favouriteEventService
+          .findListOfUserFavouriteEvents(userId);
       if (favouriteEventsList.size() == maxNumberOfFavouriteEvents) {
         logger.warn("Max numbers of favourite events");
         httpServletResponse

@@ -1,5 +1,7 @@
 <#include "navbar.ftlh">
 
+<#include "favourite-beam.ftlh">
+
 <div>
     <h2> Formularz </h2>
 

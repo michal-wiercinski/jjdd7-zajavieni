@@ -32,30 +32,29 @@
             </button>
         </form>
         <nav class="my-2 my-md-0 mr-md-3">
+            <#if (type == "ADMIN") || (type == "SUPER_ADMIN")>
+                <a class="p-2 text-dark" href="/admin-view">Panel admina</a>
+            </#if>
             <a class="p-2 text-dark" href="${upcoming_link}">Lista wydarzeń</a>
             <a class="p-2 text-dark" href="${search_by_organizer}">Organizatorzy</a>
             <a class="p-2 text-dark" href="#">Wyszukiwanie</a>
-            <#if userId??>
+            <#if type != "QUEST">
             <a class="p-2 text-dark" href="${favourite_link}">Ulubione</a>
-            </#if>
-            <#if
             <a class="p-2 text-dark" href="#">Koszyk</a>
-
+            </#if>
             <a href="/login" class="btn btn-danger btn-sm" id="login">
                 <i class="fa fa-google"></i> Zaloguj się przez <b>Google</b></a>
             <a href="/logout" class="btn btn-danger btn-sm"
                id="logout"><i class="fa fa-google"></i> Wyloguj się</a>
-            <#--  <a class="p-2 text-dark" href="/admin/upload">Admin</a>-->
+
         </nav>
     </div>
 
-    <header class="jumbotron my-4 text-center">
+    <header class="jumbotron my-4 text-center ">
         <h1 class="display-3 font-weight-bold">3CITYEVENT</h1>
         <p class="lead">Witaj w miejscu, gdzie zgromadzone są wydarzenia kulturalne w Trójmiescie i okolicy.
             </br>Szukaj, znajdź, rezerwuj i baw się dobrze!</p>
     </header>
-
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>

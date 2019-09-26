@@ -1,48 +1,59 @@
 package com.isa.zajavieni.entity;
 
 import com.isa.zajavieni.jsonclasses.TicketType;
-
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 
 @NamedQueries({
-        @NamedQuery(
-                name = "Event.upcomingEvents",
-                query = "SELECT e FROM  Event e WHERE e.startDate >= :time ORDER BY e.startDate"
-        ),
-        @NamedQuery(
-                name = "Event.counterByDate",
-                query = "SELECT count(e) FROM Event e WHERE e.startDate >= :time"
-        ),
-        @NamedQuery(
-                name = "Event.foundEvents",
-                query = "SELECT e FROM Event e WHERE e.name LIKE CONCAT('%',:phrase,'%')"
-        ),
-        @NamedQuery(
-                name = "Event.filterByOrganizer",
-                query = "SELECT e FROM Event e WHERE e.organizer.id = :id_organizer " +
-                        "AND e.startDate >= :time ORDER BY e.startDate"
-        ),
-        @NamedQuery(
-                name = "Event.counterByOrganizer",
-                query = "SELECT count(e) FROM Event e WHERE e.organizer.id = :id_organizer " +
-                        "AND e.startDate >= :time"
-        ),
-        @NamedQuery(
-                name = "Event.findFavouriteEvents",
-                query = "SELECT e FROM Event e INNER JOIN e.users u WHERE u.id = :id"
-        )
+    @NamedQuery(
+        name = "Event.upcomingEvents",
+        query = "SELECT e FROM  Event e WHERE e.startDate >= :time ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.counterByDate",
+        query = "SELECT count(e) FROM Event e WHERE e.startDate >= :time"
+    ),
+    @NamedQuery(
+        name = "Event.foundEvents",
+        query = "SELECT e FROM Event e WHERE e.name LIKE CONCAT('%',:phrase,'%')"
+    ),
+    @NamedQuery(
+        name = "Event.filterByOrganizer",
+        query = "SELECT e FROM Event e WHERE e.organizer.id = :organizerId " +
+            "AND e.startDate >= :time ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.counterByOrganizer",
+        query = "SELECT count(e) FROM Event e WHERE e.organizer.id = :organizerId " +
+            "AND e.startDate >= :time"
+    ),
+    @NamedQuery(
+        name = "Event.findFavouriteEvents",
+        query = "SELECT e FROM Event e INNER JOIN e.users u WHERE u.id = :id"
+    )
 })
 @Entity
-@Table(name = "event")
+@Table(name = "event", indexes = {@Index(name = "name", columnList = "name")})
 public class Event {
 
-    @Id
-    @Column(name = "event_id")
-    Long id;
+  @Id
+  @Column(name = "event_id")
+  Long id;
 
   @Column(name = "name")
   String name;
@@ -99,108 +110,108 @@ public class Event {
 
   }
 
-    public Event() {
-    }
+  public Event() {
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public String getDescShort() {
-        return descShort;
-    }
+  public String getDescShort() {
+    return descShort;
+  }
 
-    public void setDescShort(String descShort) {
-        this.descShort = descShort;
-    }
+  public void setDescShort(String descShort) {
+    this.descShort = descShort;
+  }
 
-    public String getDescLong() {
-        return descLong;
-    }
+  public String getDescLong() {
+    return descLong;
+  }
 
-    public void setDescLong(String descLong) {
-        this.descLong = descLong;
-    }
+  public void setDescLong(String descLong) {
+    this.descLong = descLong;
+  }
 
-    public Boolean getActive() {
-        return active;
-    }
+  public Boolean getActive() {
+    return active;
+  }
 
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
+  public void setActive(Boolean active) {
+    this.active = active;
+  }
 
-    public Date getStartDate() {
-        return startDate;
-    }
+  public Date getStartDate() {
+    return startDate;
+  }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
+  public void setStartDate(Date startDate) {
+    this.startDate = startDate;
+  }
 
-    public Date getEndDate() {
-        return endDate;
-    }
+  public Date getEndDate() {
+    return endDate;
+  }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
+  public void setEndDate(Date endDate) {
+    this.endDate = endDate;
+  }
 
-    public TicketType getType() {
-        return type;
-    }
+  public TicketType getType() {
+    return type;
+  }
 
-    public void setType(TicketType type) {
-        this.type = type;
-    }
+  public void setType(TicketType type) {
+    this.type = type;
+  }
 
-    public List<Attachment> getAttachment() {
-        return attachment;
-    }
+  public List<Attachment> getAttachment() {
+    return attachment;
+  }
 
-    public void setAttachment(List<Attachment> attachment) {
-        this.attachment = attachment;
-    }
+  public void setAttachment(List<Attachment> attachment) {
+    this.attachment = attachment;
+  }
 
-    public MediaLink getMediaLink() {
-        return mediaLink;
-    }
+  public MediaLink getMediaLink() {
+    return mediaLink;
+  }
 
-    public void setMediaLink(MediaLink mediaLink) {
-        this.mediaLink = mediaLink;
-    }
+  public void setMediaLink(MediaLink mediaLink) {
+    this.mediaLink = mediaLink;
+  }
 
-    public Address getAddress() {
-        return address;
-    }
+  public Address getAddress() {
+    return address;
+  }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+  public void setAddress(Address address) {
+    this.address = address;
+  }
 
-    public Organizer getOrganizer() {
-        return organizer;
-    }
+  public Organizer getOrganizer() {
+    return organizer;
+  }
 
-    public void setOrganizer(Organizer organizer) {
-        this.organizer = organizer;
-    }
+  public void setOrganizer(Organizer organizer) {
+    this.organizer = organizer;
+  }
 
-    public Category getCategory() {
-        return category;
-    }
+  public Category getCategory() {
+    return category;
+  }
 
   public void setCategory(Category category) {
     this.category = category;

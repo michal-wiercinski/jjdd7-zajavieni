@@ -11,6 +11,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
@@ -48,22 +49,41 @@ public class EventViewServlet extends HttpServlet {
     EventDto eventDto = new EventDto();
     Event event = new Event();
     String eventId = req.getParameter("id");
+
     if (eventId != null || !eventId.isEmpty() || NumberUtils.isDigits(eventId)) {
       id = Long.valueOf(eventId);
       eventDto = eventDtoService.findById(id);
       event = eventDtoService.findEventById(id);
     }
-    Long userId = 2L;
-    Boolean isFavourite = false;
-    if (favouriteEventService.findListOfUserFavouriteEvents(userId).stream().map(e -> e.getId())
-        .collect(
-            Collectors.toList()).contains(event.getId())) {
-      isFavourite = true;
-    }
+
     Template template = templateProvider.getTemplate(getServletContext(), "event-details.ftlh");
     Map<String, Object> model = new HashMap<>();
     model.put("event", eventDto);
-    model.put("isFavourite", isFavourite);
+
+    Long userId = (Long) req.getSession().getAttribute("userId");
+
+    if (userId != null) {
+      Boolean isFavourite = false;
+      if (favouriteEventService.findListOfUserFavouriteEvents(userId).stream().map(e -> e.getId())
+          .collect(
+              Collectors.toList()).contains(event.getId())) {
+        isFavourite = true;
+      }
+      List<EventDto> favouriteEvents = favouriteEventService
+          .findListOfUserFavouriteEventsDto(userId);
+      favouriteEventService.displayFavouriteEventBeam(req, favouriteEvents, model);
+      model.put("isFavourite", isFavourite);
+      model.put("userId", userId);
+    }
+    String userType;
+    if (!(req.getSession().getAttribute("userType") == null)) {
+      userType = String.valueOf(req.getSession().getAttribute("userType"));
+      model.put("type", userType);
+    } else {
+      userType = "QUEST";
+      model.put("type", userType);
+    }
+
     try {
       template.process(model, resp.getWriter());
     } catch (TemplateException e) {
