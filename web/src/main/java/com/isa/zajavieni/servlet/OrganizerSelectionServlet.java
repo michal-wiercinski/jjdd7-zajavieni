@@ -3,16 +3,16 @@ package com.isa.zajavieni.servlet;
 import com.isa.zajavieni.dao.UserDaoBean;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.dto.OrganizerDto;
-import com.isa.zajavieni.entity.User;
-import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.FavouriteEventService;
 import com.isa.zajavieni.service.OrganizerDtoService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -20,11 +20,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet("/organizers")
 public class OrganizerSelectionServlet extends HttpServlet {
@@ -43,47 +40,30 @@ public class OrganizerSelectionServlet extends HttpServlet {
   @Inject
   private FavouriteEventService favouriteEventService;
 
-
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
     List<OrganizerDto> organizers = new ArrayList<>();
-
     String letter = req.getParameter("letter");
     organizers = organizerDtoService.getListByFirstLetter(letter.toUpperCase());
-
     Template template = templateProvider.getTemplate(getServletContext(), "organizers-list.ftlh");
     Map<String, Object> model = new HashMap<>();
     model.put("organizers", organizers);
+    Long user_id = (Long) req.getSession().getAttribute("user_id");
 
-    //Long userId = Long.parseLong((String) req.getSession().getAttribute("userId"));
-    Long userId = 2L;
-    List<EventDto> favouriteEvents = favouriteEventService.findListOfUserFavouriteEventsDto(userId);
+    if (user_id != null) {
+      List<EventDto> favouriteEvents = favouriteEventService
+          .findListOfUserFavouriteEventsDto(user_id);
 
-    if (req.getSession().getAttribute("isVisible").equals("visible")) {
-      if (favouriteEvents.size() != 0) {
-        EventDto upcomingEvent = favouriteEvents.stream().findFirst().get();
-        model.put("upcomingEvent", upcomingEvent);
-      }
+      favouriteEventService.displayFavouriteEventBeam(req, favouriteEvents, model);
+      model.put("user_id", user_id);
     }
 
     try {
       template.process(model, resp.getWriter());
     } catch (TemplateException e) {
       logger.error(e.getMessage());
-    }
-
-    if (userDaoBean.findById(2L) == null) {
-      User user = new User();
-      user.setUserType(UserType.USER);
-      user.setEmail("aaa");
-      userDaoBean.saveUser(user);
-
-      User user2 = new User();
-      user2.setUserType(UserType.USER);
-      user2.setEmail("aaa");
-      userDaoBean.saveUser(user2);
     }
   }
 }

@@ -21,8 +21,8 @@ public class FavouriteEventBeamFilter implements Filter {
       FilterChain filterChain) throws IOException, ServletException {
     HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
     HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
-    if(httpServletRequest.getSession().getAttribute("isVisible")==null){
-      httpServletRequest.getSession().setAttribute("isVisible","visible");
+    if (httpServletRequest.getSession().getAttribute("isVisible") == null) {
+      httpServletRequest.getSession().setAttribute("isVisible", "true");
     }
     filterChain.doFilter(httpServletRequest, httpServletResponse);
   }

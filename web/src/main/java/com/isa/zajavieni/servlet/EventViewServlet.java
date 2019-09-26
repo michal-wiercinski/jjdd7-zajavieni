@@ -1,10 +1,7 @@
 package com.isa.zajavieni.servlet;
 
-import com.isa.zajavieni.dao.UserDaoBean;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
-import com.isa.zajavieni.entity.User;
-import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
@@ -23,7 +20,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.math.NumberUtils;
-import org.hibernate.Incubating;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,32 +44,31 @@ public class EventViewServlet extends HttpServlet {
     EventDto eventDto = new EventDto();
     Event event = new Event();
     String eventId = req.getParameter("id");
+
     if (eventId != null || !eventId.isEmpty() || NumberUtils.isDigits(eventId)) {
       id = Long.valueOf(eventId);
       eventDto = eventDtoService.findById(id);
       event = eventDtoService.findEventById(id);
     }
-    Long userId = 2L;
-    Boolean isFavourite = false;
-    if (favouriteEventService.findListOfUserFavouriteEvents(userId).stream().map(e -> e.getId())
-        .collect(
-            Collectors.toList()).contains(event.getId())) {
-      isFavourite = true;
-    }
+
     Template template = templateProvider.getTemplate(getServletContext(), "event-details.ftlh");
     Map<String, Object> model = new HashMap<>();
     model.put("event", eventDto);
-    model.put("isFavourite", isFavourite);
 
-    //Long userId = Long.parseLong((String) req.getSession().getAttribute("userId"));
-    List<EventDto> favouriteEvents = favouriteEventService.findListOfUserFavouriteEventsDto(userId);
+    Long user_id = (Long) req.getSession().getAttribute("user_id");
 
-
-    if (req.getSession().getAttribute("isVisible").equals("visible")) {
-      if (favouriteEvents.size() != 0) {
-        EventDto upcomingEvent = favouriteEvents.stream().findFirst().get();
-        model.put("upcomingEvent", upcomingEvent);
+    if (user_id != null) {
+      Boolean isFavourite = false;
+      if (favouriteEventService.findListOfUserFavouriteEvents(user_id).stream().map(e -> e.getId())
+          .collect(
+              Collectors.toList()).contains(event.getId())) {
+        isFavourite = true;
       }
+      List<EventDto> favouriteEvents = favouriteEventService
+          .findListOfUserFavouriteEventsDto(user_id);
+      favouriteEventService.displayFavouriteEventBeam(req,favouriteEvents,model);
+      model.put("isFavourite", isFavourite);
+      model.put("user_id", user_id);
     }
 
     try {

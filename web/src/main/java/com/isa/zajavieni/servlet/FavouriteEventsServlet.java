@@ -33,21 +33,15 @@ public class FavouriteEventsServlet extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     logger.info("Request GET method");
-    //Long userId = Long.parseLong((String) req.getSession().getAttribute("userId"));
-    Long userId = 2L;
-    List<EventDto> favouriteEvents = favouriteEventService.findListOfUserFavouriteEventsDto(userId);
+    Long user_id = (Long) req.getSession().getAttribute("user_id");
+    List<EventDto> favouriteEvents = favouriteEventService
+        .findListOfUserFavouriteEventsDto(user_id);
 
     Template template = templateProvider.getTemplate(getServletContext(), "favourite.ftlh");
     Map<String, Object> model = new HashMap<>();
+    favouriteEventService.displayFavouriteEventBeam(req,favouriteEvents,model);
     model.put("favouriteEvents", favouriteEvents);
-
-    if (req.getSession().getAttribute("isVisible").equals("visible")) {
-      //Long userId = Long.parseLong((String) req.getSession().getAttribute("userId"));
-      if (favouriteEvents.size() != 0) {
-        EventDto upcomingEvent = favouriteEvents.stream().findFirst().get();
-        model.put("upcomingEvent", upcomingEvent);
-      }
-    }
+    model.put("user_id",user_id);
 
     try {
       template.process(model, resp.getWriter());
@@ -60,25 +54,23 @@ public class FavouriteEventsServlet extends HttpServlet {
   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     logger.info("Request POST method");
-    String eventId = req.getParameter("id");
-    //String userId = (String) req.getSession().getAttribute("userId");
-    String userId = "2";
-    favouriteEventService.addEventToUserFavouriteEvents(eventId, userId);
+    String event_id = req.getParameter("id");
+    String user_id = String.valueOf(req.getSession().getAttribute("user_id"));
+    favouriteEventService.addEventToUserFavouriteEvents(event_id, user_id);
   }
 
   @Override
   protected void doDelete(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     logger.info("Request DELETE method");
-    String eventId = req.getParameter("id");
-    //String userId = (String) req.getSession().getAttribute("userId");
-    String userId = "2";
-    favouriteEventService.deleteEventFromUserFavouriteEvents(eventId, userId);
+    String event_id = req.getParameter("id");
+    String user_id = String.valueOf(req.getSession().getAttribute("user_id"));
+    favouriteEventService.deleteEventFromUserFavouriteEvents(event_id, user_id);
   }
 
   @Override
   protected void doPut(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    req.getSession().setAttribute("view", "invisible");
+    req.getSession().setAttribute("isVisible", "false");
   }
 }

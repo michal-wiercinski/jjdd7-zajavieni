@@ -35,9 +35,9 @@
             <a class="p-2 text-dark" href="${upcoming_link}">Lista wydarzeń</a>
             <a class="p-2 text-dark" href="${search_by_organizer}">Organizatorzy</a>
             <a class="p-2 text-dark" href="#">Wyszukiwanie</a>
-<#--            <#if userId??>-->
+            <#if user_id??>
             <a class="p-2 text-dark" href="${favourite_link}">Ulubione</a>
-<#--            </#if>-->
+            </#if>
             <a class="p-2 text-dark" href="#">Koszyk</a>
 
             <a href="/login" class="btn btn-danger btn-sm" id="login">
@@ -53,8 +53,6 @@
         <p class="lead">Witaj w miejscu, gdzie zgromadzone są wydarzenia kulturalne w Trójmiescie i okolicy.
             </br>Szukaj, znajdź, rezerwuj i baw się dobrze!</p>
     </header>
-
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>

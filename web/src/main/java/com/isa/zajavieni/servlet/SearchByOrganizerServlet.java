@@ -68,15 +68,14 @@ public class SearchByOrganizerServlet extends HttpServlet {
     model.put("page", pageNumber);
     model.put("totalPages", totalPages);
 
-    //Long userId = Long.parseLong((String) req.getSession().getAttribute("userId"));
-    Long userId = 2L;
-    List<EventDto> favouriteEvents = favouriteEventService.findListOfUserFavouriteEventsDto(userId);
+    Long user_id = (Long) req.getSession().getAttribute("user_id");
 
-    if (req.getSession().getAttribute("isVisible").equals("visible")) {
-      if (favouriteEvents.size() != 0) {
-        EventDto upcomingEvent = favouriteEvents.stream().findFirst().get();
-        model.put("upcomingEvent", upcomingEvent);
-      }
+    if(user_id!=null) {
+      List<EventDto> favouriteEvents = favouriteEventService
+          .findListOfUserFavouriteEventsDto(user_id);
+
+      favouriteEventService.displayFavouriteEventBeam(req,favouriteEvents,model);
+      model.put("user_id",user_id);
     }
 
     try {
