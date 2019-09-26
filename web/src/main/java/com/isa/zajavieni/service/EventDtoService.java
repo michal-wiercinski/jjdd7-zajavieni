@@ -26,6 +26,8 @@ public class EventDtoService {
 
   @Transactional
   public List<EventDto> findUpcomingEvents(int from, int howMany) {
+
+    from = formatFirstValue(from);
     if (from > 0) {
       from *= howMany;
     }
@@ -34,6 +36,13 @@ public class EventDtoService {
         .map((event) -> dtoMapper.mapEventToDto(event))
         .collect(Collectors.toList());
     return upcomingEventsList;
+  }
+
+  private int formatFirstValue(int from) {
+    if(from < 1){
+      from = 2;
+    }
+    return from -= 1;
   }
 
   private int getUpcomingEventsSize() {

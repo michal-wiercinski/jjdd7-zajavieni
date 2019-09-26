@@ -23,9 +23,9 @@ import org.slf4j.LoggerFactory;
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
 
-  private Logger logger = LoggerFactory.getLogger(getClass().getName());
-  private static final int EVENTS_PER_PAGE = 8;
-  private static final int FIRST_ELEMENT = 0;
+    private Logger logger = LoggerFactory.getLogger(getClass().getName());
+    private static final int EVENTS_PER_PAGE = 8;
+    private static final  int FIRST_ELEMENT = 0;
 
   @EJB
   private EventDtoService eventDtoService;
