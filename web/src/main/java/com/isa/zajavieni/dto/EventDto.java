@@ -1,6 +1,5 @@
 package com.isa.zajavieni.dto;
 
-import com.isa.zajavieni.entity.User;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

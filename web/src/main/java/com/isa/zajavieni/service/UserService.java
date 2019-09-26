@@ -5,16 +5,15 @@ import com.isa.zajavieni.dto.UserDto;
 import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.mapper.UserDtoMapper;
-
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.stream.Collectors;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.transaction.Transactional;
 
 @Transactional
 @Stateless
@@ -28,7 +27,7 @@ public class UserService {
   @EJB
   UserDtoMapper userDtoMapper;
 
-  public User findUserById(Long id){
+  public User findUserById(Long id) {
     return userDaoBean.findById(id);
   }
 
@@ -42,8 +41,8 @@ public class UserService {
     userDaoBean.saveUser(user);
   }
 
-  public void editUser(User user){
-      userDaoBean.updateUser(user);
+  public void editUser(User user) {
+    userDaoBean.updateUser(user);
   }
 
   public Optional<UserDto> getUserByEmail(String email) {
@@ -62,7 +61,7 @@ public class UserService {
         .orElse(false);
   }
 
- public Boolean isSuperAdmin(String email) {
+  public Boolean isSuperAdmin(String email) {
     Optional<User> user = userDaoBean.findByEmail(email);
 
     return user.map(value -> value.getUserType()
@@ -84,7 +83,7 @@ public class UserService {
     return settings.getProperty("user.name");
   }
 
-  public Optional<User> findByEmail(String email){
+  public Optional<User> findByEmail(String email) {
     return userDaoBean.findByEmail(email);
   }
 }

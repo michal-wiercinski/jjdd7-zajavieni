@@ -7,9 +7,11 @@ import com.google.api.client.extensions.servlet.auth.oauth2.AbstractAuthorizatio
 import com.google.api.services.oauth2.Oauth2;
 import com.google.api.services.oauth2.model.Userinfoplus;
 import com.isa.zajavieni.dto.UserDto;
+import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.UserService;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.UUID;
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -42,7 +44,7 @@ public class Oauth2CallbackServlet extends AbstractAuthorizationCodeCallbackServ
     Userinfoplus info = oauth2.userinfo().get().execute();
     String name = info.getName();
     String email = info.getEmail();
-    req.getSession().setAttribute("google_name", name);
+    req.getSession().setAttribute("googleName", name);
     req.getSession().setAttribute("email", email);
     resp.sendRedirect("/");
 
@@ -53,9 +55,21 @@ public class Oauth2CallbackServlet extends AbstractAuthorizationCodeCallbackServ
       userService.createNewUser(user);
       logger.info("User for name: {} has been save in base.", user.getName());
     }
-
     Long userId = userService.findByEmail(email).get().getId();
-    req.getSession().setAttribute("user_id", userId);
+    req.getSession().setAttribute("userId", userId);
+
+    UserDto user;
+    String userType;
+    if (userService.getUserByEmail(email).isPresent()) {
+      user = userService.getUserByEmail(email).get();
+      userType = user.getUserType().name();
+    } else {
+      userType = "QUEST";
+    }
+
+    req.getSession().setAttribute("userType", userType);
+
+
   }
 
   @Override
