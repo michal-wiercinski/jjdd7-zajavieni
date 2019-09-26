@@ -11,6 +11,10 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import java.io.IOException;
+
 @WebFilter(
     filterName = "UpcomingEventsFilter",
     urlPatterns = {"/upcoming-events"}
@@ -26,9 +30,8 @@ public class UpcomingEventsFilter implements Filter {
 
     String pageParameter = servletRequest.getParameter(PAGE_NUMBER);
 
-    int pageNumber = 0;
-    if (pageParameter != null && !pageParameter.isEmpty()
-        && NumberUtils.isDigits(pageParameter)) {
+    int pageNumber = 1;
+    if (NumberUtils.isDigits(pageParameter)) {
       pageNumber = Integer.valueOf(pageParameter);
     } else {
       logger.warn("Bad format");

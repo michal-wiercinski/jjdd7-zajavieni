@@ -40,7 +40,6 @@ public class MainServlet extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-
     List<EventDto> events = eventDtoService.findUpcomingEvents(FIRST_ELEMENT, EVENTS_PER_PAGE);
     Template template = templateProvider.getTemplate(getServletContext(), "welcome-page.ftlh");
     Map<String, Object> model = new HashMap<>();
