@@ -3,16 +3,15 @@ package com.isa.zajavieni.rest;
 import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.service.UserService;
-import org.apache.commons.lang3.math.NumberUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.ejb.EJB;
 import javax.ws.rs.PATCH;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+import org.apache.commons.lang3.math.NumberUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Path("/admin")
 public class PrivilegeController {

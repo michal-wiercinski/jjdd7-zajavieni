@@ -1,14 +1,13 @@
 package com.isa.zajavieni.rest;
 
 import com.isa.zajavieni.service.UserService;
-
+import java.util.Optional;
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
-import java.util.Optional;
 
 @Path("/user")
 public class UserController {

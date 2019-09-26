@@ -6,7 +6,6 @@ import com.isa.zajavieni.servlet.LoggerServlet;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

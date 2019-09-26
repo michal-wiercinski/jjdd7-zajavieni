@@ -66,7 +66,7 @@ public class EventViewServlet extends HttpServlet {
       }
       List<EventDto> favouriteEvents = favouriteEventService
           .findListOfUserFavouriteEventsDto(userId);
-      favouriteEventService.displayFavouriteEventBeam(req,favouriteEvents,model);
+      favouriteEventService.displayFavouriteEventBeam(req, favouriteEvents, model);
       model.put("isFavourite", isFavourite);
       model.put("userId", userId);
     }

@@ -7,12 +7,10 @@ import com.google.api.client.extensions.servlet.auth.oauth2.AbstractAuthorizatio
 import com.google.api.services.oauth2.Oauth2;
 import com.google.api.services.oauth2.model.Userinfoplus;
 import com.isa.zajavieni.dto.UserDto;
-import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.UserService;
 import java.io.IOException;
 import java.util.UUID;
 import javax.ejb.EJB;
-import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;

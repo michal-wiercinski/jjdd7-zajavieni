@@ -6,9 +6,10 @@ import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -16,10 +17,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet("/upcoming-events")
 public class UpcomingEventServlet extends HttpServlet {
@@ -56,12 +55,12 @@ public class UpcomingEventServlet extends HttpServlet {
 
     Long userId = (Long) req.getSession().getAttribute("userId");
 
-    if(userId!=null) {
+    if (userId != null) {
       List<EventDto> favouriteEvents = favouriteEventService
           .findListOfUserFavouriteEventsDto(userId);
 
-      favouriteEventService.displayFavouriteEventBeam(req,favouriteEvents,model);
-      model.put("userId",userId);
+      favouriteEventService.displayFavouriteEventBeam(req, favouriteEvents, model);
+      model.put("userId", userId);
     }
 
     try {

@@ -69,7 +69,8 @@ public class FavouriteEventService {
     eventsDaoBean.editEvent(searchingEvent);
   }
 
-  public void displayFavouriteEventBeam(HttpServletRequest req, List<EventDto> favouriteEvents,  Map<String, Object> model){
+  public void displayFavouriteEventBeam(HttpServletRequest req, List<EventDto> favouriteEvents,
+      Map<String, Object> model) {
     if (req.getSession().getAttribute("isVisible") == "true") {
       if (favouriteEvents.size() != 0) {
         EventDto upcomingEvent = favouriteEvents.stream().findFirst().get();

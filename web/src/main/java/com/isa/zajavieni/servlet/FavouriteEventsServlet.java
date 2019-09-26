@@ -39,9 +39,9 @@ public class FavouriteEventsServlet extends HttpServlet {
 
     Template template = templateProvider.getTemplate(getServletContext(), "favourite.ftlh");
     Map<String, Object> model = new HashMap<>();
-    favouriteEventService.displayFavouriteEventBeam(req,favouriteEvents,model);
+    favouriteEventService.displayFavouriteEventBeam(req, favouriteEvents, model);
     model.put("favouriteEvents", favouriteEvents);
-    model.put("userId",userId);
+    model.put("userId", userId);
 
     try {
       template.process(model, resp.getWriter());
