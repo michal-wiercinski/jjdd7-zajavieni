@@ -1,5 +1,7 @@
 <#include "navbar.ftlh">
 
+<#include "favourite-beam.ftlh">
+
 <#include "cards-of-events.ftlh">
 
 <#assign upcoming_link = "/upcoming-events?pageNo=1">

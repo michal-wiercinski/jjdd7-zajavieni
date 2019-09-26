@@ -33,11 +33,16 @@ public class FavouriteEventsServlet extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     logger.info("Request GET method");
-    Long userId = Long.parseLong((String) req.getSession().getAttribute("userId"));
-    List<EventDto> favouriteEvents = favouriteEventService.findListOfUserFavouriteEventsDto(userId);
+    Long userId = (Long) req.getSession().getAttribute("userId");
+    List<EventDto> favouriteEvents = favouriteEventService
+        .findListOfUserFavouriteEventsDto(userId);
+
     Template template = templateProvider.getTemplate(getServletContext(), "favourite.ftlh");
     Map<String, Object> model = new HashMap<>();
+    favouriteEventService.displayFavouriteEventBeam(req, favouriteEvents, model);
     model.put("favouriteEvents", favouriteEvents);
+    model.put("userId", userId);
+
     try {
       template.process(model, resp.getWriter());
     } catch (TemplateException e) {
@@ -50,7 +55,7 @@ public class FavouriteEventsServlet extends HttpServlet {
       throws ServletException, IOException {
     logger.info("Request POST method");
     String eventId = req.getParameter("id");
-    String userId = (String) req.getSession().getAttribute("userId");
+    String userId = String.valueOf(req.getSession().getAttribute("userId"));
     favouriteEventService.addEventToUserFavouriteEvents(eventId, userId);
   }
 
@@ -59,7 +64,13 @@ public class FavouriteEventsServlet extends HttpServlet {
       throws ServletException, IOException {
     logger.info("Request DELETE method");
     String eventId = req.getParameter("id");
-    String userId = (String) req.getSession().getAttribute("userId");
+    String userId = String.valueOf(req.getSession().getAttribute("userId"));
     favouriteEventService.deleteEventFromUserFavouriteEvents(eventId, userId);
+  }
+
+  @Override
+  protected void doPut(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    req.getSession().setAttribute("isVisible", "false");
   }
 }
