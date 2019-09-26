@@ -26,8 +26,8 @@
                         <p id="addressStreet" class="card-text"></p>
                         <p id="addressZipCode" class="card-text"></p>
                     <h3><span class="badge badge-secondary">Linki</span></h3>
-                        <p id="wwwAddress" class="card-text"><a class="wwwAddress" href="#" Strona WWW </a></p>
-                        <p id="fbSite" class="card-text"><a href="#"> Facebook </a></p>
+                        <a href=""><p id="wwwAddress" class="wwwAddress">Strona WWW </p></a>
+                        <a href="#"><p id="fbSite" class="card-text"> Facebook </a></p>
                         <p id="websiteWithTickets" class="card-text"><a href="#"> Strona z biletami</a></p>
                 </div>
             </div>
@@ -50,7 +50,7 @@
     </div>
     <script src="/js/event-details.js"></script>
     <script src="/js/favourite.js"></script>
-
+    <script src="/js/changingTextIntoUrl.js"></script>
 </div>
 
 
