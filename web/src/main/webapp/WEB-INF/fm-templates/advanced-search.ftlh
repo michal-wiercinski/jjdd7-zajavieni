@@ -9,8 +9,8 @@
 
       <label class="sr-only" for="inputName">Wyszukuj w</label>
       <select id="inputCategorySearch" class="form-control mb-2 mr-sm-2" name="categorySearch">
-        <option selected> Nazwa wydarzenia</option>
-        <option selected> Nazwa organizatora</option>
+        <option> Nazwa wydarzenia</option>
+        <option> Nazwa organizatora</option>
       </select>
 
       <label class="sr-only" for="inlineFormInputName2">Nazwa</label>
