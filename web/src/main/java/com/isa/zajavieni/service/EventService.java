@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Stateless
-public class EventDtoService {
+public class EventService {
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 

@@ -12,6 +12,9 @@ public class UserDtoMapper {
   @EJB
   EventDtoMapper eventDtoMapper;
 
+  @EJB
+  BookingDtoMapper bookingDtoMapper;
+
   public UserDto mapEntityToDto(User user) {
     UserDto userDto = new UserDto();
     userDto.setId(user.getId());
@@ -21,6 +24,8 @@ public class UserDtoMapper {
         .map(event -> eventDtoMapper.mapEventToDto(event))
         .collect(Collectors.toList()));
     userDto.setUserType(user.getUserType());
+    user.getBookings().forEach(b -> userDto.getBookings()
+        .add(bookingDtoMapper.mapEntityToDto(b)));
     return userDto;
   }
 

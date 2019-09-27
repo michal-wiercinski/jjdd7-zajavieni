@@ -3,7 +3,7 @@ package com.isa.zajavieni.servlet;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
-import com.isa.zajavieni.service.EventDtoService;
+import com.isa.zajavieni.service.EventService;
 import com.isa.zajavieni.service.FavouriteEventService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -30,7 +30,7 @@ public class SearchByOrganizerServlet extends HttpServlet {
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
   @EJB
-  private EventDtoService eventDtoService;
+  private EventService eventService;
 
   @Inject
   private TemplateProvider templateProvider;
@@ -57,9 +57,9 @@ public class SearchByOrganizerServlet extends HttpServlet {
       resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
     }
 
-    int totalPages = eventDtoService.getTotalPagesOrganizersEvent(id, EVENTS_PER_PAGE);
+    int totalPages = eventService.getTotalPagesOrganizersEvent(id, EVENTS_PER_PAGE);
 
-    List<EventDto> events = eventDtoService
+    List<EventDto> events = eventService
         .findEventsByOrganizerId(id, pageNumber, EVENTS_PER_PAGE);
 
     Template template = templateProvider.getTemplate(getServletContext(), "organizers-event.ftlh");

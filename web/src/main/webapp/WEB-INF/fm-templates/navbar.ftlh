@@ -26,6 +26,7 @@
         <#assign upcoming_link = "/upcoming-events?pageNo=1">
         <#assign favourite_link = "/favourite-events">
         <#assign search_by_organizer = "/organizers?letter=A">
+        <#assign tickets = "/tickets/user=${userId}">
         <form class="form-inline my-2 my-lg-0" >
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search">
             <button class="btn btn-outline-primary btn-rounded btn-sm my-0 waves-effect waves-light" type="submit">
@@ -41,7 +42,7 @@
             <a class="p-2 text-dark" href="#">Wyszukiwanie</a>
             <#if type != "GUEST">
             <a class="p-2 text-dark" href="${favourite_link}">Ulubione</a>
-            <a class="p-2 text-dark" href="#">Koszyk</a>
+            <a class="p-2 text-dark" href="">Rezerewacje</a>
             </#if>
             <a href="/login" class="btn btn-danger btn-sm" id="login">
                 <i class="fa fa-google"></i> Zaloguj się przez <b>Google</b></a>

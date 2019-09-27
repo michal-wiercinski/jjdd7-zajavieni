@@ -4,7 +4,7 @@ import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
-import com.isa.zajavieni.service.EventDtoService;
+import com.isa.zajavieni.service.EventService;
 import com.isa.zajavieni.service.FavouriteEventService;
 import com.isa.zajavieni.service.UserService;
 import freemarker.template.Template;
@@ -30,7 +30,7 @@ public class EventViewServlet extends HttpServlet {
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
   @EJB
-  private EventDtoService eventDtoService;
+  private EventService eventService;
 
   @EJB
   UserService userService;
@@ -52,8 +52,8 @@ public class EventViewServlet extends HttpServlet {
 
     if (eventId != null || !eventId.isEmpty() || NumberUtils.isDigits(eventId)) {
       id = Long.valueOf(eventId);
-      eventDto = eventDtoService.findById(id);
-      event = eventDtoService.findEventById(id);
+      eventDto = eventService.findById(id);
+      event = eventService.findEventById(id);
     }
 
     Template template = templateProvider.getTemplate(getServletContext(), "event-details.ftlh");

@@ -12,12 +12,16 @@
                     <p>${(event.addressName)!"n/a"}</p>
                 </div>
                 <div class="card-footer">
-                    <button type="button" data-id="${event.id}" class="btn btn-primary booking">Zarezerwuj</button>
+                    <#if type != "GUEST">
+                    <button type="button" data-event-id="${event.id}" data-id-user="${userId}" class="btn btn-primary make-booking">Zarezerwuj bilet</button>
+                    <#else>
+                        <a href="/login" class="btn btn-primary">Zarezerwuj bilet</a>
+                    </#if>
                     <a href="/event-view?id=${event.id?c}"
                        class="btn btn-primary show-event" <#--data-id="${event.id}"-->>Szczegóły</a>
+
                 </div>
             </div>
         </div>
     </#list>
-
 </div>

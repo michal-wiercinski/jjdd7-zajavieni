@@ -54,14 +54,20 @@
   </div>
   <div class="card-footer d-inline">
 
-      <#if type != "GUEST">
-         <a href="#" class="btn btn-primary">Zarezerwuj bilet</a>
-        <button type="button"
+
+          <#if type != "GUEST">
+            <button type="button" data-event-id="${event.id}" data-id-user="${userId}" class="btn btn-primary make-booking">Zarezerwuj bilet</button>
+               <button type="button"
                 class="${isFavourite?then('btn btn-outline-danger','btn btn-outline-success')}"
                 id='${isFavourite?then('deleteE','addE')}'
                 data-id='${event.id?c}'>
             ${isFavourite?then('Usuń z ulubionych ❌', 'Dodaj do ulubionych ✅')}
         </button>
+          <#else>
+            <a href="/login" class="btn btn-primary">Zarezerwuj bilet</a>
+            <a href="/login" class="btn btn-primary">Dodaj do ulubionych</a>
+          </#if>
+
       </#if>
   </div>
 </div>

@@ -3,7 +3,7 @@ package com.isa.zajavieni.servlet;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
-import com.isa.zajavieni.service.EventDtoService;
+import com.isa.zajavieni.service.EventService;
 import com.isa.zajavieni.service.FavouriteEventService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -29,7 +29,7 @@ public class MainServlet extends HttpServlet {
   private static final int FIRST_ELEMENT = 0;
 
   @EJB
-  private EventDtoService eventDtoService;
+  private EventService eventService;
 
   @Inject
   private TemplateProvider templateProvider;
@@ -41,7 +41,7 @@ public class MainServlet extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    List<EventDto> events = eventDtoService.findUpcomingEvents(FIRST_ELEMENT, EVENTS_PER_PAGE);
+    List<EventDto> events = eventService.findUpcomingEvents(FIRST_ELEMENT, EVENTS_PER_PAGE);
     Template template = templateProvider.getTemplate(getServletContext(), "welcome-page.ftlh");
     Map<String, Object> model = new HashMap<>();
     model.put("events", events);

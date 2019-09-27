@@ -1,7 +1,9 @@
 package com.isa.zajavieni.service;
 
+import com.isa.zajavieni.dao.BookingDaoBean;
 import com.isa.zajavieni.dao.UserDaoBean;
 import com.isa.zajavieni.dto.UserDto;
+import com.isa.zajavieni.entity.Booking;
 import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.mapper.UserDtoMapper;
@@ -26,6 +28,9 @@ public class UserService {
 
   @EJB
   UserDtoMapper userDtoMapper;
+
+  @EJB
+  BookingDaoBean bookingDaoBean;
 
   public User findUserById(Long id) {
     return userDaoBean.findById(id);
@@ -85,5 +90,13 @@ public class UserService {
 
   public Optional<User> findByEmail(String email) {
     return userDaoBean.findByEmail(email);
+  }
+
+  public void addBookingToUser(Long id, Long bookingId){
+    Booking booking = bookingDaoBean.findById(bookingId);
+    User user = findUserById(id);
+    List<Booking> bookings = user.getBookings();
+    bookings.add(booking);
+    userDaoBean.saveUser(user);
   }
 }

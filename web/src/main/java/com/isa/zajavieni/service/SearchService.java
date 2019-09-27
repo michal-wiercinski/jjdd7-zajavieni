@@ -9,9 +9,9 @@ import javax.ejb.Stateless;
 public class SearchService {
 
   @EJB
-  private EventDtoService eventDtoService;
+  private EventService eventService;
 
   public List<EventDto> searchEvents(String phrase) {
-    return eventDtoService.searchEvents(phrase);
+    return eventService.searchEvents(phrase);
   }
 }
