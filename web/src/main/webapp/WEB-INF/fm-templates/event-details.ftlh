@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-4 float-left ">
           <img class="card-img-top img-fluid" style="max-height: 700px; max-width: 550px"
-               src="${(event.attachments[0].fileName)!"/img/plug.jpg"}" alt="">
+               src="${(event.attachments[0].fileName)!"/img/plug.jpg"}" alt="" onerror="this.src='/img/plug.jpg';">
         </div>
         <div class="col-4 text-center">
             <#if event.addressName??>

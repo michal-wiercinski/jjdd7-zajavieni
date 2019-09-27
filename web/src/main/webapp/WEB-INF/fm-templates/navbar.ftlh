@@ -9,6 +9,7 @@
     <meta name="google-signin-client_id"
           content="857504899215-qodap15sc3br3qood7gksv2n8ajnjnk9.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+   <script src="/js/imageNotFound.js" ></script>
     <title>3cityevent</title>
     <link rel="canonical" href="#">
     <!-- Bootstrap core CSS -->
@@ -67,5 +68,6 @@ crossorigin="anonymous"></script>
 <script src="/js/permissions.js"></script>
 <script src="/js/login_logout.js"></script>
 <script src="/js/autocomplete.js"></script>
+<script src="/js/favourite.js"></script>
 </body>
 </html>

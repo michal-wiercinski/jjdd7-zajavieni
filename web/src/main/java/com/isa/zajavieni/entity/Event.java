@@ -98,6 +98,21 @@ public class Event {
   @ManyToMany(mappedBy = "events")
   List<User> users;
 
+  @Column(name = "ticket_pool")
+  Integer ticketPool;
+
+  @OneToMany(mappedBy = "event")
+  List<Booking> bookings;
+
+  public Integer getTicketPool() {
+    return ticketPool;
+  }
+
+  public void setTicketPool(Integer ticketPool) {
+    this.ticketPool = ticketPool;
+  }
+
+
   public Event(String name, String descShort, String descLong, Boolean active,
       Date startDate, Date endDate, TicketType type) {
     this.name = name;
@@ -224,4 +239,13 @@ public class Event {
   public void setUsers(List<User> users) {
     this.users = users;
   }
+
+  public List<Booking> getBookings() {
+    return bookings;
+  }
+
+  public void setBookings(List<Booking> bookings) {
+    this.bookings = bookings;
+  }
 }
+

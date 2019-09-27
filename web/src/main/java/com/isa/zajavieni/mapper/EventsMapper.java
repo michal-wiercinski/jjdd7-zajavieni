@@ -7,6 +7,7 @@ import com.isa.zajavieni.entity.Attachment;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.servlet.LoggerServlet;
 import java.util.List;
+import java.util.Random;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import org.slf4j.Logger;
@@ -50,6 +51,7 @@ public class EventsMapper {
     event.setAddress(addressDaoBean.findAddressById(eventApi.getPlace().getPlaceId()));
     event.setOrganizer(organizersDaoBean.findOrganizerById(eventApi.getOrganizer().getId()));
     event.setCategory(categoriesDaoBean.findCategoryById(eventApi.getCategoryId()));
+    event.setTicketPool(new Random().nextInt(100));
     return event;
   }
 }

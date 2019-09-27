@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @NamedQueries({
@@ -51,9 +52,11 @@ public class User {
       inverseJoinColumns = @JoinColumn(name = "id_event", referencedColumnName = "event_id"))
   List<Event> events = new ArrayList<>();
 
-
   @Column(name = "email")
   String email;
+
+  @OneToMany(mappedBy = "user")
+  List<Booking> bookings;
 
   public User(UserType userType) {
     this.userType = userType;
@@ -100,5 +103,13 @@ public class User {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public List<Booking> getBookings() {
+    return bookings;
+  }
+
+  public void setBookings(List<Booking> bookings) {
+    this.bookings = bookings;
   }
 }
