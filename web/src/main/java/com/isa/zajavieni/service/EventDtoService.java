@@ -40,7 +40,7 @@ public class EventDtoService {
   }
 
   private int formatFirstValue(int from) {
-    if(from < 1){
+    if (from < 1) {
       from = 2;
     }
     return from -= 1;
@@ -106,10 +106,17 @@ public class EventDtoService {
         .collect(Collectors.toList());
   }
 
-  public List<EventDto> searchEventsByNameAndDates(String name, Date startDate, Date endDate) {
-    return eventsDaoBean.findByNameAndDates(name, startDate, endDate).stream()
+  public List<EventDto> searchEventsByNameAndDates(String name, Date startDate, Date endDate,
+      int pageNumber) {
+    return eventsDaoBean.findByNameAndDates(name, startDate, endDate, pageNumber).stream()
         .map((event) -> dtoMapper.mapEventToDto(event))
         .collect(Collectors.toList());
   }
+
+  public long getSizeEventsByNameAndDates(String name, Date startDate, Date endDate) {
+    long size = eventsDaoBean.getSizeEventsByNameAndDates(name, startDate, endDate);
+    return size;
+  }
+
 }
 

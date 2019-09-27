@@ -20,7 +20,7 @@ public class SearchService {
     return eventDtoService.searchEventsByNameAndStartDate(name, startDate);
   }
 
-  public List<EventDto> searchEventsByNameAndDates(String name, Date startDate, Date endDate) {
-    return eventDtoService.searchEventsByNameAndDates(name, startDate, endDate);
-  }
+//  public List<EventDto> searchEventsByNameAndDates(String name, Date startDate, Date endDate) {
+//    return eventDtoService.searchEventsByNameAndDates(name, startDate, endDate);
+//  }
 }

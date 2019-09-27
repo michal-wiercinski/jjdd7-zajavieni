@@ -49,11 +49,24 @@ import javax.persistence.TemporalType;
     ),
     @NamedQuery(
         name = "Event.findByNameAndDates",
-        query = "SELECT e FROM Event e WHERE e.name LIKE :name AND e.startDate>= :startDate AND e.startDate<= :endDate ORDER BY e.startDate"
+        query = "SELECT e FROM Event e "
+            + "WHERE "
+            + "e.name LIKE :name AND "
+            + "e.startDate>= :startDate AND "
+            + "e.startDate<= :endDate "
+            + "ORDER BY e.startDate "
+    ),
+    @NamedQuery(
+        name = "Event.countFindByNameAndDates",
+        query = "SELECT count(e) FROM Event e WHERE e.name LIKE :name AND e.startDate>= :startDate AND e.startDate<= :endDate ORDER BY e.startDate"
     ),
     @NamedQuery(
         name = "Event.findByNameAndStartDate",
         query = "SELECT e FROM Event e WHERE e.name LIKE :name AND e.startDate>= :startDate ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.countFindByNameAndStartDate",
+        query = "SELECT count(e) FROM Event e WHERE e.name LIKE :name AND e.startDate>= :startDate ORDER BY e.startDate"
     )
 })
 

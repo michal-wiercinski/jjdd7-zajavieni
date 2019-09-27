@@ -23,7 +23,7 @@
                                                                   alt="logo"></a>
   <form class="form-inline my-2 my-lg-0">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-           id="search">
+           id="search" maxlength="30">
     <button class="btn btn-outline-primary btn-rounded btn-sm my-0 waves-effect waves-light"
             type="submit">
       Szukaj
@@ -52,7 +52,6 @@
     okolicy.
     </br>Szukaj, znajdź, rezerwuj i baw się dobrze!</p>
 </header>
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>

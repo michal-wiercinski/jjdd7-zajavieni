@@ -79,12 +79,14 @@ public class EventsDaoBean {
     return result.intValue();
   }
 
-  public List<Event> findByNameAndDates(String name, Date startDate, Date endDate) {
+  public List<Event> findByNameAndDates(String name, Date startDate, Date endDate, int pageNumber) {
     Query query = entityManager.createNamedQuery("Event.findByNameAndDates");
     query
         .setParameter("name", "%" + name + "%")
         .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
-        .setParameter("endDate", endDate, TemporalType.TIMESTAMP);
+        .setParameter("endDate", endDate, TemporalType.TIMESTAMP)
+    .setFirstResult((pageNumber-1)*8)
+    .setMaxResults(8);
     return query.getResultList();
   }
 
@@ -94,5 +96,14 @@ public class EventsDaoBean {
         .setParameter("name", "%" + name + "%")
         .setParameter("startDate", startDate);
     return query.getResultList();
+  }
+
+  public long getSizeEventsByNameAndDates(String name, Date startDate, Date endDate) {
+    Query query = entityManager.createNamedQuery("Event.countFindByNameAndDates");
+    query
+        .setParameter("name", "%" + name + "%")
+        .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
+        .setParameter("endDate", endDate, TemporalType.TIMESTAMP);
+    return (long) query.getSingleResult();
   }
 }
