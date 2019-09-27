@@ -32,19 +32,21 @@
             </button>
         </form>
         <nav class="my-2 my-md-0 mr-md-3">
+            <#if (type == "ADMIN") || (type == "SUPER_ADMIN")>
+                <a class="p-2 text-dark" href="/admin-view">Panel admina</a>
+            </#if>
             <a class="p-2 text-dark" href="${upcoming_link}">Lista wydarzeń</a>
             <a class="p-2 text-dark" href="${search_by_organizer}">Organizatorzy</a>
             <a class="p-2 text-dark" href="#">Wyszukiwanie</a>
-            <#if userId??>
+            <#if type != "GUEST">
             <a class="p-2 text-dark" href="${favourite_link}">Ulubione</a>
-            </#if>
             <a class="p-2 text-dark" href="#">Koszyk</a>
-
+            </#if>
             <a href="/login" class="btn btn-danger btn-sm" id="login">
                 <i class="fa fa-google"></i> Zaloguj się przez <b>Google</b></a>
             <a href="/logout" class="btn btn-danger btn-sm"
                id="logout"><i class="fa fa-google"></i> Wyloguj się</a>
-            <#--  <a class="p-2 text-dark" href="/admin/upload">Admin</a>-->
+
         </nav>
     </div>
 

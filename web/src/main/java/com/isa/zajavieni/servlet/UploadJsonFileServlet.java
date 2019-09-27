@@ -1,5 +1,6 @@
 package com.isa.zajavieni.servlet;
 
+import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.PartService;
 import freemarker.template.Template;
@@ -34,6 +35,14 @@ public class UploadJsonFileServlet extends HttpServlet {
       throws IOException {
     Template template = templateProvider.getTemplate(getServletContext(), "data-upload.ftlh");
     Map<String, Object> model = new HashMap<>();
+    String userType;
+    if (!(request.getSession().getAttribute("userType") == null)) {
+      userType = String.valueOf(request.getSession().getAttribute("userType"));
+      model.put("type", userType);
+    } else {
+      userType = UserType.GUEST.name();
+      model.put("type", userType);
+    }
     try {
       template.process(model, response.getWriter());
     } catch (TemplateException e) {
