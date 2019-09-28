@@ -1,7 +1,6 @@
 package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.dto.EventDto;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -16,11 +15,4 @@ public class SearchService {
     return eventDtoService.searchEvents(phrase);
   }
 
-  public List<EventDto> searchEventsByNameAndStartDate(String name, Date startDate) {
-    return eventDtoService.searchEventsByNameAndStartDate(name, startDate);
-  }
-
-//  public List<EventDto> searchEventsByNameAndDates(String name, Date startDate, Date endDate) {
-//    return eventDtoService.searchEventsByNameAndDates(name, startDate, endDate);
-//  }
 }

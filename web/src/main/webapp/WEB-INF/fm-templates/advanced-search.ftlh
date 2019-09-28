@@ -10,8 +10,8 @@
 
       <label class="sr-only" for="inputCategorySearch">Wyszukuj w</label>
       <select id="inputCategorySearch" class="form-control mb-2 mr-sm-2" name="categorySearch">
-        <option selected> Nazwa wydarzenia</option>
-        <option> Nazwa organizatora</option>
+        <option value="event" selected>Nazwa wydarzenia</option>
+        <option value="organizer">Nazwa organizatora</option>
       </select>
 
       <label class="sr-only" for="inlineFormInputName2">Nazwa</label>
@@ -20,7 +20,7 @@
 
       <label class="sr-only" for="inlineFormInputName2">Data początkowa</label>
       <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputDate"
-             name="startDate">
+             name="startDate" value="${now}">
 
       <label class="sr-only" for="inlineFormInputName2">Data końcowa</label>
       <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputDate2" name="endDate">

@@ -31,7 +31,7 @@ import javax.persistence.TemporalType;
     ),
     @NamedQuery(
         name = "Event.foundEvents",
-        query = "SELECT e FROM Event e WHERE e.name LIKE CONCAT('%',:phrase,'%')"
+        query = "SELECT e FROM Event e WHERE e.name LIKE :phrase"
     ),
     @NamedQuery(
         name = "Event.filterByOrganizer",
@@ -58,15 +58,152 @@ import javax.persistence.TemporalType;
     ),
     @NamedQuery(
         name = "Event.countFindByNameAndDates",
-        query = "SELECT count(e) FROM Event e WHERE e.name LIKE :name AND e.startDate>= :startDate AND e.startDate<= :endDate ORDER BY e.startDate"
+        query = "SELECT count(e) FROM Event e "
+            + "WHERE "
+            + "e.name LIKE :name "
+            + "AND "
+            + "e.startDate>= :startDate "
+            + "AND "
+            + "e.startDate<= :endDate "
+            + "ORDER BY e.startDate"
     ),
     @NamedQuery(
         name = "Event.findByNameAndStartDate",
-        query = "SELECT e FROM Event e WHERE e.name LIKE :name AND e.startDate>= :startDate ORDER BY e.startDate"
+        query = "SELECT e FROM Event e "
+            + "WHERE "
+            + "e.name LIKE :name "
+            + "AND "
+            + "e.startDate>= :startDate "
+            + "ORDER BY e.startDate"
     ),
     @NamedQuery(
         name = "Event.countFindByNameAndStartDate",
-        query = "SELECT count(e) FROM Event e WHERE e.name LIKE :name AND e.startDate>= :startDate ORDER BY e.startDate"
+        query = "SELECT count(e) FROM Event e "
+            + "WHERE "
+            + "e.name LIKE :name "
+            + "AND "
+            + "e.startDate>= :startDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.findByNameAndEndDate",
+        query = "SELECT e FROM Event e "
+            + "WHERE "
+            + "e.name LIKE :name "
+            + "AND "
+            + "e.startDate<= :endDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.countFindByNameAndEndDate",
+        query = "SELECT count(e) FROM Event e "
+            + "WHERE "
+            + "e.name LIKE :name "
+            + "AND "
+            + "e.startDate<= :endDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.findByName",
+        query = "SELECT e FROM Event e "
+            + "WHERE "
+            + "e.name LIKE :name "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.countFindByName",
+        query = "SELECT count(e) FROM Event e "
+            + "WHERE "
+            + "e.name LIKE :name "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.findByNameOrganizerAndDates",
+        query = "SELECT e FROM Event e "
+            + "INNER JOIN "
+            + "e.organizer o "
+            + "WHERE "
+            + "o.designation LIKE :name "
+            + "AND "
+            + "e.startDate>= :startDate "
+            + "AND "
+            + "e.startDate<= :endDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.countByNameOrganizerAndDates",
+        query = "SELECT count(e) FROM Event e "
+            + "INNER JOIN "
+            + "e.organizer o "
+            + "WHERE "
+            + "o.designation LIKE :name "
+            + "AND "
+            + "e.startDate>= :startDate "
+            + "AND "
+            + "e.startDate<= :endDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.countByNameOrganizerAndStartDate",
+        query = "SELECT count(e) FROM Event e "
+            + "INNER JOIN "
+            + "e.organizer o "
+            + "WHERE "
+            + "o.designation LIKE :name "
+            + "AND "
+            + "e.startDate>= :startDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.findByNameOrganizerAndStartDate",
+        query = "SELECT e FROM Event e "
+            + "INNER JOIN "
+            + "e.organizer o "
+            + "WHERE "
+            + "o.designation LIKE :name "
+            + "AND "
+            + "e.startDate>= :startDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.findByNameOrganizerAndEndDate",
+        query = "SELECT e FROM Event e "
+            + "INNER JOIN "
+            + "e.organizer o "
+            + "WHERE "
+            + "o.designation LIKE :name "
+            + "AND "
+            + "e.startDate<= :endDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.countByNameOrganizerAndEndDate",
+        query = "SELECT count(e) FROM Event e "
+            + "INNER JOIN "
+            + "e.organizer o "
+            + "WHERE "
+            + "o.designation LIKE :name "
+            + "AND "
+            + "e.startDate<= :endDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.findByNameOrganizer",
+        query = "SELECT e FROM Event e "
+            + "INNER JOIN "
+            + "e.organizer o "
+            + "WHERE "
+            + "o.designation LIKE :name "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.countByNameOrganizer",
+        query = "SELECT count(e) FROM Event e "
+            + "INNER JOIN "
+            + "e.organizer o "
+            + "WHERE "
+            + "o.designation LIKE :name "
+            + "ORDER BY e.startDate"
     )
 })
 

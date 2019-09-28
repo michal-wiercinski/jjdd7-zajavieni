@@ -21,9 +21,10 @@
     class="d-flex flex-column flex-md-row align-hitems-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
   <a href="/main" class="my-0 mr-md-auto font-weight-normal"><img src="/img/logo.jpg"
                                                                   alt="logo"></a>
-  <form class="form-inline my-2 my-lg-0">
+  <form class="form-inline my-2 my-lg-0" action="/advanced-search">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-           id="search" maxlength="30">
+           id="search" maxlength="30" name="name">
+    <input name="categorySearch" type="hidden" value="event">
     <button class="btn btn-outline-primary btn-rounded btn-sm my-0 waves-effect waves-light"
             type="submit">
       Szukaj

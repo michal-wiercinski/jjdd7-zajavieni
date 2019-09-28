@@ -100,12 +100,6 @@ public class EventDtoService {
     return numberFound / perPage;
   }
 
-  public List<EventDto> searchEventsByNameAndStartDate(String name, Date startDate) {
-    return eventsDaoBean.findByNameAndStartDate(name, startDate).stream()
-        .map((event) -> dtoMapper.mapEventToDto(event))
-        .collect(Collectors.toList());
-  }
-
   public List<EventDto> searchEventsByNameAndDates(String name, Date startDate, Date endDate,
       int pageNumber) {
     return eventsDaoBean.findByNameAndDates(name, startDate, endDate, pageNumber).stream()
@@ -114,9 +108,84 @@ public class EventDtoService {
   }
 
   public long getSizeEventsByNameAndDates(String name, Date startDate, Date endDate) {
-    long size = eventsDaoBean.getSizeEventsByNameAndDates(name, startDate, endDate);
-    return size;
+    return eventsDaoBean.getSizeEventsByNameAndDates(name, startDate, endDate);
   }
 
-}
+  public List<EventDto> searchEventsByNameAndStartDate(String name, Date startDate,
+      int pageNumber) {
+    return eventsDaoBean.findByNameAndStartDate(name, startDate, pageNumber).stream()
+        .map((event) -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
+  }
 
+  public long getSizeEventsByNameAndStartDate(String name, Date startDate) {
+    return eventsDaoBean.getSizeEventsByNameAndStartDate(name, startDate);
+  }
+
+  public List<EventDto> searchEventsByNameAndEndDate(String name, Date endDate, int pageNumber) {
+    return eventsDaoBean.findByNameAndEndDate(name, endDate, pageNumber).stream()
+        .map((event) -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
+  }
+
+  public long getSizeEventsByNameAndEndDate(String name, Date endDate) {
+    return eventsDaoBean.getSizeEventsByNameAndEndDate(name, endDate);
+  }
+
+  public List<EventDto> searchEventsByName(String name, int pageNumber) {
+    return eventsDaoBean.findByName(name, pageNumber).stream()
+        .map((event) -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
+  }
+
+  public long getSizeEventsByName(String name) {
+    return eventsDaoBean.getSizeEventsByName(name);
+  }
+
+  public List<EventDto> searchEventByOrganizerNameAndDates(String name, Date startDate,
+      Date endDate, int pageNumber) {
+    return eventsDaoBean.findEventByOrganizerNameAndDates(name, startDate, endDate, pageNumber)
+        .stream()
+        .map((event) -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
+  }
+
+  public long getSizeEventByOrganizerNameAndDates(String name, Date startDate, Date endDate) {
+    return eventsDaoBean.getSizeEventByOrganizerNameAndDates(name, startDate, endDate);
+  }
+
+  public List<EventDto> searchEventByOrganizerNameAndStartDate(String name, Date startDate,
+      int pageNumber) {
+    return eventsDaoBean.findEventByOrganizerNameAndStartDate(name, startDate, pageNumber)
+        .stream()
+        .map((event) -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
+  }
+
+  public long getSizeEventByOrganizerNameAndStartDate(String name, Date startDate) {
+    return eventsDaoBean.getSizeEventByOrganizerNameAndStartDate(name, startDate);
+  }
+
+  public List<EventDto> searchEventByOrganizerNameAndEndDate(String name, Date endDate,
+      int pageNumber) {
+    return eventsDaoBean.findEventByOrganizerNameAndEndDate(name, endDate, pageNumber)
+        .stream()
+        .map((event) -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
+  }
+
+  public long getSizeEventByOrganizerNameAndEndDate(String name, Date endDate) {
+    return eventsDaoBean.getSizeEventByOrganizerNameAndEndDate(name, endDate);
+  }
+
+  public List<EventDto> searchEventByOrganizerName(String name, int pageNumber) {
+    return eventsDaoBean.findEventByOrganizerName(name, pageNumber)
+        .stream()
+        .map((event) -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
+  }
+
+  public long getSizeEventByOrganizerName(String name) {
+    return eventsDaoBean.getSizeEventByOrganizerName(name);
+  }
+}
