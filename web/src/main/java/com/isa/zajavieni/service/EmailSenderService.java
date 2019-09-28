@@ -27,7 +27,7 @@ public class EmailSenderService {
       + "Z przykrością informujemy, że wydarzenie należące do ulubionych '%s' zostało usunięte z serwisu przez administratora.<br><br>"
       + "Administratorzy serwisu 3cityevent";
   private static final String timedContent = "Drogi użytkowniku,<br><br>"
-      + "Uprzejmie informujemy, że wydarzenie należące do ulubionych '%s' straciło ważność.<br><br>"
+      + "Uprzejmie informujemy, że wydarzenie należące do ulubionych '%s' straciło ważność i zostało usunięte z ulubionych.<br><br>"
       + "Administratorzy serwisu 3cityevent";
 
   @EJB
@@ -60,7 +60,6 @@ public class EmailSenderService {
       }
     });
   }
-
 
   private void sendDeletedEventEmail(String email, Long eventId)
       throws MessagingException, IOException {

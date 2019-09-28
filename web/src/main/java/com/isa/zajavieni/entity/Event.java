@@ -18,7 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
 @NamedQueries({
     @NamedQuery(
         name = "Event.upcomingEvents",
@@ -227,10 +226,5 @@ public class Event {
 
   public void setUsers(List<User> users) {
     this.users = users;
-  }
-
-  @Override
-  public String toString() {
-    return super.toString();
   }
 }

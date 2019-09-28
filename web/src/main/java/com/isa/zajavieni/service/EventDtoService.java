@@ -1,8 +1,10 @@
 package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.dao.EventsDaoBean;
+import com.isa.zajavieni.dao.UserDaoBean;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
+import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.mapper.EventDtoMapper;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +21,10 @@ public class EventDtoService {
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
   @EJB
-  EventsDaoBean eventsDaoBean;
+  private EventsDaoBean eventsDaoBean;
+
+  @EJB
+  private UserDaoBean userDaoBean;
 
   @Inject
   private EventDtoMapper dtoMapper;
@@ -97,6 +102,14 @@ public class EventDtoService {
 
   public int getTotalPages(int numberFound, int perPage) {
     return numberFound / perPage;
+  }
+
+  public void deleteEventFromBase(Long id){
+    Event searchingEvent = findEventById(id);
+    List<User> users = userDaoBean.findUsersWithFavouriteEvents(id);
+    users.forEach(u->u.getEvents().remove(searchingEvent));
+    users.forEach(u->searchingEvent.getUsers().remove(u));
+    eventsDaoBean.removeEvent(searchingEvent);
   }
 }
 
