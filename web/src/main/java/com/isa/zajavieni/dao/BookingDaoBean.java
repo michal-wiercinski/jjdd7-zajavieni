@@ -1,6 +1,7 @@
 package com.isa.zajavieni.dao;
 
 import com.isa.zajavieni.entity.Booking;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,6 +21,11 @@ public class BookingDaoBean {
 
   public Booking findById(Long id){
     return entityManager.find(Booking.class, id);
+  }
+
+  public List<Booking> findByUserId(Long id){
+    return entityManager.createNamedQuery("Booking.findBookingByUserId")
+        .setParameter("id", id).getResultList();
   }
 
 }

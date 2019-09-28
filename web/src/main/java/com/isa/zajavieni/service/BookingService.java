@@ -10,6 +10,7 @@ import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.mapper.dtoMapper.BookingDtoMapper;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.transaction.Transactional;
@@ -34,10 +35,11 @@ public class BookingService {
     bookingDaoBean.removeBooking(bookingDtoMapper.mapDtoToEntity(booking));
   }
 
-  @Transactional
-  public List<com.isa.zajavieni.dto.BookingDto> findBookingsForUser(Long id) {
-    UserDto user = userService.findUserDtoById(id);
-    return user.getBookings();
+  public List<BookingDto> getBookingsByUserId(Long id) {
+    List<BookingDto> bookings = bookingDaoBean.findByUserId(id).stream()
+        .map(booking -> bookingDtoMapper.mapEntityToDto(booking))
+        .collect(Collectors.toList());
+    return bookings;
   }
 
   @Transactional

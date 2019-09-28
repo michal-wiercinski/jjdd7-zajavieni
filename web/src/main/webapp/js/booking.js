@@ -7,7 +7,7 @@ $(function () {
       $.ajax({
         url: '/api/booking/make-booking/eventId/' + $(this).attr('data-id-event')
             + '/userId/' + $(this).attr('data-id-user'),
-        type: 'PATCH',
+        type: 'POST',
         success: function (result) {
           location.reload();
         }

@@ -8,9 +8,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-
+@NamedQueries({
+    @NamedQuery(
+        name = "Booking.findBookingByUserId",
+        query = "SELECT b FROM Booking AS b JOIN b.user AS u WHERE u.id IN :id"
+    )
+})
 @Entity
 @Table(name = "booking")
 public class Booking {

@@ -113,7 +113,7 @@ public class EventService {
 
   @Transactional
   public List<EventDto> getEventsByUserBooking(Long id){
-    List<BookingDto> bookings = bookingService.findBookingsForUser(id);
+    List<BookingDto> bookings = bookingService.getBookingsByUserId(id);
     List<Long> eventsId = bookings.stream().map(b -> b.getEventDto().getId()).collect(
         Collectors.toList());
 

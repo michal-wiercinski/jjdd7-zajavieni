@@ -1,13 +1,6 @@
 package com.isa.zajavieni.dto;
 
-import com.isa.zajavieni.entity.Event;
-import com.isa.zajavieni.entity.User;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import java.util.Date;
 
 public class BookingDto {
 
@@ -39,4 +32,57 @@ public class BookingDto {
     this.userDto = userDto;
   }
 
+  /* Long eventId;
+  String eventName;
+  Date eventStartDate;
+  Date eventEndDate;
+  Long userId;
+*/
+ /* public Long getBookingId() {
+    return bookingId;
+  }
+
+  public void setBookingId(Long bookingId) {
+    this.bookingId = bookingId;
+  }
+
+  public Long getEventId() {
+    return eventId;
+  }
+
+  public void setEventId(Long eventId) {
+    this.eventId = eventId;
+  }
+
+  public String getEventName() {
+    return eventName;
+  }
+
+  public void setEventName(String eventName) {
+    this.eventName = eventName;
+  }
+
+  public Date getEventStartDate() {
+    return eventStartDate;
+  }
+
+  public void setEventStartDate(Date eventStartDate) {
+    this.eventStartDate = eventStartDate;
+  }
+
+  public Date getEventEndDate() {
+    return eventEndDate;
+  }
+
+  public void setEventEndDate(Date eventEndDate) {
+    this.eventEndDate = eventEndDate;
+  }
+
+  public Long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Long userId) {
+    this.userId = userId;
+  }*/
 }

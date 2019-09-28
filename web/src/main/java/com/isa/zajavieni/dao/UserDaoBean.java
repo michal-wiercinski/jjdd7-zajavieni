@@ -39,10 +39,11 @@ public class UserDaoBean {
   }
 
   public Optional<User> findByEmail(String email) {
-    logger.info("Object User: {} has been found", email);
+
     Query query = entityManager.createNamedQuery("User.findByEmail");
     query.setParameter("email", email);
     List<User> users = query.getResultList();
+    logger.info("Object User: {} has been found", email);
     if (users.isEmpty()) {
       logger.warn("User for email {} not found", email);
       return Optional.empty();

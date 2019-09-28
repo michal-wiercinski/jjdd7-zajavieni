@@ -69,7 +69,7 @@ public class EventDtoMapper {
     Event event = new Event();
 
     event.setId(eventDto.getId());
-   /* event.setName(eventDto.getName());
+    event.setName(eventDto.getName());
     event.setStartDate(eventDto.getStartDate());
     event.setEndDate((eventDto.getEndDate()));
     event.getAddress().setCity(eventDto.getAddressCity());
@@ -80,9 +80,7 @@ public class EventDtoMapper {
     event.setDescLong(eventDto.getDescLong());
     event.getMediaLink().setFbSite(eventDto.getFbSite());
     event.getMediaLink().setWebsiteWithTickets(eventDto.getWebsiteWithTickets());
-    event.getMediaLink().setWwwAddress(eventDto.getWwwAddress());*/
-    eventDto.getBookings().forEach(b -> event.getBookings()
-        .add(bookingDtoMapper.mapDtoToEntity(b)));
+    event.getMediaLink().setWwwAddress(eventDto.getWwwAddress());
     event.setTicketPool(eventDto.getTicketPool());
 
     return event;
