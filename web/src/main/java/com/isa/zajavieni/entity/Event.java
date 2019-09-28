@@ -101,7 +101,7 @@ public class Event {
   @Column(name = "ticket_pool")
   Integer ticketPool;
 
-  @OneToMany(mappedBy = "event")
+  @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
   List<Booking> bookings;
 
   public Integer getTicketPool() {

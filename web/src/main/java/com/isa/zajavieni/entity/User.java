@@ -55,7 +55,7 @@ public class User {
   @Column(name = "email")
   String email;
 
-  @OneToMany(mappedBy = "user")
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
   List<Booking> bookings;
 
   public User(UserType userType) {

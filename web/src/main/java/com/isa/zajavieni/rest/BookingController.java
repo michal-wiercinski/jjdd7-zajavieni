@@ -48,13 +48,10 @@ public class BookingController {
       return Response.status(Status.NOT_FOUND).build();
     }
 
-
     UserDto user = userService.findUserDtoById(userId);
     EventDto event = eventService.findById(eventId);
     BookingDto booking = bookingService.createBooking(event,user);
     bookingService.saveBooking(booking);
-    userService.editDtoUser(user);
-    eventService.editEventDto(event);
     System.out.println("sdasdfaNQFINEQJNFSfnovwe");
  /*   logger.info("New booking with id: {} has been created for user with id{} and eventd with id {}  ",
         booking.getBookingId(),userId, eventId)*/;

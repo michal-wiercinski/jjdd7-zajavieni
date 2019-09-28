@@ -30,8 +30,6 @@ public class BookingService {
     bookingDaoBean.saveBooking(bookingDtoMapper.mapDtoToEntity(booking));
   }
 
-
-
   public void deleteBooking(BookingDto booking) {
     bookingDaoBean.removeBooking(bookingDtoMapper.mapDtoToEntity(booking));
   }
