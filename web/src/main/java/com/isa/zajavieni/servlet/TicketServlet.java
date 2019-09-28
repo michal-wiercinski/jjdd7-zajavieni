@@ -1,14 +1,10 @@
 package com.isa.zajavieni.servlet;
 
 
-import com.isa.zajavieni.dto.BookingDto;
 import com.isa.zajavieni.dto.EventDto;
-import com.isa.zajavieni.dto.UserDto;
-import com.isa.zajavieni.entity.Event;
-import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.entity.UserType;
-import com.isa.zajavieni.mapper.BookingDtoMapper;
-import com.isa.zajavieni.mapper.EventDtoMapper;
+import com.isa.zajavieni.mapper.dtoMapper.BookingDtoMapper;
+import com.isa.zajavieni.mapper.dtoMapper.EventDtoMapper;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.BookingService;
 import com.isa.zajavieni.service.EventService;
@@ -20,8 +16,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -29,7 +23,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

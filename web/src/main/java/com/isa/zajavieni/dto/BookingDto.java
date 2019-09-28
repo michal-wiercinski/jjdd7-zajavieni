@@ -12,8 +12,8 @@ import javax.persistence.ManyToOne;
 public class BookingDto {
 
   Long bookingId;
-  Long eventId;
-  Long userId;
+  EventDto eventDto;
+  UserDto userDto;
 
   public Long getBookingId() {
     return bookingId;
@@ -23,20 +23,20 @@ public class BookingDto {
     this.bookingId = bookingId;
   }
 
-  public Long getEventId() {
-    return eventId;
+  public EventDto getEventDto() {
+    return eventDto;
   }
 
-  public void setEventId(Long eventId) {
-    this.eventId = eventId;
+  public void setEventDto(EventDto eventDto) {
+    this.eventDto = eventDto;
   }
 
-  public Long getUserId() {
-    return userId;
+  public UserDto getUserDto() {
+    return userDto;
   }
 
-  public void setUserId(Long userId) {
-    this.userId = userId;
+  public void setUserDto(UserDto userDto) {
+    this.userDto = userDto;
   }
 
 }

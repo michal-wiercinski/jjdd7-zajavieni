@@ -4,7 +4,7 @@ import com.isa.zajavieni.dao.EventsDaoBean;
 import com.isa.zajavieni.dto.BookingDto;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
-import com.isa.zajavieni.mapper.EventDtoMapper;
+import com.isa.zajavieni.mapper.dtoMapper.EventDtoMapper;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
@@ -27,6 +27,14 @@ public class EventService {
 
   @Inject
   private EventDtoMapper dtoMapper;
+
+  public void editEventDto(EventDto event){
+    eventsDaoBean.editEvent(dtoMapper.mapDtoToEntity(event));
+  }
+
+  public void editEvent(Event event){
+    eventsDaoBean.editEvent(event);
+  }
 
   @Transactional
   public List<EventDto> findUpcomingEvents(int from, int howMany) {
@@ -103,15 +111,14 @@ public class EventService {
     return numberFound / perPage;
   }
 
+  @Transactional
   public List<EventDto> getEventsByUserBooking(Long id){
     List<BookingDto> bookings = bookingService.findBookingsForUser(id);
-    List<Long> eventsId = bookings.stream().map(BookingDto::getEventId).collect(
+    List<Long> eventsId = bookings.stream().map(b -> b.getEventDto().getId()).collect(
         Collectors.toList());
 
-    List<EventDto> events = eventsId.stream().map(this::findById).collect(
+    return eventsId.stream().map(event -> findById(id)).collect(
         Collectors.toList());
-
-    return events;
   }
 }
 

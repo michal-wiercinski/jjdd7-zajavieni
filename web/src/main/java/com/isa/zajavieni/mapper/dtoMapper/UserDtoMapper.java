@@ -1,10 +1,11 @@
-package com.isa.zajavieni.mapper;
+package com.isa.zajavieni.mapper.dtoMapper;
 
 import com.isa.zajavieni.dto.UserDto;
 import com.isa.zajavieni.entity.User;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.transaction.Transactional;
 
 @Stateless
 public class UserDtoMapper {
@@ -15,6 +16,7 @@ public class UserDtoMapper {
   @EJB
   BookingDtoMapper bookingDtoMapper;
 
+  @Transactional
   public UserDto mapEntityToDto(User user) {
     UserDto userDto = new UserDto();
     userDto.setId(user.getId());
@@ -29,6 +31,7 @@ public class UserDtoMapper {
     return userDto;
   }
 
+  @Transactional
   public User mapDtoToEntity(UserDto userDto) {
     User user = new User();
     user.setName(userDto.getName());

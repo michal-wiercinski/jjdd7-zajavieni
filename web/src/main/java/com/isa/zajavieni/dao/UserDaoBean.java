@@ -1,6 +1,5 @@
 package com.isa.zajavieni.dao;
 
-import com.isa.zajavieni.entity.Booking;
 import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.servlet.LoggerServlet;
 import java.util.List;

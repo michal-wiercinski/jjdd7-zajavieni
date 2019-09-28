@@ -1,7 +1,6 @@
 package com.isa.zajavieni.dao;
 
 import com.isa.zajavieni.entity.Booking;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

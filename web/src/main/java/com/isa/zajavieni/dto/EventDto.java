@@ -20,6 +20,7 @@ public class EventDto {
   private String fbSite;
   private String websiteWithTickets;
   private String organizerName;
+  private Integer ticketPool;
   private List<AttachmentDto> attachments = new ArrayList<>();
   private List<BookingDto> bookings = new ArrayList<>();
 
@@ -141,6 +142,14 @@ public class EventDto {
 
   public void setAttachments(List<AttachmentDto> attachments) {
     this.attachments = attachments;
+  }
+
+  public Integer getTicketPool() {
+    return ticketPool;
+  }
+
+  public void setTicketPool(Integer ticketPool) {
+    this.ticketPool = ticketPool;
   }
 
   public List<BookingDto> getBookings() {

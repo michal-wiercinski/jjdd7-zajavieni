@@ -1,5 +1,8 @@
 package com.isa.zajavieni.rest;
 
+import com.isa.zajavieni.dto.BookingDto;
+import com.isa.zajavieni.dto.EventDto;
+import com.isa.zajavieni.dto.UserDto;
 import com.isa.zajavieni.entity.Booking;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.entity.User;
@@ -31,7 +34,7 @@ public class BookingController {
   BookingService bookingService;
 
   @PATCH
-  @Path("//make-booking/eventId/{eventId}/userId/{userId}")
+  @Path("/make-booking/eventId/{eventId}/userId/{userId}")
   public Response addBooking(@PathParam("eventId") String eventIdParam,
       @PathParam("userId") String userIdParam) {
     if (!NumberUtils.isDigits(eventIdParam) || !NumberUtils.isDigits(userIdParam)) {
@@ -46,11 +49,12 @@ public class BookingController {
     }
 
 
-    User user = userService.findUserById(userId);
-    Event event = eventService.findEventById(eventId);
-    Booking booking = bookingService.createBooking(event,user);
+    UserDto user = userService.findUserDtoById(userId);
+    EventDto event = eventService.findById(eventId);
+    BookingDto booking = bookingService.createBooking(event,user);
     bookingService.saveBooking(booking);
-    userService.editUser(user);
+    userService.editDtoUser(user);
+    eventService.editEventDto(event);
     System.out.println("sdasdfaNQFINEQJNFSfnovwe");
  /*   logger.info("New booking with id: {} has been created for user with id{} and eventd with id {}  ",
         booking.getBookingId(),userId, eventId)*/;

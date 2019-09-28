@@ -67,8 +67,6 @@
             <a href="/login" class="btn btn-primary">Zarezerwuj bilet</a>
             <a href="/login" class="btn btn-primary">Dodaj do ulubionych</a>
           </#if>
-
-      </#if>
   </div>
 </div>
 <script src="/js/favourite.js"></script>

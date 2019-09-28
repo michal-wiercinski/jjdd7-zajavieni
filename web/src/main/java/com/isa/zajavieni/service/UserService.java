@@ -6,7 +6,7 @@ import com.isa.zajavieni.dto.UserDto;
 import com.isa.zajavieni.entity.Booking;
 import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.entity.UserType;
-import com.isa.zajavieni.mapper.UserDtoMapper;
+import com.isa.zajavieni.mapper.dtoMapper.UserDtoMapper;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
@@ -52,6 +52,9 @@ public class UserService {
 
   public void editUser(User user) {
     userDaoBean.updateUser(user);
+  }
+  public void editDtoUser(UserDto user) {
+    userDaoBean.updateUser(userDtoMapper.mapDtoToEntity(user));
   }
 
   public Optional<UserDto> getUserByEmail(String email) {
