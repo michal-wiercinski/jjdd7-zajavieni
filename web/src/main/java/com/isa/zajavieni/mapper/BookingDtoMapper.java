@@ -3,7 +3,9 @@ package com.isa.zajavieni.mapper;
 import com.isa.zajavieni.dto.BookingDto;
 import com.isa.zajavieni.entity.Booking;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
+@Stateless
 public class BookingDtoMapper {
 
   @EJB

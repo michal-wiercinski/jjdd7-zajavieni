@@ -1,6 +1,7 @@
 package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.dao.EventsDaoBean;
+import com.isa.zajavieni.dto.BookingDto;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.mapper.EventDtoMapper;
@@ -20,6 +21,9 @@ public class EventService {
 
   @EJB
   EventsDaoBean eventsDaoBean;
+
+  @EJB
+  BookingService bookingService;
 
   @Inject
   private EventDtoMapper dtoMapper;
@@ -97,6 +101,17 @@ public class EventService {
 
   public int getTotalPages(int numberFound, int perPage) {
     return numberFound / perPage;
+  }
+
+  public List<EventDto> getEventsByUserBooking(Long id){
+    List<BookingDto> bookings = bookingService.findBookingsForUser(id);
+    List<Long> eventsId = bookings.stream().map(BookingDto::getEventId).collect(
+        Collectors.toList());
+
+    List<EventDto> events = eventsId.stream().map(this::findById).collect(
+        Collectors.toList());
+
+    return events;
   }
 }
 

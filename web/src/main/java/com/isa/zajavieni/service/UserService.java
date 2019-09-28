@@ -36,6 +36,10 @@ public class UserService {
     return userDaoBean.findById(id);
   }
 
+  public UserDto findUserDtoById(Long id){
+    return userDtoMapper.mapEntityToDto(findUserById(id));
+  }
+
   public void createNewUser(UserDto userDto) throws IOException {
     User user = userDtoMapper.mapDtoToEntity(userDto);
     if (userDto.getEmail().equals(getAdminEmail())) {

@@ -50,7 +50,8 @@ public class BookingController {
     Event event = eventService.findEventById(eventId);
     Booking booking = bookingService.createBooking(event,user);
     bookingService.saveBooking(booking);
-
+    userService.editUser(user);
+    System.out.println("sdasdfaNQFINEQJNFSfnovwe");
  /*   logger.info("New booking with id: {} has been created for user with id{} and eventd with id {}  ",
         booking.getBookingId(),userId, eventId)*/;
     return Response.ok().build();

@@ -56,7 +56,7 @@
 
 
           <#if type != "GUEST">
-            <button type="button" data-event-id="${event.id}" data-id-user="${userId}" class="btn btn-primary make-booking">Zarezerwuj bilet</button>
+            <button type="button" data-id-event="${event.id}" data-id-user="${userId}" class="btn btn-primary make-booking">Zarezerwuj bilet</button>
                <button type="button"
                 class="${isFavourite?then('btn btn-outline-danger','btn btn-outline-success')}"
                 id='${isFavourite?then('deleteE','addE')}'

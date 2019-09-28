@@ -13,7 +13,7 @@
                 </div>
                 <div class="card-footer">
                     <#if type != "GUEST">
-                    <button type="button" data-event-id="${event.id}" data-id-user="${userId}" class="btn btn-primary make-booking">Zarezerwuj bilet</button>
+                    <button type="button" data-id-event="${event.id?c}" data-id-user="${userId}" class="btn btn-primary make-booking">Zarezerwuj bilet</button>
                     <#else>
                         <a href="/login" class="btn btn-primary">Zarezerwuj bilet</a>
                     </#if>
