@@ -1,11 +1,24 @@
 package com.isa.zajavieni.servlet;
 
+import com.isa.zajavieni.dao.EventsDaoBean;
 import com.isa.zajavieni.dto.EventDto;
+import com.isa.zajavieni.entity.Address;
+import com.isa.zajavieni.entity.Attachment;
+import com.isa.zajavieni.entity.Category;
+import com.isa.zajavieni.entity.Event;
+import com.isa.zajavieni.entity.MediaLink;
+import com.isa.zajavieni.entity.Organizer;
+import com.isa.zajavieni.entity.User;
+import com.isa.zajavieni.jsonclasses.TicketType;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.FavouriteEventService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +42,9 @@ public class FavouriteEventsServlet extends HttpServlet {
   @Inject
   private TemplateProvider templateProvider;
 
+  @Inject
+  private EventsDaoBean eventsDaoBean;
+
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
@@ -48,6 +64,50 @@ public class FavouriteEventsServlet extends HttpServlet {
     } catch (TemplateException e) {
       logger.error(e.getMessage());
     }
+
+
+
+
+
+
+
+
+//    Category category =  new Category();
+//    MediaLink mediaLink = new MediaLink();
+//    TicketType ticketType = null;
+//    Organizer organizer = new Organizer();
+
+
+
+//    Event event = new Event();
+//    event.setName("dupa");
+//    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy (HH:mm)");
+//    String dateInString = "27.09.2019 (23:50)";
+//    try {
+//      Date date = sdf.parse(dateInString);
+//      event.setStartDate(date);
+//    } catch (ParseException e) {
+//      e.printStackTrace();
+//    }
+//    event.setId(99999L);
+//    event.setActive(true);
+//    event.setDescLong("aaaaaa");
+//    event.setDescShort("aaaaaa");
+//    String date2InString = "29.09.2019 (20:30)";
+//    try {
+//      Date date = sdf.parse(date2InString);
+//      event.setEndDate(date);
+//    } catch (ParseException e) {
+//      e.printStackTrace();
+//    }
+//    event.setUsers(null);
+//    event.setAddress(null);
+//    event.setAttachment(null);
+//    event.setCategory(category);
+//    event.setType(ticketType);
+//    event.setOrganizer(organizer);
+//    event.setMediaLink(mediaLink);
+//    eventsDaoBean.editEvent(event);
   }
 
   @Override

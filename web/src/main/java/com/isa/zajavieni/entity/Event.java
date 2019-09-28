@@ -45,6 +45,10 @@ import javax.persistence.Table;
     @NamedQuery(
         name = "Event.findFavouriteEvents",
         query = "SELECT e FROM Event e INNER JOIN e.users u WHERE u.id = :id"
+    ),
+    @NamedQuery(
+        name = "Event.findAllFavouriteEvents",
+        query = "SELECT e FROM Event e INNER JOIN e.users u"
     )
 })
 @Entity
