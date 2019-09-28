@@ -22,7 +22,7 @@
     <div class="d-flex flex-column flex-md-row align-hitems-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
         <a href="/main" class="my-0 mr-md-auto font-weight-normal"><img src="/img/logo.jpg" alt="logo"></a>
         <ul class="list-group" id="result"></ul>
-        <#assign upcoming_link = "/upcoming-events?pageNo=0">
+        <#assign upcoming_link = "/upcoming-events?pageNo=1">
         <#assign favourite_link = "/favourite-events">
         <#assign search_by_organizer = "/organizers?letter=A">
         <form class="form-inline my-2 my-lg-0" >
@@ -32,19 +32,21 @@
             </button>
         </form>
         <nav class="my-2 my-md-0 mr-md-3">
+            <#if (type == "ADMIN") || (type == "SUPER_ADMIN")>
+                <a class="p-2 text-dark" href="/admin-view">Panel admina</a>
+            </#if>
             <a class="p-2 text-dark" href="${upcoming_link}">Lista wydarzeń</a>
             <a class="p-2 text-dark" href="${search_by_organizer}">Organizatorzy</a>
             <a class="p-2 text-dark" href="#">Wyszukiwanie</a>
-            <#if userId??>
+            <#if type != "GUEST">
             <a class="p-2 text-dark" href="${favourite_link}">Ulubione</a>
-            </#if>
             <a class="p-2 text-dark" href="#">Koszyk</a>
-
+            </#if>
             <a href="/login" class="btn btn-danger btn-sm" id="login">
                 <i class="fa fa-google"></i> Zaloguj się przez <b>Google</b></a>
             <a href="/logout" class="btn btn-danger btn-sm"
                id="logout"><i class="fa fa-google"></i> Wyloguj się</a>
-            <#--  <a class="p-2 text-dark" href="/admin/upload">Admin</a>-->
+
         </nav>
     </div>
 
