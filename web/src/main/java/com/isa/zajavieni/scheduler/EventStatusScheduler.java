@@ -5,17 +5,23 @@ import com.isa.zajavieni.dao.UserDaoBean;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.service.EmailSenderService;
+import com.isa.zajavieni.servlet.LoggerServlet;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Singleton
 @Startup
 public class EventStatusScheduler {
+
+  private Logger logger = LoggerFactory.getLogger(LoggerServlet.class.getName());
 
   @EJB
   EventsDaoBean eventsDaoBean;
@@ -28,12 +34,12 @@ public class EventStatusScheduler {
 
   @Schedule(hour = "*", minute = "*/1", info = "Every 1 minute timer")
   public void checkStatusOfEvents() {
-    LocalDate now = LocalDate.now();
+    LocalDateTime now = LocalDateTime.now();
 
     List<Event> favouriteEvents = eventsDaoBean.findAllFavouriteEvents();
 
     for (Event event : favouriteEvents) {
-      if (event.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+      if (event.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
           .compareTo(now) < 0) {
         List<User> users = userDaoBean.findUsersWithFavouriteEvents(event.getId());
         emailSenderService.sendTimedEventEmailForUsers(event.getId());

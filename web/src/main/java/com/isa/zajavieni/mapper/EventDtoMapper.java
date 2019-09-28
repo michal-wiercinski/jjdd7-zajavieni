@@ -40,7 +40,9 @@ public class EventDtoMapper {
     eventDto.setAddressStreet(addressDtoMapper.mapAddressToDto(event.getAddress()).getStreet());
     eventDto.setAddressZipCode(addressDtoMapper.mapAddressToDto(event.getAddress()).getZipcode());
     eventDto.setDescShort(event.getDescShort());
-    eventDto.setDescLong(Jsoup.parse(event.getDescLong()).text());
+    if(event.getDescLong()!=null){
+      eventDto.setDescLong(Jsoup.parse(event.getDescLong()).text());
+    }
     eventDto
         .setWwwAddress(mediaLinkDtoMapper.mapMediaLinkToDto(event.getMediaLink()).getWwwAddress());
     eventDto.setFbSite(mediaLinkDtoMapper.mapMediaLinkToDto(event.getMediaLink()).getFbSite());
