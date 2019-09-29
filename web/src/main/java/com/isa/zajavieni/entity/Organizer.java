@@ -5,10 +5,13 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.CascadeType;
 
 @NamedQueries(
     @NamedQuery(
@@ -30,6 +33,10 @@ public class Organizer {
 
   @OneToMany(mappedBy = "organizer")
   List<Event> events = new ArrayList<>();
+
+  @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "organizer_popularity_id", unique = true)
+  PopularityOrganizer popularityOrganizer;
 
   public Organizer(String designation) {
     this.designation = designation;
@@ -60,5 +67,13 @@ public class Organizer {
 
   public void setEvents(List<Event> events) {
     this.events = events;
+  }
+
+  public PopularityOrganizer getPopularityOrganizer() {
+    return popularityOrganizer;
+  }
+
+  public void setPopularityOrganizer(PopularityOrganizer popularityOrganizer) {
+    this.popularityOrganizer = popularityOrganizer;
   }
 }

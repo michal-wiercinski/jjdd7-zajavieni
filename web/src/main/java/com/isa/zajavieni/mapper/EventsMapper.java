@@ -5,6 +5,8 @@ import com.isa.zajavieni.dao.CategoriesDaoBean;
 import com.isa.zajavieni.dao.OrganizersDaoBean;
 import com.isa.zajavieni.entity.Attachment;
 import com.isa.zajavieni.entity.Event;
+import com.isa.zajavieni.entity.PopularityEvent;
+import com.isa.zajavieni.entity.PopularityFavouriteEvent;
 import com.isa.zajavieni.servlet.LoggerServlet;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -50,6 +52,9 @@ public class EventsMapper {
     event.setAddress(addressDaoBean.findAddressById(eventApi.getPlace().getPlaceId()));
     event.setOrganizer(organizersDaoBean.findOrganizerById(eventApi.getOrganizer().getId()));
     event.setCategory(categoriesDaoBean.findCategoryById(eventApi.getCategoryId()));
+
+    event.setPopularityEvent(new PopularityEvent());
+    event.setPopularityFavouriteEvent(new PopularityFavouriteEvent());
     return event;
   }
 }

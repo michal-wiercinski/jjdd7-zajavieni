@@ -98,6 +98,14 @@ public class Event {
   @ManyToMany(mappedBy = "events")
   List<User> users;
 
+  @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "event_popularity_id", unique = true)
+  PopularityEvent popularityEvent;
+
+  @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "favourite_event_popularity_id", unique = true)
+  PopularityFavouriteEvent popularityFavouriteEvent;
+
   public Event(String name, String descShort, String descLong, Boolean active,
       Date startDate, Date endDate, TicketType type) {
     this.name = name;
@@ -223,5 +231,22 @@ public class Event {
 
   public void setUsers(List<User> users) {
     this.users = users;
+  }
+
+  public PopularityEvent getPopularityEvent() {
+    return popularityEvent;
+  }
+
+  public void setPopularityEvent(PopularityEvent popularityEvent) {
+    this.popularityEvent = popularityEvent;
+  }
+
+  public PopularityFavouriteEvent getPopularityFavouriteEvent() {
+    return popularityFavouriteEvent;
+  }
+
+  public void setPopularityFavouriteEvent(
+      PopularityFavouriteEvent popularityFavouriteEvent) {
+    this.popularityFavouriteEvent = popularityFavouriteEvent;
   }
 }
