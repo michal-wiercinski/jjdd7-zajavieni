@@ -13,5 +13,4 @@ public class PopularityEventService {
   public void incrementQuantityPopularityEvent(Long id) {
     popularityEventDaoBean.updatePopularityEventIncrementQuantity(id);
   }
-
 }

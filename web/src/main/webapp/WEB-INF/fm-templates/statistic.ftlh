@@ -8,16 +8,14 @@
 <div>
   <article id="contentView">
     <div class="container">
-      <div id="columnchart1" style="width: 1000px; height: 600px;"></div>
+      <div id="columnchart1" style="width: 1000px; height: 500px;"></div>
     </div>
     <div class="container">
-      <div id="columnchart2" style="width: 1000px; height: 600px;"></div>
+      <div id="columnchart2" style="width: 1000px; height: 500px;"></div>
     </div>
     <div class="container">
-      <div id="columnchart3" style="width: 1000px; height: 600px;"></div>
+      <div id="columnchart3" style="width: 1000px; height: 500px;"></div>
     </div>
   </article>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script src="/js/statistics.js"></script>
 </div>
 <#include "footer.ftlh">

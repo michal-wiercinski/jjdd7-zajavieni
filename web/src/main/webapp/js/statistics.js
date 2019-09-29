@@ -27,7 +27,7 @@ function drawChart() {
       hAxis: {
         title: 'Wydarzenia',
         textStyle : {
-          fontSize: 12 // or the number you want
+          fontSize: 12
         },
         titleTextStyle: {
           color: 'red',
@@ -35,8 +35,9 @@ function drawChart() {
       },
       vAxis: {
         title: 'Liczba wyświetleń',
+        format: '0',
         textStyle : {
-          fontSize: 15 // or the number you want
+          fontSize: 15
         },
         titleTextStyle: {
           color: 'red',
@@ -77,7 +78,7 @@ function drawChart() {
       hAxis: {
         title: 'Organizatorzy',
         textStyle : {
-          fontSize: 12 // or the number you want
+          fontSize: 12
         },
         titleTextStyle: {
           color: 'red',
@@ -85,8 +86,9 @@ function drawChart() {
       },
       vAxis: {
         title: 'Liczba wyświetleń',
+        format: '0',
         textStyle : {
-          fontSize: 15 // or the number you want
+          fontSize: 15
         },
         titleTextStyle: {
           color: 'red',
@@ -129,7 +131,7 @@ function drawChart() {
       hAxis: {
         title: 'Wydarzenia',
         textStyle : {
-          fontSize: 12 // or the number you want
+          fontSize: 12
         },
         titleTextStyle: {
           color: 'red',
@@ -137,8 +139,9 @@ function drawChart() {
       },
       vAxis: {
         title: 'Liczba wyświetleń',
+        format: '0',
         textStyle : {
-          fontSize: 15 // or the number you want
+          fontSize: 15
         },
         titleTextStyle: {
           color: 'red',
