@@ -17,6 +17,7 @@ import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -59,8 +60,9 @@ public class BookingController {
       return Response.status(Status.FOUND).build();
     }
     BookingDto booking = bookingService.createBooking(event, user);
-    event.setTicketPool(event.getTicketPool() - 1);
+    System.out.println(event.getTicketPool() + "dsadasnfjowegoJBbbfosdabo");
     bookingService.saveBooking(booking);
+
     logger
         .info("New booking with id: {} has been created for user with id{} and eventd with id {}  ",
             booking.getBookingId(), userId, eventId);
@@ -83,10 +85,10 @@ public class BookingController {
       return Response.status(Status.NOT_FOUND).build();
     }
 
+    EventDto event = eventService.findById(eventId);
     BookingDto booking = bookingService.findByEventAndUser(eventId, userId);
     Long id = booking.getBookingId();
     bookingService.deleteBooking(id);
-
     logger.info("Booking with id: {} has been canceled for user with id{} and eventd with id {}  ",
         id, userId, eventId);
     return Response.ok().build();

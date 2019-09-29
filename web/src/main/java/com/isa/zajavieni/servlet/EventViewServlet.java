@@ -4,6 +4,7 @@ import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
+import com.isa.zajavieni.service.BookingService;
 import com.isa.zajavieni.service.EventService;
 import com.isa.zajavieni.service.FavouriteEventService;
 import com.isa.zajavieni.service.UserService;
@@ -34,6 +35,9 @@ public class EventViewServlet extends HttpServlet {
 
   @EJB
   UserService userService;
+
+  @EJB
+  BookingService bookingService;
 
   @Inject
   private FavouriteEventService favouriteEventService;
@@ -69,10 +73,16 @@ public class EventViewServlet extends HttpServlet {
               Collectors.toList()).contains(event.getId())) {
         isFavourite = true;
       }
+
+      Boolean isBooking = false;
+      if (bookingService.findByEventAndUser(event.getId(), userId) != null) {
+        isBooking = true;
+      }
       List<EventDto> favouriteEvents = favouriteEventService
           .findListOfUserFavouriteEventsDto(userId);
       favouriteEventService.displayFavouriteEventBeam(req, favouriteEvents, model);
       model.put("isFavourite", isFavourite);
+      model.put("isBooking", isBooking);
       model.put("userId", userId);
     }
     String userType;

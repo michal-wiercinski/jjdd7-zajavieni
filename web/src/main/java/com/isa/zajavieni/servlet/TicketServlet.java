@@ -3,13 +3,9 @@ package com.isa.zajavieni.servlet;
 
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.UserType;
-import com.isa.zajavieni.mapper.dtoMapper.BookingDtoMapper;
-import com.isa.zajavieni.mapper.dtoMapper.EventDtoMapper;
 import com.isa.zajavieni.provider.TemplateProvider;
-import com.isa.zajavieni.service.BookingService;
 import com.isa.zajavieni.service.EventService;
 import com.isa.zajavieni.service.FavouriteEventService;
-import com.isa.zajavieni.service.UserService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import java.io.IOException;
@@ -34,7 +30,6 @@ public class TicketServlet extends HttpServlet {
   @EJB
   private EventService eventService;
 
-
   @Inject
   private TemplateProvider templateProvider;
 
@@ -45,11 +40,6 @@ public class TicketServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-
-    /*String idParameter = req.getParameter("userId");
-    if(!NumberUtils.isDigits(idParameter)) {
-      resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-    }*/
 
     Template template = templateProvider.getTemplate(getServletContext(), "tickets.ftlh");
     Map<String, Object> model = new HashMap<>();

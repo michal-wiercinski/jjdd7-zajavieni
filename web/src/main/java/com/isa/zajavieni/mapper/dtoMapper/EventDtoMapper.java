@@ -27,9 +27,6 @@ public class EventDtoMapper {
   @EJB
   OrganizerDtoMapper organizerDtoMapper;
 
-  @EJB
-  BookingDtoMapper bookingDtoMapper;
-
   @Transactional
   public EventDto mapEventToDto(Event event) {
 
