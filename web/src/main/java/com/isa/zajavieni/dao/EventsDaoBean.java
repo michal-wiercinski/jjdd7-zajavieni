@@ -74,7 +74,7 @@ public class EventsDaoBean {
   public int getOrganizersEventSize(Long id) {
     Query query = entityManager.createNamedQuery("Event.counterByOrganizer");
     query.setParameter("time", new Date())
-        .setParameter("id_organizer", id);
+        .setParameter("organizerId", id);
     Long result = (Long) query.getSingleResult();
     return result.intValue();
   }

@@ -1,6 +1,7 @@
 package com.isa.zajavieni.mapper;
 
 import com.isa.zajavieni.entity.Organizer;
+import com.isa.zajavieni.entity.PopularityOrganizer;
 import com.isa.zajavieni.servlet.LoggerServlet;
 import javax.ejb.Stateless;
 import org.slf4j.Logger;
@@ -16,6 +17,8 @@ public class OrganizersMapper {
     Organizer organizer = new Organizer();
     organizer.setDesignation(organizerApi.getDesignation());
     organizer.setId(organizerApi.getId());
+
+    organizer.setPopularityOrganizer(new PopularityOrganizer());
     return organizer;
   }
 }

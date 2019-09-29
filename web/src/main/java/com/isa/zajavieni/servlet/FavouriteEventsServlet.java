@@ -1,15 +1,19 @@
 package com.isa.zajavieni.servlet;
 
 import com.isa.zajavieni.dto.EventDto;
+import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
+import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
+import com.isa.zajavieni.service.statistic.PopularityFavouriteEventService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,6 +33,12 @@ public class FavouriteEventsServlet extends HttpServlet {
 
   @Inject
   private TemplateProvider templateProvider;
+
+  @Inject
+  private PopularityFavouriteEventService popularityFavouriteEventService;
+
+  @EJB
+  private EventDtoService eventDtoService;
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -66,6 +76,8 @@ public class FavouriteEventsServlet extends HttpServlet {
     String eventId = req.getParameter("id");
     String userId = String.valueOf(req.getSession().getAttribute("userId"));
     favouriteEventService.addEventToUserFavouriteEvents(eventId, userId);
+    Event event = eventDtoService.findEventById(Long.parseLong(eventId));
+    popularityFavouriteEventService.incrementQuantityPopularityEvent(event.getPopularityFavouriteEvent().getId());
   }
 
   @Override

@@ -11,3 +11,5 @@
 </div>
 </#if>
 
+<#include "footer.ftlh">
+
