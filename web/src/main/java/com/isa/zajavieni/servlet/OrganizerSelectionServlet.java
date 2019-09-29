@@ -1,6 +1,5 @@
 package com.isa.zajavieni.servlet;
 
-import com.isa.zajavieni.dao.UserDaoBean;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.dto.OrganizerDto;
 import com.isa.zajavieni.entity.UserType;
@@ -34,9 +33,6 @@ public class OrganizerSelectionServlet extends HttpServlet {
 
   @Inject
   private TemplateProvider templateProvider;
-
-  @Inject
-  UserDaoBean userDaoBean;
 
   @Inject
   private FavouriteEventService favouriteEventService;

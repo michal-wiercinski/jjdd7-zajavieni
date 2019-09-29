@@ -52,7 +52,6 @@ public class MainServlet extends HttpServlet {
     model.put("events", events);
     Long userId = (Long) req.getSession().getAttribute("userId");
 
-
     if (userId != null) {
       List<EventDto> favouriteEvents = favouriteEventService
           .findListOfUserFavouriteEventsDto(userId);

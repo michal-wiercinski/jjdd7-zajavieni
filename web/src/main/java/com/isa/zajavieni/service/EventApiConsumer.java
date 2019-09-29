@@ -27,7 +27,7 @@ public class EventApiConsumer {
     int intervalTime = 4;
 //przestawione na 1 , żeby długo nie czekać. Eventy przychodzą 1 raz z 4 dni. Na developie jest 8.
 //    int numberOfPeriods = 8;
-    int numberOfPeriods = 1;
+    int numberOfPeriods = 50;
     LocalDate endDate = today.plusDays(intervalTime);
     for (int i = 0; i < numberOfPeriods; i++) {
       logger.info("ApiEvent consumer started");

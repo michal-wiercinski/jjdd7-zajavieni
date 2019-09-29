@@ -80,6 +80,4 @@ public class EventDtoMapper {
 
     return event;
   }
-
-
 }
