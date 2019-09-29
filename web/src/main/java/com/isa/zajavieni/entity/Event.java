@@ -4,6 +4,7 @@ import com.isa.zajavieni.jsonclasses.TicketType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.inject.Named;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -264,6 +265,21 @@ public class Event {
   @ManyToMany(mappedBy = "events")
   List<User> users;
 
+  @Column(name = "ticket_pool")
+  Integer ticketPool;
+
+  @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+  List<Booking> bookings;
+
+  public Integer getTicketPool() {
+    return ticketPool;
+  }
+
+  public void setTicketPool(Integer ticketPool) {
+    this.ticketPool = ticketPool;
+  }
+
+
   @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "event_popularity_id", unique = true)
   PopularityEvent popularityEvent;
@@ -414,5 +430,13 @@ public class Event {
   public void setPopularityFavouriteEvent(
       PopularityFavouriteEvent popularityFavouriteEvent) {
     this.popularityFavouriteEvent = popularityFavouriteEvent;
+  }
+
+  public List<Booking> getBookings() {
+    return bookings;
+  }
+
+  public void setBookings(List<Booking> bookings) {
+    this.bookings = bookings;
   }
 }

@@ -1,8 +1,10 @@
 package com.isa.zajavieni.servlet;
 
+import com.isa.zajavieni.dto.BookingDto;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
+import com.isa.zajavieni.service.BookingService;
 import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
 import freemarker.template.Template;
@@ -29,7 +31,7 @@ public class MainServlet extends HttpServlet {
   private static final int FIRST_ELEMENT = 0;
 
   @EJB
-  private EventDtoService eventDtoService;
+  private EventDtoService eventService;
 
   @Inject
   private TemplateProvider templateProvider;
@@ -37,15 +39,19 @@ public class MainServlet extends HttpServlet {
   @Inject
   private FavouriteEventService favouriteEventService;
 
+  @EJB
+  private BookingService bookingService;
+
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    List<EventDto> events = eventDtoService.findUpcomingEvents(FIRST_ELEMENT, EVENTS_PER_PAGE);
+    List<EventDto> events = eventService.findUpcomingEvents(FIRST_ELEMENT, EVENTS_PER_PAGE);
     Template template = templateProvider.getTemplate(getServletContext(), "welcome-page.ftlh");
     Map<String, Object> model = new HashMap<>();
     model.put("events", events);
     Long userId = (Long) req.getSession().getAttribute("userId");
+
 
     if (userId != null) {
       List<EventDto> favouriteEvents = favouriteEventService
@@ -61,6 +67,16 @@ public class MainServlet extends HttpServlet {
       userType = UserType.GUEST.name();
       model.put("type", userType);
     }
+    List<BookingDto> bookingsForUser = bookingService.findBookingsForUser(userId);
+
+    events.forEach(e -> {
+      for (BookingDto bookingDto : bookingsForUser) {
+        if (e.getId().equals(bookingDto.getEventDto().getId())) {
+          e.setBookedForUser(true);
+          continue;
+        }
+      }
+    });
 
     try {
       template.process(model, resp.getWriter());

@@ -1,10 +1,9 @@
 package com.isa.zajavieni.servlet;
 
-import com.isa.zajavieni.dto.BookingDto;
+
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
-import com.isa.zajavieni.service.BookingService;
 import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
 import freemarker.template.Template;
@@ -23,61 +22,35 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@WebServlet("/upcoming-events")
-public class UpcomingEventServlet extends HttpServlet {
+@WebServlet("tickets")
+public class TicketServlet extends HttpServlet {
 
-  private static final int EVENTS_PER_PAGE = 8;
-  private static final String PAGE_NUMBER = "pageNo";
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
   @EJB
   private EventDtoService eventService;
 
-  @EJB
-  private BookingService bookingService;
-
   @Inject
   private TemplateProvider templateProvider;
 
-  @EJB
+  @Inject
   private FavouriteEventService favouriteEventService;
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    int totalPages = eventService.getTotalPagesUpcomingEvent(EVENTS_PER_PAGE);
-    String pageParameter = req.getParameter(PAGE_NUMBER);
-
-    int pageNumber = Integer.valueOf(pageParameter);
-
-    List<EventDto> events = eventService.findUpcomingEvents(pageNumber, EVENTS_PER_PAGE);
-
-    Template template = templateProvider.getTemplate(getServletContext(), "upcoming-events.ftlh");
+    Template template = templateProvider.getTemplate(getServletContext(), "tickets.ftlh");
     Map<String, Object> model = new HashMap<>();
-    model.put("events", events);
-    model.put("page", pageNumber);
-    model.put("totalPages", totalPages);
-
     Long userId = (Long) req.getSession().getAttribute("userId");
-
     if (userId != null) {
+      List<EventDto> events = eventService.getEventsByUserBooking(userId);
+
       List<EventDto> favouriteEvents = favouriteEventService
           .findListOfUserFavouriteEventsDto(userId);
-
       favouriteEventService.displayFavouriteEventBeam(req, favouriteEvents, model);
+      model.put("events", events);
       model.put("userId", userId);
-
-      List<BookingDto> bookingsForUser = bookingService.findBookingsForUser(userId);
-
-      events.forEach(e -> {
-        for (BookingDto bookingDto : bookingsForUser) {
-          if (e.getId().equals(bookingDto.getEventDto().getId())) {
-            e.setBookedForUser(true);
-            continue;
-          }
-        }
-      });
     }
     String userType;
     if (!(req.getSession().getAttribute("userType") == null)) {
@@ -93,5 +66,6 @@ public class UpcomingEventServlet extends HttpServlet {
     } catch (TemplateException e) {
       logger.error(e.getMessage());
     }
+
   }
 }

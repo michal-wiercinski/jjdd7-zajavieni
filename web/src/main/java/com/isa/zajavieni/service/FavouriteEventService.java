@@ -5,7 +5,7 @@ import com.isa.zajavieni.dao.UserDaoBean;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.entity.User;
-import com.isa.zajavieni.mapper.EventDtoMapper;
+import com.isa.zajavieni.mapper.dtoMapper.EventDtoMapper;
 import com.isa.zajavieni.servlet.LoggerServlet;
 import java.util.Comparator;
 import java.util.List;
@@ -84,4 +84,3 @@ public class FavouriteEventService {
     }
   }
 }
-

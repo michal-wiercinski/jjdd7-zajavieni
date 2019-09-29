@@ -2,16 +2,16 @@ package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.dao.EventsDaoBean;
 import com.isa.zajavieni.dao.UserDaoBean;
+import com.isa.zajavieni.dto.BookingDto;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.entity.User;
-import com.isa.zajavieni.mapper.EventDtoMapper;
+import com.isa.zajavieni.mapper.dtoMapper.EventDtoMapper;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +27,10 @@ public class EventDtoService {
   @EJB
   private UserDaoBean userDaoBean;
 
-  @Inject
+  @EJB
+  BookingService bookingService;
+
+  @EJB
   private EventDtoMapper dtoMapper;
 
   @Transactional
@@ -173,6 +176,12 @@ public class EventDtoService {
         .stream()
         .map((event) -> dtoMapper.mapEventToDto(event))
         .collect(Collectors.toList());
+  }
+
+  @Transactional
+  public List<EventDto> getEventsByUserBooking(Long id) {
+    List<BookingDto> bookings = bookingService.findBookingsForUser(id);
+    return bookings.stream().map(b -> b.getEventDto()).collect(Collectors.toList());
   }
 
   public long getSizeEventByOrganizerNameAndStartDate(String name, Date startDate) {

@@ -20,7 +20,10 @@ public class EventDto {
   private String fbSite;
   private String websiteWithTickets;
   private String organizerName;
+  private Integer ticketPool;
   private List<AttachmentDto> attachments = new ArrayList<>();
+  private List<BookingDto> bookings = new ArrayList<>();
+  private Boolean bookedForUser = false;
 
   public Long getId() {
     return id;
@@ -142,4 +145,27 @@ public class EventDto {
     this.attachments = attachments;
   }
 
+  public Integer getTicketPool() {
+    return ticketPool;
+  }
+
+  public void setTicketPool(Integer ticketPool) {
+    this.ticketPool = ticketPool;
+  }
+
+  public List<BookingDto> getBookings() {
+    return bookings;
+  }
+
+  public void setBookings(List<BookingDto> bookings) {
+    this.bookings = bookings;
+  }
+
+  public Boolean getBookedForUser() {
+    return bookedForUser;
+  }
+
+  public void setBookedForUser(Boolean bookedForUser) {
+    this.bookedForUser = bookedForUser;
+  }
 }

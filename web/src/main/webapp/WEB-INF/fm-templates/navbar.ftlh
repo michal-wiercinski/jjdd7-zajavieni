@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="generator" content="Jekyll v3.8.5">
-  <meta name="google-signin-scope" content="profile email">
-  <meta name="google-signin-client_id"
-        content="857504899215-qodap15sc3br3qood7gksv2n8ajnjnk9.apps.googleusercontent.com">
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <script src="/js/imageNotFound.js" ></script>
-  <title>3cityevent</title>
-  <link rel="canonical" href="#">
-  <!-- Bootstrap core CSS -->
-  <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-  <!-- Custom styles for this template -->
-  <link href="/css/main.css" rel="stylesheet">
-  ​
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id"
+          content="857504899215-qodap15sc3br3qood7gksv2n8ajnjnk9.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+   <script src="/js/imageNotFound.js" ></script>
+    <title>3cityevent</title>
+    <link rel="canonical" href="#">
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <!-- Custom styles for this template -->
+    <link href="/css/main.css" rel="stylesheet">
+
 </head>
 <div class="d-flex flex-column flex-md-row align-hitems-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
   <a href="/main" class="my-0 mr-md-auto font-weight-normal"><img src="/img/logo.jpg" alt="logo"></a>
@@ -55,7 +55,8 @@
        id="logout"><i class="fa fa-google"></i> Wyloguj się</a>
     ​
   </nav>
-</div>
+    </nav>
+  </div>
 ​
 <header class="jumbotron my-4 text-center ">
   <h1 class="display-3 font-weight-bold">3CITYEVENT</h1>

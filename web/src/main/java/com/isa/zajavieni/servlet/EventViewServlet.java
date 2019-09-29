@@ -1,9 +1,11 @@
 package com.isa.zajavieni.servlet;
 
+import com.isa.zajavieni.dto.BookingDto;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
+import com.isa.zajavieni.service.BookingService;
 import com.isa.zajavieni.service.EmailSenderService;
 import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
@@ -34,6 +36,9 @@ public class EventViewServlet extends HttpServlet {
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
   @EJB
   private EventDtoService eventDtoService;
+
+  @EJB
+  private BookingService bookingService;
 
   @Inject
   private FavouriteEventService favouriteEventService;
@@ -81,11 +86,20 @@ public class EventViewServlet extends HttpServlet {
               Collectors.toList()).contains(event.getId())) {
         isFavourite = true;
       }
+
       List<EventDto> favouriteEvents = favouriteEventService
           .findListOfUserFavouriteEventsDto(userId);
       favouriteEventService.displayFavouriteEventBeam(req, favouriteEvents, model);
       model.put("isFavourite", isFavourite);
       model.put("userId", userId);
+      List<BookingDto> bookingsForUser = bookingService.findBookingsForUser(userId);
+
+      for (BookingDto bookingDto : bookingsForUser) {
+        if (eventDto.getId().equals(bookingDto.getEventDto().getId())) {
+          eventDto.setBookedForUser(true);
+          continue;
+        }
+      }
     }
     String userType;
     if (!(req.getSession().getAttribute("userType") == null)) {

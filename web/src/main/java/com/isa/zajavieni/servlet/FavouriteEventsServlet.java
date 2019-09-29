@@ -1,9 +1,11 @@
 package com.isa.zajavieni.servlet;
 
+import com.isa.zajavieni.dto.BookingDto;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
+import com.isa.zajavieni.service.BookingService;
 import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
 import com.isa.zajavieni.service.statistic.PopularityFavouriteEventService;
@@ -31,6 +33,9 @@ public class FavouriteEventsServlet extends HttpServlet {
   @Inject
   private FavouriteEventService favouriteEventService;
 
+  @EJB
+  private BookingService bookingService;
+
   @Inject
   private TemplateProvider templateProvider;
 
@@ -53,6 +58,17 @@ public class FavouriteEventsServlet extends HttpServlet {
     favouriteEventService.displayFavouriteEventBeam(req, favouriteEvents, model);
     model.put("favouriteEvents", favouriteEvents);
     model.put("userId", userId);
+
+    List<BookingDto> bookingsForUser = bookingService.findBookingsForUser(userId);
+
+    favouriteEvents.forEach(e -> {
+      for (BookingDto bookingDto : bookingsForUser) {
+        if (e.getId().equals(bookingDto.getEventDto().getId())) {
+          e.setBookedForUser(true);
+          continue;
+        }
+      }
+    });
     String userType;
     if (!(req.getSession().getAttribute("userType") == null)) {
       userType = String.valueOf(req.getSession().getAttribute("userType"));

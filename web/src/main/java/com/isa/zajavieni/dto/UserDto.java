@@ -16,6 +16,8 @@ public class UserDto {
 
   private String email;
 
+  private List<BookingDto> bookings = new ArrayList<>();
+
   public Long getId() {
     return id;
   }
@@ -54,5 +56,13 @@ public class UserDto {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public List<BookingDto> getBookings() {
+    return bookings;
+  }
+
+  public void setBookings(List<BookingDto> bookings) {
+    this.bookings = bookings;
   }
 }

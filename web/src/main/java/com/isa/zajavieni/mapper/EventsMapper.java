@@ -9,6 +9,7 @@ import com.isa.zajavieni.entity.PopularityEvent;
 import com.isa.zajavieni.entity.PopularityFavouriteEvent;
 import com.isa.zajavieni.servlet.LoggerServlet;
 import java.util.List;
+import java.util.Random;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import org.slf4j.Logger;
@@ -55,6 +56,7 @@ public class EventsMapper {
 
     event.setPopularityEvent(new PopularityEvent());
     event.setPopularityFavouriteEvent(new PopularityFavouriteEvent());
+    event.setTicketPool(new Random().nextInt(100));
     return event;
   }
 }

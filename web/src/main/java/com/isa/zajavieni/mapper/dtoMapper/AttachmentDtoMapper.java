@@ -1,4 +1,4 @@
-package com.isa.zajavieni.mapper;
+package com.isa.zajavieni.mapper.dtoMapper;
 
 import com.isa.zajavieni.dto.AttachmentDto;
 import com.isa.zajavieni.entity.Attachment;

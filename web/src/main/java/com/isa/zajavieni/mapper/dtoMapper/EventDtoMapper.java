@@ -1,4 +1,4 @@
-package com.isa.zajavieni.mapper;
+package com.isa.zajavieni.mapper.dtoMapper;
 
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
@@ -39,10 +39,11 @@ public class EventDtoMapper {
     eventDto.setAddressCity(addressDtoMapper.mapAddressToDto(event.getAddress()).getCity());
     eventDto.setAddressStreet(addressDtoMapper.mapAddressToDto(event.getAddress()).getStreet());
     eventDto.setAddressZipCode(addressDtoMapper.mapAddressToDto(event.getAddress()).getZipcode());
-    if(event.getDescShort() != null){
+    if (event.getDescShort() != null) {
       eventDto.setDescShort(event.getDescShort());
     }
-    if(event.getDescLong() != null){
+
+    if (event.getDescLong() != null) {
       eventDto.setDescLong(Jsoup.parse(event.getDescLong()).text());
     }
     eventDto
@@ -53,7 +54,32 @@ public class EventDtoMapper {
     eventDto.setOrganizerName(organizerDtoMapper.mapOrganizerToDto(event.getOrganizer()).getName());
     event.getAttachment().forEach(a -> eventDto.getAttachments()
         .add(attachmentDtoMapper.mapAttachmentToDto(a)));
+    eventDto.setTicketPool(event.getTicketPool());
     logger.info("Map event entity id: {} to dto", event.getId());
     return eventDto;
   }
+
+  @Transactional
+  public Event mapDtoToEntity(EventDto eventDto) {
+    Event event = new Event();
+
+    event.setId(eventDto.getId());
+    event.setName(eventDto.getName());
+    event.setStartDate(eventDto.getStartDate());
+    event.setEndDate((eventDto.getEndDate()));
+    event.getAddress().setCity(eventDto.getAddressCity());
+    event.getAddress().setName(eventDto.getAddressName());
+    event.getAddress().setStreet(eventDto.getAddressStreet());
+    event.getAddress().setZipcode(eventDto.getAddressZipCode());
+    event.setDescShort(eventDto.getDescShort());
+    event.setDescLong(eventDto.getDescLong());
+    event.getMediaLink().setFbSite(eventDto.getFbSite());
+    event.getMediaLink().setWebsiteWithTickets(eventDto.getWebsiteWithTickets());
+    event.getMediaLink().setWwwAddress(eventDto.getWwwAddress());
+    event.setTicketPool(eventDto.getTicketPool());
+
+    return event;
+  }
+
+
 }

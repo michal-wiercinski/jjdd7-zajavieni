@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-4 float-left ">
           <img class="card-img-top img-fluid" style="max-height: 700px; max-width: 550px"
-               src="${(event.attachments[0].fileName)!"/img/plug.jpg"}" alt="">
+               src="${(event.attachments[0].fileName)!"/img/plug.jpg"}" alt="" onerror="this.src='/img/plug.jpg';">
         </div>
         <div class="col-4 text-center">
             <#if event.addressName??>
@@ -53,16 +53,28 @@
     </br></br></br>
   </div>
   <div class="card-footer d-inline">
-      <#if type != "GUEST">
-         <a href="#" class="btn btn-primary">Zarezerwuj bilet</a>
-        <button type="button"
+
+          <#if type != "GUEST">
+              <#if event.bookedForUser == false >
+                <button type="button"
+                        data-toggle="popover" data-id-event="${event.id?c}" data-id-user="${userId}" class="btn btn-primary make-booking"
+                        data-content="Zarezerwowałeś wydarzenie">Zarezerwuj bilet</button>
+              <#else>
+                <button type="button"
+                        data-toggle="popover" data-id-event="${event.id?c}" data-id-user="${userId}" class="btn btn-outline-danger cancel-booking"
+                        data-content="Odwołałeś rezerwację">Odwołaj rezerwację</button>
+              </#if>
+               <button type="button"
                 class="${isFavourite?then('btn btn-outline-danger','btn btn-outline-success')}"
                 id='${isFavourite?then('deleteE','addE')}'
                 data-id='${event.id?c}'>
             ${isFavourite?then('Usuń z ulubionych ❌', 'Dodaj do ulubionych ✅')}
         </button>
-      </#if>
-    <#if type == "SUPER_ADMIN">
+          <#else>
+            <a href="/login" class="btn btn-primary">Zarezerwuj bilet</a>
+            <a href="/login" class="btn btn-primary">Dodaj do ulubionych</a>
+          </#if>
+    <#if (type == "ADMIN") || (type == "SUPER_ADMIN")>
       <button type="button"
               class="btn btn-secondary"
               id='deleteEvent'

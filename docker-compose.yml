@@ -25,3 +25,5 @@ services:
       - mysql
     links:
       - mysql
+    environment:
+      - T2=Europe/Warsaw
