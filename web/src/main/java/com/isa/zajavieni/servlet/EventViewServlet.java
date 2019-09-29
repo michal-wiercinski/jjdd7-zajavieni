@@ -4,9 +4,9 @@ import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
+import com.isa.zajavieni.service.EmailSenderService;
 import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
-import com.isa.zajavieni.service.UserService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import java.io.IOException;
@@ -32,14 +32,14 @@ public class EventViewServlet extends HttpServlet {
   @EJB
   private EventDtoService eventDtoService;
 
-  @EJB
-  UserService userService;
-
   @Inject
   private FavouriteEventService favouriteEventService;
 
   @Inject
   private TemplateProvider templateProvider;
+
+  @EJB
+  private EmailSenderService emailSenderService;
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -89,5 +89,13 @@ public class EventViewServlet extends HttpServlet {
     } catch (TemplateException e) {
       logger.error(e.getMessage());
     }
+  }
+
+  @Override
+  protected void doDelete(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    Long eventId = Long.parseLong(req.getParameter("id"));
+    emailSenderService.sendDeletedEventEmailForUsers(eventId);
+    eventDtoService.deleteEventFromBase(eventId);
   }
 }

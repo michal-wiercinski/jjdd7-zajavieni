@@ -77,5 +77,15 @@ public class EventsDaoBean {
     Long result = (Long) query.getSingleResult();
     return result.intValue();
   }
+
+  public List<Event> findAllFavouriteEvents() {
+    Query query = entityManager.createNamedQuery("Event.findAllFavouriteEvents");
+    return query.getResultList();
+  }
+
+  public void removeEvent(Event event) {
+    logger.info("Object event id: {} remove from DB", event.getId());
+    entityManager.remove(event);
+  }
 }
 
