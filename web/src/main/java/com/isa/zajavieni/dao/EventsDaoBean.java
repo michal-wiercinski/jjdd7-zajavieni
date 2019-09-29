@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TemporalType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,7 +38,7 @@ public class EventsDaoBean {
 
   public List<Event> searchEvents(String phrase) {
     Query query = entityManager.createNamedQuery("Event.foundEvents");
-    query.setParameter("phrase", phrase);
+    query.setParameter("phrase", "%" + phrase + "%");
     return query.getResultList();
   }
 
@@ -73,7 +74,7 @@ public class EventsDaoBean {
   public int getOrganizersEventSize(Long id) {
     Query query = entityManager.createNamedQuery("Event.counterByOrganizer");
     query.setParameter("time", new Date())
-        .setParameter("organizerId", id);
+        .setParameter("id_organizer", id);
     Long result = (Long) query.getSingleResult();
     return result.intValue();
   }
@@ -87,5 +88,153 @@ public class EventsDaoBean {
     logger.info("Object event id: {} remove from DB", event.getId());
     entityManager.remove(event);
   }
-}
 
+  public List<Event> findByNameAndDates(String name, Date startDate, Date endDate, int pageNumber) {
+    Query query = entityManager.createNamedQuery("Event.findByNameAndDates");
+    query
+        .setParameter("name", "%" + name + "%")
+        .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
+        .setParameter("endDate", endDate, TemporalType.TIMESTAMP)
+        .setFirstResult(getFirstResultNumber(pageNumber))
+        .setMaxResults(8);
+    return query.getResultList();
+  }
+
+  private int getFirstResultNumber(int pageNumber) {
+    return (pageNumber - 1) * 8;
+  }
+
+  public long getSizeEventsByNameAndDates(String name, Date startDate, Date endDate) {
+    Query query = entityManager.createNamedQuery("Event.countFindByNameAndDates");
+    query
+        .setParameter("name", "%" + name + "%")
+        .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
+        .setParameter("endDate", endDate, TemporalType.TIMESTAMP);
+    return (long) query.getSingleResult();
+  }
+
+  public List<Event> findByNameAndStartDate(String name, Date startDate, int pageNumber) {
+    Query query = entityManager.createNamedQuery("Event.findByNameAndStartDate");
+    query
+        .setParameter("name", "%" + name + "%")
+        .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
+        .setFirstResult(getFirstResultNumber(pageNumber))
+        .setMaxResults(8);
+    return query.getResultList();
+  }
+
+  public long getSizeEventsByNameAndStartDate(String name, Date startDate) {
+    Query query = entityManager.createNamedQuery("Event.countFindByNameAndStartDate");
+    query
+        .setParameter("name", "%" + name + "%")
+        .setParameter("startDate", startDate, TemporalType.TIMESTAMP);
+    return (long) query.getSingleResult();
+  }
+
+  public List<Event> findByNameAndEndDate(String name, Date endDate, int pageNumber) {
+    Query query = entityManager.createNamedQuery("Event.findByNameAndEndDate");
+    query
+        .setParameter("name", "%" + name + "%")
+        .setParameter("endDate", endDate, TemporalType.TIMESTAMP)
+        .setFirstResult(getFirstResultNumber(pageNumber))
+        .setMaxResults(8);
+    return query.getResultList();
+  }
+
+  public long getSizeEventsByNameAndEndDate(String name, Date endDate) {
+    Query query = entityManager.createNamedQuery("Event.countFindByNameAndEndDate");
+    query
+        .setParameter("name", "%" + name + "%")
+        .setParameter("endDate", endDate, TemporalType.TIMESTAMP);
+    return (long) query.getSingleResult();
+  }
+
+  public List<Event> findByName(String name, int pageNumber) {
+    Query query = entityManager.createNamedQuery("Event.findByName");
+    query
+        .setParameter("name", "%" + name + "%")
+        .setFirstResult(getFirstResultNumber(pageNumber))
+        .setMaxResults(8);
+    return query.getResultList();
+  }
+
+  public long getSizeEventsByName(String name) {
+    Query query = entityManager.createNamedQuery("Event.countFindByName");
+    query.setParameter("name", "%" + name + "%");
+    return (long) query.getSingleResult();
+  }
+
+  public List<Event> findEventByOrganizerNameAndDates(String name, Date startDate, Date endDate,
+      int pageNumber) {
+    Query query = entityManager.createNamedQuery("Event.findByNameOrganizerAndDates");
+    query
+        .setParameter("name", "%" + name + "%")
+        .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
+        .setParameter("endDate", endDate, TemporalType.TIMESTAMP)
+        .setFirstResult(getFirstResultNumber(pageNumber))
+        .setMaxResults(8);
+    return query.getResultList();
+  }
+
+  public long getSizeEventByOrganizerNameAndDates(String name, Date startDate, Date endDate) {
+    Query query = entityManager.createNamedQuery("Event.countByNameOrganizerAndDates");
+    query
+        .setParameter("name", "%" + name + "%")
+        .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
+        .setParameter("endDate", endDate, TemporalType.TIMESTAMP);
+    return (long) query.getSingleResult();
+  }
+
+  public List<Event> findEventByOrganizerNameAndStartDate(String name, Date startDate,
+      int pageNumber) {
+    Query query = entityManager.createNamedQuery("Event.findByNameOrganizerAndStartDate");
+    query
+        .setParameter("name", "%" + name + "%")
+        .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
+        .setFirstResult(getFirstResultNumber(pageNumber))
+        .setMaxResults(8);
+    return query.getResultList();
+  }
+
+  public long getSizeEventByOrganizerNameAndStartDate(String name, Date startDate) {
+    Query query = entityManager.createNamedQuery("Event.countByNameOrganizerAndStartDate");
+    query
+        .setParameter("name", "%" + name + "%")
+        .setParameter("startDate", startDate, TemporalType.TIMESTAMP);
+    return (long) query.getSingleResult();
+  }
+
+  public List<Event> findEventByOrganizerNameAndEndDate(String name, Date endDate, int pageNumber) {
+    Query query = entityManager.createNamedQuery("Event.findByNameOrganizerAndEndDate");
+    query
+        .setParameter("name", "%" + name + "%")
+        .setParameter("endDate", endDate, TemporalType.TIMESTAMP)
+        .setFirstResult(getFirstResultNumber(pageNumber))
+        .setMaxResults(8);
+    return query.getResultList();
+  }
+
+  public long getSizeEventByOrganizerNameAndEndDate(String name, Date endDate) {
+    Query query = entityManager.createNamedQuery("Event.countByNameOrganizerAndEndDate");
+    query
+        .setParameter("name", "%" + name + "%")
+        .setParameter("endDate", endDate, TemporalType.TIMESTAMP);
+    return (long) query.getSingleResult();
+  }
+
+  public List<Event> findEventByOrganizerName(String name, int pageNumber) {
+    Query query = entityManager.createNamedQuery("Event.findByNameOrganizer");
+    query
+        .setParameter("name", "%" + name + "%")
+        .setFirstResult(getFirstResultNumber(pageNumber))
+        .setMaxResults(8);
+    return query.getResultList();
+  }
+
+  public long getSizeEventByOrganizerName(String name) {
+    Query query = entityManager.createNamedQuery("Event.countByNameOrganizer");
+    query
+        .setParameter("name", "%" + name + "%");
+    return (long) query.getSingleResult();
+  }
+}
