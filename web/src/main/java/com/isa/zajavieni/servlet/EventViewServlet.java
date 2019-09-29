@@ -6,10 +6,9 @@ import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.BookingService;
-import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.EmailSenderService;
+import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
-import com.isa.zajavieni.service.UserService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import java.io.IOException;
@@ -36,10 +35,7 @@ public class EventViewServlet extends HttpServlet {
   private EventDtoService eventDtoService;
 
   @EJB
-  UserService userService;
-
-  @EJB
-  BookingService bookingService;
+  private BookingService bookingService;
 
   @Inject
   private FavouriteEventService favouriteEventService;
@@ -84,6 +80,14 @@ public class EventViewServlet extends HttpServlet {
       favouriteEventService.displayFavouriteEventBeam(req, favouriteEvents, model);
       model.put("isFavourite", isFavourite);
       model.put("userId", userId);
+      List<BookingDto> bookingsForUser = bookingService.findBookingsForUser(userId);
+
+      for (BookingDto bookingDto : bookingsForUser) {
+        if (eventDto.getId().equals(bookingDto.getEventDto().getId())) {
+          eventDto.setBookedForUser(true);
+          continue;
+        }
+      }
     }
     String userType;
     if (!(req.getSession().getAttribute("userType") == null)) {

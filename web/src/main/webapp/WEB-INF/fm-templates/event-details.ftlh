@@ -55,10 +55,15 @@
   <div class="card-footer d-inline">
 
           <#if type != "GUEST">
-            <button type="button"
-                    data-toggle="popover" data-id-event="${event.id?c}" data-id-user="${userId}" class="btn btn-primary make-booking"
-                    data-content="Zarezerwowałeś wydarzenie">Zarezerwuj bilet</button>
-            <#--<button type="button" data-id-event="${event.id?c}" data-id-user="${userId}" class="btn btn-primary cancel-booking">Odwołaj rezerwację</button>-->
+              <#if event.bookedForUser == false >
+                <button type="button"
+                        data-toggle="popover" data-id-event="${event.id?c}" data-id-user="${userId}" class="btn btn-primary make-booking"
+                        data-content="Zarezerwowałeś wydarzenie">Zarezerwuj bilet</button>
+              <#else>
+                <button type="button"
+                        data-toggle="popover" data-id-event="${event.id?c}" data-id-user="${userId}" class="btn btn-outline-danger cancel-booking"
+                        data-content="Odwołałeś rezerwację">Odwołaj rezerwację</button>
+              </#if>
                <button type="button"
                 class="${isFavourite?then('btn btn-outline-danger','btn btn-outline-success')}"
                 id='${isFavourite?then('deleteE','addE')}'
