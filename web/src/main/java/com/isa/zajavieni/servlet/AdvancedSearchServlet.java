@@ -1,6 +1,7 @@
 package com.isa.zajavieni.servlet;
 
 import com.isa.zajavieni.dto.EventDto;
+import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
@@ -46,10 +47,28 @@ public class AdvancedSearchServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    String userType;
+    if (req.getSession().getAttribute("userType") != null) {
+      userType = String.valueOf(req.getSession().getAttribute("userType"));
+    } else {
+      userType = UserType.GUEST.name();
+    }
+
     String name = req.getParameter("name");
     if (name == null || name.isEmpty()) {
       try {
-        renderFormTemplate(resp);
+        Template template = getTemplate("advanced-search.ftlh");
+        Map<String, Object> model = new HashMap<>();
+        model.put("type", userType);
+        model.put("now", dateFormat.format(new Date()));
+        Long userId = (Long) req.getSession().getAttribute("userId");
+        if (userId != null) {
+          List<EventDto> favouriteEvents = favouriteEventService
+              .findListOfUserFavouriteEventsDto(userId);
+          favouriteEventService.displayFavouriteEventBeam(req, favouriteEvents, model);
+          model.put("userId", userId);
+        }
+        template.process(model, resp.getWriter());
         return;
       } catch (TemplateException e) {
         logger.error("Error rendering template", e);
@@ -148,6 +167,7 @@ public class AdvancedSearchServlet extends HttpServlet {
       Template template = getTemplate("advanced-search.ftlh");
       Map<String, Object> model = new HashMap<>();
       String message = "Brak wyników wyszukiwania. Spróbuj ponownie";
+      model.put("type", userType);
       model.put("message", message);
       model.put("now", dateFormat.format(new Date()));
       Long userId = (Long) req.getSession().getAttribute("userId");
@@ -168,6 +188,7 @@ public class AdvancedSearchServlet extends HttpServlet {
 
     Template template = getTemplate("search-result.ftlh");
     Map<String, Object> model = new HashMap<>();
+    model.put("type", userType);
     model.put("events", events);
     model.put("page", pageNumber);
     model.put("name", name);
@@ -189,13 +210,6 @@ public class AdvancedSearchServlet extends HttpServlet {
       logger.error("Error rendering template", e);
       resp.setStatus(500);
     }
-  }
-
-  private void renderFormTemplate(HttpServletResponse resp) throws IOException, TemplateException {
-    Template template = getTemplate("advanced-search.ftlh");
-    Map<String, Object> model = new HashMap<>();
-    model.put("now", dateFormat.format(new Date()));
-    template.process(model, resp.getWriter());
   }
 
   private Template getTemplate(String template) throws IOException {

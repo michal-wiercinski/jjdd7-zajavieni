@@ -204,6 +204,10 @@ import javax.persistence.TemporalType;
             + "WHERE "
             + "o.designation LIKE :name "
             + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.findAllFavouriteEvents",
+        query = "SELECT e FROM Event e INNER JOIN e.users u"
     )
 })
 

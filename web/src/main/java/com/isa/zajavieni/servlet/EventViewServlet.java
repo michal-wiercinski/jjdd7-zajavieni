@@ -2,7 +2,9 @@ package com.isa.zajavieni.servlet;
 
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
+import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
+import com.isa.zajavieni.service.EmailSenderService;
 import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
 import freemarker.template.Template;
@@ -36,10 +38,13 @@ public class EventViewServlet extends HttpServlet {
   @Inject
   private TemplateProvider templateProvider;
 
+  @EJB
+  private EmailSenderService emailSenderService;
+
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    resp.setContentType("text/html;charset=UTF-8");
+
     Long id;
     EventDto eventDto = new EventDto();
     Event event = new Event();
@@ -70,11 +75,27 @@ public class EventViewServlet extends HttpServlet {
       model.put("isFavourite", isFavourite);
       model.put("userId", userId);
     }
+    String userType;
+    if (!(req.getSession().getAttribute("userType") == null)) {
+      userType = String.valueOf(req.getSession().getAttribute("userType"));
+      model.put("type", userType);
+    } else {
+      userType = UserType.GUEST.name();
+      model.put("type", userType);
+    }
 
     try {
       template.process(model, resp.getWriter());
     } catch (TemplateException e) {
       logger.error(e.getMessage());
     }
+  }
+
+  @Override
+  protected void doDelete(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    Long eventId = Long.parseLong(req.getParameter("id"));
+    emailSenderService.sendDeletedEventEmailForUsers(eventId);
+    eventDtoService.deleteEventFromBase(eventId);
   }
 }
