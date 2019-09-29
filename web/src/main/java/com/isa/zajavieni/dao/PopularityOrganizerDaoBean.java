@@ -14,15 +14,12 @@ public class PopularityOrganizerDaoBean {
   private EntityManager entityManager;
 
   public List<PopularityOrganizer> getPopularityOrganizer() {
-
     Query query = entityManager
         .createNamedQuery("PopularityOrganizer.findAll");
-
-    return query.getResultList();
+    return query.setMaxResults(10).getResultList();
   }
 
   public void updatePopularityOrganizerIncrementQuantity(Long id) {
-
     Query query = entityManager.createNamedQuery("PopularityOrganizer.incrementQuantity");
     query.setParameter("id", id).executeUpdate();
   }

@@ -6,11 +6,11 @@ import javax.inject.Inject;
 
 @Stateless
 public class PopularityOrganizerService {
+
   @Inject
   private PopularityOrganizerDaoBean popularityOrganizerDaoBean;
 
   public void incrementQuantityPopularityEvent(Long id) {
     popularityOrganizerDaoBean.updatePopularityOrganizerIncrementQuantity(id);
   }
-
 }

@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 
 @Path("/statistics")
 public class AdminStatisticController {
+
   @Inject
   private PopularityEventApiService popularityEventApiService;
 

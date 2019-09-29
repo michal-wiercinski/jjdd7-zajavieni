@@ -9,19 +9,17 @@ import javax.persistence.Query;
 
 @Stateless
 public class PopularityFavouriteEventDaoBean {
+
   @PersistenceContext
   private EntityManager entityManager;
 
   public List<PopularityFavouriteEvent> getPopularityFavouriteEvent() {
-
     Query query = entityManager
         .createNamedQuery("PopularityFavouriteEvent.findAll");
-
-    return query.getResultList();
+    return query.setMaxResults(5).getResultList();
   }
 
   public void updatePopularityFavouriteEventIncrementQuantity(Long id) {
-
     Query query = entityManager.createNamedQuery("PopularityFavouriteEvent.incrementQuantity");
     query.setParameter("id", id).executeUpdate();
   }

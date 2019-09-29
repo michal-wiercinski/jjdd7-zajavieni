@@ -12,6 +12,7 @@ import javax.jdo.annotations.Transactional;
 
 @Stateless
 public class PopularityFavouriteEventApiService {
+
   @Inject
   private PopularityFavouriteEventMapper popularityFavouriteEventMapper;
 
@@ -20,20 +21,14 @@ public class PopularityFavouriteEventApiService {
 
   @Transactional
   public List<PopularityFavouriteEventResponse> getPopularityFavouriteEventJsonObject() {
-
     List<PopularityFavouriteEvent> popularityFavouriteEvents = popularityFavouriteEventDaoBean
         .getPopularityFavouriteEvent();
-
     List<PopularityFavouriteEventResponse> popularityFavouriteEventResponses = new ArrayList<>();
-
     popularityFavouriteEvents.forEach(popularityFavouriteEvent -> {
       PopularityFavouriteEventResponse popularityFavouriteEventResponse = popularityFavouriteEventMapper
           .mapPopularityFavouriteEventEntityToApi(popularityFavouriteEvent);
       popularityFavouriteEventResponses.add(popularityFavouriteEventResponse);
     });
-
     return popularityFavouriteEventResponses;
   }
-
-
 }

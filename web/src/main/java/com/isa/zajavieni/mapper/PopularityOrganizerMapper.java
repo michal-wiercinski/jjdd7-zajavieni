@@ -7,16 +7,14 @@ import javax.jdo.annotations.Transactional;
 
 @Stateless
 public class PopularityOrganizerMapper {
+
   @Transactional
   public PopularityOrganizerResponse mapPopularityOrganizerEntityToApi(
-
       PopularityOrganizer popularityOrganizer) {
-
     PopularityOrganizerResponse popularityOrganizerResponse = new PopularityOrganizerResponse();
     popularityOrganizerResponse
         .setOrganizerName(popularityOrganizer.getOrganizer().getDesignation());
     popularityOrganizerResponse.setQuantity(popularityOrganizer.getQuantity());
-
     return popularityOrganizerResponse;
   }
 

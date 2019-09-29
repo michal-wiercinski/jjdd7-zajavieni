@@ -7,15 +7,14 @@ import javax.transaction.Transactional;
 
 @Stateless
 public class PopularityFavouriteEventMapper {
+
   @Transactional
   public PopularityFavouriteEventResponse mapPopularityFavouriteEventEntityToApi(
       PopularityFavouriteEvent popularityFavouriteEvent) {
-
     PopularityFavouriteEventResponse popularityFavouriteEventResponse = new PopularityFavouriteEventResponse();
     popularityFavouriteEventResponse
         .setFavouriteEventName(popularityFavouriteEvent.getEvent().getName());
     popularityFavouriteEventResponse.setQuantity(popularityFavouriteEvent.getQuantity());
-
     return popularityFavouriteEventResponse;
   }
 }

@@ -8,13 +8,13 @@
 <div>
   <article id="contentView">
     <div class="container">
-      <div id="columnchart1" style="width: 900px; height: 500px;"></div>
+      <div id="columnchart1" style="width: 1000px; height: 600px;"></div>
     </div>
     <div class="container">
-      <div id="barchart2" style="width: 900px; height: 500px;"></div>
+      <div id="columnchart2" style="width: 1000px; height: 600px;"></div>
     </div>
     <div class="container">
-      <div id="columnchart3" style="width: 900px; height: 500px;"></div>
+      <div id="columnchart3" style="width: 1000px; height: 600px;"></div>
     </div>
   </article>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

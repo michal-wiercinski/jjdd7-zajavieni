@@ -2,23 +2,16 @@ google.charts.load('current', {'packages': ['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-  // var dataset1 = [
-  //   {"eventName": "Taniec", "quantity": 45},
-  //   {"eventName": "Muzyka", "quantity": 24},
-  //   {"eventName": "PeepShow", "quantity": 17},
-  //   {"eventName": "Kabaret", "quantity": 5},
-  //   {"eventName": "Kino", "quantity": 5}
-  // ];
 
   $.getJSON('/api/statistics/events', function(dataset1) {
 
-    var eventNamesAndQuantitiesArrayChart1 = [['Event name', 'Quantity',],];
+    var eventNamesAndQuantitiesArrayChart1 = [['Event name', 'Quantity',{role: 'style'}] ,];
 
     for (var i = 0; i < dataset1.length; i++) {
       var pairEventNameQuantity = dataset1[i];
       var eventNameAndQuantityArray = [pairEventNameQuantity.eventName,
         pairEventNameQuantity.quantity,
-        'color: #' + Math.floor(Math.random() * 16777215).toString(16)];
+        'color: orange'];
       eventNamesAndQuantitiesArrayChart1.push(eventNameAndQuantityArray);
     }
 
@@ -27,34 +20,46 @@ function drawChart() {
 
     var optionsChart1 = {
       title: 'Wydarzenia najczęściej odwiedzane',
-      legend: {position: "none"}
+      titleTextStyle: {
+        color: 'blue',
+        italic: true,
+        fontSize: 25},
+      hAxis: {
+        title: 'Wydarzenia',
+        textStyle : {
+          fontSize: 12 // or the number you want
+        },
+        titleTextStyle: {
+          color: 'red',
+          fontSize: 20},
+      },
+      vAxis: {
+        title: 'Liczba wyświetleń',
+        textStyle : {
+          fontSize: 15 // or the number you want
+        },
+        titleTextStyle: {
+          color: 'red',
+          fontSize: 20}
+      },
+      legend: {position: "none"},
     };
 
     var chart1 = new google.visualization.ColumnChart(
         document.getElementById('columnchart1'));
-
     chart1.draw(dataChart1, optionsChart1);
   });
 
-
   $.getJSON('/api/statistics/organizers', function(dataset2) {
 
-    // var dataset2 = [
-    //   {"organizerName": "Gdańsk", "quantity": 45},
-    //   {"organizerName": "Gdynia", "quantity": 24},
-    //   {"organizerName": "Sopot", "quantity": 17},
-    //   {"organizerName": "Rumia", "quantity": 5},
-    //   {"organizerName": "Tczew", "quantity": 5}
-    // ];
-
     var organizerNamesAndQuantitiesArrayChart2 = [['Organizer name',
-      'Quantity',],];
+      'Quantity',{role: 'style'}],];
 
     for (var i = 0; i < dataset2.length; i++) {
       var pairOrganizerNameQuantity = dataset2[i];
       var organizerNameAndQuantityArray = [pairOrganizerNameQuantity.organizerName,
         pairOrganizerNameQuantity.quantity,
-        'color: #' + Math.floor(Math.random() * 16777215).toString(16)];
+        'color: #DD4477'];
       organizerNamesAndQuantitiesArrayChart2.push(
           organizerNameAndQuantityArray);
     }
@@ -63,7 +68,30 @@ function drawChart() {
         organizerNamesAndQuantitiesArrayChart2);
 
     var optionsChart2 = {
-      title: 'Popularność organizatorów',
+      title: 'TOP 10 organizatorów',
+      titleTextStyle: {
+        color: 'blue',
+        italic: true,
+        fontSize: 25
+      },
+      hAxis: {
+        title: 'Organizatorzy',
+        textStyle : {
+          fontSize: 12 // or the number you want
+        },
+        titleTextStyle: {
+          color: 'red',
+          fontSize: 20},
+      },
+      vAxis: {
+        title: 'Liczba wyświetleń',
+        textStyle : {
+          fontSize: 15 // or the number you want
+        },
+        titleTextStyle: {
+          color: 'red',
+          fontSize: 20}
+      },
       legend: {position: "none"}
     };
 
@@ -76,22 +104,14 @@ function drawChart() {
 
   $.getJSON('/api/statistics/favouriteEvents', function(dataset3) {
 
-    // var dataset3 = [
-    //   {"favouriteEventName": "Taniec", "quantity": 45},
-    //   {"favouriteEventName": "Muzyka", "quantity": 24},
-    //   {"favouriteEventName": "PeepShow", "quantity": 17},
-    //   {"favouriteEventName": "Kabaret", "quantity": 5},
-    //   {"favouriteEventName": "Kino", "quantity": 5}
-    // ];
-
     var favouriteEventNamesAndQuantitiesArrayChart3 = [['Favourite event name',
-      'Quantity',],];
+      'Quantity',{role: 'style'}],];
 
     for (var i = 0; i < dataset3.length; i++) {
       var pairFavouriteEventNameQuantity = dataset3[i];
       var favouriteEventNamesAndQuantityArray = [pairFavouriteEventNameQuantity.favouriteEventName,
         pairFavouriteEventNameQuantity.quantity,
-        'color: #' + Math.floor(Math.random() * 16777215).toString(16)];
+        'color: green'];
       favouriteEventNamesAndQuantitiesArrayChart3.push(
           favouriteEventNamesAndQuantityArray);
     }
@@ -101,6 +121,29 @@ function drawChart() {
 
     var optionsChart3 = {
       title: 'Wydarzenia najczęściej dodawane do ulubionych',
+      titleTextStyle: {
+        color: 'blue',
+        italic: true,
+        fontSize: 25
+      },
+      hAxis: {
+        title: 'Wydarzenia',
+        textStyle : {
+          fontSize: 12 // or the number you want
+        },
+        titleTextStyle: {
+          color: 'red',
+          fontSize: 20},
+      },
+      vAxis: {
+        title: 'Liczba wyświetleń',
+        textStyle : {
+          fontSize: 15 // or the number you want
+        },
+        titleTextStyle: {
+          color: 'red',
+          fontSize: 20}
+      },
       legend: {position: "none"}
     };
 

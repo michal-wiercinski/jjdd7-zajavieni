@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 
 @Stateless
 public class PopularityOrganizerApiService {
+
   @Inject
   private PopularityOrganizerMapper popularityOrganizerMapper;
 
@@ -20,19 +21,14 @@ public class PopularityOrganizerApiService {
 
   @Transactional
   public List<PopularityOrganizerResponse> getPopularityOrganizerJsonObject() {
-
     List<PopularityOrganizer> popularityOrganizers = popularityOrganizerDaoBean
         .getPopularityOrganizer();
-
     List<PopularityOrganizerResponse> popularityOrganizerResponses = new ArrayList<>();
-
     popularityOrganizers.forEach(popularityOrganizer -> {
       PopularityOrganizerResponse popularityOrganizerResponse = popularityOrganizerMapper
           .mapPopularityOrganizerEntityToApi(popularityOrganizer);
       popularityOrganizerResponses.add(popularityOrganizerResponse);
     });
-
     return popularityOrganizerResponses;
   }
-
 }

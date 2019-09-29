@@ -7,6 +7,8 @@ import com.isa.zajavieni.provider.TemplateProvider;
 import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
 import com.isa.zajavieni.service.UserService;
+import com.isa.zajavieni.service.statistic.PopularityEventService;
+import com.isa.zajavieni.service.statistic.PopularityOrganizerService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import java.io.IOException;
@@ -41,6 +43,12 @@ public class EventViewServlet extends HttpServlet {
   @Inject
   private TemplateProvider templateProvider;
 
+  @Inject
+  private PopularityEventService popularityEventService;
+
+  @Inject
+  private PopularityOrganizerService popularityOrganizerService;
+
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
@@ -54,6 +62,9 @@ public class EventViewServlet extends HttpServlet {
       id = Long.valueOf(eventId);
       eventDto = eventDtoService.findById(id);
       event = eventDtoService.findEventById(id);
+      popularityEventService.incrementQuantityPopularityEvent(event.getPopularityEvent().getId());
+      popularityOrganizerService.incrementQuantityPopularityEvent(event.getOrganizer().getPopularityOrganizer().getId());
+
     }
 
     Template template = templateProvider.getTemplate(getServletContext(), "event-details.ftlh");
@@ -89,5 +100,7 @@ public class EventViewServlet extends HttpServlet {
     } catch (TemplateException e) {
       logger.error(e.getMessage());
     }
+
+
   }
 }

@@ -20,18 +20,14 @@ public class PopularityEventApiService {
   private PopularityEventDaoBean popularityEventDaoBean;
 
   @Transactional
-  public List<PopularityEventResponse> getPopularityEventJsonObject(){
-
+  public List<PopularityEventResponse> getPopularityEventJsonObject() {
     List<PopularityEvent> popularityEvents = popularityEventDaoBean.getPopularityEvent();
-
     List<PopularityEventResponse> popularityEventResponses = new ArrayList<>();
-
     popularityEvents.forEach(popularityEvent -> {
-      PopularityEventResponse popularityEventResponse = popularityEventMapper.mapPopularityEventEntityToApi(popularityEvent);
+      PopularityEventResponse popularityEventResponse = popularityEventMapper
+          .mapPopularityEventEntityToApi(popularityEvent);
       popularityEventResponses.add(popularityEventResponse);
     });
-
     return popularityEventResponses;
   }
-
 }

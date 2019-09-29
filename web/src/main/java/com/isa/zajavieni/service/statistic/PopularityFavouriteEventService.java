@@ -13,5 +13,4 @@ public class PopularityFavouriteEventService {
   public void incrementQuantityPopularityEvent(Long id) {
     popularityFavouriteEventDaoBean.updatePopularityFavouriteEventIncrementQuantity(id);
   }
-
 }

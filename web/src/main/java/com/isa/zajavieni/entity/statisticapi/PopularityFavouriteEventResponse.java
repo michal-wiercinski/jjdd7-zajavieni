@@ -3,6 +3,7 @@ package com.isa.zajavieni.entity.statisticapi;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PopularityFavouriteEventResponse {
+
   @JsonProperty("favouriteEventName")
   private String favouriteEventName;
 
