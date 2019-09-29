@@ -23,6 +23,7 @@ public class EventDto {
   private Integer ticketPool;
   private List<AttachmentDto> attachments = new ArrayList<>();
   private List<BookingDto> bookings = new ArrayList<>();
+  private Boolean bookedForUser = false;
 
   public Long getId() {
     return id;
@@ -158,5 +159,13 @@ public class EventDto {
 
   public void setBookings(List<BookingDto> bookings) {
     this.bookings = bookings;
+  }
+
+  public Boolean getBookedForUser() {
+    return bookedForUser;
+  }
+
+  public void setBookedForUser(Boolean bookedForUser) {
+    this.bookedForUser = bookedForUser;
   }
 }

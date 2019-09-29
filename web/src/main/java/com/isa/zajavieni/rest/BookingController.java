@@ -3,21 +3,15 @@ package com.isa.zajavieni.rest;
 import com.isa.zajavieni.dto.BookingDto;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.dto.UserDto;
-import com.isa.zajavieni.entity.Booking;
-import com.isa.zajavieni.entity.Event;
-import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.service.BookingService;
-import com.isa.zajavieni.service.EventService;
+import com.isa.zajavieni.service.EmailSenderService;
+import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.UserService;
-import java.util.List;
-import java.util.Optional;
 import javax.ejb.EJB;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -33,10 +27,13 @@ public class BookingController {
   UserService userService;
 
   @EJB
-  EventService eventService;
+  EventDtoService eventService;
 
   @EJB
   BookingService bookingService;
+
+  @EJB
+  EmailSenderService emailSenderService;
 
   @POST
   @Path("/make-booking/eventId/{eventId}/userId/{userId}")
@@ -60,14 +57,13 @@ public class BookingController {
       return Response.status(Status.FOUND).build();
     }
     BookingDto booking = bookingService.createBooking(event, user);
-    System.out.println(event.getTicketPool() + "dsadasnfjowegoJBbbfosdabo");
+    emailSenderService.sendBookingEmailForUser(userId, eventId);
     bookingService.saveBooking(booking);
 
     logger
         .info("New booking with id: {} has been created for user with id{} and eventd with id {}  ",
             booking.getBookingId(), userId, eventId);
     return Response.ok().build();
-
   }
 
   @DELETE
@@ -88,10 +84,10 @@ public class BookingController {
     EventDto event = eventService.findById(eventId);
     BookingDto booking = bookingService.findByEventAndUser(eventId, userId);
     Long id = booking.getBookingId();
+    emailSenderService.sendCancelingBookingEmailForUser(userId, eventId);
     bookingService.deleteBooking(id);
     logger.info("Booking with id: {} has been canceled for user with id{} and eventd with id {}  ",
         id, userId, eventId);
     return Response.ok().build();
-
   }
 }

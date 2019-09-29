@@ -4,7 +4,7 @@ package com.isa.zajavieni.servlet;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
-import com.isa.zajavieni.service.EventService;
+import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -28,11 +28,10 @@ public class TicketServlet extends HttpServlet {
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
   @EJB
-  private EventService eventService;
+  private EventDtoService eventService;
 
   @Inject
   private TemplateProvider templateProvider;
-
 
   @Inject
   private FavouriteEventService favouriteEventService;
@@ -44,7 +43,7 @@ public class TicketServlet extends HttpServlet {
     Template template = templateProvider.getTemplate(getServletContext(), "tickets.ftlh");
     Map<String, Object> model = new HashMap<>();
     Long userId = (Long) req.getSession().getAttribute("userId");
-      if (userId != null) {
+    if (userId != null) {
       List<EventDto> events = eventService.getEventsByUserBooking(userId);
 
       List<EventDto> favouriteEvents = favouriteEventService

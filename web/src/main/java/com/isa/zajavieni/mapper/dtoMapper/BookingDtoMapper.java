@@ -2,7 +2,7 @@ package com.isa.zajavieni.mapper.dtoMapper;
 
 import com.isa.zajavieni.dto.BookingDto;
 import com.isa.zajavieni.entity.Booking;
-import com.isa.zajavieni.service.EventService;
+import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.UserService;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -15,7 +15,7 @@ public class BookingDtoMapper {
   UserService userService;
 
   @EJB
-  EventService eventService;
+  EventDtoService eventService;
 
   @Transactional
   public BookingDto mapEntityToDto(Booking booking) {

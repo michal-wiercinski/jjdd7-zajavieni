@@ -41,3 +41,16 @@ $(function () {
   });
 });
 
+$(function () {
+  $('#deleteEvent').click(function (event) {
+    var buttonId = $(event.target).attr('data-id');
+    $.ajax({
+      url: "/event-view",
+      method: "DELETE",
+      data: {id: buttonId},
+      success: function () {
+        location.replace("/upcoming-events?pageNo=1");
+      }
+    });
+  });
+});

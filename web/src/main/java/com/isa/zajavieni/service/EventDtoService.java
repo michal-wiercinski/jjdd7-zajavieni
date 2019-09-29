@@ -1,40 +1,36 @@
 package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.dao.EventsDaoBean;
+import com.isa.zajavieni.dao.UserDaoBean;
 import com.isa.zajavieni.dto.BookingDto;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
+import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.mapper.dtoMapper.EventDtoMapper;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Stateless
-public class EventService {
+public class EventDtoService {
 
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
   @EJB
-  EventsDaoBean eventsDaoBean;
+  private EventsDaoBean eventsDaoBean;
+
+  @EJB
+  private UserDaoBean userDaoBean;
 
   @EJB
   BookingService bookingService;
 
   @EJB
   private EventDtoMapper dtoMapper;
-
-  public void editEventDto(EventDto event){
-    eventsDaoBean.editEvent(dtoMapper.mapDtoToEntity(event));
-  }
-
-  public void editEvent(Event event){
-    eventsDaoBean.editEvent(event);
-  }
 
   @Transactional
   public List<EventDto> findUpcomingEvents(int from, int howMany) {
@@ -51,7 +47,7 @@ public class EventService {
   }
 
   private int formatFirstValue(int from) {
-    if(from < 1){
+    if (from < 1) {
       from = 2;
     }
     return from -= 1;
@@ -111,8 +107,16 @@ public class EventService {
     return numberFound / perPage;
   }
 
+  public void deleteEventFromBase(Long id) {
+    Event searchingEvent = findEventById(id);
+    List<User> users = userDaoBean.findUsersWithFavouriteEvents(id);
+    users.forEach(u -> u.getEvents().remove(searchingEvent));
+    users.forEach(u -> searchingEvent.getUsers().remove(u));
+    eventsDaoBean.removeEvent(searchingEvent);
+  }
+
   @Transactional
-  public List<EventDto> getEventsByUserBooking(Long id){
+  public List<EventDto> getEventsByUserBooking(Long id) {
     List<BookingDto> bookings = bookingService.findBookingsForUser(id);
     return bookings.stream().map(b -> b.getEventDto()).collect(Collectors.toList());
   }

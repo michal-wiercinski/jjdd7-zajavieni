@@ -54,10 +54,11 @@
   </div>
   <div class="card-footer d-inline">
 
-
           <#if type != "GUEST">
-            <button type="button" data-id-event="${event.id?c}" data-id-user="${userId}" class="btn btn-primary make-booking">Zarezerwuj bilet</button>
-            <button type="button" data-id-event="${event.id?c}" data-id-user="${userId}" class="btn btn-primary cancel-booking">Odwołaj rezerwację</button>
+            <button type="button"
+                    data-toggle="popover" data-id-event="${event.id?c}" data-id-user="${userId}" class="btn btn-primary make-booking"
+                    data-content="Zarezerwowałeś wydarzenie">Zarezerwuj bilet</button>
+            <#--<button type="button" data-id-event="${event.id?c}" data-id-user="${userId}" class="btn btn-primary cancel-booking">Odwołaj rezerwację</button>-->
                <button type="button"
                 class="${isFavourite?then('btn btn-outline-danger','btn btn-outline-success')}"
                 id='${isFavourite?then('deleteE','addE')}'
@@ -68,9 +69,18 @@
             <a href="/login" class="btn btn-primary">Zarezerwuj bilet</a>
             <a href="/login" class="btn btn-primary">Dodaj do ulubionych</a>
           </#if>
+    <#if type == "SUPER_ADMIN">
+      <button type="button"
+              class="btn btn-secondary"
+              id='deleteEvent'
+              data-id='${event.id?c}'>
+          Usuń wydarzenie ❌
+      </button>
+
+    </#if>
   </div>
 </div>
-<script src="/js/favourite.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <#include "footer.ftlh">

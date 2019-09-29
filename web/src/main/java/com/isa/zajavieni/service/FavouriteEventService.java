@@ -45,6 +45,11 @@ public class FavouriteEventService {
     return favouriteEvents;
   }
 
+  public List<Event> findListOfFavouriteEvents() {
+    List<Event> favouriteEvents = eventsDaoBean.findAllFavouriteEvents();
+    return favouriteEvents;
+  }
+
   public void addEventToUserFavouriteEvents(String idEventString, String idUserString) {
     Long idEvent = Long.parseLong(idEventString);
     Long idUser = Long.parseLong(idUserString);
@@ -79,4 +84,3 @@ public class FavouriteEventService {
     }
   }
 }
-

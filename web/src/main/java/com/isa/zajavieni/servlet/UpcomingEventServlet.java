@@ -1,9 +1,11 @@
 package com.isa.zajavieni.servlet;
 
+import com.isa.zajavieni.dto.BookingDto;
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.UserType;
 import com.isa.zajavieni.provider.TemplateProvider;
-import com.isa.zajavieni.service.EventService;
+import com.isa.zajavieni.service.BookingService;
+import com.isa.zajavieni.service.EventDtoService;
 import com.isa.zajavieni.service.FavouriteEventService;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -29,7 +31,10 @@ public class UpcomingEventServlet extends HttpServlet {
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
   @EJB
-  private EventService eventService;
+  private EventDtoService eventService;
+
+  @EJB
+  private BookingService bookingService;
 
   @Inject
   private TemplateProvider templateProvider;
@@ -62,6 +67,17 @@ public class UpcomingEventServlet extends HttpServlet {
 
       favouriteEventService.displayFavouriteEventBeam(req, favouriteEvents, model);
       model.put("userId", userId);
+
+      List<BookingDto> bookingsForUser = bookingService.findBookingsForUser(userId);
+
+      events.forEach(e -> {
+        for (BookingDto bookingDto : bookingsForUser) {
+          if (e.getId().equals(bookingDto.getEventDto().getId())) {
+            e.setBookedForUser(true);
+            continue;
+          }
+        }
+      });
     }
     String userType;
     if (!(req.getSession().getAttribute("userType") == null)) {

@@ -1,5 +1,5 @@
 <#include "navbar.ftlh">
-
+<#assign i = 1>
 
 <div>
   <table class="table">
@@ -15,7 +15,7 @@
     <tbody>
     <#list events as event>
       <tr>
-        <th scope="row">1</th>
+        <th scope="row">${event?counter}</th>
         <td>${event.name!"n/a"}</td>
         <td>${event.startDate?string('dd.MM.yyyy (HH:mm)')} -
             ${event.endDate?string('dd.MM.yyyy (HH:mm)')}</td>
@@ -23,7 +23,8 @@
                href="/event-view?id=${event.id?c}">Szczegóły</a></td>
         <td>
           <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" data-id-event="${event.id?c}" data-id-user="${userId}" class="btn btn-outline-danger cancel-booking">Odwołaj rezerwację</button>
+            <button type="button" data-toggle="popover" data-id-event="${event.id?c}" data-id-user="${userId}"
+                    data-content="Odwołałeś wydarzenie" class="btn btn-outline-danger cancel-booking">Odwołaj rezerwację</button>
           </div>
         </td>
       </tr>
