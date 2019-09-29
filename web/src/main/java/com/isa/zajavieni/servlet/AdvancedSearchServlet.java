@@ -53,7 +53,6 @@ public class AdvancedSearchServlet extends HttpServlet {
       } catch (TemplateException e) {
         logger.error("Error rendering template");
         resp.setStatus(500);
-        return;
       }
     } else {
       int pageNumber = 1;
@@ -164,7 +163,6 @@ public class AdvancedSearchServlet extends HttpServlet {
       } catch (TemplateException e) {
         logger.error("Error rendering template");
         resp.setStatus(500);
-        return;
       }
     }
   }
