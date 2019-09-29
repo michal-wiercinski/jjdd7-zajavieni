@@ -45,7 +45,7 @@ public class FavouriteEventService {
     return favouriteEvents;
   }
 
-  public List<Event> findListOfFavouriteEvents(){
+  public List<Event> findListOfFavouriteEvents() {
     List<Event> favouriteEvents = eventsDaoBean.findAllFavouriteEvents();
     return favouriteEvents;
   }

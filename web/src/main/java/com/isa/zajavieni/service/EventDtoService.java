@@ -44,7 +44,7 @@ public class EventDtoService {
   }
 
   private int formatFirstValue(int from) {
-    if(from < 1){
+    if (from < 1) {
       from = 2;
     }
     return from -= 1;
@@ -104,11 +104,11 @@ public class EventDtoService {
     return numberFound / perPage;
   }
 
-  public void deleteEventFromBase(Long id){
+  public void deleteEventFromBase(Long id) {
     Event searchingEvent = findEventById(id);
     List<User> users = userDaoBean.findUsersWithFavouriteEvents(id);
-    users.forEach(u->u.getEvents().remove(searchingEvent));
-    users.forEach(u->searchingEvent.getUsers().remove(u));
+    users.forEach(u -> u.getEvents().remove(searchingEvent));
+    users.forEach(u -> searchingEvent.getUsers().remove(u));
     eventsDaoBean.removeEvent(searchingEvent);
   }
 }

@@ -83,7 +83,7 @@ public class EventsDaoBean {
     return query.getResultList();
   }
 
-  public void removeEvent(Event event){
+  public void removeEvent(Event event) {
     logger.info("Object event id: {} remove from DB", event.getId());
     entityManager.remove(event);
   }
