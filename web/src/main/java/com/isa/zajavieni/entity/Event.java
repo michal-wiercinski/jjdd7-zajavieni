@@ -18,6 +18,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @NamedQueries({
     @NamedQuery(
@@ -30,7 +32,7 @@ import javax.persistence.Table;
     ),
     @NamedQuery(
         name = "Event.foundEvents",
-        query = "SELECT e FROM Event e WHERE e.name LIKE CONCAT('%',:phrase,'%')"
+        query = "SELECT e FROM Event e WHERE e.name LIKE :phrase"
     ),
     @NamedQuery(
         name = "Event.filterByOrganizer",
@@ -47,10 +49,169 @@ import javax.persistence.Table;
         query = "SELECT e FROM Event e INNER JOIN e.users u WHERE u.id = :id"
     ),
     @NamedQuery(
+        name = "Event.findByNameAndDates",
+        query = "SELECT e FROM Event e "
+            + "WHERE "
+            + "e.name LIKE :name AND "
+            + "e.startDate >= :startDate AND "
+            + "e.startDate <= :endDate "
+            + "ORDER BY e.startDate "
+    ),
+    @NamedQuery(
+        name = "Event.countFindByNameAndDates",
+        query = "SELECT count(e) FROM Event e "
+            + "WHERE "
+            + "e.name LIKE :name "
+            + "AND "
+            + "e.startDate >= :startDate "
+            + "AND "
+            + "e.startDate <= :endDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.findByNameAndStartDate",
+        query = "SELECT e FROM Event e "
+            + "WHERE "
+            + "e.name LIKE :name "
+            + "AND "
+            + "e.startDate >= :startDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.countFindByNameAndStartDate",
+        query = "SELECT count(e) FROM Event e "
+            + "WHERE "
+            + "e.name LIKE :name "
+            + "AND "
+            + "e.startDate>= :startDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.findByNameAndEndDate",
+        query = "SELECT e FROM Event e "
+            + "WHERE "
+            + "e.name LIKE :name "
+            + "AND "
+            + "e.startDate<= :endDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.countFindByNameAndEndDate",
+        query = "SELECT count(e) FROM Event e "
+            + "WHERE "
+            + "e.name LIKE :name "
+            + "AND "
+            + "e.startDate<= :endDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.findByName",
+        query = "SELECT e FROM Event e "
+            + "WHERE "
+            + "e.name LIKE :name "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.countFindByName",
+        query = "SELECT count(e) FROM Event e "
+            + "WHERE "
+            + "e.name LIKE :name "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.findByNameOrganizerAndDates",
+        query = "SELECT e FROM Event e "
+            + "INNER JOIN "
+            + "e.organizer o "
+            + "WHERE "
+            + "o.designation LIKE :name "
+            + "AND "
+            + "e.startDate>= :startDate "
+            + "AND "
+            + "e.startDate<= :endDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.countByNameOrganizerAndDates",
+        query = "SELECT count(e) FROM Event e "
+            + "INNER JOIN "
+            + "e.organizer o "
+            + "WHERE "
+            + "o.designation LIKE :name "
+            + "AND "
+            + "e.startDate>= :startDate "
+            + "AND "
+            + "e.startDate<= :endDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.countByNameOrganizerAndStartDate",
+        query = "SELECT count(e) FROM Event e "
+            + "INNER JOIN "
+            + "e.organizer o "
+            + "WHERE "
+            + "o.designation LIKE :name "
+            + "AND "
+            + "e.startDate>= :startDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.findByNameOrganizerAndStartDate",
+        query = "SELECT e FROM Event e "
+            + "INNER JOIN "
+            + "e.organizer o "
+            + "WHERE "
+            + "o.designation LIKE :name "
+            + "AND "
+            + "e.startDate>= :startDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.findByNameOrganizerAndEndDate",
+        query = "SELECT e FROM Event e "
+            + "INNER JOIN "
+            + "e.organizer o "
+            + "WHERE "
+            + "o.designation LIKE :name "
+            + "AND "
+            + "e.startDate<= :endDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.countByNameOrganizerAndEndDate",
+        query = "SELECT count(e) FROM Event e "
+            + "INNER JOIN "
+            + "e.organizer o "
+            + "WHERE "
+            + "o.designation LIKE :name "
+            + "AND "
+            + "e.startDate<= :endDate "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.findByNameOrganizer",
+        query = "SELECT e FROM Event e "
+            + "INNER JOIN "
+            + "e.organizer o "
+            + "WHERE "
+            + "o.designation LIKE :name "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
+        name = "Event.countByNameOrganizer",
+        query = "SELECT count(e) FROM Event e "
+            + "INNER JOIN "
+            + "e.organizer o "
+            + "WHERE "
+            + "o.designation LIKE :name "
+            + "ORDER BY e.startDate"
+    ),
+    @NamedQuery(
         name = "Event.findAllFavouriteEvents",
         query = "SELECT e FROM Event e INNER JOIN e.users u"
     )
 })
+
 @Entity
 @Table(name = "event", indexes = {@Index(name = "name", columnList = "name")})
 public class Event {
@@ -72,9 +233,11 @@ public class Event {
   Boolean active;
 
   @Column(name = "start_date")
+  @Temporal(TemporalType.TIMESTAMP)
   Date startDate;
 
   @Column(name = "end_date")
+  @Temporal(TemporalType.TIMESTAMP)
   Date endDate;
 
   @Column(name = "type")
@@ -116,6 +279,14 @@ public class Event {
     this.ticketPool = ticketPool;
   }
 
+
+  @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "event_popularity_id", unique = true)
+  PopularityEvent popularityEvent;
+
+  @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "favourite_event_popularity_id", unique = true)
+  PopularityFavouriteEvent popularityFavouriteEvent;
 
   public Event(String name, String descShort, String descLong, Boolean active,
       Date startDate, Date endDate, TicketType type) {
@@ -244,6 +415,23 @@ public class Event {
     this.users = users;
   }
 
+  public PopularityEvent getPopularityEvent() {
+    return popularityEvent;
+  }
+
+  public void setPopularityEvent(PopularityEvent popularityEvent) {
+    this.popularityEvent = popularityEvent;
+  }
+
+  public PopularityFavouriteEvent getPopularityFavouriteEvent() {
+    return popularityFavouriteEvent;
+  }
+
+  public void setPopularityFavouriteEvent(
+      PopularityFavouriteEvent popularityFavouriteEvent) {
+    this.popularityFavouriteEvent = popularityFavouriteEvent;
+  }
+
   public List<Booking> getBookings() {
     return bookings;
   }
@@ -252,4 +440,3 @@ public class Event {
     this.bookings = bookings;
   }
 }
-

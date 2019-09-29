@@ -5,6 +5,8 @@ import com.isa.zajavieni.dao.CategoriesDaoBean;
 import com.isa.zajavieni.dao.OrganizersDaoBean;
 import com.isa.zajavieni.entity.Attachment;
 import com.isa.zajavieni.entity.Event;
+import com.isa.zajavieni.entity.PopularityEvent;
+import com.isa.zajavieni.entity.PopularityFavouriteEvent;
 import com.isa.zajavieni.servlet.LoggerServlet;
 import java.util.List;
 import java.util.Random;
@@ -34,7 +36,7 @@ public class EventsMapper {
   private AttachmentListMapper attachmentListMapper;
 
   public Event mapEventsApiToEntity(com.isa.zajavieni.jsonclasses.Event eventApi) {
-    logger.info("Map eventApi id: {} to entity", eventApi.getEventId());
+//    logger.info("Map eventApi id: {} to entity", eventApi.getEventId());
     Event event = new Event();
     event.setId(eventApi.getEventId());
     event.setName(eventApi.getName());
@@ -51,6 +53,9 @@ public class EventsMapper {
     event.setAddress(addressDaoBean.findAddressById(eventApi.getPlace().getPlaceId()));
     event.setOrganizer(organizersDaoBean.findOrganizerById(eventApi.getOrganizer().getId()));
     event.setCategory(categoriesDaoBean.findCategoryById(eventApi.getCategoryId()));
+
+    event.setPopularityEvent(new PopularityEvent());
+    event.setPopularityFavouriteEvent(new PopularityFavouriteEvent());
     event.setTicketPool(new Random().nextInt(100));
     return event;
   }

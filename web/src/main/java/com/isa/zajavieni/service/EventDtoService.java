@@ -7,6 +7,7 @@ import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.mapper.dtoMapper.EventDtoMapper;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
@@ -115,10 +116,98 @@ public class EventDtoService {
     eventsDaoBean.removeEvent(searchingEvent);
   }
 
+  public List<EventDto> searchEventsByNameAndDates(String name, Date startDate, Date endDate,
+      int pageNumber) {
+    return eventsDaoBean.findByNameAndDates(name, startDate, endDate, pageNumber).stream()
+        .map((event) -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
+  }
+
+  public long getSizeEventsByNameAndDates(String name, Date startDate, Date endDate) {
+    return eventsDaoBean.getSizeEventsByNameAndDates(name, startDate, endDate);
+  }
+
+  public List<EventDto> searchEventsByNameAndStartDate(String name, Date startDate,
+      int pageNumber) {
+    return eventsDaoBean.findByNameAndStartDate(name, startDate, pageNumber).stream()
+        .map((event) -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
+  }
+
+  public long getSizeEventsByNameAndStartDate(String name, Date startDate) {
+    return eventsDaoBean.getSizeEventsByNameAndStartDate(name, startDate);
+  }
+
+  public List<EventDto> searchEventsByNameAndEndDate(String name, Date endDate, int pageNumber) {
+    return eventsDaoBean.findByNameAndEndDate(name, endDate, pageNumber).stream()
+        .map((event) -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
+  }
+
+  public long getSizeEventsByNameAndEndDate(String name, Date endDate) {
+    return eventsDaoBean.getSizeEventsByNameAndEndDate(name, endDate);
+  }
+
+  public List<EventDto> searchEventsByName(String name, int pageNumber) {
+    return eventsDaoBean.findByName(name, pageNumber).stream()
+        .map((event) -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
+  }
+
+  public long getSizeEventsByName(String name) {
+    return eventsDaoBean.getSizeEventsByName(name);
+  }
+
+  public List<EventDto> searchEventByOrganizerNameAndDates(String name, Date startDate,
+      Date endDate, int pageNumber) {
+    return eventsDaoBean.findEventByOrganizerNameAndDates(name, startDate, endDate, pageNumber)
+        .stream()
+        .map((event) -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
+  }
+
+  public long getSizeEventByOrganizerNameAndDates(String name, Date startDate, Date endDate) {
+    return eventsDaoBean.getSizeEventByOrganizerNameAndDates(name, startDate, endDate);
+  }
+
+  public List<EventDto> searchEventByOrganizerNameAndStartDate(String name, Date startDate,
+      int pageNumber) {
+    return eventsDaoBean.findEventByOrganizerNameAndStartDate(name, startDate, pageNumber)
+        .stream()
+        .map((event) -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
+  }
+
   @Transactional
   public List<EventDto> getEventsByUserBooking(Long id) {
     List<BookingDto> bookings = bookingService.findBookingsForUser(id);
     return bookings.stream().map(b -> b.getEventDto()).collect(Collectors.toList());
   }
-}
 
+  public long getSizeEventByOrganizerNameAndStartDate(String name, Date startDate) {
+    return eventsDaoBean.getSizeEventByOrganizerNameAndStartDate(name, startDate);
+  }
+
+  public List<EventDto> searchEventByOrganizerNameAndEndDate(String name, Date endDate,
+      int pageNumber) {
+    return eventsDaoBean.findEventByOrganizerNameAndEndDate(name, endDate, pageNumber)
+        .stream()
+        .map((event) -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
+  }
+
+  public long getSizeEventByOrganizerNameAndEndDate(String name, Date endDate) {
+    return eventsDaoBean.getSizeEventByOrganizerNameAndEndDate(name, endDate);
+  }
+
+  public List<EventDto> searchEventByOrganizerName(String name, int pageNumber) {
+    return eventsDaoBean.findEventByOrganizerName(name, pageNumber)
+        .stream()
+        .map((event) -> dtoMapper.mapEventToDto(event))
+        .collect(Collectors.toList());
+  }
+
+  public long getSizeEventByOrganizerName(String name) {
+    return eventsDaoBean.getSizeEventByOrganizerName(name);
+  }
+}

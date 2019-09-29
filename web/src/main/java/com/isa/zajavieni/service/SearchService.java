@@ -14,4 +14,5 @@ public class SearchService {
   public List<EventDto> searchEvents(String phrase) {
     return eventService.searchEvents(phrase);
   }
+
 }

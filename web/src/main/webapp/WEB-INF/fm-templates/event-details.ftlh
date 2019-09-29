@@ -74,7 +74,7 @@
             <a href="/login" class="btn btn-primary">Zarezerwuj bilet</a>
             <a href="/login" class="btn btn-primary">Dodaj do ulubionych</a>
           </#if>
-    <#if type == "SUPER_ADMIN">
+    <#if (type == "ADMIN") || (type == "SUPER_ADMIN")>
       <button type="button"
               class="btn btn-secondary"
               id='deleteEvent'
@@ -85,7 +85,4 @@
     </#if>
   </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <#include "footer.ftlh">
