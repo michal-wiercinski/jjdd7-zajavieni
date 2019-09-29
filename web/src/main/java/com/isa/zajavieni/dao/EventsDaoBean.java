@@ -85,9 +85,13 @@ public class EventsDaoBean {
         .setParameter("name", "%" + name + "%")
         .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
         .setParameter("endDate", endDate, TemporalType.TIMESTAMP)
-        .setFirstResult(pageNumber * 8 - 7)
+        .setFirstResult(getFirstResultNumber(pageNumber))
         .setMaxResults(8);
     return query.getResultList();
+  }
+
+  private int getFirstResultNumber(int pageNumber) {
+    return (pageNumber - 1) * 8;
   }
 
   public long getSizeEventsByNameAndDates(String name, Date startDate, Date endDate) {
@@ -104,7 +108,7 @@ public class EventsDaoBean {
     query
         .setParameter("name", "%" + name + "%")
         .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
-        .setFirstResult(pageNumber * 8 - 7)
+        .setFirstResult(getFirstResultNumber(pageNumber))
         .setMaxResults(8);
     return query.getResultList();
   }
@@ -122,7 +126,7 @@ public class EventsDaoBean {
     query
         .setParameter("name", "%" + name + "%")
         .setParameter("endDate", endDate, TemporalType.TIMESTAMP)
-        .setFirstResult(pageNumber * 8 - 7)
+        .setFirstResult(getFirstResultNumber(pageNumber))
         .setMaxResults(8);
     return query.getResultList();
   }
@@ -135,11 +139,11 @@ public class EventsDaoBean {
     return (long) query.getSingleResult();
   }
 
-  public List<Event> findByName(String name , int pageNumber) {
+  public List<Event> findByName(String name, int pageNumber) {
     Query query = entityManager.createNamedQuery("Event.findByName");
     query
         .setParameter("name", "%" + name + "%")
-        .setFirstResult(pageNumber * 8 - 7)
+        .setFirstResult(getFirstResultNumber(pageNumber))
         .setMaxResults(8);
     return query.getResultList();
   }
@@ -157,7 +161,7 @@ public class EventsDaoBean {
         .setParameter("name", "%" + name + "%")
         .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
         .setParameter("endDate", endDate, TemporalType.TIMESTAMP)
-        .setFirstResult(pageNumber * 8 - 7)
+        .setFirstResult(getFirstResultNumber(pageNumber))
         .setMaxResults(8);
     return query.getResultList();
   }
@@ -177,7 +181,7 @@ public class EventsDaoBean {
     query
         .setParameter("name", "%" + name + "%")
         .setParameter("startDate", startDate, TemporalType.TIMESTAMP)
-        .setFirstResult(pageNumber * 8 - 7)
+        .setFirstResult(getFirstResultNumber(pageNumber))
         .setMaxResults(8);
     return query.getResultList();
   }
@@ -195,7 +199,7 @@ public class EventsDaoBean {
     query
         .setParameter("name", "%" + name + "%")
         .setParameter("endDate", endDate, TemporalType.TIMESTAMP)
-        .setFirstResult(pageNumber * 8 - 7)
+        .setFirstResult(getFirstResultNumber(pageNumber))
         .setMaxResults(8);
     return query.getResultList();
   }
@@ -212,7 +216,7 @@ public class EventsDaoBean {
     Query query = entityManager.createNamedQuery("Event.findByNameOrganizer");
     query
         .setParameter("name", "%" + name + "%")
-        .setFirstResult(pageNumber * 8 - 7)
+        .setFirstResult(getFirstResultNumber(pageNumber))
         .setMaxResults(8);
     return query.getResultList();
   }

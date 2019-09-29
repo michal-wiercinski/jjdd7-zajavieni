@@ -3,8 +3,12 @@
 
 <div>
   <h2> Wyszukiwanie </h2>
-
-  <div class="container-fluid row">
+  <#if message??>
+  <div class="container-fluid">
+    <p>${message}</p>
+  </div>
+</#if>
+<div class="container-fluid row">
 
     <form class="form-inline" action="/advanced-search" method="get">
 

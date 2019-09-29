@@ -52,8 +52,8 @@ import javax.persistence.TemporalType;
         query = "SELECT e FROM Event e "
             + "WHERE "
             + "e.name LIKE :name AND "
-            + "e.startDate>= :startDate AND "
-            + "e.startDate<= :endDate "
+            + "e.startDate >= :startDate AND "
+            + "e.startDate <= :endDate "
             + "ORDER BY e.startDate "
     ),
     @NamedQuery(
@@ -62,9 +62,9 @@ import javax.persistence.TemporalType;
             + "WHERE "
             + "e.name LIKE :name "
             + "AND "
-            + "e.startDate>= :startDate "
+            + "e.startDate >= :startDate "
             + "AND "
-            + "e.startDate<= :endDate "
+            + "e.startDate <= :endDate "
             + "ORDER BY e.startDate"
     ),
     @NamedQuery(
@@ -73,7 +73,7 @@ import javax.persistence.TemporalType;
             + "WHERE "
             + "e.name LIKE :name "
             + "AND "
-            + "e.startDate>= :startDate "
+            + "e.startDate >= :startDate "
             + "ORDER BY e.startDate"
     ),
     @NamedQuery(
