@@ -30,12 +30,6 @@ public class ErrorHandlerServlet extends HttpServlet {
 
     Map<String, String> model = new HashMap<>();
 
-/*    String siteType = (String) req.getAttribute("siteType");
-
-    model.put("siteType", siteType);
-
-    model.put("error","Error");*/
-
     try {
       template.process(model, printWriter);
     } catch (TemplateException e) {
