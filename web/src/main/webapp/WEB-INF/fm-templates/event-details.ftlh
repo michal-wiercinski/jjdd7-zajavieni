@@ -53,7 +53,6 @@
     </br></br></br>
   </div>
   <div class="card-footer d-inline">
-
       <#if type != "GUEST">
          <a href="#" class="btn btn-primary">Zarezerwuj bilet</a>
         <button type="button"
@@ -63,6 +62,15 @@
             ${isFavourite?then('Usuń z ulubionych ❌', 'Dodaj do ulubionych ✅')}
         </button>
       </#if>
+    <#if type == "SUPER_ADMIN">
+      <button type="button"
+              class="btn btn-secondary"
+              id='deleteEvent'
+              data-id='${event.id?c}'>
+          Usuń wydarzenie ❌
+      </button>
+
+    </#if>
   </div>
 </div>
 <script src="/js/favourite.js"></script>
