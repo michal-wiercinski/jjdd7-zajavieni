@@ -36,6 +36,7 @@ public class UserService {
     return userDaoBean.findById(id);
   }
 
+  @Transactional
   public UserDto findUserDtoById(Long id){
     return userDtoMapper.mapEntityToDto(findUserById(id));
   }
@@ -99,11 +100,4 @@ public class UserService {
     return userDaoBean.findByEmail(email);
   }
 
-  public void addBookingToUser(Long id, Long bookingId){
-    Booking booking = bookingDaoBean.findById(bookingId);
-    User user = findUserById(id);
-    List<Booking> bookings = user.getBookings();
-    bookings.add(booking);
-    userDaoBean.saveUser(user);
-  }
 }

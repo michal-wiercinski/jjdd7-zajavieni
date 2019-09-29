@@ -9,7 +9,10 @@ import com.isa.zajavieni.entity.User;
 import com.isa.zajavieni.service.BookingService;
 import com.isa.zajavieni.service.EventService;
 import com.isa.zajavieni.service.UserService;
+import java.util.List;
+import java.util.Optional;
 import javax.ejb.EJB;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -51,13 +54,42 @@ public class BookingController {
 
     UserDto user = userService.findUserDtoById(userId);
     EventDto event = eventService.findById(eventId);
-    BookingDto booking = bookingService.createBooking(event,user);
+    Integer ticketPool = event.getTicketPool();
+    if (ticketPool < 1) {
+      return Response.status(Status.FOUND).build();
+    }
+    BookingDto booking = bookingService.createBooking(event, user);
+    event.setTicketPool(event.getTicketPool() - 1);
     bookingService.saveBooking(booking);
-    System.out.println("sdasdfaNQFINEQJNFSfnovwe");
- /*   logger.info("New booking with id: {} has been created for user with id{} and eventd with id {}  ",
-        booking.getBookingId(),userId, eventId)*/;
+    logger
+        .info("New booking with id: {} has been created for user with id{} and eventd with id {}  ",
+            booking.getBookingId(), userId, eventId);
     return Response.ok().build();
 
   }
 
+  @DELETE
+  @Path("/cancel-booking/eventId/{eventId}/userId/{userId}")
+  public Response cancelBooking(@PathParam("eventId") String eventIdParam,
+      @PathParam("userId") String userIdParam) {
+    if (!NumberUtils.isDigits(eventIdParam) || !NumberUtils.isDigits(userIdParam)) {
+      return Response.status(Status.BAD_REQUEST).build();
+    }
+    Long eventId = Long.valueOf(eventIdParam);
+    Long userId = Long.valueOf(userIdParam);
+
+    if (userService.findUserById(userId) == null || eventService.findById(eventId) == null) {
+      logger.warn("User with id: {} not found", userId);
+      return Response.status(Status.NOT_FOUND).build();
+    }
+
+    BookingDto booking = bookingService.findByEventAndUser(eventId, userId);
+    Long id = booking.getBookingId();
+    bookingService.deleteBooking(id);
+
+    logger.info("Booking with id: {} has been canceled for user with id{} and eventd with id {}  ",
+        id, userId, eventId);
+    return Response.ok().build();
+
+  }
 }

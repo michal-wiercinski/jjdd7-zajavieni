@@ -57,8 +57,6 @@ public class EventDtoMapper {
     eventDto.setOrganizerName(organizerDtoMapper.mapOrganizerToDto(event.getOrganizer()).getName());
     event.getAttachment().forEach(a -> eventDto.getAttachments()
         .add(attachmentDtoMapper.mapAttachmentToDto(a)));
-    event.getBookings().forEach(b -> eventDto.getBookings()
-        .add(bookingDtoMapper.mapEntityToDto(b)));
     eventDto.setTicketPool(event.getTicketPool());
     logger.info("Map event entity id: {} to dto", event.getId());
     return eventDto;

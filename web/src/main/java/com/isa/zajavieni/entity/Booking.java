@@ -15,7 +15,11 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(
         name = "Booking.findBookingByUserId",
-        query = "SELECT b FROM Booking AS b JOIN b.user AS u WHERE u.id IN :id"
+        query = "SELECT b FROM Booking b WHERE b.user.id IN :id"
+    ),
+    @NamedQuery(
+        name = "Booking.findByEventAndUser",
+        query = "SELECT b FROM Booking b WHERE b.event.id = :event_id AND b.user.id = :user_id"
     )
 })
 @Entity

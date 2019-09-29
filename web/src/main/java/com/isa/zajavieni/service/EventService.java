@@ -25,7 +25,7 @@ public class EventService {
   @EJB
   BookingService bookingService;
 
-  @Inject
+  @EJB
   private EventDtoMapper dtoMapper;
 
   public void editEventDto(EventDto event){
@@ -113,12 +113,8 @@ public class EventService {
 
   @Transactional
   public List<EventDto> getEventsByUserBooking(Long id){
-    List<BookingDto> bookings = bookingService.getBookingsByUserId(id);
-    List<Long> eventsId = bookings.stream().map(b -> b.getEventDto().getId()).collect(
-        Collectors.toList());
-
-    return eventsId.stream().map(event -> findById(id)).collect(
-        Collectors.toList());
+    List<BookingDto> bookings = bookingService.findBookingsForUser(id);
+    return bookings.stream().map(b -> b.getEventDto()).collect(Collectors.toList());
   }
 }
 

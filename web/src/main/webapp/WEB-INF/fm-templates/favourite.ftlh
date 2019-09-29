@@ -24,7 +24,8 @@
                 <p>${(event.addressName)!"n/a"}</p>
               </div>
               <div class="card-footer">
-                <button type="button" data-id-event="${event.id}" data-id-user="${userId}" class="btn btn-primary make-booking">Zarezerwuj bilet</button>
+                <button type="button" data-id-event="${event.id?c}" data-id-user="${userId}" class="btn btn-primary make-booking">Zarezerwuj bilet</button>
+                <button type="button" data-id-event="${event.id?c}" data-id-user="${userId}" class="btn btn-outline-danger cancel-booking">Odwołaj rezerwację</button>
                 <a href="/event-view?id=${event.id?c}"
                    class="btn btn-primary show-event" <#--data-id="${event.id}"-->>Szczegóły</a>
               </div>

@@ -29,9 +29,9 @@ public class BookingDtoMapper {
     BookingDto bookingDto = new BookingDto();
 
     bookingDto.setBookingId(booking.getBookingId());
-    bookingDto.setUserDto(userDtoMapper.mapEntityToDto(booking.getUser()));
-    bookingDto.setEventDto(eventDtoMapper.mapEventToDto(booking.getEvent()));
     return bookingDto;
+/*    bookingDto.setUserDto(userDtoMapper.mapEntityToDto(booking.getUser()));
+    bookingDto.setEventDto(eventDtoMapper.mapEventToDto(booking.getEvent()));*/
   }
   @Transactional
   public Booking mapDtoToEntity(BookingDto bookingDto){

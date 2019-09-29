@@ -34,20 +34,11 @@ public class TicketServlet extends HttpServlet {
   @EJB
   private EventService eventService;
 
-  @EJB
-  private UserService userService;
-
-  @EJB
-  private BookingService bookingService;
 
   @Inject
   private TemplateProvider templateProvider;
 
-  @EJB
-  BookingDtoMapper bookingDtoMapper;
 
-  @EJB
-  EventDtoMapper eventDtoMapper;
   @Inject
   private FavouriteEventService favouriteEventService;
 
@@ -63,7 +54,7 @@ public class TicketServlet extends HttpServlet {
     Template template = templateProvider.getTemplate(getServletContext(), "tickets.ftlh");
     Map<String, Object> model = new HashMap<>();
     Long userId = (Long) req.getSession().getAttribute("userId");
-    if (userId != null) {
+      if (userId != null) {
       List<EventDto> events = eventService.getEventsByUserBooking(userId);
 
       List<EventDto> favouriteEvents = favouriteEventService

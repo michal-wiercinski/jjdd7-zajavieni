@@ -23,9 +23,7 @@
                href="/event-view?id=${event.id?c}">Szczegóły</a></td>
         <td>
           <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" data-id="${event.id}"
-                    data-id-user="${userId}"class="btn btn-outline-danger odwołaj ">Odwołaj
-            </button>
+            <button type="button" data-id-event="${event.id?c}" data-id-user="${userId}" class="btn btn-outline-danger cancel-booking">Odwołaj rezerwację</button>
           </div>
         </td>
       </tr>

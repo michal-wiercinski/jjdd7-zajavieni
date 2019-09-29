@@ -34,7 +34,7 @@ public class UpcomingEventServlet extends HttpServlet {
   @Inject
   private TemplateProvider templateProvider;
 
-  @Inject
+  @EJB
   private FavouriteEventService favouriteEventService;
 
   @Override
