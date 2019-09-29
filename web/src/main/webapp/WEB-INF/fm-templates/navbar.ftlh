@@ -26,13 +26,17 @@
     <#assign upcoming_link = "/upcoming-events?pageNo=1">
     <#assign favourite_link = "/favourite-events">
     <#assign search_by_organizer = "/organizers?letter=A">
-    <#assign tickets = "/tickets">
-  <form class="form-inline my-2 my-lg-0" >
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search">
-    <button class="btn btn-outline-primary btn-rounded btn-sm my-0 waves-effect waves-light" type="submit">
+  <form class="form-inline my-2 my-lg-0" action="/advanced-search">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+           id="search" maxlength="30" name="name">
+    <input name="categorySearch" type="hidden" value="event">
+    <button class="btn btn-outline-primary btn-rounded btn-sm my-0 waves-effect waves-light"
+            type="submit">
       Szukaj
     </button>
   </form>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <#assign tickets = "/tickets">
   <nav class="my-2 my-md-0 mr-md-3">
       <#if (type == "ADMIN") || (type == "SUPER_ADMIN")>
         <a class="p-2 text-dark" href="/admin-view">Panel admina</a>
