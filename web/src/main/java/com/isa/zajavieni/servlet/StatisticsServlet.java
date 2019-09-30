@@ -58,7 +58,5 @@ public class StatisticsServlet extends HttpServlet {
     } catch (TemplateException e) {
       logger.error(e.getMessage());
     }
-
   }
-
 }

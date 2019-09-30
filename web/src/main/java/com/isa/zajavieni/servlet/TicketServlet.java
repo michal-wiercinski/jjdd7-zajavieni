@@ -66,6 +66,5 @@ public class TicketServlet extends HttpServlet {
     } catch (TemplateException e) {
       logger.error(e.getMessage());
     }
-
   }
 }

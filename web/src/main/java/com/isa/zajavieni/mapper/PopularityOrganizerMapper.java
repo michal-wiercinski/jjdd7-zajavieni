@@ -17,5 +17,4 @@ public class PopularityOrganizerMapper {
     popularityOrganizerResponse.setQuantity(popularityOrganizer.getQuantity());
     return popularityOrganizerResponse;
   }
-
 }

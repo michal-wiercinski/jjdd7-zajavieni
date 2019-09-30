@@ -30,14 +30,6 @@ public class BookingDaoBean {
     }
   }
 
-  /*public Long findIdByEventAndUser(Long eventId, Long userId) {
-    Query query = entityManager.createNamedQuery("Booking.findByEventAndUser");
-    query.setParameter("event_id", eventId)
-        .setParameter("user_id", userId);
-    Long bookingId = (Long)query.getSingleResult();
-    return bookingId;
-  }*/
-
   public Booking findById(Long id) {
     return entityManager.find(Booking.class, id);
   }

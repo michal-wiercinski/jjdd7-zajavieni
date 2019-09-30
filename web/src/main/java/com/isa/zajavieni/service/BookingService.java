@@ -17,7 +17,6 @@ import javax.transaction.Transactional;
 @Stateless
 public class BookingService {
 
-
   @EJB
   BookingDaoBean bookingDaoBean;
 
@@ -38,15 +37,15 @@ public class BookingService {
     bookingDaoBean.deleteById(id);
   }
 
-  public BookingDto findByEventAndUser(Long eventId, Long userId){
-    Booking booking = bookingDaoBean.findByEventAndUser(eventId,userId).get();
+  public BookingDto findByEventAndUser(Long eventId, Long userId) {
+    Booking booking = bookingDaoBean.findByEventAndUser(eventId, userId).get();
     BookingDto bookingDto = bookingDtoMapper.mapEntityToDto(booking);
     bookingDto.setEventDto(eventDtoMapper.mapEventToDto(booking.getEvent()));
     bookingDto.setUserDto(userDtoMapper.mapEntityToDto(booking.getUser()));
     return bookingDto;
   }
 
-@Transactional
+  @Transactional
   public List<BookingDto> findBookingsForUser(Long id) {
     List<BookingDto> bookings = new ArrayList<>();
     bookingDaoBean.findByUserId(id)
@@ -61,9 +60,9 @@ public class BookingService {
   @Transactional
   public BookingDto createBooking(EventDto event, UserDto user) {
     BookingDto booking = new BookingDto();
-      booking.setUserDto(user);
-      booking.setEventDto(event);
-      event.setTicketPool(event.getTicketPool()-1);
+    booking.setUserDto(user);
+    booking.setEventDto(event);
+    event.setTicketPool(event.getTicketPool() - 1);
     return booking;
   }
 
