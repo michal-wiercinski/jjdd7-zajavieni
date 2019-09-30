@@ -1,5 +1,6 @@
 package com.isa.zajavieni.service;
 
+import com.isa.zajavieni.dao.BookingDaoBean;
 import com.isa.zajavieni.dao.EventsDaoBean;
 import com.isa.zajavieni.dao.UserDaoBean;
 import com.isa.zajavieni.entity.Event;
@@ -35,12 +36,18 @@ public class EmailSenderService {
   private static final String cancelBookingContent = "Drogi użytkowniku, <br><br>"
       + "Odwołałeś rezerwację na wydarzenie %s.<br><br>"
       + "Administratorzy serwisu 3cityevent";
+  private static final String deleteEventBookedContent = "Drogi użytkowniku,<br><br>"
+      + "Z przykrością informujemy, że wydarzenie '%s' które zarezerwowałeś zostało usunięte z serwisu przez administratora.<br><br>"
+      + "Administratorzy serwisu 3cityevent";
 
   @EJB
   private UserDaoBean userDaoBean;
 
   @EJB
   private EventsDaoBean eventsDaoBean;
+
+  @EJB
+  private BookingDaoBean bookingDaoBean;
 
   @EJB
   private PropertiesLoaderService propertiesLoaderService;
@@ -83,6 +90,18 @@ public class EmailSenderService {
     } catch (MessagingException | IOException e) {
       logger.error(e.getMessage());
     }
+  }
+
+  public void sendDeletedBookedEventForUser(Long eventId){
+    List<Long> usersId = bookingDaoBean.getUserWithBookedEvent(eventId);
+    usersId.forEach(uId -> {
+      User user = userDaoBean.findById(uId);
+      try {
+        sendDeletedBookedEventEmail(user.getEmail(), eventId);
+      } catch (MessagingException | IOException e) {
+        logger.error(e.getMessage());
+      }
+    });
   }
 
   private void sendDeletedEventEmail(String email, Long eventId)
@@ -160,6 +179,28 @@ public class EmailSenderService {
     Event timedEvent = eventsDaoBean.findById(eventId);
     String subject = "3cityevent | Anulowanie rezerwacji";
     String content = String.format(cancelBookingContent, timedEvent.getName());
+    Session session = Session
+        .getDefaultInstance(propertiesLoaderService.loadMailProperties(), null);
+    MimeMessage message = new MimeMessage(session);
+    message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+    message.setSubject(subject);
+    message.setContent(content, "text/html; charset=utf-8");
+    Transport transport = session.getTransport(mailTransportProtocol);
+    String username = propertiesLoaderService.loadCredentialsProperties()
+        .getProperty("user.name");
+    String password = propertiesLoaderService.loadCredentialsProperties()
+        .getProperty("user.password");
+    String server = propertiesLoaderService.loadServerProperties().getProperty("mail.smtp.host");
+    transport.connect(server, username, password);
+    transport.sendMessage(message, message.getAllRecipients());
+    transport.close();
+  }
+   private void sendDeletedBookedEventEmail(String email, Long eventId)
+      throws MessagingException, IOException {
+    String to = email;
+    Event timedEvent = eventsDaoBean.findById(eventId);
+    String subject = "3cityevent | Odwołano zarezerwowane wydarzenie";
+    String content = String.format(deleteEventBookedContent, timedEvent.getName());
     Session session = Session
         .getDefaultInstance(propertiesLoaderService.loadMailProperties(), null);
     MimeMessage message = new MimeMessage(session);

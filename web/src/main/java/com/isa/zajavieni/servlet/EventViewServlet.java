@@ -122,6 +122,7 @@ public class EventViewServlet extends HttpServlet {
       throws ServletException, IOException {
     Long eventId = Long.parseLong(req.getParameter("id"));
     emailSenderService.sendDeletedEventEmailForUsers(eventId);
+    emailSenderService.sendDeletedBookedEventForUser(eventId);
     eventDtoService.deleteEventFromBase(eventId);
   }
 }

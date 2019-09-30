@@ -52,4 +52,10 @@ public class BookingDaoBean {
     }
     return Optional.of(bookings.get(0));
   }
+
+  public List<Long> getUserWithBookedEvent(Long eventId){
+    Query query = entityManager.createNamedQuery("Booking.findUserIdForBookedEvent");
+    query.setParameter("event_id", eventId);
+    return query.getResultList();
+  }
 }
