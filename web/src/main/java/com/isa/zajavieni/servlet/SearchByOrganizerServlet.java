@@ -29,6 +29,7 @@ public class SearchByOrganizerServlet extends HttpServlet {
 
   private static final int EVENTS_PER_PAGE = 8;
   private static final String PAGE_NUMBER = "pageNo";
+  private static final String EVENT_ID = "id";
   private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
   @EJB
@@ -46,21 +47,14 @@ public class SearchByOrganizerServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    Long id = null;
-    String idParam = req.getParameter("id");
-    if (idParam != null && !idParam.isEmpty() && NumberUtils.isDigits(idParam)) {
-      id = Long.valueOf(idParam);
-    } else {
-      resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-    }
 
-    int pageNumber = 0;
+    Long id = null;
+    String idParam = req.getParameter(EVENT_ID);
+    id = Long.valueOf(idParam);
+
+    int pageNumber = 1;
     String pageParameter = req.getParameter(PAGE_NUMBER);
-    if (pageParameter != null && !pageParameter.isEmpty() && NumberUtils.isDigits(pageParameter)) {
       pageNumber = Integer.valueOf(pageParameter);
-    } else {
-      resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-    }
 
     int totalPages = eventService.getTotalPagesOrganizersEvent(id, EVENTS_PER_PAGE);
 
