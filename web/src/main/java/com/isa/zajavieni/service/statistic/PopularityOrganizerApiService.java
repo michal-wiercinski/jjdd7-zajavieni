@@ -1,9 +1,9 @@
 package com.isa.zajavieni.service.statistic;
 
 import com.isa.zajavieni.dao.PopularityOrganizerDaoBean;
-import com.isa.zajavieni.entity.PopularityOrganizer;
+import com.isa.zajavieni.entity.createdentity.PopularityOrganizer;
 import com.isa.zajavieni.entity.statisticapi.PopularityOrganizerResponse;
-import com.isa.zajavieni.mapper.PopularityOrganizerMapper;
+import com.isa.zajavieni.mapper.apimapper.PopularityOrganizerMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;

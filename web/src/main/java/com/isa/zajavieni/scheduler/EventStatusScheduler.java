@@ -2,8 +2,8 @@ package com.isa.zajavieni.scheduler;
 
 import com.isa.zajavieni.dao.EventsDaoBean;
 import com.isa.zajavieni.dao.UserDaoBean;
-import com.isa.zajavieni.entity.Event;
-import com.isa.zajavieni.entity.User;
+import com.isa.zajavieni.entity.fromapi.Event;
+import com.isa.zajavieni.entity.createdentity.User;
 import com.isa.zajavieni.service.EmailSenderService;
 import java.time.LocalDateTime;
 import java.time.ZoneId;

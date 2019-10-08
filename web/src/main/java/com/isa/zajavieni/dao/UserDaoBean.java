@@ -1,7 +1,7 @@
 package com.isa.zajavieni.dao;
 
-import com.isa.zajavieni.entity.User;
-import com.isa.zajavieni.servlet.LoggerServlet;
+import com.isa.zajavieni.entity.createdentity.User;
+import com.isa.zajavieni.web.servlet.LoggerServlet;
 import java.util.List;
 import java.util.Optional;
 import javax.ejb.Stateless;

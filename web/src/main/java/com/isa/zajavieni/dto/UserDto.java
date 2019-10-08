@@ -1,6 +1,6 @@
 package com.isa.zajavieni.dto;
 
-import com.isa.zajavieni.entity.UserType;
+import com.isa.zajavieni.entity.createdentity.UserType;
 import java.util.ArrayList;
 import java.util.List;
 

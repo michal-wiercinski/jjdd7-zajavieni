@@ -1,6 +1,7 @@
 package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.dto.EventDto;
+import com.isa.zajavieni.service.dtoservice.EventDtoService;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

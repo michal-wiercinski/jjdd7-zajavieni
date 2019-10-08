@@ -9,7 +9,7 @@ import com.isa.zajavieni.jsonclasses.Category;
 import com.isa.zajavieni.jsonclasses.Event;
 import com.isa.zajavieni.jsonclasses.Organizer;
 import com.isa.zajavieni.jsonclasses.Place;
-import com.isa.zajavieni.servlet.LoggerServlet;
+import com.isa.zajavieni.web.servlet.LoggerServlet;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -52,11 +52,5 @@ public class DataParseService {
     return objectMapper.readValue(jsonNode.toString(),
         new TypeReference<List<Organizer>>() {
         });
-  }
-
-  public Event serialzeEvents(EventDto event) throws JsonProcessingException {
-    ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(event);
-    return
   }
 }

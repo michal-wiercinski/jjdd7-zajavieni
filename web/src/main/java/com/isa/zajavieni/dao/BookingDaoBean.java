@@ -1,7 +1,6 @@
 package com.isa.zajavieni.dao;
 
-import com.isa.zajavieni.entity.Booking;
-import com.isa.zajavieni.entity.User;
+import com.isa.zajavieni.entity.createdentity.Booking;
 import java.util.List;
 import java.util.Optional;
 import javax.ejb.Stateless;

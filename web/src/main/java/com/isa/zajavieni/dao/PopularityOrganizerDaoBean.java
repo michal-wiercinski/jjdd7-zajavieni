@@ -1,6 +1,6 @@
 package com.isa.zajavieni.dao;
 
-import com.isa.zajavieni.entity.PopularityOrganizer;
+import com.isa.zajavieni.entity.createdentity.PopularityOrganizer;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

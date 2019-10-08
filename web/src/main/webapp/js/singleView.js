@@ -7,6 +7,7 @@ $(function () {
       $.ajax({
         url: '/api/event/' + $(this).attr(
             'data-id-event'),
+        dataType: "json",
         type: 'GET',
         success: function (data) {
 

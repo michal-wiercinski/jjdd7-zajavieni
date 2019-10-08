@@ -1,7 +1,7 @@
 package com.isa.zajavieni.dao;
 
-import com.isa.zajavieni.entity.Category;
-import com.isa.zajavieni.servlet.LoggerServlet;
+import com.isa.zajavieni.entity.fromapi.Category;
+import com.isa.zajavieni.web.servlet.LoggerServlet;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
