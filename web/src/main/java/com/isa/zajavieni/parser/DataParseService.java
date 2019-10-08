@@ -1,8 +1,10 @@
 package com.isa.zajavieni.parser;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.jsonclasses.Category;
 import com.isa.zajavieni.jsonclasses.Event;
 import com.isa.zajavieni.jsonclasses.Organizer;
@@ -50,5 +52,11 @@ public class DataParseService {
     return objectMapper.readValue(jsonNode.toString(),
         new TypeReference<List<Organizer>>() {
         });
+  }
+
+  public Event serialzeEvents(EventDto event) throws JsonProcessingException {
+    ObjectMapper objectMapper = new ObjectMapper();
+    String json = objectMapper.writeValueAsString(event);
+    return
   }
 }
