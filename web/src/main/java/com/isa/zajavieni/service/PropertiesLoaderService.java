@@ -1,6 +1,6 @@
 package com.isa.zajavieni.service;
 
-import com.isa.zajavieni.servlet.LoggerServlet;
+import com.isa.zajavieni.web.servlet.LoggerServlet;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Properties;

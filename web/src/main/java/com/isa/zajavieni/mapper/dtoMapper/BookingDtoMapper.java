@@ -2,8 +2,8 @@ package com.isa.zajavieni.mapper.dtoMapper;
 
 import com.isa.zajavieni.dto.BookingDto;
 import com.isa.zajavieni.entity.Booking;
-import com.isa.zajavieni.service.EventDtoService;
-import com.isa.zajavieni.service.UserService;
+import com.isa.zajavieni.service.dtoService.EventDtoService;
+import com.isa.zajavieni.service.dtoService.UserService;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.transaction.Transactional;

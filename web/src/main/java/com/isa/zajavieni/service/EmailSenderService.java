@@ -5,7 +5,7 @@ import com.isa.zajavieni.dao.EventsDaoBean;
 import com.isa.zajavieni.dao.UserDaoBean;
 import com.isa.zajavieni.entity.Event;
 import com.isa.zajavieni.entity.User;
-import com.isa.zajavieni.servlet.LoggerServlet;
+import com.isa.zajavieni.web.servlet.LoggerServlet;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;

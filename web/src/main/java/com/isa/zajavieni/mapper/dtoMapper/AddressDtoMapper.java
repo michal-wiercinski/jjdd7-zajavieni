@@ -2,7 +2,7 @@ package com.isa.zajavieni.mapper.dtoMapper;
 
 import com.isa.zajavieni.dto.AddressDto;
 import com.isa.zajavieni.entity.Address;
-import com.isa.zajavieni.servlet.LoggerServlet;
+import com.isa.zajavieni.web.servlet.LoggerServlet;
 import javax.ejb.Stateless;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

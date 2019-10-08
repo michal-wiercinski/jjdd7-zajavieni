@@ -3,7 +3,7 @@ package com.isa.zajavieni.service.statistic;
 import com.isa.zajavieni.dao.PopularityFavouriteEventDaoBean;
 import com.isa.zajavieni.entity.PopularityFavouriteEvent;
 import com.isa.zajavieni.entity.statisticapi.PopularityFavouriteEventResponse;
-import com.isa.zajavieni.mapper.PopularityFavouriteEventMapper;
+import com.isa.zajavieni.mapper.apiMapper.PopularityFavouriteEventMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;

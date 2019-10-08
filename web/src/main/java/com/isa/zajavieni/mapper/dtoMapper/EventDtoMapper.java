@@ -2,7 +2,7 @@ package com.isa.zajavieni.mapper.dtoMapper;
 
 import com.isa.zajavieni.dto.EventDto;
 import com.isa.zajavieni.entity.Event;
-import com.isa.zajavieni.servlet.LoggerServlet;
+import com.isa.zajavieni.web.servlet.LoggerServlet;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.transaction.Transactional;

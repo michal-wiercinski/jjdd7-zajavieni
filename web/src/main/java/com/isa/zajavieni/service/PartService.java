@@ -1,6 +1,7 @@
 package com.isa.zajavieni.service;
 
 import com.isa.zajavieni.cdi.FileReadProcessor;
+import com.isa.zajavieni.service.apiConsumer.JsonProcessor;
 import java.io.IOException;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
