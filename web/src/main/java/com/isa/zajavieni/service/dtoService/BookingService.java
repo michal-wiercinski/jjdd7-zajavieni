@@ -62,8 +62,19 @@ public class BookingService {
     BookingDto booking = new BookingDto();
     booking.setUserDto(user);
     booking.setEventDto(event);
-    event.setTicketPool(event.getTicketPool() - 1);
+    reducePools(event);
     return booking;
+  }
+
+  private Boolean isTheTicket(EventDto event){
+    Integer ticketPool = event.getTicketPool();
+    return ticketPool >= 1;
+  }
+  private void reducePools(EventDto event){
+    Integer ticketPool = event.getTicketPool();
+    if(isTheTicket(event)) {
+      event.setTicketPool(ticketPool - 1);
+    }
   }
 
 }

@@ -52,10 +52,6 @@ public class BookingController {
 
     UserDto user = userService.findUserDtoById(userId);
     EventDto event = eventService.findById(eventId);
-    Integer ticketPool = event.getTicketPool();
-    if (ticketPool < 1) {
-      return Response.status(Status.FOUND).build();
-    }
     BookingDto booking = bookingService.createBooking(event, user);
     emailSenderService.sendBookingEmailForUser(userId, eventId);
     bookingService.saveBooking(booking);
@@ -63,6 +59,7 @@ public class BookingController {
     logger
         .info("New booking with id: {} has been created for user with id{} and eventd with id {}  ",
             booking.getBookingId(), userId, eventId);
+
     return Response.ok().build();
   }
 
@@ -86,6 +83,7 @@ public class BookingController {
     Long id = booking.getBookingId();
     emailSenderService.sendCancelingBookingEmailForUser(userId, eventId);
     bookingService.deleteBooking(id);
+    event.setTicketPool(event.getTicketPool() + 1);
     logger.info("Booking with id: {} has been canceled for user with id{} and eventd with id {}  ",
         id, userId, eventId);
     return Response.ok().build();

@@ -56,7 +56,8 @@ public class EventsMapper {
 
     event.setPopularityEvent(new PopularityEvent());
     event.setPopularityFavouriteEvent(new PopularityFavouriteEvent());
-    event.setTicketPool(new Random().nextInt(100));
+    //event.setTicketPool(new Random().nextInt(100));
+    event.setTicketPool(50);
     return event;
   }
 }
